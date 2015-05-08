@@ -73,6 +73,65 @@ declare module internal.utils {
         setZ(z: number): void;
     }
 }
+declare module internal.utils {
+    class Rectangle {
+        private top;
+        private left;
+        private width;
+        private height;
+        private right;
+        private bottom;
+        /** Gets the top value */
+        getTop(): number;
+        /** Sets the top value */
+        setTop(top: number): void;
+        /** Gets the left value */
+        getLeft(): number;
+        /** Sets the left value */
+        setLeft(left: number): void;
+        /** Gets the right value */
+        getRight(): number;
+        /** Sets the right value */
+        setRight(right: number): void;
+        /** Gets the bottom value */
+        getBottom(): number;
+        /** Sets the bottom value */
+        setBottom(bottom: number): void;
+        /** Gets the width value */
+        getWidth(): number;
+        /** Sets the width value */
+        setWidth(width: number): void;
+        /** Gets the height value */
+        getHeight(): number;
+        /** Sets the height value */
+        setHeight(height: number): void;
+    }
+}
+declare module internal.utils {
+    class Thread {
+        private callbacks;
+        constructor(callbacks: Function[]);
+        private next(...args);
+        static sync(...callbacks: Function[]): Thread;
+    }
+}
+declare module internal.utils {
+    class XMLJSON {
+        tag: string;
+        children: XMLJSON[];
+        value: string;
+        constructor(xml?: any);
+        static parse(xml: any): XMLJSON;
+    }
+    class XML {
+        private xml;
+        private static RESERVED_ATTRIBUTES;
+        constructor(json?: XMLJSON);
+        toString(): string;
+        static parseJSON(json: XMLJSON): XML;
+        static encode(str: string): string;
+    }
+}
 interface Window {
     OnAsyncCallback: Function;
     OnSceneLoad: Function;

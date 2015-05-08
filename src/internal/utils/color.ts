@@ -12,11 +12,21 @@ module internal.utils {
         constructor(
             props?: { rgb: string, irgb: number, bgr: string, ibgr: number }
         ) {
-            if (props.rgb) this.setRgb(props.rgb);
-            if (props.irgb) this.setIrgb(props.irgb);
+            if (props.rgb) {
+                this.setRgb(props.rgb);
+            }
 
-            if (props.bgr) this.setBgr(props.bgr);
-            if (props.ibgr) this.setIbgr(props.ibgr);
+            if (props.irgb) {
+                this.setIrgb(props.irgb);
+            }
+
+            if (props.bgr) {
+                this.setBgr(props.bgr);
+            }
+            
+            if (props.ibgr) {
+                this.setIbgr(props.ibgr);
+            }
         }
 
         /** Gets RGB value */

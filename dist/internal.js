@@ -55,14 +55,18 @@ var internal;
         var Color = (function () {
             /** Creates a Color class */
             function Color(props) {
-                if (props.rgb)
+                if (props.rgb) {
                     this.setRgb(props.rgb);
-                if (props.irgb)
+                }
+                if (props.irgb) {
                     this.setIrgb(props.irgb);
-                if (props.bgr)
+                }
+                if (props.bgr) {
                     this.setBgr(props.bgr);
-                if (props.ibgr)
+                }
+                if (props.ibgr) {
                     this.setIbgr(props.ibgr);
+                }
             }
             /** Gets RGB value */
             Color.prototype.getRgb = function () {
@@ -123,9 +127,9 @@ var internal;
         var Point = (function () {
             /** Creates a Point class */
             function Point(props) {
-                this.setX(x);
-                this.setY(y);
-                this.setZ(z);
+                this.setX(props.x);
+                this.setY(props.y);
+                this.setZ(props.z);
             }
             /** Gets the X coordinate */
             Point.prototype.getX = function () {
@@ -156,12 +160,244 @@ var internal;
         utils.Point = Point;
     })(utils = internal.utils || (internal.utils = {}));
 })(internal || (internal = {}));
+/// <reference path="../_references.ts" />
+var internal;
+(function (internal) {
+    var utils;
+    (function (utils) {
+        var Rectangle = (function () {
+            function Rectangle() {
+            }
+            /** Gets the top value */
+            Rectangle.prototype.getTop = function () {
+                return this.top;
+            };
+            /** Sets the top value */
+            Rectangle.prototype.setTop = function (top) {
+                this.top = top;
+                if (this.bottom !== undefined) {
+                    this.setHeight(Math.abs(this.top - this.bottom));
+                }
+                else if (this.height !== undefined) {
+                    this.setBottom(this.top + this.height);
+                }
+            };
+            /** Gets the left value */
+            Rectangle.prototype.getLeft = function () {
+                return this.left;
+            };
+            /** Sets the left value */
+            Rectangle.prototype.setLeft = function (left) {
+                this.left = left;
+                if (this.right !== undefined) {
+                    this.setWidth(Math.abs(this.right - this.left));
+                }
+                else if (this.width !== undefined) {
+                    this.setRight(this.left + this.width);
+                }
+            };
+            /** Gets the right value */
+            Rectangle.prototype.getRight = function () {
+                return this.right;
+            };
+            /** Sets the right value */
+            Rectangle.prototype.setRight = function (right) {
+                this.right = right;
+                if (this.left !== undefined) {
+                    this.setWidth(Math.abs(this.right - this.left));
+                }
+                else if (this.width !== undefined) {
+                    this.setLeft(this.right - this.width);
+                }
+            };
+            /** Gets the bottom value */
+            Rectangle.prototype.getBottom = function () {
+                return this.bottom;
+            };
+            /** Sets the bottom value */
+            Rectangle.prototype.setBottom = function (bottom) {
+                this.bottom = bottom;
+                if (this.top !== undefined) {
+                    this.setHeight(Math.abs(this.top - this.bottom));
+                }
+                else if (this.height !== undefined) {
+                    this.setTop(this.bottom - this.height);
+                }
+            };
+            /** Gets the width value */
+            Rectangle.prototype.getWidth = function () {
+                return this.width;
+            };
+            /** Sets the width value */
+            Rectangle.prototype.setWidth = function (width) {
+                this.width = width;
+                if (this.right !== undefined) {
+                    this.setLeft(this.right - this.width);
+                }
+                else if (this.left !== undefined) {
+                    this.setRight(this.left + this.width);
+                }
+            };
+            /** Gets the height value */
+            Rectangle.prototype.getHeight = function () {
+                return this.height;
+            };
+            /** Sets the height value */
+            Rectangle.prototype.setHeight = function (height) {
+                this.height = height;
+                if (this.top !== undefined) {
+                    this.setBottom(this.top + this.height);
+                }
+                else if (this.bottom !== undefined) {
+                    this.setTop(this.bottom - this.height);
+                }
+            };
+            return Rectangle;
+        })();
+        utils.Rectangle = Rectangle;
+    })(utils = internal.utils || (internal.utils = {}));
+})(internal || (internal = {}));
+/// <reference path="../_references.ts" />
+var internal;
+(function (internal) {
+    var utils;
+    (function (utils) {
+        var Thread = (function () {
+            function Thread(callbacks) {
+                this.callbacks = callbacks;
+            }
+            Thread.prototype.next = function () {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i - 0] = arguments[_i];
+                }
+                if (this.callbacks.length > 0) {
+                    var callback = this.callbacks.shift();
+                    args.unshift(this.next.bind(this));
+                    callback.apply(this, args);
+                }
+            };
+            Thread.sync = function () {
+                var callbacks = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    callbacks[_i - 0] = arguments[_i];
+                }
+                var thread = new Thread(callbacks);
+                thread.next();
+                return thread;
+            };
+            return Thread;
+        })();
+        utils.Thread = Thread;
+    })(utils = internal.utils || (internal.utils = {}));
+})(internal || (internal = {}));
+/// <reference path='../_references.ts' />
+var internal;
+(function (internal) {
+    var utils;
+    (function (utils) {
+        var XMLJSON = (function () {
+            function XMLJSON(xml) {
+                if (xml === undefined) {
+                    return;
+                }
+                var sxml = xml;
+                if (xml instanceof XML) {
+                    sxml = xml.toString();
+                }
+                // process short ended tags
+                sxml = sxml.replace(/<([^\s>]+)([^>]+)\/>/g, function (match, tagname, attributes) {
+                    return ['<', tagname, attributes, '></', tagname, '>'].join('');
+                });
+                var container = document.createElement('div');
+                container.innerHTML = sxml;
+                var obj = (function processNode(node) {
+                    var nodeJSON = new XMLJSON();
+                    nodeJSON.tag = node.tagName.toLowerCase();
+                    // process attributes
+                    for (var a = 0; a < node.attributes.length; a++) {
+                        var attribute = node.attributes[a];
+                        nodeJSON[attribute.name] = attribute.value;
+                    }
+                    // process child nodes
+                    nodeJSON.children = [];
+                    for (var c = 0; c < node.childNodes.length; c++) {
+                        var childNode = node.childNodes[c];
+                        if (childNode instanceof HTMLElement) {
+                            nodeJSON.children.push(processNode(childNode));
+                        }
+                    }
+                    // process value
+                    if (nodeJSON.value === undefined &&
+                        nodeJSON.children.length === 0) {
+                        delete nodeJSON.children;
+                        nodeJSON.value = node.textContent;
+                    }
+                    return nodeJSON;
+                })(container);
+                obj = obj.children[0];
+                if (obj !== undefined) {
+                    this.tag = obj.tag;
+                    this.children = obj.children;
+                    this.value = obj.value;
+                }
+            }
+            XMLJSON.parse = function (xml) {
+                return new XMLJSON(xml);
+            };
+            return XMLJSON;
+        })();
+        utils.XMLJSON = XMLJSON;
+        var XML = (function () {
+            function XML(json) {
+                var attributes = '';
+                if (json.value === undefined) {
+                    json.value = '';
+                }
+                for (var key in json) {
+                    if (!XML.RESERVED_ATTRIBUTES.test(key) &&
+                        json[key] !== undefined) {
+                        attributes += [' ', key, '=\'', json[key], '\''].join('');
+                    }
+                }
+                if (json.children === undefined) {
+                    json.children = [];
+                }
+                for (var _i = 0, _a = json.children; _i < _a.length; _i++) {
+                    var child = _a[_i];
+                    json.value += new XML(child).toString();
+                }
+                this.xml = ['<', json.tag, attributes, '>',
+                    json.value, '</', json.tag, '>'].join('');
+            }
+            XML.prototype.toString = function () {
+                return this.xml;
+            };
+            XML.parseJSON = function (json) {
+                return new XML(json);
+            };
+            XML.encode = function (str) {
+                return str.replace(/[&<>'']/g, function ($0) {
+                    return '&' + {
+                        '&': 'amp',
+                        '<': 'lt',
+                        '>': 'gt',
+                        '\'': 'quot',
+                        '"': '#39'
+                    }[$0] + ';';
+                });
+            };
+            XML.RESERVED_ATTRIBUTES = /^(children|tag|value)$/i;
+            return XML;
+        })();
+        utils.XML = XML;
+    })(utils = internal.utils || (internal.utils = {}));
+})(internal || (internal = {}));
 /// <reference path="internal.ts" />
 /// <reference path="app.ts" />
 /// <reference path="item.ts" />
 /// <reference path="utils/color.ts" />
 /// <reference path="utils/point.ts" />
-/// <reference path="utils/number.ts" />
 /// <reference path="utils/rectangle.ts" />
 /// <reference path="utils/thread.ts" />
 /// <reference path="utils/xml.ts" /> 

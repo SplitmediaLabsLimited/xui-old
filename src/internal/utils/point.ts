@@ -9,9 +9,9 @@ module internal.utils {
 
         /** Creates a Point class */
         constructor(props?: { x: number, y: number, z: number }) {
-            this.setX(x);
-            this.setY(y);
-            this.setZ(z);
+            this.setX(props.x);
+            this.setY(props.y);
+            this.setZ(props.z);
         }
 
         /** Gets the X coordinate */

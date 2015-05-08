@@ -3,7 +3,6 @@
 /// <reference path="item.ts" />
 /// <reference path="utils/color.ts" />
 /// <reference path="utils/point.ts" />
-/// <reference path="utils/number.ts" />
 /// <reference path="utils/rectangle.ts" />
 /// <reference path="utils/thread.ts" />
 /// <reference path="utils/xml.ts" />
