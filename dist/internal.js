@@ -1,33 +1,29 @@
 /// <reference path="_references.ts" />
 var internal;
 (function (internal) {
+    var u = internal.utils;
     var App = (function () {
         function App() {
         }
-        /**
-         * Get the value of the given property
-         */
-        App.get = function (name, callback) {
-            internal.exec('AppGetPropertyAsync', name, callback);
+        /** Get the value of the given property */
+        App.get = function (name) {
+            return new Promise(function (resolve) {
+                internal.exec('AppGetPropertyAsync', name, resolve);
+            });
         };
-        App.getAsList = function (name, callback) {
-            /*App.get(name, (xml: string) => {
-                let devicesJSON = xui.utils.XML.toJSON(xml);
-                
-                if (!devicesJSON)
-                {
-                    internal.execCallback.call(this, _callback, []);
-                    return false;
-                }
-                
-                devicesJSON = devicesJSON[0].children;
-                
-                internal.execCallback.call(this, _callback, devicesJSON);
-            });    */
+        /** Gets the value of the given property as list */
+        App.getAsList = function (name) {
+            return new Promise(function (resolve) {
+                App.get(name).then(function (xml) {
+                    var propsJSON = u.JSON.parse(xml), propsArr = [];
+                    if (propsJSON.children.length > 0) {
+                        propsArr = propsJSON.children;
+                    }
+                    resolve(propsArr);
+                });
+            });
         };
-        /**
-         * Get the value of the given global property
-         */
+        /** Get the value of the given global property */
         App.getGlobalProperty = function (name) {
             return internal.exec('GetGlobalProperty', name);
         };
@@ -296,58 +292,6 @@ var internal;
 (function (internal) {
     var utils;
     (function (utils) {
-        var XMLJSON = (function () {
-            function XMLJSON(xml) {
-                if (xml === undefined) {
-                    return;
-                }
-                var sxml = xml;
-                if (xml instanceof XML) {
-                    sxml = xml.toString();
-                }
-                // process short ended tags
-                sxml = sxml.replace(/<([^\s>]+)([^>]+)\/>/g, function (match, tagname, attributes) {
-                    return ['<', tagname, attributes, '></', tagname, '>'].join('');
-                });
-                var container = document.createElement('div');
-                container.innerHTML = sxml;
-                var obj = (function processNode(node) {
-                    var nodeJSON = new XMLJSON();
-                    nodeJSON.tag = node.tagName.toLowerCase();
-                    // process attributes
-                    for (var a = 0; a < node.attributes.length; a++) {
-                        var attribute = node.attributes[a];
-                        nodeJSON[attribute.name] = attribute.value;
-                    }
-                    // process child nodes
-                    nodeJSON.children = [];
-                    for (var c = 0; c < node.childNodes.length; c++) {
-                        var childNode = node.childNodes[c];
-                        if (childNode instanceof HTMLElement) {
-                            nodeJSON.children.push(processNode(childNode));
-                        }
-                    }
-                    // process value
-                    if (nodeJSON.value === undefined &&
-                        nodeJSON.children.length === 0) {
-                        delete nodeJSON.children;
-                        nodeJSON.value = node.textContent;
-                    }
-                    return nodeJSON;
-                })(container);
-                obj = obj.children[0];
-                if (obj !== undefined) {
-                    this.tag = obj.tag;
-                    this.children = obj.children;
-                    this.value = obj.value;
-                }
-            }
-            XMLJSON.parse = function (xml) {
-                return new XMLJSON(xml);
-            };
-            return XMLJSON;
-        })();
-        utils.XMLJSON = XMLJSON;
         var XML = (function () {
             function XML(json) {
                 var attributes = '';
@@ -393,6 +337,66 @@ var internal;
         utils.XML = XML;
     })(utils = internal.utils || (internal.utils = {}));
 })(internal || (internal = {}));
+/// <reference path='../_references.ts' />
+var internal;
+(function (internal) {
+    var utils;
+    (function (utils) {
+        var JSON = (function () {
+            function JSON(xml) {
+                if (xml === undefined) {
+                    return;
+                }
+                var sxml = xml;
+                if (xml instanceof utils.XML) {
+                    sxml = xml.toString();
+                }
+                // process short ended tags
+                sxml = sxml.replace(/<([^\s>]+)([^>]+)\/>/g, function (match, tagname, attributes) {
+                    return ['<', tagname, attributes, '></', tagname, '>'].join('');
+                });
+                var container = document.createElement('div');
+                container.innerHTML = sxml;
+                var obj = (function processNode(node) {
+                    var nodeJSON = new JSON();
+                    nodeJSON.tag = node.tagName.toLowerCase();
+                    // process attributes
+                    for (var a = 0; a < node.attributes.length; a++) {
+                        var attribute = node.attributes[a];
+                        nodeJSON[attribute.name] = attribute.value;
+                    }
+                    // process child nodes
+                    nodeJSON.children = [];
+                    for (var c = 0; c < node.childNodes.length; c++) {
+                        var childNode = node.childNodes[c];
+                        if (childNode instanceof HTMLElement) {
+                            nodeJSON.children.push(processNode(childNode));
+                        }
+                    }
+                    // process value
+                    if (nodeJSON.value === undefined &&
+                        nodeJSON.children.length === 0) {
+                        delete nodeJSON.children;
+                        nodeJSON.value = node.textContent;
+                    }
+                    return nodeJSON;
+                })(container);
+                obj = obj.children[0];
+                if (obj !== undefined) {
+                    this.tag = obj.tag;
+                    this.children = obj.children;
+                    this.value = obj.value;
+                }
+            }
+            JSON.parse = function (xml) {
+                return new JSON(xml);
+            };
+            return JSON;
+        })();
+        utils.JSON = JSON;
+    })(utils = internal.utils || (internal.utils = {}));
+})(internal || (internal = {}));
+/// <reference path="../defs/es6-promise.d.ts" />
 /// <reference path="internal.ts" />
 /// <reference path="app.ts" />
 /// <reference path="item.ts" />
@@ -400,7 +404,8 @@ var internal;
 /// <reference path="utils/point.ts" />
 /// <reference path="utils/rectangle.ts" />
 /// <reference path="utils/thread.ts" />
-/// <reference path="utils/xml.ts" /> 
+/// <reference path="utils/xml.ts" />
+/// <reference path="utils/json.ts" /> 
 /// <reference path="_references.ts" />
 var internal;
 (function (internal) {

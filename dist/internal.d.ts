@@ -1,16 +1,15 @@
+/// <reference path="../src/defs/es6-promise.d.ts" />
 declare module internal {
+    import u = internal.utils;
     class App {
         static POSTMESSAGE_CLOSE: string;
         static POSTMESSAGE_SIZE: string;
-        /**
-         * Get the value of the given property
-         */
-        static get(name: string, callback: Function): void;
-        static getAsList(name: string, callback: Function): void;
-        /**
-         * Get the value of the given global property
-         */
-        static getGlobalProperty(name: string): any;
+        /** Get the value of the given property */
+        static get(name: string): Promise<string>;
+        /** Gets the value of the given property as list */
+        static getAsList(name: string): Promise<u.JSON[]>;
+        /** Get the value of the given global property */
+        static getGlobalProperty(name: string): string;
     }
 }
 declare module internal {
@@ -116,20 +115,22 @@ declare module internal.utils {
     }
 }
 declare module internal.utils {
-    class XMLJSON {
-        tag: string;
-        children: XMLJSON[];
-        value: string;
-        constructor(xml?: any);
-        static parse(xml: any): XMLJSON;
-    }
     class XML {
         private xml;
         private static RESERVED_ATTRIBUTES;
-        constructor(json?: XMLJSON);
+        constructor(json?: JSON);
         toString(): string;
-        static parseJSON(json: XMLJSON): XML;
+        static parseJSON(json: JSON): XML;
         static encode(str: string): string;
+    }
+}
+declare module internal.utils {
+    class JSON {
+        tag: string;
+        children: JSON[];
+        value: string;
+        constructor(xml?: any);
+        static parse(xml: any): JSON;
     }
 }
 interface Window {
