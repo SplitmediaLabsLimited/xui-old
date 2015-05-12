@@ -23,8 +23,7 @@ module internal {
                     let propsJSON: u.JSON = u.JSON.parse(xml),
                         propsArr: u.JSON[] = [];
                     
-                    if (propsJSON.children.length > 0)
-                    {
+                    if (propsJSON.children.length > 0) {
                         propsArr = propsJSON.children;
                     }
                     
@@ -36,6 +35,13 @@ module internal {
         /** Get the value of the given global property */
         static getGlobalProperty(name: string): string {
             return internal.exec('GetGlobalProperty', name);
+        }
+
+        /** Calls a DLL function synchronously */
+        static callDll(): string {
+            var args: any[] = [].slice.call(arguments);
+            args.unshift('CallDll');
+            return internal.exec.apply(this, args);
         }
     }
 }
