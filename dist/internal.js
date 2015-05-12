@@ -464,6 +464,12 @@ var internal;
         App.getGlobalProperty = function (name) {
             return internal.exec('GetGlobalProperty', name);
         };
+        /** Calls a DLL function synchronously */
+        App.callDll = function () {
+            var args = [].slice.call(arguments);
+            args.unshift('CallDll');
+            return internal.exec.apply(this, args);
+        };
         App.POSTMESSAGE_CLOSE = '1';
         App.POSTMESSAGE_SIZE = '2';
         return App;

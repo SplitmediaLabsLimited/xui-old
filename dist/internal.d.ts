@@ -141,6 +141,8 @@ declare module internal {
         static getAsList(name: string): Promise<u.JSON[]>;
         /** Get the value of the given global property */
         static getGlobalProperty(name: string): string;
+        /** Calls a DLL function synchronously */
+        static callDll(): string;
     }
 }
 declare module internal {

@@ -1,0 +1,26 @@
+{
+  "name": "xui",
+  "version": "0.1.0",
+  "description": "plugin framework",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SplitmediaLabsLimited/xui.git"
+  },
+  "author": "SplitmediaLabs",
+  "bugs": {
+    "url": "https://github.com/SplitmediaLabsLimited/xui/issues"
+  },
+  "homepage": "https://github.com/SplitmediaLabsLimited/xui",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-tsc": "^0.9.4"
+  }
+}
