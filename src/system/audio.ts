@@ -1,0 +1,153 @@
+/// <reference path="../_references.ts" />
+
+module xui.system {
+
+    import u   =  internal.utils;
+    import App = internal.App;
+
+    export class Audio {
+        static STATE_ACTIVE: string = 'Active';
+
+        static DATAFLOW_RENDER: string = 'Render';
+        static DATAFLOW_CAPTURE: string = 'Capture';
+
+        private id: string;
+        private name: string;
+        private adapter: string;
+        private adapterdev: string;
+        private guid: string;
+
+        private dataflow: string;
+        private state: string;
+
+        private defaultConsole: boolean = false;
+        private defaultMultimedia: boolean = false;
+        private defaultCommunication: boolean = false;
+
+        /** 
+         * ID from WASAPI (microphone or speaker) or "default" or
+         * "default:<data_flow>" or "default:<data_flow>:<role>"
+         */
+        getId(): string {
+            return this.id
+        }
+
+        /** Friendly name of the device */
+        getName(): string {
+            return this.name;
+        }
+
+        /** Friendly name of the device' adapter */
+        getAdapterName(): string {
+            return this.adapter;
+        }
+
+        /** Description of the device' adapter  */
+        getAdapterDescription(): string {
+            return this.adapterdev;
+        }
+
+        /** DirectSound device identifier */
+        getGuid(): string {
+            return this.guid;
+        }
+
+        /** Data flow of the device. Value can be "Render" or "Capture". */
+        getDataFlow(): string {
+            return this.dataflow;
+        }
+
+        /** 
+         * State of the device. Value can be "Active", "Disabled", 
+         * "Not Present", or "Unplugged"
+         */
+        getState(): string {
+            return this.state;
+        }
+
+        /** Returns true if the device is the default console device */
+        isDefaultConsole(): boolean {
+            return this.defaultConsole;
+        }
+
+        /** Returns true if the device is the default multimedia device */
+        isDefaultMultimedia(): boolean {
+            return this.defaultMultimedia;
+        }
+
+        /** Returns true if the device is the default communication device */
+        isDefaultCommunication(): boolean {
+            return this.defaultCommunication;
+        }
+
+        /** Converts the Audio item to XML string */
+        toString(): string {
+            let device = new u.JSON();
+            device.tag = 'dev';
+
+            let attrs = ['id', 'name', 'adapter', 'adapterdev', 'dataflow',
+                'guid', 'state', 'waveid', 'mix', 'level', 'enable',
+                'hwlevel', 'hwenable', 'delay', 'mix'];
+
+            for (let attr of attrs) {
+                device[attr] = this[attr];    
+            }
+            
+            return u.XML.parseJSON(device).toString();
+        }
+
+        /** List audio devices of the system */
+        static list(
+            filters?: { dataflow: string, state: string }
+        ): Promise<Audio[]> {
+
+            filters          = filters || { dataflow: 'all', state: 'all' };
+            filters.dataflow = filters.dataflow || 'all';
+            filters.state    = filters.state || 'all';
+            
+            return new Promise((resolve) => {
+                App.getAsList('wasapienum').then((devices: u.JSON[]) => {
+                    
+                    let audioDevices: Audio[] = []
+
+                    devices.map((device) => {
+                        let excludedDataFlow =
+                            !/^all$/i.test(filters.dataflow) &&
+                            filters.dataflow !== device['dataflow'];
+                            
+                        let excludedState = !/^all$/i.test(filters.state) &&
+                            filters.state !== device['state'];
+
+                        if (excludedDataFlow || excludedState) {
+                            return;
+                        }
+                        
+                        audioDevices.push(Audio.parse(device));
+                    });
+
+                    resolve(audioDevices);
+                });
+            });
+        }
+
+        private static parse(deviceJSON: u.JSON): Audio {
+            let audio = new Audio();
+
+            audio.id = deviceJSON['id'];
+            audio.name = deviceJSON['name'];
+            audio.adapter = deviceJSON['adapter'];
+            audio.adapterdev = deviceJSON['adapterdev'];
+            audio.dataflow = deviceJSON['dataflow'];
+            audio.state = deviceJSON['state'];
+            audio.guid = deviceJSON['dsoundguid'];
+            audio.defaultCommunication = 
+                (deviceJSON['defaultcommunication'] === '1');
+            audio.defaultConsole = 
+                (deviceJSON['defaultconsole'] === '1');
+            audio.defaultMultimedia = 
+                (deviceJSON['defaultmultimedia'] === '1');
+
+            return audio;
+        }
+    }
+}
