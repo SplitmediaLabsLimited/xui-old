@@ -1,48 +1,3 @@
-/// <reference path="_references.ts" />
-var internal;
-(function (internal) {
-    var u = internal.utils;
-    var App = (function () {
-        function App() {
-        }
-        /** Get the value of the given property */
-        App.get = function (name) {
-            return new Promise(function (resolve) {
-                internal.exec('AppGetPropertyAsync', name, resolve);
-            });
-        };
-        /** Gets the value of the given property as list */
-        App.getAsList = function (name) {
-            return new Promise(function (resolve) {
-                App.get(name).then(function (xml) {
-                    var propsJSON = u.JSON.parse(xml), propsArr = [];
-                    if (propsJSON.children.length > 0) {
-                        propsArr = propsJSON.children;
-                    }
-                    resolve(propsArr);
-                });
-            });
-        };
-        /** Get the value of the given global property */
-        App.getGlobalProperty = function (name) {
-            return internal.exec('GetGlobalProperty', name);
-        };
-        App.POSTMESSAGE_CLOSE = '1';
-        App.POSTMESSAGE_SIZE = '2';
-        return App;
-    })();
-    internal.App = App;
-})(internal || (internal = {}));
-/// <reference path="_references.ts" />
-var internal;
-(function (internal) {
-    var Item = (function () {
-        function Item() {
-        }
-        return Item;
-    })();
-    internal.Item = Item;
-})(internal || (internal = {}));
 /// <reference path="../_references.ts" />
 var internal;
 (function (internal) {
@@ -396,16 +351,6 @@ var internal;
         utils.JSON = JSON;
     })(utils = internal.utils || (internal.utils = {}));
 })(internal || (internal = {}));
-/// <reference path="../defs/es6-promise.d.ts" />
-/// <reference path="internal.ts" />
-/// <reference path="app.ts" />
-/// <reference path="item.ts" />
-/// <reference path="utils/color.ts" />
-/// <reference path="utils/point.ts" />
-/// <reference path="utils/rectangle.ts" />
-/// <reference path="utils/thread.ts" />
-/// <reference path="utils/xml.ts" />
-/// <reference path="utils/json.ts" /> 
 /// <reference path="_references.ts" />
 var internal;
 (function (internal) {
@@ -490,3 +435,58 @@ var internal;
         document.dispatchEvent(new CustomEvent('dialog-result', { detail: { result: result } }));
     };
 })(internal || (internal = {}));
+/// <reference path="_references.ts" />
+var internal;
+(function (internal) {
+    var u = internal.utils;
+    var App = (function () {
+        function App() {
+        }
+        /** Get the value of the given property */
+        App.get = function (name) {
+            return new Promise(function (resolve) {
+                internal.exec('AppGetPropertyAsync', name, resolve);
+            });
+        };
+        /** Gets the value of the given property as list */
+        App.getAsList = function (name) {
+            return new Promise(function (resolve) {
+                App.get(name).then(function (xml) {
+                    var propsJSON = u.JSON.parse(xml), propsArr = [];
+                    if (propsJSON.children.length > 0) {
+                        propsArr = propsJSON.children;
+                    }
+                    resolve(propsArr);
+                });
+            });
+        };
+        /** Get the value of the given global property */
+        App.getGlobalProperty = function (name) {
+            return internal.exec('GetGlobalProperty', name);
+        };
+        App.POSTMESSAGE_CLOSE = '1';
+        App.POSTMESSAGE_SIZE = '2';
+        return App;
+    })();
+    internal.App = App;
+})(internal || (internal = {}));
+/// <reference path="_references.ts" />
+var internal;
+(function (internal) {
+    var Item = (function () {
+        function Item() {
+        }
+        return Item;
+    })();
+    internal.Item = Item;
+})(internal || (internal = {}));
+/// <reference path="../defs/es6-promise.d.ts" />
+/// <reference path="utils/color.ts" />
+/// <reference path="utils/point.ts" />
+/// <reference path="utils/rectangle.ts" />
+/// <reference path="utils/thread.ts" />
+/// <reference path="utils/xml.ts" />
+/// <reference path="utils/json.ts" />
+/// <reference path="internal.ts" />
+/// <reference path="app.ts" />
+/// <reference path="item.ts" /> 

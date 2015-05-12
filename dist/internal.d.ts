@@ -1,21 +1,4 @@
 /// <reference path="../src/defs/es6-promise.d.ts" />
-declare module internal {
-    import u = internal.utils;
-    class App {
-        static POSTMESSAGE_CLOSE: string;
-        static POSTMESSAGE_SIZE: string;
-        /** Get the value of the given property */
-        static get(name: string): Promise<string>;
-        /** Gets the value of the given property as list */
-        static getAsList(name: string): Promise<u.JSON[]>;
-        /** Get the value of the given global property */
-        static getGlobalProperty(name: string): string;
-    }
-}
-declare module internal {
-    class Item {
-    }
-}
 declare module internal.utils {
     class Color {
         private rgb;
@@ -146,4 +129,21 @@ declare module internal {
      * Executes an external function
      */
     function exec(funcName: string, ...args: any[]): any;
+}
+declare module internal {
+    import u = internal.utils;
+    class App {
+        static POSTMESSAGE_CLOSE: string;
+        static POSTMESSAGE_SIZE: string;
+        /** Get the value of the given property */
+        static get(name: string): Promise<string>;
+        /** Gets the value of the given property as list */
+        static getAsList(name: string): Promise<u.JSON[]>;
+        /** Get the value of the given global property */
+        static getGlobalProperty(name: string): string;
+    }
+}
+declare module internal {
+    class Item {
+    }
 }
