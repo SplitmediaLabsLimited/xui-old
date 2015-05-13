@@ -44,10 +44,7 @@ declare module xui.system {
         /** Converts the Audio item to XML string */
         toString(): string;
         /** List audio devices of the system */
-        static list(filters?: {
-            dataflow: string;
-            state: string;
-        }): Promise<Audio[]>;
+        static list(filters: any): Promise<Audio[]>;
         private static parse(deviceJSON);
     }
 }
