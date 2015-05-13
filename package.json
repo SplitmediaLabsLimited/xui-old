@@ -22,5 +22,8 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-tsc": "^0.9.4"
+  },
+  "dependencies": {
+    "gulp-typedoc": "~1.1.0"
   }
 }
