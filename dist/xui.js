@@ -64,8 +64,8 @@ var xui;
                 var attrs = ['id', 'name', 'adapter', 'adapterdev', 'dataflow',
                     'guid', 'state', 'waveid', 'mix', 'level', 'enable',
                     'hwlevel', 'hwenable', 'delay', 'mix'];
-                for (var _i = 0; _i < attrs.length; _i++) {
-                    var attr = attrs[_i];
+                for (var i in attrs) {
+                    var attr = attrs[i];
                     device[attr] = this[attr];
                 }
                 return u.XML.parseJSON(device).toString();

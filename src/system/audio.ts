@@ -82,25 +82,24 @@ module xui.system {
 
         /** Converts the Audio item to XML string */
         toString(): string {
-            let device = new u.JSON();
+            var device = new u.JSON();
             device.tag = 'dev';
 
-            let attrs = ['id', 'name', 'adapter', 'adapterdev', 'dataflow',
+            var attrs: any[] = ['id', 'name', 'adapter', 'adapterdev', 'dataflow',
                 'guid', 'state', 'waveid', 'mix', 'level', 'enable',
                 'hwlevel', 'hwenable', 'delay', 'mix'];
+            
+            for (var i in attrs) {
+                var attr = attrs[i]
 
-            for (let attr of attrs) {
-                device[attr] = this[attr];    
+                device[attr] = this[attr];
             }
             
             return u.XML.parseJSON(device).toString();
         }
 
         /** List audio devices of the system */
-        static list(
-            filters?: { dataflow: string, state: string }
-        ): Promise<Audio[]> {
-
+        static list(filters: any): Promise<Audio[]> {
             filters          = filters || { dataflow: 'all', state: 'all' };
             filters.dataflow = filters.dataflow || 'all';
             filters.state    = filters.state || 'all';
@@ -108,14 +107,14 @@ module xui.system {
             return new Promise((resolve) => {
                 App.getAsList('wasapienum').then((devices: u.JSON[]) => {
                     
-                    let audioDevices: Audio[] = []
+                    var audioDevices: Audio[] = []
 
                     devices.map((device) => {
-                        let excludedDataFlow =
+                        var excludedDataFlow =
                             !/^all$/i.test(filters.dataflow) &&
                             filters.dataflow !== device['dataflow'];
                             
-                        let excludedState = !/^all$/i.test(filters.state) &&
+                        var excludedState = !/^all$/i.test(filters.state) &&
                             filters.state !== device['state'];
 
                         if (excludedDataFlow || excludedState) {
@@ -131,7 +130,7 @@ module xui.system {
         }
 
         private static parse(deviceJSON: u.JSON): Audio {
-            let audio = new Audio();
+            var audio = new Audio();
 
             audio.id = deviceJSON['id'];
             audio.name = deviceJSON['name'];
