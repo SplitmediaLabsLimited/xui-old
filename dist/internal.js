@@ -203,6 +203,15 @@ var internal;
                     this.setTop(this.bottom - this.height);
                 }
             };
+            /** Creates a rectangle from a comma-separated string */
+            Rectangle.parse = function (str) {
+                var params = str.split(','), rect = new Rectangle();
+                if (params.length === 2) {
+                    rect.width = Number(params[0]);
+                    rect.height = Number(params[1]);
+                }
+                return rect;
+            };
             return Rectangle;
         })();
         utils.Rectangle = Rectangle;

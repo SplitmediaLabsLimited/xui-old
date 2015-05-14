@@ -120,6 +120,7 @@ var xui;
 /// <reference path="../_references.ts" />
 var core;
 (function (core) {
+    var Rectangle = internal.utils.Rectangle;
     var App = (function () {
         function App() {
         }
@@ -131,6 +132,34 @@ var core;
         App.getFrametime = function () {
             return new Promise(function (resolve) {
                 resolve(internal.App.get('frametime'));
+            });
+        };
+        /** Gets application default output resolution */
+        App.getResolution = function () {
+            return new Promise(function (resolve) {
+                internal.App.get('resolution').then(function (val) {
+                    resolve(Rectangle.parse(val));
+                });
+            });
+        };
+        /** Gets application viewport display resolution */
+        App.getViewport = function () {
+            return new Promise(function (resolve) {
+                internal.App.get('viewport').then(function (val) {
+                    resolve(Rectangle.parse(val));
+                });
+            });
+        };
+        /** Refers to XSplit Broadcaster DLL file version number */
+        App.getVersion = function () {
+            return new Promise(function (resolve) {
+                resolve(internal.App.get('version'));
+            });
+        };
+        /** Gets the total number of frames rendered */
+        App.getFramesRendered = function () {
+            return new Promise(function (resolve) {
+                resolve(internal.App.get('version'));
             });
         };
         return App;
