@@ -48,3 +48,11 @@ declare module xui.system {
         private static parse(deviceJSON);
     }
 }
+declare module core {
+    class App {
+        /** Call method of DLL present in Scriptdlls folder */
+        static callDll(): string;
+        /** Gets application's frame time (duration per frame in 100ns unit) */
+        static getFrametime(): Promise<string>;
+    }
+}

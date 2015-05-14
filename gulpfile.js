@@ -13,7 +13,7 @@ gulp.task('compile-internal', function() {
 		.pipe(gulp.dest('dist/'));
 });
 
-gulp.task('compile-xui', ['compile-internal'], function() {
+gulp.task('compile-xui', function() {
 	return gulp.src('src/_references.ts')
 		.pipe(typescript({
 			declaration : true,

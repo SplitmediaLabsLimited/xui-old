@@ -117,6 +117,27 @@ var xui;
         system.Audio = Audio;
     })(system = xui.system || (xui.system = {}));
 })(xui || (xui = {}));
+/// <reference path="../_references.ts" />
+var core;
+(function (core) {
+    var App = (function () {
+        function App() {
+        }
+        /** Call method of DLL present in Scriptdlls folder */
+        App.callDll = function () {
+            return internal.App.callDll.apply(this, arguments);
+        };
+        /** Gets application's frame time (duration per frame in 100ns unit) */
+        App.getFrametime = function () {
+            return new Promise(function (resolve) {
+                resolve(internal.App.get('frametime'));
+            });
+        };
+        return App;
+    })();
+    core.App = App;
+})(core || (core = {}));
 /// <reference path="defs/es6-promise.d.ts" />
 /// <reference path="../dist/internal.d.ts" />
-/// <reference path="system/audio.ts" /> 
+/// <reference path="system/audio.ts" />
+/// <reference path="core/app.ts" />
