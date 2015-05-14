@@ -3,3 +3,4 @@
 /// <reference path="../dist/internal.d.ts" />
 
 /// <reference path="system/audio.ts" />
+/// <reference path="core/app.ts" />

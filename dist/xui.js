@@ -117,6 +117,56 @@ var xui;
         system.Audio = Audio;
     })(system = xui.system || (xui.system = {}));
 })(xui || (xui = {}));
+/// <reference path="../_references.ts" />
+var core;
+(function (core) {
+    var Rectangle = internal.utils.Rectangle;
+    var App = (function () {
+        function App() {
+        }
+        /** Call method of DLL present in Scriptdlls folder */
+        App.callDll = function () {
+            return internal.App.callDll.apply(this, arguments);
+        };
+        /** Gets application's frame time (duration per frame in 100ns unit) */
+        App.getFrametime = function () {
+            return new Promise(function (resolve) {
+                resolve(internal.App.get('frametime'));
+            });
+        };
+        /** Gets application default output resolution */
+        App.getResolution = function () {
+            return new Promise(function (resolve) {
+                internal.App.get('resolution').then(function (val) {
+                    resolve(Rectangle.parse(val));
+                });
+            });
+        };
+        /** Gets application viewport display resolution */
+        App.getViewport = function () {
+            return new Promise(function (resolve) {
+                internal.App.get('viewport').then(function (val) {
+                    resolve(Rectangle.parse(val));
+                });
+            });
+        };
+        /** Refers to XSplit Broadcaster DLL file version number */
+        App.getVersion = function () {
+            return new Promise(function (resolve) {
+                resolve(internal.App.get('version'));
+            });
+        };
+        /** Gets the total number of frames rendered */
+        App.getFramesRendered = function () {
+            return new Promise(function (resolve) {
+                resolve(internal.App.get('version'));
+            });
+        };
+        return App;
+    })();
+    core.App = App;
+})(core || (core = {}));
 /// <reference path="defs/es6-promise.d.ts" />
 /// <reference path="../dist/internal.d.ts" />
-/// <reference path="system/audio.ts" /> 
+/// <reference path="system/audio.ts" />
+/// <reference path="core/app.ts" />

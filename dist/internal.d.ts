@@ -87,6 +87,8 @@ declare module internal.utils {
         getHeight(): number;
         /** Sets the height value */
         setHeight(height: number): void;
+        /** Creates a rectangle from a comma-separated string */
+        static parse(str: string): Rectangle;
     }
 }
 declare module internal.utils {

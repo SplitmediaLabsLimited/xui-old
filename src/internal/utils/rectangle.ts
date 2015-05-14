@@ -111,5 +111,18 @@ module internal.utils {
                 this.setTop(this.bottom - this.height);
             }
         }
+
+        /** Creates a rectangle from a comma-separated string */
+        static parse(str : string) : Rectangle {
+            var params = str.split(','),
+                rect = new Rectangle();
+
+            if (params.length === 2)
+            {
+                rect.width = Number(params[0]);
+                rect.height = Number(params[1]);
+            }
+            return rect;
+        }
     }
 }
