@@ -20,7 +20,7 @@
 			.pipe(gulp.dest('dist/'));
 	});
 
-gulp.task('compile-xui', function() {
+	gulp.task('compile-xui', function() {
 		return gulp.src('src/_references.ts')
 			.pipe(typescript({
 				declaration : true,
@@ -30,16 +30,16 @@ gulp.task('compile-xui', function() {
 			.pipe(gulp.dest('dist/'));
 	});
 
-	gulp.task('generate-typedoc', ['compile-xui'], function() {
+	gulp.task('generate-typedoc', ['compile-internal', 'compile-xui'], function() {
 		return gulp
-        	.src(['src/_references.ts'])
-        	.pipe(typedoc({ 
-	            mode: 'file', 
-	            out: './docs/', 
-	            name: 'XUI Plugin Framework', 
-	            target: 'ES5',
-	            includeDeclarations: true
-	        }));
+			.src(['src/_references.ts'])
+			.pipe(typedoc({ 
+				mode: 'file', 
+				out: './docs/', 
+				name: 'XUI Plugin Framework', 
+				target: 'ES5',
+				theme: 'minimal'
+			}));
 	});
 
 	gulp.task('watch', function() {
