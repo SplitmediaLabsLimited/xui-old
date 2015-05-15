@@ -129,7 +129,7 @@ module xui.system {
             });
         }
 
-        private static parse(deviceJSON: u.JSON): Audio {
+        static parse(deviceJSON: u.JSON): Audio {
             var audio = new Audio();
 
             audio.id = deviceJSON['id'];

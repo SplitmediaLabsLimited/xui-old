@@ -1,6 +1,7 @@
 /// <reference path="../src/defs/es6-promise.d.ts" />
 /// <reference path="internal.d.ts" />
 declare module xui.system {
+    import u = internal.utils;
     class Audio {
         static STATE_ACTIVE: string;
         static DATAFLOW_RENDER: string;
@@ -45,11 +46,12 @@ declare module xui.system {
         toString(): string;
         /** List audio devices of the system */
         static list(filters: any): Promise<Audio[]>;
-        private static parse(deviceJSON);
+        static parse(deviceJSON: u.JSON): Audio;
     }
 }
 declare module core {
     import Rectangle = internal.utils.Rectangle;
+    import Audio = xui.system.Audio;
     class App {
         /** Call method of DLL present in Scriptdlls folder */
         static callDll(): string;
@@ -63,5 +65,7 @@ declare module core {
         static getVersion(): Promise<string>;
         /** Gets the total number of frames rendered */
         static getFramesRendered(): Promise<string>;
+        /** Call method of DLL present in Scriptdlls folder */
+        static getAudioDevices(): Promise<Audio[]>;
     }
 }
