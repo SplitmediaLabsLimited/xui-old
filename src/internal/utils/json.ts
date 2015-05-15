@@ -65,12 +65,7 @@ module internal.utils {
             })(container);
 
             obj = obj.children[0];
-
-            if (obj !== undefined) {
-                this.tag      = obj.tag;
-                this.children = obj.children;
-                this.value    = obj.value;
-            }
+            return obj;
         }
 
         static parse(xml: any): JSON {

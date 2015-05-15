@@ -35,6 +35,15 @@ module internal {
             return internal.exec('GetGlobalProperty', name);
         }
 
+        /** Sets the value of a property */
+        static set(name: string, value: string): Promise<Boolean> {
+            return new Promise((resolve) => {
+                internal.exec('AppSetPropertyAsync', name, value, (ret) => {
+                    resolve(ret === "0" ? false : true);
+                });
+            });
+        }
+
         /** Calls a DLL function synchronously */
         static callDll(): string {
             var args: any[] = [].slice.call(arguments);

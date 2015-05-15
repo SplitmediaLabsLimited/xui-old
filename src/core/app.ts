@@ -4,6 +4,8 @@ module core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;
     import iApp = internal.App;
+    import Json = internal.utils.JSON;
+    import Xml = internal.utils.XML;
 
     export class App {
         // App base services
@@ -22,7 +24,7 @@ module core {
         /** Gets application default output resolution */
         static getResolution() : Promise<Rectangle> {
             return new Promise((resolve) => {
-                iApp.get('resolution').then(function(val) {
+                iApp.get('resolution').then((val) => {
                     resolve(Rectangle.parse(val));
                 });
             });
@@ -31,7 +33,7 @@ module core {
         /** Gets application viewport display resolution */
         static getViewport() : Promise<Rectangle> {
             return new Promise((resolve) => {
-                iApp.get('viewport').then(function(val) {
+                iApp.get('viewport').then((val) => {
                     resolve(Rectangle.parse(val));
                 });
             });
@@ -52,15 +54,35 @@ module core {
         }
 
         // Audio Services
-        /** Call method of DLL present in Scriptdlls folder */
+        /** List of audio input and output devices used by the application */
+        // TODO: consider new classes for these devices (compare wasapienum)
         static getAudioDevices(): Promise<Audio[]> {
             return new Promise((resolve) => {
-                iApp.getAsList('microphonedev2').then(function(arr) {
+                iApp.getAsList('microphonedev2').then((arr) => {
                     resolve(arr.map((val) => {
                         return Audio.parse(val);
                     }));
                 });
             });
+        }
+
+        static setAudioDevices(): void {
+            return; // TODO
+            // TODO fix json parsing
+        }
+
+        static getAudioGain(): Promise<Json> {
+            return new Promise((resolve) => {
+                iApp.get('microphonegain').then((val) => {
+                    resolve(Json.parse(val)); // TODO consider AudioGain class
+                });
+            });
+        }
+
+        static setAudioGain(config: Json): void {
+            config.tag = 'configuration';
+
+            iApp.set('microphonegain', Xml.parseJSON(config).toString());
         }
     }
 }

@@ -925,6 +925,12 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<a href="index.html#core.app.calldll" class="tsd-kind-icon">call<wbr>Dll</a>
 						</li>
 						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a href="index.html#core.app.getaudiodevices" class="tsd-kind-icon">get<wbr>Audio<wbr>Devices</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a href="index.html#core.app.getaudiogain" class="tsd-kind-icon">get<wbr>Audio<wbr>Gain</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 							<a href="index.html#core.app.getframesrendered" class="tsd-kind-icon">get<wbr>Frames<wbr>Rendered</a>
 						</li>
 						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
@@ -938,6 +944,12 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 						</li>
 						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 							<a href="index.html#core.app.getviewport" class="tsd-kind-icon">get<wbr>Viewport</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a href="index.html#core.app.setaudiodevices" class="tsd-kind-icon">set<wbr>Audio<wbr>Devices</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a href="index.html#core.app.setaudiogain" class="tsd-kind-icon">set<wbr>Audio<wbr>Gain</a>
 						</li>
 					</ul>
 				</li>
@@ -1027,7 +1039,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.system.audio.list" class="tsd-kind-icon">list</a>
 								</li>
-								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static tsd-is-external">
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.system.audio.parse" class="tsd-kind-icon">parse</a>
 								</li>
 							</ul>
@@ -1075,7 +1087,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 					<div class="tsd-signature tsd-kind-icon">App<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L5">core/app.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L9">core/app.ts:9</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
@@ -1088,7 +1100,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L7">core/app.ts:7</a></li>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L12">core/app.ts:12</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -1097,6 +1109,45 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 									</div>
 								</div>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+						<a name="core.app.getaudiodevices" class="tsd-anchor"></a>
+						<h3>get<wbr>Audio<wbr>Devices</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<li class="tsd-signature tsd-kind-icon">get<wbr>Audio<wbr>Devices<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#xui.system.audio" class="tsd-signature-type">Audio</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L58">core/app.ts:58</a></li>
+									</ul>
+								</aside>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>List of audio input and output devices used by the application</p>
+									</div>
+								</div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#xui.system.audio" class="tsd-signature-type">Audio</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+						<a name="core.app.getaudiogain" class="tsd-anchor"></a>
+						<h3>get<wbr>Audio<wbr>Gain</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<li class="tsd-signature tsd-kind-icon">get<wbr>Audio<wbr>Gain<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L73">core/app.ts:73</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							</li>
 						</ul>
 					</section>
@@ -1110,7 +1161,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L44">core/app.ts:44</a></li>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L49">core/app.ts:49</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -1132,7 +1183,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L12">core/app.ts:12</a></li>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L17">core/app.ts:17</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -1154,7 +1205,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L19">core/app.ts:19</a></li>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L24">core/app.ts:24</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -1176,7 +1227,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L37">core/app.ts:37</a></li>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L42">core/app.ts:42</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -1198,7 +1249,7 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L28">core/app.ts:28</a></li>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L33">core/app.ts:33</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -1207,6 +1258,46 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 									</div>
 								</div>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Rectangle</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+						<a name="core.app.setaudiodevices" class="tsd-anchor"></a>
+						<h3>set<wbr>Audio<wbr>Devices</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<li class="tsd-signature tsd-kind-icon">set<wbr>Audio<wbr>Devices<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L68">core/app.ts:68</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+						<a name="core.app.setaudiogain" class="tsd-anchor"></a>
+						<h3>set<wbr>Audio<wbr>Gain</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<li class="tsd-signature tsd-kind-icon">set<wbr>Audio<wbr>Gain<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Json</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L81">core/app.ts:81</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>config: <span class="tsd-signature-type">Json</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 							</li>
 						</ul>
 					</section>
@@ -1641,10 +1732,10 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 								</li>
 							</ul>
 						</section>
-						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static tsd-is-external">
+						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 							<a name="xui.system.audio.parse" class="tsd-anchor"></a>
 							<h3>parse</h3>
-							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static tsd-is-external">
+							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 								<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>deviceJSON<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">u.JSON</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="index.html#xui.system.audio" class="tsd-signature-type">Audio</a></li>
 							</ul>
 							<ul class="tsd-descriptions">

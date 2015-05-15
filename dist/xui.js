@@ -123,6 +123,8 @@ var core;
     var Rectangle = internal.utils.Rectangle;
     var Audio = xui.system.Audio;
     var iApp = internal.App;
+    var Json = internal.utils.JSON;
+    var Xml = internal.utils.XML;
     var App = (function () {
         function App() {
         }
@@ -166,7 +168,8 @@ var core;
             });
         };
         // Audio Services
-        /** Call method of DLL present in Scriptdlls folder */
+        /** List of audio input and output devices used by the application */
+        // TODO: consider new classes for these devices (compare wasapienum)
         App.getAudioDevices = function () {
             return new Promise(function (resolve) {
                 iApp.getAsList('microphonedev2').then(function (arr) {
@@ -175,6 +178,21 @@ var core;
                     }));
                 });
             });
+        };
+        App.setAudioDevices = function () {
+            return; // TODO
+            // TODO fix json parsing
+        };
+        App.getAudioGain = function () {
+            return new Promise(function (resolve) {
+                iApp.get('microphonegain').then(function (val) {
+                    resolve(Json.parse(val)); // TODO consider AudioGain class
+                });
+            });
+        };
+        App.setAudioGain = function (config) {
+            config.tag = 'configuration';
+            iApp.set('microphonegain', Xml.parseJSON(config).toString());
         };
         return App;
     })();

@@ -346,11 +346,7 @@ var internal;
                     return nodeJSON;
                 })(container);
                 obj = obj.children[0];
-                if (obj !== undefined) {
-                    this.tag = obj.tag;
-                    this.children = obj.children;
-                    this.value = obj.value;
-                }
+                return obj;
             }
             JSON.parse = function (xml) {
                 return new JSON(xml);
@@ -472,6 +468,14 @@ var internal;
         /** Get the value of the given global property */
         App.getGlobalProperty = function (name) {
             return internal.exec('GetGlobalProperty', name);
+        };
+        /** Sets the value of a property */
+        App.set = function (name, value) {
+            return new Promise(function (resolve) {
+                internal.exec('AppSetPropertyAsync', name, value, function (ret) {
+                    resolve(ret === "0" ? false : true);
+                });
+            });
         };
         /** Calls a DLL function synchronously */
         App.callDll = function () {

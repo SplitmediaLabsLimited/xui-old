@@ -52,6 +52,7 @@ declare module xui.system {
 declare module core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;
+    import Json = internal.utils.JSON;
     class App {
         /** Call method of DLL present in Scriptdlls folder */
         static callDll(): string;
@@ -65,7 +66,10 @@ declare module core {
         static getVersion(): Promise<string>;
         /** Gets the total number of frames rendered */
         static getFramesRendered(): Promise<string>;
-        /** Call method of DLL present in Scriptdlls folder */
+        /** List of audio input and output devices used by the application */
         static getAudioDevices(): Promise<Audio[]>;
+        static setAudioDevices(): void;
+        static getAudioGain(): Promise<Json>;
+        static setAudioGain(config: Json): void;
     }
 }
