@@ -11,6 +11,7 @@ module xui.system {
         static DATAFLOW_RENDER: string = 'Render';
         static DATAFLOW_CAPTURE: string = 'Capture';
 
+        // wasapienum
         private id: string;
         private name: string;
         private adapter: string;
@@ -23,6 +24,11 @@ module xui.system {
         private defaultConsole: boolean = false;
         private defaultMultimedia: boolean = false;
         private defaultCommunication: boolean = false;
+
+        // microphonedev2
+        private level: string;
+        private enable: string;
+        private hwlevel: string;
 
         /** 
          * ID from WASAPI (microphone or speaker) or "default" or
@@ -132,6 +138,7 @@ module xui.system {
         static parse(deviceJSON: u.JSON): Audio {
             var audio = new Audio();
 
+            // wasapienum
             audio.id = deviceJSON['id'];
             audio.name = deviceJSON['name'];
             audio.adapter = deviceJSON['adapter'];
@@ -145,6 +152,11 @@ module xui.system {
                 (deviceJSON['defaultconsole'] === '1');
             audio.defaultMultimedia = 
                 (deviceJSON['defaultmultimedia'] === '1');
+
+            // microphonedev2
+            audio.level = deviceJSON['level'];
+            audio.enable = deviceJSON['enable'];
+            audio.hwlevel = deviceJSON['hwlevel'];
 
             return audio;
         }

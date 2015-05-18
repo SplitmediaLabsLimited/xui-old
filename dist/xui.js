@@ -94,6 +94,7 @@ var xui;
             };
             Audio.parse = function (deviceJSON) {
                 var audio = new Audio();
+                // wasapienum
                 audio.id = deviceJSON['id'];
                 audio.name = deviceJSON['name'];
                 audio.adapter = deviceJSON['adapter'];
@@ -107,6 +108,10 @@ var xui;
                     (deviceJSON['defaultconsole'] === '1');
                 audio.defaultMultimedia =
                     (deviceJSON['defaultmultimedia'] === '1');
+                // microphonedev2
+                audio.level = deviceJSON['level'];
+                audio.enable = deviceJSON['enable'];
+                audio.hwlevel = deviceJSON['hwlevel'];
                 return audio;
             };
             Audio.STATE_ACTIVE = 'Active';
@@ -118,86 +123,120 @@ var xui;
     })(system = xui.system || (xui.system = {}));
 })(xui || (xui = {}));
 /// <reference path="../_references.ts" />
-var core;
-(function (core) {
-    var Rectangle = internal.utils.Rectangle;
-    var Audio = xui.system.Audio;
-    var iApp = internal.App;
-    var Json = internal.utils.JSON;
-    var Xml = internal.utils.XML;
-    var App = (function () {
-        function App() {
-        }
-        // App base services
-        /** Call method of DLL present in Scriptdlls folder */
-        App.callDll = function () {
-            return iApp.callDll.apply(this, arguments);
-        };
-        /** Gets application's frame time (duration per frame in 100ns unit) */
-        App.getFrametime = function () {
-            return new Promise(function (resolve) {
-                resolve(iApp.get('frametime'));
-            });
-        };
-        /** Gets application default output resolution */
-        App.getResolution = function () {
-            return new Promise(function (resolve) {
-                iApp.get('resolution').then(function (val) {
-                    resolve(Rectangle.parse(val));
+var xui;
+(function (xui) {
+    var core;
+    (function (core) {
+        var Rectangle = internal.utils.Rectangle;
+        var Audio = xui.system.Audio;
+        var iApp = internal.App;
+        var Json = internal.utils.JSON;
+        var Xml = internal.utils.XML;
+        var App = (function () {
+            function App() {
+            }
+            // App base services
+            /** Call method of DLL present in Scriptdlls folder */
+            App.callDll = function () {
+                return iApp.callDll.apply(this, arguments);
+            };
+            /** Gets application's frame time (duration per frame in 100ns unit) */
+            App.getFrametime = function () {
+                return new Promise(function (resolve) {
+                    resolve(iApp.get('frametime'));
                 });
-            });
-        };
-        /** Gets application viewport display resolution */
-        App.getViewport = function () {
-            return new Promise(function (resolve) {
-                iApp.get('viewport').then(function (val) {
-                    resolve(Rectangle.parse(val));
+            };
+            /** Gets application default output resolution */
+            App.getResolution = function () {
+                return new Promise(function (resolve) {
+                    iApp.get('resolution').then(function (val) {
+                        resolve(Rectangle.parse(val));
+                    });
                 });
-            });
-        };
-        /** Refers to XSplit Broadcaster DLL file version number */
-        App.getVersion = function () {
-            return new Promise(function (resolve) {
-                resolve(iApp.get('version'));
-            });
-        };
-        /** Gets the total number of frames rendered */
-        App.getFramesRendered = function () {
-            return new Promise(function (resolve) {
-                resolve(iApp.get('version'));
-            });
-        };
-        // Audio Services
-        /** List of audio input and output devices used by the application */
-        // TODO: consider new classes for these devices (compare wasapienum)
-        App.getAudioDevices = function () {
-            return new Promise(function (resolve) {
-                iApp.getAsList('microphonedev2').then(function (arr) {
-                    resolve(arr.map(function (val) {
-                        return Audio.parse(val);
-                    }));
+            };
+            /** Gets application viewport display resolution */
+            App.getViewport = function () {
+                return new Promise(function (resolve) {
+                    iApp.get('viewport').then(function (val) {
+                        resolve(Rectangle.parse(val));
+                    });
                 });
-            });
-        };
-        App.setAudioDevices = function () {
-            return; // TODO
-            // TODO fix json parsing
-        };
-        App.getAudioGain = function () {
-            return new Promise(function (resolve) {
-                iApp.get('microphonegain').then(function (val) {
-                    resolve(Json.parse(val)); // TODO consider AudioGain class
+            };
+            /** Refers to XSplit Broadcaster DLL file version number */
+            App.getVersion = function () {
+                return new Promise(function (resolve) {
+                    resolve(iApp.get('version'));
                 });
-            });
-        };
-        App.setAudioGain = function (config) {
-            config.tag = 'configuration';
-            iApp.set('microphonegain', Xml.parseJSON(config).toString());
-        };
-        return App;
-    })();
-    core.App = App;
-})(core || (core = {}));
+            };
+            /** Gets the total number of frames rendered */
+            App.getFramesRendered = function () {
+                return new Promise(function (resolve) {
+                    resolve(iApp.get('version'));
+                });
+            };
+            // Audio Services
+            /** List of audio input and output devices used by the application */
+            App.getAudioDevices = function () {
+                return new Promise(function (resolve) {
+                    iApp.getAsList('microphonedev2').then(function (arr) {
+                        resolve(arr.map(function (val) {
+                            return Audio.parse(val);
+                        }));
+                    });
+                });
+            };
+            App.setAudioDevices = function (devices) {
+                var dev = '';
+                if (Array.isArray(devices)) {
+                    for (var i = 0; i < devices.length; ++i) {
+                        dev += devices[i].toString();
+                    }
+                }
+                dev = '<devices>' + dev + '</devices>';
+                iApp.set('microphonedev2', dev);
+            };
+            App.getAudioGain = function () {
+                return new Promise(function (resolve) {
+                    iApp.get('microphonegain').then(function (val) {
+                        resolve(Json.parse(val));
+                    });
+                });
+            };
+            App.setAudioGain = function (config) {
+                config.tag = 'configuration';
+                iApp.set('microphonegain', Xml.parseJSON(config).toString());
+            };
+            // Dialog Services
+            /** Creates a persistent modal dialog */
+            App.newDialog = function (url) {
+                if (url !== undefined && url !== '') {
+                    iApp.callFunc('newdialog', url);
+                }
+            };
+            /** Creates a modal dialog that automatically closes on outside click */
+            App.newAutoDialog = function (url) {
+                if (url !== undefined && url !== '') {
+                    iApp.callFunc('newautodialog', url);
+                }
+            };
+            /** Resizes a created dialog */
+            App.resizeDialog = function (width, height) {
+                // TODO: currently only works for source config
+                internal.exec('CloseDialog');
+            };
+            /** Resizes a global script dialog */
+            App.resizeSelf = function (width, height) {
+                iApp.postMessage(iApp.POSTMESSAGE_SIZE, width, height);
+            };
+            /** Closes a global script dialog */
+            App.closeSelf = function () {
+                iApp.postMessage(iApp.POSTMESSAGE_CLOSE);
+            };
+            return App;
+        })();
+        core.App = App;
+    })(core = xui.core || (xui.core = {}));
+})(xui || (xui = {}));
 /// <reference path="defs/es6-promise.d.ts" />
 /// <reference path="../dist/internal.d.ts" />
 /// <reference path="system/audio.ts" />

@@ -1,6 +1,6 @@
 /// <reference path="../_references.ts" />
 
-module core {
+module xui.core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;
     import iApp = internal.App;
@@ -55,7 +55,6 @@ module core {
 
         // Audio Services
         /** List of audio input and output devices used by the application */
-        // TODO: consider new classes for these devices (compare wasapienum)
         static getAudioDevices(): Promise<Audio[]> {
             return new Promise((resolve) => {
                 iApp.getAsList('microphonedev2').then((arr) => {
@@ -66,15 +65,21 @@ module core {
             });
         }
 
-        static setAudioDevices(): void {
-            return; // TODO
-            // TODO fix json parsing
+        static setAudioDevices(devices: Audio[]): void {
+            var dev = '';
+            if (Array.isArray(devices)) {
+                for (var i = 0; i < devices.length; ++i) {
+                    dev += devices[i].toString();
+                }
+            }
+            dev = '<devices>' + dev + '</devices>';
+            iApp.set('microphonedev2', dev);
         }
 
         static getAudioGain(): Promise<Json> {
             return new Promise((resolve) => {
                 iApp.get('microphonegain').then((val) => {
-                    resolve(Json.parse(val)); // TODO consider AudioGain class
+                    resolve(Json.parse(val));
                 });
             });
         }
@@ -83,6 +88,37 @@ module core {
             config.tag = 'configuration';
 
             iApp.set('microphonegain', Xml.parseJSON(config).toString());
+        }
+
+        // Dialog Services
+        /** Creates a persistent modal dialog */
+        static newDialog(url: string): void {
+            if (url !== undefined && url !== '') {
+                iApp.callFunc('newdialog', url);
+            }
+        }
+
+        /** Creates a modal dialog that automatically closes on outside click */
+        static newAutoDialog(url: string): void {
+            if (url !== undefined && url !== '') {
+                iApp.callFunc('newautodialog', url);
+            }
+        }
+
+        /** Resizes a created dialog */
+        static resizeDialog(width: Number, height: Number) {
+            // TODO: currently only works for source config
+            internal.exec('CloseDialog');
+        }
+
+        /** Resizes a global script dialog */
+        static resizeSelf(width: Number, height: Number): void {
+            iApp.postMessage(iApp.POSTMESSAGE_SIZE, width, height);
+        }
+
+        /** Closes a global script dialog */
+        static closeSelf(): void {
+            iApp.postMessage(iApp.POSTMESSAGE_CLOSE);
         }
     }
 }

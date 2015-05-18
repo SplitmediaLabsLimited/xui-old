@@ -147,6 +147,9 @@ declare module internal {
         static set(name: string, value: string): Promise<Boolean>;
         /** Calls a DLL function synchronously */
         static callDll(): string;
+        /** Calls an application method asynchronously */
+        static callFunc(func: string, arg: string): Promise<string>;
+        static postMessage(key: string, ...args: any[]): Promise<string>;
     }
 }
 declare module internal {

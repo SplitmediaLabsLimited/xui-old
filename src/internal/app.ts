@@ -50,5 +50,26 @@ module internal {
             args.unshift('CallDll');
             return internal.exec.apply(this, args);
         }
+
+        /** Calls an application method asynchronously */
+        static callFunc(func: string, arg: string): Promise<string> {
+            return new Promise((resolve) => {
+                internal.exec('AppCallFuncAsync', func, arg, (ret) => {
+                    resolve(ret);
+                });
+            });
+        }
+
+        static postMessage(key: string, ...args: any[]): Promise<string> {
+            return new Promise((resolve) => {
+                args.unshift(key);
+                args.unshift('PostMessageToParent');
+                args.push((val) => {
+                    resolve(val);
+                });
+                internal.exec.apply(this, args);
+            });
+            
+        }
     }
 }

@@ -483,6 +483,29 @@ var internal;
             args.unshift('CallDll');
             return internal.exec.apply(this, args);
         };
+        /** Calls an application method asynchronously */
+        App.callFunc = function (func, arg) {
+            return new Promise(function (resolve) {
+                internal.exec('AppCallFuncAsync', func, arg, function (ret) {
+                    resolve(ret);
+                });
+            });
+        };
+        App.postMessage = function (key) {
+            var _this = this;
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            return new Promise(function (resolve) {
+                args.unshift(key);
+                args.unshift('PostMessageToParent');
+                args.push(function (val) {
+                    resolve(val);
+                });
+                internal.exec.apply(_this, args);
+            });
+        };
         App.POSTMESSAGE_CLOSE = '1';
         App.POSTMESSAGE_SIZE = '2';
         return App;

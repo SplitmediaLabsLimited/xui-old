@@ -16,6 +16,9 @@ declare module xui.system {
         private defaultConsole;
         private defaultMultimedia;
         private defaultCommunication;
+        private level;
+        private enable;
+        private hwlevel;
         /**
          * ID from WASAPI (microphone or speaker) or "default" or
          * "default:<data_flow>" or "default:<data_flow>:<role>"
@@ -49,7 +52,7 @@ declare module xui.system {
         static parse(deviceJSON: u.JSON): Audio;
     }
 }
-declare module core {
+declare module xui.core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;
     import Json = internal.utils.JSON;
@@ -68,8 +71,18 @@ declare module core {
         static getFramesRendered(): Promise<string>;
         /** List of audio input and output devices used by the application */
         static getAudioDevices(): Promise<Audio[]>;
-        static setAudioDevices(): void;
+        static setAudioDevices(devices: Audio[]): void;
         static getAudioGain(): Promise<Json>;
         static setAudioGain(config: Json): void;
+        /** Creates a persistent modal dialog */
+        static newDialog(url: string): void;
+        /** Creates a modal dialog that automatically closes on outside click */
+        static newAutoDialog(url: string): void;
+        /** Resizes a created dialog */
+        static resizeDialog(width: Number, height: Number): void;
+        /** Resizes a global script dialog */
+        static resizeSelf(width: Number, height: Number): void;
+        /** Closes a global script dialog */
+        static closeSelf(): void;
     }
 }
