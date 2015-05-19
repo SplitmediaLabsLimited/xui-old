@@ -120,5 +120,45 @@ module xui.core {
         static closeSelf(): void {
             iApp.postMessage(iApp.POSTMESSAGE_CLOSE);
         }
+
+        // Transition Services
+        static TRANSITION_CLOCK: string            = 'clock';
+        static TRANSITION_COLLAPSE: string         = 'collapse';
+        static TRANSITION_MOVE_BOTTOM: string      = 'move_bottom';
+        static TRANSITION_MOVE_LEFT: string        = 'move_left';
+        static TRANSITION_MOVE_LEFT_RIGHT: string  = 'move_left_right';
+        static TRANSITION_MOVE_RIGHT: string       = 'move_right';
+        static TRANSITION_MOVE_TOP: string         = 'move_top';
+        static TRANSITION_FAN: string              = 'fan';
+        static TRANSITION_HOLE: string             = 'hole';
+        static TRANSITION_WAVE: string             = 'wave';
+
+        /** Gets the transition for scene changes. */
+        static getTransition(): Promise<string> {
+            return new Promise((resolve) => {
+                iApp.get('transitionid').then((val) => {
+                    resolve(val);
+                });
+            });
+        }
+
+        /** Sets the transition for scene changes. */
+        static setTransition(transition: string): void {
+            iApp.set('transitionid', transition);
+        }
+
+        /** Gets the scene transition duration in milliseconds. */
+        static getTransitionTime(): Promise<Number> {
+            return new Promise((resolve) => {
+                iApp.get('transitiontime').then((val) => {
+                    resolve(Number(val));
+                });
+            });
+        }
+
+        /** Sets the scene transition duration in milliseconds. */
+        static setTransitionTime(time: Number): void {
+            iApp.set('transitiontime', time.toString());
+        }
     }
 }

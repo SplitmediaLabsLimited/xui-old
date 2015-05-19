@@ -443,6 +443,42 @@ var internal;
 /// <reference path="_references.ts" />
 var internal;
 (function (internal) {
+    var Environment = (function () {
+        function Environment() {
+        }
+        Environment.initialize = function () {
+            if (Environment._initialized) {
+                return;
+            }
+            Environment._isHtml = (window.external &&
+                window.external['AttachVideoItem'] === undefined);
+            Environment._isConfig = (window.external &&
+                window.external['AttachVideoItem'] !== undefined &&
+                window.external['GetViewId'] !== undefined &&
+                window.external['GetViewId']() !== undefined);
+            Environment._isScript = (window.external &&
+                window.external['AttachVideoItem'] !== undefined &&
+                window.external['GetViewId'] !== undefined &&
+                window.external['GetViewId']() === undefined);
+            Environment._initialized = true;
+        };
+        Environment.isSourceHtml = function () {
+            return Environment._isHtml;
+        };
+        Environment.isSourceConfig = function () {
+            return Environment._isConfig;
+        };
+        Environment.isScriptPlugin = function () {
+            return Environment._isScript;
+        };
+        return Environment;
+    })();
+    internal.Environment = Environment;
+    Environment.initialize();
+})(internal || (internal = {}));
+/// <reference path="_references.ts" />
+var internal;
+(function (internal) {
     var u = internal.utils;
     var App = (function () {
         function App() {
@@ -518,6 +554,28 @@ var internal;
     var Item = (function () {
         function Item() {
         }
+        /** Prepare an item for manipulation */
+        Item.attach = function (itemID, view) {
+            internal.exec('SearchVideoItem', itemID, view);
+        };
+        /** Get an item's local property asynchronously */
+        Item.get = function (name, slot) {
+            return new Promise(function (resolve) {
+                internal.exec('GetLocalPropertyAsync' +
+                    (String(slot) === '1' ? '' : '2'), name, function (val) {
+                    resolve(val);
+                });
+            });
+        };
+        /** Sets an item's local property */
+        Item.set = function (name, value, slot) {
+            internal.exec('SetLocalPropertyAsync' +
+                (String(slot) === '1' ? '' : '2'), name, value);
+        };
+        /** Calls a function defined in an item/source */
+        Item.callFunc = function (func, arg) {
+            internal.exec('CallInner', func, arg);
+        };
         return Item;
     })();
     internal.Item = Item;
@@ -530,5 +588,6 @@ var internal;
 /// <reference path="utils/xml.ts" />
 /// <reference path="utils/json.ts" />
 /// <reference path="internal.ts" />
+/// <reference path="environment.ts" />
 /// <reference path="app.ts" />
-/// <reference path="item.ts" /> 
+/// <reference path="item.ts" />

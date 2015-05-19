@@ -133,6 +133,18 @@ declare module internal {
     function exec(funcName: string, ...args: any[]): any;
 }
 declare module internal {
+    class Environment {
+        private static _isHtml;
+        private static _isConfig;
+        private static _isScript;
+        private static _initialized;
+        static initialize(): void;
+        static isSourceHtml(): Boolean;
+        static isSourceConfig(): Boolean;
+        static isScriptPlugin(): Boolean;
+    }
+}
+declare module internal {
     import u = internal.utils;
     class App {
         static POSTMESSAGE_CLOSE: string;
@@ -154,5 +166,13 @@ declare module internal {
 }
 declare module internal {
     class Item {
+        /** Prepare an item for manipulation */
+        static attach(itemID: string, view: string): void;
+        /** Get an item's local property asynchronously */
+        static get(name: string, slot?: string): Promise<string>;
+        /** Sets an item's local property */
+        static set(name: string, value: string, slot?: string): void;
+        /** Calls a function defined in an item/source */
+        static callFunc(func: string, arg: string): void;
     }
 }

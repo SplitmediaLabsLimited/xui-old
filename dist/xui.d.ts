@@ -84,5 +84,23 @@ declare module xui.core {
         static resizeSelf(width: Number, height: Number): void;
         /** Closes a global script dialog */
         static closeSelf(): void;
+        static TRANSITION_CLOCK: string;
+        static TRANSITION_COLLAPSE: string;
+        static TRANSITION_MOVE_BOTTOM: string;
+        static TRANSITION_MOVE_LEFT: string;
+        static TRANSITION_MOVE_LEFT_RIGHT: string;
+        static TRANSITION_MOVE_RIGHT: string;
+        static TRANSITION_MOVE_TOP: string;
+        static TRANSITION_FAN: string;
+        static TRANSITION_HOLE: string;
+        static TRANSITION_WAVE: string;
+        /** Gets the transition for scene changes. */
+        static getTransition(): Promise<string>;
+        /** Sets the transition for scene changes. */
+        static setTransition(transition: string): void;
+        /** Gets the scene transition duration in milliseconds. */
+        static getTransitionTime(): Promise<Number>;
+        /** Sets the scene transition duration in milliseconds. */
+        static setTransitionTime(time: Number): void;
     }
 }

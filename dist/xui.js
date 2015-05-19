@@ -232,6 +232,41 @@ var xui;
             App.closeSelf = function () {
                 iApp.postMessage(iApp.POSTMESSAGE_CLOSE);
             };
+            /** Gets the transition for scene changes. */
+            App.getTransition = function () {
+                return new Promise(function (resolve) {
+                    iApp.get('transitionid').then(function (val) {
+                        resolve(val);
+                    });
+                });
+            };
+            /** Sets the transition for scene changes. */
+            App.setTransition = function (transition) {
+                iApp.set('transitionid', transition);
+            };
+            /** Gets the scene transition duration in milliseconds. */
+            App.getTransitionTime = function () {
+                return new Promise(function (resolve) {
+                    iApp.get('transitiontime').then(function (val) {
+                        resolve(Number(val));
+                    });
+                });
+            };
+            /** Sets the scene transition duration in milliseconds. */
+            App.setTransitionTime = function (time) {
+                iApp.set('transitiontime', time.toString());
+            };
+            // Transition Services
+            App.TRANSITION_CLOCK = 'clock';
+            App.TRANSITION_COLLAPSE = 'collapse';
+            App.TRANSITION_MOVE_BOTTOM = 'move_bottom';
+            App.TRANSITION_MOVE_LEFT = 'move_left';
+            App.TRANSITION_MOVE_LEFT_RIGHT = 'move_left_right';
+            App.TRANSITION_MOVE_RIGHT = 'move_right';
+            App.TRANSITION_MOVE_TOP = 'move_top';
+            App.TRANSITION_FAN = 'fan';
+            App.TRANSITION_HOLE = 'hole';
+            App.TRANSITION_WAVE = 'wave';
             return App;
         })();
         core.App = App;

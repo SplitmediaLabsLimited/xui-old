@@ -9,5 +9,6 @@
 
 /// <reference path="internal.ts" />
 
+/// <reference path="environment.ts" />
 /// <reference path="app.ts" />
 /// <reference path="item.ts" />
