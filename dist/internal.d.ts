@@ -176,3 +176,6 @@ declare module internal {
         static callFunc(func: string, arg: string): void;
     }
 }
+declare module internal {
+    function init(): void;
+}

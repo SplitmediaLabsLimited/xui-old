@@ -924,6 +924,36 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 						<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
 							<a href="index.html#xui.core.app" class="tsd-kind-icon">App</a>
 							<ul>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_clock" class="tsd-kind-icon">TRANSITION_<wbr>CLOCK</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_collapse" class="tsd-kind-icon">TRANSITION_<wbr>COLLAPSE</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_fan" class="tsd-kind-icon">TRANSITION_<wbr>FAN</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_hole" class="tsd-kind-icon">TRANSITION_<wbr>HOLE</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_move_bottom" class="tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>BOTTOM</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_move_left" class="tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>LEFT</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_move_left_right" class="tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>LEFT_<wbr>RIGHT</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_move_right" class="tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>RIGHT</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_move_top" class="tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>TOP</a>
+								</li>
+								<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.transition_wave" class="tsd-kind-icon">TRANSITION_<wbr>WAVE</a>
+								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.calldll" class="tsd-kind-icon">call<wbr>Dll</a>
 								</li>
@@ -944,6 +974,12 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.getresolution" class="tsd-kind-icon">get<wbr>Resolution</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.gettransition" class="tsd-kind-icon">get<wbr>Transition</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.gettransitiontime" class="tsd-kind-icon">get<wbr>Transition<wbr>Time</a>
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.getversion" class="tsd-kind-icon">get<wbr>Version</a>
@@ -968,6 +1004,12 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.setaudiogain" class="tsd-kind-icon">set<wbr>Audio<wbr>Gain</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.settransition" class="tsd-kind-icon">set<wbr>Transition</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.settransitiontime" class="tsd-kind-icon">set<wbr>Transition<wbr>Time</a>
 								</li>
 							</ul>
 						</li>
@@ -1078,6 +1120,20 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
 			<p><a href="http://splitmedialabslimited.github.io/xui/docs/">API Reference</a></p>
+			<h1 id="xui-framework">XUI Framework</h1>
+			<h2 id="introduction">Introduction</h2>
+			<p>Plugins are important tools for extending the utility of XSplit Broadcaster. In order to allow any developer to create useful plugins for the community, the XUI framework is created to encapsulate the full capabilities of the application in an easily understandable manner.</p>
+			<h2 id="plugins">Plugins</h2>
+			<p>All plugins should include all files distributed and packaged into the XUI framework in order to work correctly.</p>
+			<h3 id="-source-plugins-"><em>Source Plugins</em></h3>
+			<p>Source plugins are those that are added to the stage for recording. Source plugins are composed of two parts: the source and the configuration. The source is an HTML file that will be captured in a recording or a live stream. The configuration is an HTML file that allows a user to manipulate elements within a source. The XUI framework provides methods to allow communication between the source and the configuration HTML. </p>
+			<p>In order to quickly develop a working prototype of a plugin, developers should host their source and configuration HTML either remotely or locally. A user may add the plugin to their presentation by adding a Web Page URL source, and entering the URL for the source HTML.</p>
+			<p>Right-clicking a source opens a configuration window, which developers can implement. The XUI framework allows for sources to specify where their configuration HTML is hosted. This is accomplished by specifying metadata in their source HTML, as seen in the following example:</p>
+			<blockquote>
+				<p><code>&lt;meta name=&quot;config-url&quot; content=&quot;http://www.xspl.it/plugin/test-config.html&quot;&gt;</code></p>
+			</blockquote>
+			<p>If the files from the XUI Framework have been included in the source HTML, then this metadata should already be automatically processed.</p>
+			<p>In addition to the application methods exposed by the XUI Framework, there are also a number of methods available for the rendering of the configuration HTML. Developers may choose one of the following three choices: full screen window (developers have full control over the look-and-feel of the configuration), embedded (developers can take advantage of the existing tabs system, and even reuse any existing core tabs such as Layout), and hidden (the configuration window simply serves to run code in the background).</p>
 		</div>
 		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1123,6 +1179,106 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L10">core/app.ts:10</a></li>
 							</ul>
 						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_clock" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>CLOCK</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>CLOCK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L125">core/app.ts:125</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_collapse" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>COLLAPSE</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>COLLAPSE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L126">core/app.ts:126</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_fan" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>FAN</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>FAN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L132">core/app.ts:132</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_hole" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>HOLE</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>HOLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L133">core/app.ts:133</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_move_bottom" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>MOVE_<wbr>BOTTOM</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>BOTTOM<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L127">core/app.ts:127</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_move_left" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>MOVE_<wbr>LEFT</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>LEFT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L128">core/app.ts:128</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_move_left_right" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>MOVE_<wbr>LEFT_<wbr>RIGHT</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>LEFT_<wbr>RIGHT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L129">core/app.ts:129</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_move_right" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>MOVE_<wbr>RIGHT</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>RIGHT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L130">core/app.ts:130</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_move_top" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>MOVE_<wbr>TOP</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>MOVE_<wbr>TOP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L131">core/app.ts:131</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.transition_wave" class="tsd-anchor"></a>
+							<h3>TRANSITION_<wbr>WAVE</h3>
+							<div class="tsd-signature tsd-kind-icon">TRANSITION_<wbr>WAVE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L134">core/app.ts:134</a></li>
+								</ul>
+							</aside>
+						</section>
 						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 							<a name="xui.core.app.calldll" class="tsd-anchor"></a>
 							<h3>call<wbr>Dll</h3>
@@ -1269,6 +1425,50 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 										</div>
 									</div>
 									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Rectangle</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+							</ul>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.gettransition" class="tsd-anchor"></a>
+							<h3>get<wbr>Transition</h3>
+							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<li class="tsd-signature tsd-kind-icon">get<wbr>Transition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<aside class="tsd-sources">
+										<ul>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L137">core/app.ts:137</a></li>
+										</ul>
+									</aside>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Gets the transition for scene changes.</p>
+										</div>
+									</div>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+							</ul>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.gettransitiontime" class="tsd-anchor"></a>
+							<h3>get<wbr>Transition<wbr>Time</h3>
+							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<li class="tsd-signature tsd-kind-icon">get<wbr>Transition<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">&gt;</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<aside class="tsd-sources">
+										<ul>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L151">core/app.ts:151</a></li>
+										</ul>
+									</aside>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Gets the scene transition duration in milliseconds.</p>
+										</div>
+									</div>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 						</section>
@@ -1474,6 +1674,62 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 									<ul class="tsd-parameters">
 										<li>
 											<h5>config: <span class="tsd-signature-type">Json</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+								</li>
+							</ul>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.settransition" class="tsd-anchor"></a>
+							<h3>set<wbr>Transition</h3>
+							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<li class="tsd-signature tsd-kind-icon">set<wbr>Transition<span class="tsd-signature-symbol">(</span>transition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<aside class="tsd-sources">
+										<ul>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L146">core/app.ts:146</a></li>
+										</ul>
+									</aside>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Sets the transition for scene changes.</p>
+										</div>
+									</div>
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>transition: <span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+								</li>
+							</ul>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.settransitiontime" class="tsd-anchor"></a>
+							<h3>set<wbr>Transition<wbr>Time</h3>
+							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<li class="tsd-signature tsd-kind-icon">set<wbr>Transition<wbr>Time<span class="tsd-signature-symbol">(</span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<aside class="tsd-sources">
+										<ul>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L160">core/app.ts:160</a></li>
+										</ul>
+									</aside>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Sets the scene transition duration in milliseconds.</p>
+										</div>
+									</div>
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>time: <span class="tsd-signature-type">Number</span></h5>
 										</li>
 									</ul>
 									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

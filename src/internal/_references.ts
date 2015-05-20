@@ -12,3 +12,5 @@
 /// <reference path="environment.ts" />
 /// <reference path="app.ts" />
 /// <reference path="item.ts" />
+
+/// <reference path="init.ts" />
