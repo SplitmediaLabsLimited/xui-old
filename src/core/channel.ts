@@ -2,7 +2,6 @@
 
 module xui.core {
     import iApp = internal.App;
-    import Json = internal.utils.JSON;
 
     export interface ChannelProps {
         name: string;
@@ -11,8 +10,8 @@ module xui.core {
     }
 
     export interface StreamDrops {
-        dropped: string;
-        rendered: string;
+        dropped: number;
+        rendered: number;
     }
 
     export class Channel {
@@ -32,8 +31,8 @@ module xui.core {
             return new Promise((resolve) => {
                 iApp.get('streamdrops:' + this.name).then((val) => {
                     var drops: string[] = val.split(','),
-                        dropped: string = drops[0] || '0',
-                        rendered: string = drops[1] || '0';
+                        dropped: number = parseInt(drops[0]) || 0,
+                        rendered: number = parseInt(drops[1]) || 0;
 
                     resolve({ dropped: dropped, rendered: rendered });
                 });
@@ -41,12 +40,12 @@ module xui.core {
         }
 
         /** Gets the current duration of <stream> in microseconds  */
-        getStreamTime(): Promise<string> {
+        getStreamTime(): Promise<number> {
             return new Promise((resolve) => {
                 iApp.get('streamtime:' + this.name).then((val) => {
                     var duration: number = parseInt(val) / 10;
 
-                    resolve(String(duration));
+                    resolve(duration);
                 });
             });
         }
