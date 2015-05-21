@@ -104,3 +104,25 @@ declare module xui.core {
         static setTransitionTime(time: Number): void;
     }
 }
+declare module xui.core {
+    interface ChannelProps {
+        name: string;
+        stat: string;
+        channel: string;
+    }
+    interface StreamDrops {
+        dropped: string;
+        rendered: string;
+    }
+    class Channel {
+        private name;
+        private stat;
+        private channel;
+        /** Channel constructor, intialize name, state, and channel values */
+        constructor(props: ChannelProps);
+        /** Gets the amout of frames dropped and frames rendered  */
+        getStreamDrops(): Promise<StreamDrops>;
+        /** Gets the current duration of <stream> in microseconds  */
+        getStreamTime(): Promise<string>;
+    }
+}
