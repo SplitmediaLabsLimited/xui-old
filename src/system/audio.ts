@@ -26,9 +26,29 @@ module xui.system {
         private defaultCommunication: boolean = false;
 
         // microphonedev2
-        private level: string;
-        private enable: string;
-        private hwlevel: string;
+        private level: Number;
+        private enable: boolean;
+        private hwlevel: Number;
+        private hwenable: boolean;
+        private delay: Number;
+
+        constructor(props?: {}) {
+            props = props || {};
+
+            this.id                   = props['id'];
+            this.name                 = props['name'];
+            this.adapter              = props['adapter'];
+            this.adapterdev           = props['adapterdev'];
+            this.guid                 = props['guid'];
+            this.dataflow             = props['dataflow'];
+            this.state                = props['state'];
+            this.defaultConsole       = props['defaultConsole'];
+            this.defaultMultimedia    = props['defaultMultimedia'];
+            this.defaultCommunication = props['defaultCommunication'];
+            this.level                = props['level'];
+            this.enable               = props['enable'];
+            this.hwlevel              = props['hwlevel'];
+        }
 
         /** 
          * ID from WASAPI (microphone or speaker) or "default" or
@@ -86,20 +106,77 @@ module xui.system {
             return this.defaultCommunication;
         }
 
+        /** Returns the value of the software audio level */
+        getLevel(): Number {
+            return this.level;
+        }
+
+        /** Sets the value of the software audio level */
+        setLevel(level: Number) {
+            this.level = level;
+
+            return this;
+        }
+
+        /** Returns true if software audio is enabled */
+        isEnabled(): boolean {
+            return this.enable;
+        }
+
+        /** Enables/disables software audio */
+        setEnabled(enabled: boolean) {
+            this.enable = enabled;
+
+            return this;
+        }
+
+        /** Returns the value of the system audio level */
+        getSystemLevel(): Number {
+            return this.hwlevel;
+        }
+
+        /** Sets the value of the system audio level */
+        setSystemLevel(hwlevel: Number) {
+            this.hwlevel = hwlevel;
+
+            return this;
+        }
+
+        /** Returns true if system audio is enabled */
+        isSystemEnabled(): boolean {
+            return this.hwenable;
+        }
+
+        /** Enables/disables system audio */
+        setSystemEnabled(enabled: boolean) {
+            this.hwenable = enabled;
+
+            return this;
+        }
+
+        /** Returns the loopback capture delay value (100 nanoseconds units) */
+        getDelay(): Number {
+            return this.delay;
+        }
+
+        /** Sets the loopback capture delay value (100 nanoseconds units) */
+        setDelay(delay: Number) {
+            this.delay = delay;
+
+            return this;
+        }
+
         /** Converts the Audio item to XML string */
         toString(): string {
             var device = new u.JSON();
             device.tag = 'dev';
 
-            var attrs: any[] = ['id', 'name', 'adapter', 'adapterdev', 'dataflow',
-                'guid', 'state', 'waveid', 'mix', 'level', 'enable',
-                'hwlevel', 'hwenable', 'delay', 'mix'];
-            
-            for (var i in attrs) {
-                var attr = attrs[i]
-
-                device[attr] = this[attr];
-            }
+            device['id']       = this.getId();
+            device['level']    = this.getLevel();
+            device['enable']   = this.isEnabled() ? 1 : 0;
+            device['hwlevel']  = this.getSystemLevel();
+            device['hwenable'] = this.isSystemEnabled() ? 1 : 0;
+            device['delay']    = this.getDelay();
             
             return u.XML.parseJSON(device).toString();
         }
@@ -136,27 +213,28 @@ module xui.system {
         }
 
         static parse(deviceJSON: u.JSON): Audio {
-            var audio = new Audio();
+            var audio: Audio = new Audio({
+                id:         deviceJSON['id'],
+                name:       deviceJSON['name'],
+                adapter:    deviceJSON['adapter'],
+                adapterdev: deviceJSON['adapterdev'],
+                dataflow:   deviceJSON['dataflow'],
+                state:      deviceJSON['state'],
+                guid:       deviceJSON['dsoundguid'],
+                
+                defaultCommunication: 
+                    (deviceJSON['defaultcommunication'] === '1'),
+                defaultConsole: 
+                    (deviceJSON['defaultconsole'] === '1'),
+                defaultMultimedia: 
+                    (deviceJSON['defaultmultimedia'] === '1')
+            });
 
-            // wasapienum
-            audio.id = deviceJSON['id'];
-            audio.name = deviceJSON['name'];
-            audio.adapter = deviceJSON['adapter'];
-            audio.adapterdev = deviceJSON['adapterdev'];
-            audio.dataflow = deviceJSON['dataflow'];
-            audio.state = deviceJSON['state'];
-            audio.guid = deviceJSON['dsoundguid'];
-            audio.defaultCommunication = 
-                (deviceJSON['defaultcommunication'] === '1');
-            audio.defaultConsole = 
-                (deviceJSON['defaultconsole'] === '1');
-            audio.defaultMultimedia = 
-                (deviceJSON['defaultmultimedia'] === '1');
-
-            // microphonedev2
-            audio.level = deviceJSON['level'];
-            audio.enable = deviceJSON['enable'];
-            audio.hwlevel = deviceJSON['hwlevel'];
+            audio.setLevel(Number(deviceJSON['level']))
+                .setEnabled(deviceJSON['enable'] === '1')
+                .setSystemLevel(Number(deviceJSON['hwlevel']))
+                .setSystemEnabled(deviceJSON['hwenable'] === '1')
+                .setDelay(Number(deviceJSON['delay']));
 
             return audio;
         }

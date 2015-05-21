@@ -19,6 +19,9 @@ declare module xui.system {
         private level;
         private enable;
         private hwlevel;
+        private hwenable;
+        private delay;
+        constructor(props?: {});
         /**
          * ID from WASAPI (microphone or speaker) or "default" or
          * "default:<data_flow>" or "default:<data_flow>:<role>"
@@ -45,6 +48,26 @@ declare module xui.system {
         isDefaultMultimedia(): boolean;
         /** Returns true if the device is the default communication device */
         isDefaultCommunication(): boolean;
+        /** Returns the value of the software audio level */
+        getLevel(): Number;
+        /** Sets the value of the software audio level */
+        setLevel(level: Number): Audio;
+        /** Returns true if software audio is enabled */
+        isEnabled(): boolean;
+        /** Enables/disables software audio */
+        setEnabled(enabled: boolean): Audio;
+        /** Returns the value of the system audio level */
+        getSystemLevel(): Number;
+        /** Sets the value of the system audio level */
+        setSystemLevel(hwlevel: Number): Audio;
+        /** Returns true if system audio is enabled */
+        isSystemEnabled(): boolean;
+        /** Enables/disables system audio */
+        setSystemEnabled(enabled: boolean): Audio;
+        /** Returns the loopback capture delay value (100 nanoseconds units) */
+        getDelay(): Number;
+        /** Sets the loopback capture delay value (100 nanoseconds units) */
+        setDelay(delay: Number): Audio;
         /** Converts the Audio item to XML string */
         toString(): string;
         /** List audio devices of the system */
