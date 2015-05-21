@@ -78,8 +78,8 @@ declare module xui.core {
         static newDialog(url: string): void;
         /** Creates a modal dialog that automatically closes on outside click */
         static newAutoDialog(url: string): void;
-        /** Resizes a created dialog */
-        static resizeDialog(width: Number, height: Number): void;
+        /** Close a created dialog */
+        static closeDialog(width: Number, height: Number): void;
         /** Resizes a global script dialog */
         static resizeSelf(width: Number, height: Number): void;
         /** Closes a global script dialog */

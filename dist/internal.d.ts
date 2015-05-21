@@ -166,6 +166,13 @@ declare module internal {
 }
 declare module internal {
     class Item {
+        private name;
+        private value;
+        private id;
+        private sceneID;
+        private viewID;
+        private static baseID;
+        constructor(props: any);
         /** Prepare an item for manipulation */
         static attach(itemID: string, view: string): void;
         /** Get an item's local property asynchronously */
@@ -174,6 +181,8 @@ declare module internal {
         static set(name: string, value: string, slot?: string): void;
         /** Calls a function defined in an item/source */
         static callFunc(func: string, arg: string): void;
+        /** helper function to get current source on init */
+        static setBaseID(id: string): void;
     }
 }
 declare module internal {

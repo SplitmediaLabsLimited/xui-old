@@ -958,6 +958,9 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 									<a href="index.html#xui.core.app.calldll" class="tsd-kind-icon">call<wbr>Dll</a>
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+									<a href="index.html#xui.core.app.closedialog" class="tsd-kind-icon">close<wbr>Dialog</a>
+								</li>
+								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.closeself" class="tsd-kind-icon">close<wbr>Self</a>
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
@@ -992,9 +995,6 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.newdialog" class="tsd-kind-icon">new<wbr>Dialog</a>
-								</li>
-								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
-									<a href="index.html#xui.core.app.resizedialog" class="tsd-kind-icon">resize<wbr>Dialog</a>
 								</li>
 								<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 									<a href="index.html#xui.core.app.resizeself" class="tsd-kind-icon">resize<wbr>Self</a>
@@ -1119,21 +1119,6 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 <div class="container container-main">
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
-			<p><a href="http://splitmedialabslimited.github.io/xui/docs/">API Reference</a></p>
-			<h1 id="xui-framework">XUI Framework</h1>
-			<h2 id="introduction">Introduction</h2>
-			<p>Plugins are important tools for extending the utility of XSplit Broadcaster. In order to allow any developer to create useful plugins for the community, the XUI framework is created to encapsulate the full capabilities of the application in an easily understandable manner.</p>
-			<h2 id="plugins">Plugins</h2>
-			<p>All plugins should include all files distributed and packaged into the XUI framework in order to work correctly.</p>
-			<h3 id="-source-plugins-"><em>Source Plugins</em></h3>
-			<p>Source plugins are those that are added to the stage for recording. Source plugins are composed of two parts: the source and the configuration. The source is an HTML file that will be captured in a recording or a live stream. The configuration is an HTML file that allows a user to manipulate elements within a source. The XUI framework provides methods to allow communication between the source and the configuration HTML. </p>
-			<p>In order to quickly develop a working prototype of a plugin, developers should host their source and configuration HTML either remotely or locally. A user may add the plugin to their presentation by adding a Web Page URL source, and entering the URL for the source HTML.</p>
-			<p>Right-clicking a source opens a configuration window, which developers can implement. The XUI framework allows for sources to specify where their configuration HTML is hosted. This is accomplished by specifying metadata in their source HTML, as seen in the following example:</p>
-			<blockquote>
-				<p><code>&lt;meta name=&quot;config-url&quot; content=&quot;http://www.xspl.it/plugin/test-config.html&quot;&gt;</code></p>
-			</blockquote>
-			<p>If the files from the XUI Framework have been included in the source HTML, then this metadata should already be automatically processed.</p>
-			<p>In addition to the application methods exposed by the XUI Framework, there are also a number of methods available for the rendering of the configuration HTML. Developers may choose one of the following three choices: full screen window (developers have full control over the look-and-feel of the configuration), embedded (developers can take advantage of the existing tabs system, and even reuse any existing core tabs such as Layout), and hidden (the configuration window simply serves to run code in the background).</p>
 		</div>
 		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1298,6 +1283,37 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 										</div>
 									</div>
 									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+								</li>
+							</ul>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+							<a name="xui.core.app.closedialog" class="tsd-anchor"></a>
+							<h3>close<wbr>Dialog</h3>
+							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<li class="tsd-signature tsd-kind-icon">close<wbr>Dialog<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<aside class="tsd-sources">
+										<ul>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L109">core/app.ts:109</a></li>
+										</ul>
+									</aside>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Close a created dialog</p>
+										</div>
+									</div>
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>width: <span class="tsd-signature-type">Number</span></h5>
+										</li>
+										<li>
+											<h5>height: <span class="tsd-signature-type">Number</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 								</li>
 							</ul>
 						</section>
@@ -1566,37 +1582,6 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 									<ul class="tsd-parameters">
 										<li>
 											<h5>url: <span class="tsd-signature-type">string</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-								</li>
-							</ul>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
-							<a name="xui.core.app.resizedialog" class="tsd-anchor"></a>
-							<h3>resize<wbr>Dialog</h3>
-							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
-								<li class="tsd-signature tsd-kind-icon">resize<wbr>Dialog<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<aside class="tsd-sources">
-										<ul>
-											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L109">core/app.ts:109</a></li>
-										</ul>
-									</aside>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Resizes a created dialog</p>
-										</div>
-									</div>
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>width: <span class="tsd-signature-type">Number</span></h5>
-										</li>
-										<li>
-											<h5>height: <span class="tsd-signature-type">Number</span></h5>
 										</li>
 									</ul>
 									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

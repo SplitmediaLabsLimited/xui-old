@@ -22,7 +22,8 @@
 		out: 	'./docs/', 
 		name: 	'XUI Plugin Framework', 
 		target: 'ES5',
-		theme: 	'minimal'
+		theme: 	'minimal',
+		readme: 'none'
 	};
 
 	gulp.task('default', [

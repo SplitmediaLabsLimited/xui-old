@@ -4,11 +4,10 @@ module internal {
     export function init(): void {
         // only valid for source plugin
         if(Environment.isSourceHtml()) {
-            // code...
+            // initialize config URL if necessary
             internal.exec('GetLocalPropertyAsync', 'prop:BrowserConfiguration',
                 (result) => {
                     var configObj = JSON.parse(decodeURIComponent(result));
-                    console.log(configObj);
                     if (configObj === null) {
                         configObj = {};
                     }
@@ -24,6 +23,12 @@ module internal {
                             }
                         }
                     }
+                });
+
+            // initialize Item.getSource() functions
+            internal.exec('GetLocalPropertyAsync', 'prop:BrowserConfiguration',
+                (result) => {
+                    internal.Item.setBaseID(decodeURIComponent(result));
                 });
         }
     }

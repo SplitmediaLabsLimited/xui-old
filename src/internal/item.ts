@@ -2,6 +2,24 @@
 
 module internal {
     export class Item {
+        private name: string;
+        private value: string;
+        private id: string;
+        private sceneID: Number;
+        private viewID: Number;
+
+        private static baseID: string;
+
+        constructor(props: any) {
+            var props = props || {};
+            this.name       = props.name;
+            this.value      = props.item ;
+            this.id         = props.id;
+            this.sceneID    = props.sceneID;
+            this.viewID     = props.viewID;
+        }
+
+
         /** Prepare an item for manipulation */
         static attach(itemID: string, view: string): void {
             internal.exec('SearchVideoItem', itemID, view);
@@ -30,6 +48,11 @@ module internal {
         /** Calls a function defined in an item/source */
         static callFunc(func: string, arg: string): void {
             internal.exec('CallInner', func, arg);
+        }
+
+        /** helper function to get current source on init */
+        static setBaseID(id: string): void {
+            Item.baseID = id;
         }
     }
 }

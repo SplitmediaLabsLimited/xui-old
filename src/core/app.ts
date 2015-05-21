@@ -105,9 +105,9 @@ module xui.core {
             }
         }
 
-        /** Resizes a created dialog */
-        static resizeDialog(width: Number, height: Number) {
-            // TODO: currently only works for source config
+        /** Close a created dialog */
+        static closeDialog(width: Number, height: Number): void {
+            // currently only works for source config
             internal.exec('CloseDialog');
         }
 
