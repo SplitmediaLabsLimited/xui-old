@@ -1037,27 +1037,27 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 							</ul>
 						</li>
 						<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-							<a href="index.html#xui.core.channelprops" class="tsd-kind-icon">Channel<wbr>Props</a>
+							<a href="index.html#xui.core.ichannelprops" class="tsd-kind-icon">IChannel<wbr>Props</a>
 							<ul>
 								<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-									<a href="index.html#xui.core.channelprops.channel-2" class="tsd-kind-icon">channel</a>
+									<a href="index.html#xui.core.ichannelprops.channel-2" class="tsd-kind-icon">channel</a>
 								</li>
 								<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-									<a href="index.html#xui.core.channelprops.name-1" class="tsd-kind-icon">name</a>
+									<a href="index.html#xui.core.ichannelprops.name-1" class="tsd-kind-icon">name</a>
 								</li>
 								<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-									<a href="index.html#xui.core.channelprops.stat-1" class="tsd-kind-icon">stat</a>
+									<a href="index.html#xui.core.ichannelprops.stat-1" class="tsd-kind-icon">stat</a>
 								</li>
 							</ul>
 						</li>
 						<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-							<a href="index.html#xui.core.streamdrops" class="tsd-kind-icon">Stream<wbr>Drops</a>
+							<a href="index.html#xui.core.istreamdrops" class="tsd-kind-icon">IStream<wbr>Drops</a>
 							<ul>
 								<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-									<a href="index.html#xui.core.streamdrops.dropped" class="tsd-kind-icon">dropped</a>
+									<a href="index.html#xui.core.istreamdrops.dropped" class="tsd-kind-icon">dropped</a>
 								</li>
 								<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-									<a href="index.html#xui.core.streamdrops.rendered" class="tsd-kind-icon">rendered</a>
+									<a href="index.html#xui.core.istreamdrops.rendered" class="tsd-kind-icon">rendered</a>
 								</li>
 							</ul>
 						</li>
@@ -1224,8 +1224,8 @@ input[type=checkbox]:checked + .tsd-widget:before { background-position: -160px 
 			<p>XSplit Broadcaster&#39;s functions may be used by developers through the Plugin Framework. For the latest documentation, click <a href="http://splitmedialabslimited.github.io/xui/docs/">here</a>.</p>
 			<h2 id="-a-name-configclass-a-appendix-developing-the-source-configuration-window"><a name="configClass"></a>Appendix: Developing the Source Configuration Window</h2>
 			<p>XSplit Broadcaster provides an inline frame that is used for rendering the configuration HTML. Plugin developers may use the ConfigWindow class to specify how the configuration window should be rendered. Using it is easy; the following code initializes a simple configuration window:</p>
-			<pre><code><span class="hljs-variable"><span class="hljs-keyword">var</span> config</span> = misc.ConfigWindow.getInstance();
-config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
+			<pre><code>var config = misc.ConfigWindow.getInstance()<span class="hljs-comment">;</span>
+config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN)<span class="hljs-comment">;</span>
 </code></pre><p>This configures a very easy configuration window. However, developers may choose one of the following three choices: <em>full screen window</em> (developers have full control over the look-and-feel of the configuration), <em>embedded</em> (developers can take advantage of the existing tabs system, and even reuse any existing core tabs such as Layout), and <em>hidden</em> (the configuration window simply serves to run code in the background). These are specified as <code>RenderMode.FULLSCREEN</code>, <code>RenderMode.EMBEDDED</code>, and <code>RenderMode.HIDDEN</code>, respectively, under the <code>misc.ConfigWindow</code> namespace.</p>
 			<p>The ConfigWindow class also exposes additional methods for developers who wish to use the tab system (embedded mode). The configuration HTML must first declare the names of its custom tabs, and then declare the order of tabs. Custom tabs are tabs for which the developer has the responsibility of implementing. Non-custom tabs refer to existing core tabs that will be reused by the plugin. (Reusable core tabs include &quot;Html&quot;, &quot;Color&quot;, &quot;Layout&quot; and &quot;Transition&quot;). Note that core tab names may also be used as names of custom tabs, if developers wish to implement their own content.</p>
 			<pre><code><span class="hljs-atom">config</span>.<span class="hljs-atom">declareCustomTabs</span>([<span class="hljs-string">'Slideshow'</span>, <span class="hljs-string">'Hotkeys'</span>]);
@@ -1850,20 +1850,20 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 						<div class="tsd-signature tsd-kind-icon">Channel<span class="tsd-signature-symbol">:</span> </div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L18">core/channel.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L17">core/channel.ts:17</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
 							<a name="xui.core.channel.constructor" class="tsd-anchor"></a>
 							<h3>constructor</h3>
 							<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<li class="tsd-signature tsd-kind-icon">new <wbr>Channel<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="index.html#xui.core.channelprops" class="tsd-signature-type">ChannelProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="index.html#xui.core.channel" class="tsd-signature-type">Channel</a></li>
+								<li class="tsd-signature tsd-kind-icon">new <wbr>Channel<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="index.html#xui.core.ichannelprops" class="tsd-signature-type">IChannelProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="index.html#xui.core.channel" class="tsd-signature-type">Channel</a></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L21">core/channel.ts:21</a></li>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L20">core/channel.ts:20</a></li>
 										</ul>
 									</aside>
 									<div class="tsd-comment tsd-typography">
@@ -1874,7 +1874,7 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 									<h4 class="tsd-parameters-title">Parameters</h4>
 									<ul class="tsd-parameters">
 										<li>
-											<h5>props: <a href="index.html#xui.core.channelprops" class="tsd-signature-type">ChannelProps</a></h5>
+											<h5>props: <a href="index.html#xui.core.ichannelprops" class="tsd-signature-type">IChannelProps</a></h5>
 										</li>
 									</ul>
 									<h4 class="tsd-returns-title">Returns <a href="index.html#xui.core.channel" class="tsd-signature-type">Channel</a></h4>
@@ -1887,7 +1887,7 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 							<div class="tsd-signature tsd-kind-icon">channel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L21">core/channel.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L20">core/channel.ts:20</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1897,7 +1897,7 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 							<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L19">core/channel.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L18">core/channel.ts:18</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1907,7 +1907,7 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 							<div class="tsd-signature tsd-kind-icon">stat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L20">core/channel.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L19">core/channel.ts:19</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1915,13 +1915,13 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 							<a name="xui.core.channel.getstreamdrops" class="tsd-anchor"></a>
 							<h3>get<wbr>Stream<wbr>Drops</h3>
 							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<li class="tsd-signature tsd-kind-icon">get<wbr>Stream<wbr>Drops<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#xui.core.streamdrops" class="tsd-signature-type">StreamDrops</a><span class="tsd-signature-symbol">&gt;</span></li>
+								<li class="tsd-signature tsd-kind-icon">get<wbr>Stream<wbr>Drops<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#xui.core.istreamdrops" class="tsd-signature-type">IStreamDrops</a><span class="tsd-signature-symbol">&gt;</span></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L31">core/channel.ts:31</a></li>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L30">core/channel.ts:30</a></li>
 										</ul>
 									</aside>
 									<div class="tsd-comment tsd-typography">
@@ -1929,7 +1929,7 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 											<p>Gets the amout of frames dropped and frames rendered</p>
 										</div>
 									</div>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#xui.core.streamdrops" class="tsd-signature-type">StreamDrops</a><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="index.html#xui.core.istreamdrops" class="tsd-signature-type">IStreamDrops</a><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 						</section>
@@ -1937,13 +1937,13 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 							<a name="xui.core.channel.getstreamtime" class="tsd-anchor"></a>
 							<h3>get<wbr>Stream<wbr>Time</h3>
 							<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<li class="tsd-signature tsd-kind-icon">get<wbr>Stream<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<li class="tsd-signature tsd-kind-icon">get<wbr>Stream<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
 									<aside class="tsd-sources">
 										<ul>
-											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L44">core/channel.ts:44</a></li>
+											<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L43">core/channel.ts:43</a></li>
 										</ul>
 									</aside>
 									<div class="tsd-comment tsd-typography">
@@ -1951,77 +1951,77 @@ config.setRenderMode(misc.ConfigWindow.RenderMode.FULLSCREEN);
 											<p>Gets the current duration of <stream> in microseconds</p>
 										</div>
 									</div>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 						</section>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a name="xui.core.channelprops" class="tsd-anchor"></a>
-						<h3>Channel<wbr>Props</h3>
-						<div class="tsd-signature tsd-kind-icon">Channel<wbr>Props<span class="tsd-signature-symbol">:</span> </div>
+						<a name="xui.core.ichannelprops" class="tsd-anchor"></a>
+						<h3>IChannel<wbr>Props</h3>
+						<div class="tsd-signature tsd-kind-icon">IChannel<wbr>Props<span class="tsd-signature-symbol">:</span> </div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L7">core/channel.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L6">core/channel.ts:6</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-							<a name="xui.core.channelprops.channel-2" class="tsd-anchor"></a>
+							<a name="xui.core.ichannelprops.channel-2" class="tsd-anchor"></a>
 							<h3>channel</h3>
 							<div class="tsd-signature tsd-kind-icon">channel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L10">core/channel.ts:10</a></li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-							<a name="xui.core.channelprops.name-1" class="tsd-anchor"></a>
-							<h3>name</h3>
-							<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L8">core/channel.ts:8</a></li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-							<a name="xui.core.channelprops.stat-1" class="tsd-anchor"></a>
-							<h3>stat</h3>
-							<div class="tsd-signature tsd-kind-icon">stat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L9">core/channel.ts:9</a></li>
 								</ul>
 							</aside>
 						</section>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a name="xui.core.streamdrops" class="tsd-anchor"></a>
-						<h3>Stream<wbr>Drops</h3>
-						<div class="tsd-signature tsd-kind-icon">Stream<wbr>Drops<span class="tsd-signature-symbol">:</span> </div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L13">core/channel.ts:13</a></li>
-							</ul>
-						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-							<a name="xui.core.streamdrops.dropped" class="tsd-anchor"></a>
-							<h3>dropped</h3>
-							<div class="tsd-signature tsd-kind-icon">dropped<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<a name="xui.core.ichannelprops.name-1" class="tsd-anchor"></a>
+							<h3>name</h3>
+							<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L14">core/channel.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L7">core/channel.ts:7</a></li>
 								</ul>
 							</aside>
 						</section>
 						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-							<a name="xui.core.streamdrops.rendered" class="tsd-anchor"></a>
-							<h3>rendered</h3>
-							<div class="tsd-signature tsd-kind-icon">rendered<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+							<a name="xui.core.ichannelprops.stat-1" class="tsd-anchor"></a>
+							<h3>stat</h3>
+							<div class="tsd-signature tsd-kind-icon">stat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L15">core/channel.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L8">core/channel.ts:8</a></li>
+								</ul>
+							</aside>
+						</section>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a name="xui.core.istreamdrops" class="tsd-anchor"></a>
+						<h3>IStream<wbr>Drops</h3>
+						<div class="tsd-signature tsd-kind-icon">IStream<wbr>Drops<span class="tsd-signature-symbol">:</span> </div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L12">core/channel.ts:12</a></li>
+							</ul>
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+							<a name="xui.core.istreamdrops.dropped" class="tsd-anchor"></a>
+							<h3>dropped</h3>
+							<div class="tsd-signature tsd-kind-icon">dropped<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L13">core/channel.ts:13</a></li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+							<a name="xui.core.istreamdrops.rendered" class="tsd-anchor"></a>
+							<h3>rendered</h3>
+							<div class="tsd-signature tsd-kind-icon">rendered<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/channel.ts#L14">core/channel.ts:14</a></li>
 								</ul>
 							</aside>
 						</section>

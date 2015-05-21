@@ -3,13 +3,13 @@
 module xui.core {
     import iApp = internal.App;
 
-    export interface ChannelProps {
+    export interface IChannelProps {
         name: string;
         stat: string;
         channel: string;
     }
 
-    export interface StreamDrops {
+    export interface IStreamDrops {
         dropped: number;
         rendered: number;
     }
@@ -20,14 +20,14 @@ module xui.core {
         private channel: string;
 
         /** Channel constructor, intialize name, state, and channel values */
-        constructor(props: ChannelProps) {
+        constructor(props: IChannelProps) {
             this.name = props.name;
             this.stat = props.stat;
             this.channel = props.channel;
         }
 
         /** Gets the amout of frames dropped and frames rendered  */
-        getStreamDrops(): Promise<StreamDrops> {
+        getStreamDrops(): Promise<IStreamDrops> {
             return new Promise((resolve) => {
                 iApp.get('streamdrops:' + this.name).then((val) => {
                     var drops: string[] = val.split(','),

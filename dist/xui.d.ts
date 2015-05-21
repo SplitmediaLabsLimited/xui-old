@@ -128,24 +128,24 @@ declare module xui.core {
     }
 }
 declare module xui.core {
-    interface ChannelProps {
+    interface IChannelProps {
         name: string;
         stat: string;
         channel: string;
     }
-    interface StreamDrops {
-        dropped: string;
-        rendered: string;
+    interface IStreamDrops {
+        dropped: number;
+        rendered: number;
     }
     class Channel {
         private name;
         private stat;
         private channel;
         /** Channel constructor, intialize name, state, and channel values */
-        constructor(props: ChannelProps);
+        constructor(props: IChannelProps);
         /** Gets the amout of frames dropped and frames rendered  */
-        getStreamDrops(): Promise<StreamDrops>;
+        getStreamDrops(): Promise<IStreamDrops>;
         /** Gets the current duration of <stream> in microseconds  */
-        getStreamTime(): Promise<string>;
+        getStreamTime(): Promise<number>;
     }
 }
