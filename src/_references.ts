@@ -4,3 +4,4 @@
 
 /// <reference path="system/audio.ts" />
 /// <reference path="core/app.ts" />
+/// <reference path="core/channel.ts" />
