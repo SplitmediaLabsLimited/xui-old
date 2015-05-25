@@ -4,7 +4,7 @@ module xui.core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;
     import iApp = internal.App;
-    import Json = internal.utils.JSON;
+    import JSON = internal.utils.JSON;
     import Xml = internal.utils.XML;
 
     export class App {
@@ -76,15 +76,15 @@ module xui.core {
             iApp.set('microphonedev2', dev);
         }
 
-        static getAudioGain(): Promise<Json> {
+        static getAudioGain(): Promise<JSON> {
             return new Promise((resolve) => {
                 iApp.get('microphonegain').then((val) => {
-                    resolve(Json.parse(val));
+                    resolve(JSON.parse(val));
                 });
             });
         }
 
-        static setAudioGain(config: Json): void {
+        static setAudioGain(config: JSON): void {
             config.tag = 'configuration';
 
             iApp.set('microphonegain', Xml.parseJSON(config).toString());

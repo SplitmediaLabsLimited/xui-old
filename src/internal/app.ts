@@ -45,7 +45,7 @@ module internal {
         }
 
         /** Calls a DLL function synchronously */
-        static callDll(): string {
+        static callDll(func: string, ...arg: string[]): string {
             var args: any[] = [].slice.call(arguments);
             args.unshift('CallDll');
             return internal.exec.apply(this, args);

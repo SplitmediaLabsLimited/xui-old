@@ -75,10 +75,76 @@ declare module xui.system {
         static parse(deviceJSON: u.JSON): Audio;
     }
 }
+declare module xui.system {
+    class Process {
+        private pid;
+        private detail;
+        private hwnds;
+        private modules;
+        constructor(pid?: Number);
+        getPid(): Number;
+        setPid(pid: Number): void;
+        getDetail(): string;
+        getHwnds(): any;
+        getModules(): any;
+    }
+}
+declare module xui.system {
+    import Rectangle = internal.utils.Rectangle;
+    import JSON = internal.utils.JSON;
+    import XML = internal.utils.XML;
+    class Game {
+        private pid;
+        private handle;
+        private hwnd;
+        private gapitype;
+        private width;
+        private height;
+        private flags;
+        private wndname;
+        private lastframets;
+        /**
+         * Gets the game's process ID.
+         */
+        getPid(): Number;
+        /**
+         * Gets the Graphics API handle.
+         */
+        getHandle(): Number;
+        /**
+         * Gets the window handle.
+         */
+        getWindowHandle(): Number;
+        /**
+         * Gets the Graphics API type. Possible values:
+         * OGL, DX8, DX8_SwapChain, DX9, DX9Ex, DX9_SwapChain,
+         * DX9_PresentEx, DX10, DX11, DX11.1, DX11.1_Present1
+         */
+        getGapiType(): string;
+        /**
+         * Gets game resolution.
+         */
+        getResolution(): Rectangle;
+        /**
+         * Returns game-specific flags. 1 for exclusive full screen, 0 otherwise
+         */
+        getFlags(): string;
+        /**
+         * Gets window title.
+         */
+        getWindowName(): string;
+        /**
+         * Gets timestamp of last frame in milliseconds.
+         */
+        getLastFrameTimestamp(): Number;
+        static parse(json: JSON): Game;
+        toXML(): XML;
+    }
+}
 declare module xui.core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;
-    import Json = internal.utils.JSON;
+    import JSON = internal.utils.JSON;
     class App {
         /** Call method of DLL present in Scriptdlls folder */
         static callDll(): string;
@@ -95,8 +161,8 @@ declare module xui.core {
         /** List of audio input and output devices used by the application */
         static getAudioDevices(): Promise<Audio[]>;
         static setAudioDevices(devices: Audio[]): void;
-        static getAudioGain(): Promise<Json>;
-        static setAudioGain(config: Json): void;
+        static getAudioGain(): Promise<JSON>;
+        static setAudioGain(config: JSON): void;
         /** Creates a persistent modal dialog */
         static newDialog(url: string): void;
         /** Creates a modal dialog that automatically closes on outside click */
