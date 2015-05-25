@@ -89,6 +89,8 @@ declare module internal.utils {
         setHeight(height: number): void;
         /** Creates a rectangle from a comma-separated string */
         static parse(str: string): Rectangle;
+        /** Converts a rectangle to a comma-separated string */
+        toString(value?: string): string;
     }
 }
 declare module internal.utils {
@@ -174,11 +176,11 @@ declare module internal {
         private static baseID;
         constructor(props: any);
         /** Prepare an item for manipulation */
-        static attach(itemID: string, view: string): void;
+        static attach(itemID: string, view: number): void;
         /** Get an item's local property asynchronously */
-        static get(name: string, slot?: string): Promise<string>;
+        static get(name: string, slot?: number): Promise<string>;
         /** Sets an item's local property */
-        static set(name: string, value: string, slot?: string): void;
+        static set(name: string, value: string, slot?: number): void;
         /** Calls a function defined in an item/source */
         static callFunc(func: string, arg: string): void;
         /** helper function to get current source on init */

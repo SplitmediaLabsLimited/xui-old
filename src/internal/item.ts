@@ -21,12 +21,12 @@ module internal {
 
 
         /** Prepare an item for manipulation */
-        static attach(itemID: string, view: string): void {
-            internal.exec('SearchVideoItem', itemID, view);
+        static attach(itemID: string, view: number): void {
+            internal.exec('SearchVideoItem', itemID, String(view));
         }
 
         /** Get an item's local property asynchronously */
-        static get(name: string, slot?: string): Promise<string> {
+        static get(name: string, slot?: number): Promise<string> {
             return new Promise((resolve) => {
                 internal.exec('GetLocalPropertyAsync' +
                     (String(slot) === '1' ? '' : '2'),
@@ -38,7 +38,7 @@ module internal {
         }
 
         /** Sets an item's local property */
-        static set(name: string, value: string, slot?: string): void {
+        static set(name: string, value: string, slot?: number): void {
             internal.exec('SetLocalPropertyAsync' +
                 (String(slot) === '1' ? '' : '2'),
                 name,
