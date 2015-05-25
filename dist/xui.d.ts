@@ -203,15 +203,159 @@ declare module xui.core {
         dropped: number;
         rendered: number;
     }
-    class Channel {
-        private name;
-        private stat;
-        private channel;
+    class Channel implements IChannelProps {
+        name: string;
+        stat: string;
+        channel: string;
         /** Channel constructor, intialize name, state, and channel values */
         constructor(props: IChannelProps);
         /** Gets the amout of frames dropped and frames rendered  */
         getStreamDrops(): Promise<IStreamDrops>;
         /** Gets the current duration of <stream> in microseconds  */
         getStreamTime(): Promise<number>;
+    }
+}
+declare module xui.core {
+    import JSON = internal.utils.JSON;
+    import XML = internal.utils.XML;
+    import Color = internal.utils.Color;
+    import Rectangle = internal.utils.Rectangle;
+    interface IItem {
+        name: string;
+        id: string;
+        sceneID: number;
+        viewID: number;
+        type: number;
+        value: any;
+        trackTitle: boolean;
+        volume: number;
+        transparency: number;
+        borderColor: Color;
+        brightness: number;
+        constrast: number;
+        hue: number;
+        saturation: number;
+        customName: string;
+        cuepoints: number[];
+        keepAspectRatio: boolean;
+        positionLocked: boolean;
+        enhanceResizeEnabled: boolean;
+        mute: boolean;
+        pixelAlignmentEnabled: boolean;
+        position: Rectangle;
+        keepLoaded: boolean;
+    }
+    class Item implements IItem {
+        name: string;
+        id: string;
+        sceneID: number;
+        viewID: number;
+        type: number;
+        value: any;
+        trackTitle: boolean;
+        volume: number;
+        transparency: number;
+        borderColor: Color;
+        brightness: number;
+        constrast: number;
+        hue: number;
+        saturation: number;
+        customName: string;
+        cuepoints: number[];
+        keepAspectRatio: boolean;
+        positionLocked: boolean;
+        enhanceResizeEnabled: boolean;
+        mute: boolean;
+        pixelAlignmentEnabled: boolean;
+        position: Rectangle;
+        keepLoaded: boolean;
+        constructor(props: IItem);
+        /** Set name of the item */
+        setName(value: string): void;
+        /** Get the current name of the item */
+        getName(): Promise<string>;
+        static TYPE_UNDEFINED: number;
+        static TYPE_FILE: number;
+        static TYPE_LIVE: number;
+        static TYPE_TEXT: number;
+        static TYPE_BITMAP: number;
+        static TYPE_SCREEN: number;
+        static TYPE_FLASHFILE: number;
+        static TYPE_GAMESOURCE: number;
+        static TYPE_HTML: number;
+        /** Get the type of the item */
+        getType(): Promise<number>;
+        /** Set the video item's main definition */
+        setValue(value: any): void;
+        /** Get the video item's main definition */
+        getValue(): Promise<JSON>;
+        /** Set Track Window Title to ON or OFF */
+        setTrackTitle(value: boolean): void;
+        /** Check if Track Window Title is set to ON or OFF */
+        getTrackTitle(): Promise<boolean>;
+        /** Set the Volume of the item */
+        setVolume(value: number): void;
+        /** Get the Volume of the item */
+        getVolume(): Promise<number>;
+        /** Set the transparency of the item */
+        setTransparency(value: number): void;
+        /** Get the transparency of the item */
+        getTransparency(): Promise<number>;
+        /** Set the border color of the item */
+        setBorderColor(value: Color): void;
+        /** Get the border color of the item */
+        getBorderColor(): Promise<Color>;
+        /** Set the brightness of the item */
+        setBrightness(value: number): void;
+        /** Get the brightness */
+        getBrightness(): Promise<number>;
+        /** Set the contrast of the item */
+        setContrast(value: number): void;
+        /** Get the contrast of the item */
+        getContrast(): Promise<number>;
+        /** Set the hue of the item */
+        setHue(value: number): void;
+        /** Get the hue of the item */
+        getHue(): Promise<number>;
+        /** Set the saturation of the item */
+        setSaturation(value: number): void;
+        /** Get the saturation of the item */
+        getSaturation(): Promise<number>;
+        /** Set the custom name of the item */
+        setCustomName(value: string): void;
+        /** Get the custom name of the item */
+        getCustomName(): Promise<string>;
+        /** Set the cue points of the item */
+        setCuePoints(values: number[]): void;
+        /** Get the cue points of the item */
+        getCuePoints(): Promise<number[]>;
+        /** Set Keep aspect ratio to ON or OFF */
+        setKeepAspectRatio(value: boolean): void;
+        /** Set Position lock to ON or OFF */
+        setPositionLocked(value: boolean): void;
+        /** Check if position is locked or not */
+        isPositionLocked(): Promise<boolean>;
+        /** Set Enhanced Resize to ON or OFF */
+        setEnhancedResizeEnabled(value: boolean): void;
+        /** Check if Enhanced Resize is enabled or not */
+        isEnhancedResizeEnabled(): Promise<boolean>;
+        /** Set Mute to ON or OFF */
+        setMute(value: boolean): void;
+        /** Check if Mute is enabled or not */
+        isMute(): Promise<boolean>;
+        /** Set Pixel Alignment to ON or OFF */
+        setPixelAlignmentEnabled(value: boolean): void;
+        /** Check if Pixel Alignment is enabled or not */
+        isPixelAlignmentEnabled(): Promise<boolean>;
+        /** Set the position of the item */
+        setPosition(value: Rectangle): void;
+        /** Get the position of the item */
+        getPosition(): Promise<Rectangle>;
+        /** Crop the item */
+        crop(value: Rectangle): void;
+        /** Set Keep loaded option to ON or OFF */
+        setKeepLoaded(value: boolean): void;
+        /** Convert the Item object to XML */
+        toXML(): XML;
     }
 }

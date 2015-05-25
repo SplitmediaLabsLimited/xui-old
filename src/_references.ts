@@ -7,3 +7,4 @@
 /// <reference path="system/game.ts" />
 /// <reference path="core/app.ts" />
 /// <reference path="core/channel.ts" />
+/// <reference path="core/item.ts" />

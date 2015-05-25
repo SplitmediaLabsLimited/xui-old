@@ -14,10 +14,10 @@ module xui.core {
         rendered: number;
     }
 
-    export class Channel {
-        private name: string;
-        private stat: string;
-        private channel: string;
+    export class Channel implements IChannelProps {
+        name: string;
+        stat: string;
+        channel: string;
 
         /** Channel constructor, intialize name, state, and channel values */
         constructor(props: IChannelProps) {
@@ -31,8 +31,8 @@ module xui.core {
             return new Promise((resolve) => {
                 iApp.get('streamdrops:' + this.name).then((val) => {
                     var drops: string[] = val.split(','),
-                        dropped: number = parseInt(drops[0]) || 0,
-                        rendered: number = parseInt(drops[1]) || 0;
+                        dropped: number = Number(drops[0]) || 0,
+                        rendered: number = Number(drops[1]) || 0;
 
                     resolve({ dropped: dropped, rendered: rendered });
                 });
@@ -43,7 +43,7 @@ module xui.core {
         getStreamTime(): Promise<number> {
             return new Promise((resolve) => {
                 iApp.get('streamtime:' + this.name).then((val) => {
-                    var duration: number = parseInt(val) / 10;
+                    var duration: number = Number(val) / 10;
 
                     resolve(duration);
                 });

@@ -117,12 +117,32 @@ module internal.utils {
             var params = str.split(','),
                 rect = new Rectangle();
 
-            if (params.length === 2)
-            {
+            if (params.length === 4) {
+                rect.top = Number(params[0]);
+                rect.left = Number(params[1]);
+                rect.right = Number(params[2]);
+                rect.bottom = Number(params[3]);
+            }
+
+            if (params.length === 2) {
                 rect.width = Number(params[0]);
                 rect.height = Number(params[1]);
             }
             return rect;
+        }
+
+        /** Converts a rectangle to a comma-separated string */
+        toString(value?:string): string {
+            var format: string = value || ':left,:top,:right,:bottom';
+
+            format = format.replace(':left', String(this.left));
+            format = format.replace(':top', String(this.top));
+            format = format.replace(':right', String(this.right));
+            format = format.replace(':bottom', String(this.bottom));
+            format = format.replace(':width', String(this.width));
+            format = format.replace(':height', String(this.height));
+
+            return format;
         }
     }
 }
