@@ -85,8 +85,8 @@ declare module xui.system {
         getPid(): Number;
         setPid(pid: Number): void;
         getDetail(): string;
-        getHwnds(): any;
-        getModules(): any;
+        getHwnds(): Number[];
+        getModules(): string[];
     }
 }
 declare module xui.system {

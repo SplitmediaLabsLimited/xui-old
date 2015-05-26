@@ -35,12 +35,17 @@ module xui.system {
             return this.detail;
         }
 
-        getHwnds(): any {
-            return this.hwnds;
+        getHwnds(): Number[] {
+            return this.hwnds === '' ? [] : this.hwnds.split(',').map(
+                (element) => {
+                    return Number(element);
+            });
         }
 
-        getModules(): any {
-            return this.modules;
+        getModules(): string[] {
+            return this.modules.split(',').filter((element) => {
+                return element !== '';
+            });
         }
     }
 }
