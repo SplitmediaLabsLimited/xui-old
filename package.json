@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/SplitmediaLabsLimited/xui",
   "devDependencies": {
+    "event-stream": "^3.3.1",
     "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
     "gulp-tsc": "^0.9.4"
   },
   "dependencies": {
