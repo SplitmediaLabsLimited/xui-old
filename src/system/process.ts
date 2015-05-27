@@ -43,7 +43,8 @@ module xui.system {
         }
 
         getModules(): string[] {
-            return this.modules.split(',').filter((element) => {
+            return this.modules === undefined ? [] :
+                this.modules.split(',').filter((element) => {
                 return element !== '';
             });
         }
