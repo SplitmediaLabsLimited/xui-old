@@ -78,7 +78,7 @@
 
 		return es.merge(xuiFile, plgConfigFull)
 			.pipe(concat('xui.js'))
-			.pipe(uglify())
+			// .pipe(uglify())
 			.pipe(gulp.dest(DIST_PATH));
 	});
 
