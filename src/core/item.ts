@@ -21,7 +21,7 @@ module xui.core {
         getViewID(): Promise<number>;
     }
 
-    export class Item implements IItemBase, IItemLayout {
+    export class Item implements IItemBase, IItemLayout, IItemColor {
         private name: string;
         private id: string;
         private sceneID: number;
@@ -190,10 +190,24 @@ module xui.core {
         setPixelAlignmentEnabled: () => void;
         getPosition: () => Promise<Rectangle>;
         setPosition: () => void;
+
+        // ItemColor
+        getTransparency: () => Promise<number>;
+        setTransparency: () => void;
+        getBrightness: () => Promise<number>;
+        setBrightness: () => void;
+        getContrast: () => Promise<number>;
+        setContrast: () => void;
+        getHue: () => Promise<number>;
+        setHue: () => void;
+        getSaturation: () => Promise<number>;
+        setSaturation: () => void;
+        getBorderColor: () => Promise<Color>;
+        setBorderColor: () => void;
     }
 
     // Apply Mixins and combine it to Item class
-    applyMixins(Item, [ItemLayout]);
+    applyMixins(Item, [ItemLayout, ItemColor]);
 
     function applyMixins(derivedCtor: any, baseCtors: any[]) {
         baseCtors.forEach(baseCtor => {

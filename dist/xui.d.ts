@@ -230,11 +230,6 @@ declare module xui.core {
         setPosition(value: Rectangle): any;
     }
     class ItemLayout implements IItemLayout {
-        private keepAspectRatio;
-        private positionLocked;
-        private enhanceResizeEnabled;
-        private pixelAlignmentEnabled;
-        private position;
         private id;
         private viewID;
         /** Check if Aspect Ratio is set to ON or OFF */
@@ -260,8 +255,54 @@ declare module xui.core {
     }
 }
 declare module xui.core {
+    import Color = internal.utils.Color;
+    interface IItemColor {
+        getTransparency(): Promise<number>;
+        setTransparency(value: number): any;
+        getBrightness(): Promise<number>;
+        setBrightness(value: number): any;
+        getContrast(): Promise<number>;
+        setContrast(value: number): any;
+        getHue(): Promise<number>;
+        setHue(value: number): any;
+        getSaturation(): Promise<number>;
+        setSaturation(value: number): any;
+        getBorderColor(): Promise<Color>;
+        setBorderColor(value: Color): any;
+    }
+    class ItemColor implements IItemColor {
+        private id;
+        private viewID;
+        /** Get Item Transparency value */
+        getTransparency(): Promise<number>;
+        /** Set Item Transparency */
+        setTransparency(value: number): void;
+        /** Get Item Brightness value */
+        getBrightness(): Promise<number>;
+        /** Set Item Brightness */
+        setBrightness(value: number): void;
+        /** Get Item Contrast value */
+        getContrast(): Promise<number>;
+        /** Set Item Contrast */
+        setContrast(value: number): void;
+        /** Get Item Hue value */
+        getHue(): Promise<number>;
+        /** Set Item Hue */
+        setHue(value: number): void;
+        /** Get Item Saturation value */
+        getSaturation(): Promise<number>;
+        /** Set Item Saturation */
+        setSaturation(value: number): void;
+        /** Get Border Color */
+        getBorderColor(): Promise<Color>;
+        /** Set Border Color */
+        setBorderColor(value: Color): void;
+    }
+}
+declare module xui.core {
     import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
+    import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
     interface IItemBase {
         getName(): Promise<string>;
@@ -275,7 +316,7 @@ declare module xui.core {
         getSceneID(): Promise<number>;
         getViewID(): Promise<number>;
     }
-    class Item implements IItemBase, IItemLayout {
+    class Item implements IItemBase, IItemLayout, IItemColor {
         private name;
         private id;
         private sceneID;
@@ -327,5 +368,17 @@ declare module xui.core {
         setPixelAlignmentEnabled: () => void;
         getPosition: () => Promise<Rectangle>;
         setPosition: () => void;
+        getTransparency: () => Promise<number>;
+        setTransparency: () => void;
+        getBrightness: () => Promise<number>;
+        setBrightness: () => void;
+        getContrast: () => Promise<number>;
+        setContrast: () => void;
+        getHue: () => Promise<number>;
+        setHue: () => void;
+        getSaturation: () => Promise<number>;
+        setSaturation: () => void;
+        getBorderColor: () => Promise<Color>;
+        setBorderColor: () => void;
     }
 }

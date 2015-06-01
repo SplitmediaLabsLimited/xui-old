@@ -18,11 +18,6 @@ module xui.core {
     }
 
     export class ItemLayout implements IItemLayout {
-        private keepAspectRatio: boolean;
-        private positionLocked: boolean;
-        private enhanceResizeEnabled: boolean;
-        private pixelAlignmentEnabled: boolean;
-        private position: Rectangle;
         private id: string;
         private viewID: number;
 
@@ -32,9 +27,7 @@ module xui.core {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:keep_ar').then((val) => {
-                    this.keepAspectRatio = (val === '1');
-
-                    resolve(this.keepAspectRatio);
+                    resolve(val === '1');
                 });
             });
         }
@@ -43,9 +36,7 @@ module xui.core {
         setKeepAspectRatio(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
-            this.keepAspectRatio = value;
-
-            iItem.set('prop:keep_ar', this.keepAspectRatio ? '1' : '0');
+            iItem.set('prop:keep_ar', value ? '1' : '0');
         }
 
         /** Check if Position Locked is set to ON or OFF */
@@ -54,9 +45,7 @@ module xui.core {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:lockmove').then((val) => {
-                    this.positionLocked = (val === '1');
-
-                    resolve(this.positionLocked);
+                    resolve(val === '1');
                 });
             });
         }
@@ -65,9 +54,7 @@ module xui.core {
         setPositionLocked(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
-            this.positionLocked = value;
-
-            iItem.set('prop:lockmove', this.positionLocked ? '1' : '0');
+            iItem.set('prop:lockmove', value ? '1' : '0');
         }
 
         /** Check if Enhance Resize is Enabled or Disabled */
@@ -76,9 +63,7 @@ module xui.core {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:mipmaps').then((val) => {
-                    this.enhanceResizeEnabled = (val === '1');
-
-                    resolve(this.enhanceResizeEnabled);
+                    resolve(val === '1');
                 });
             });
         }
@@ -87,9 +72,7 @@ module xui.core {
         setEnhanceResizeEnabled(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
-            this.enhanceResizeEnabled = value;
-
-            iItem.set('prop:mipmaps', this.enhanceResizeEnabled ? '1' : '0');
+            iItem.set('prop:mipmaps', value ? '1' : '0');
         }
 
         /** Check if Pixel Alignment is Enabled or Disabled */
@@ -98,9 +81,7 @@ module xui.core {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:pixalign').then((val) => {
-                    this.pixelAlignmentEnabled = (val === '1');
-
-                    resolve(this.pixelAlignmentEnabled);
+                    resolve(val === '1');
                 });
             });
         }
@@ -109,9 +90,7 @@ module xui.core {
         setPixelAlignmentEnabled(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
-            this.pixelAlignmentEnabled = value;
-
-            iItem.set('prop:pixalign', this.pixelAlignmentEnabled ? '1' : '0');
+            iItem.set('prop:pixalign', value ? '1' : '0');
         }
 
         /** Get the position of the item */
@@ -120,9 +99,7 @@ module xui.core {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:pos').then((val) => {
-                    this.position = Rectangle.parse(val);
-
-                    resolve(this.position);
+                    resolve(Rectangle.parse(val));
                 });
             });
         }
@@ -131,9 +108,7 @@ module xui.core {
         setPosition(value: Rectangle) {
             iItem.attach(this.id, this.viewID);
 
-            this.position = value;
-
-            iItem.set('prop:pos', this.position.toString());
+            iItem.set('prop:pos', value.toString());
         }
     }
 }
