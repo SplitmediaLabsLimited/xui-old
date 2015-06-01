@@ -21,6 +21,9 @@ module xui.core {
         private id: string;
         private viewID: number;
 
+        // Private variables won't work with mixins, Item needs this for toXML()
+        position: Rectangle;
+
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio(): Promise<boolean> {
             return new Promise((resolve) => {
@@ -99,7 +102,9 @@ module xui.core {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:pos').then((val) => {
-                    resolve(Rectangle.parse(val));
+                    this.position = Rectangle.parse(val);
+
+                    resolve(this.position);
                 });
             });
         }
@@ -107,6 +112,8 @@ module xui.core {
         /** Set Item position */
         setPosition(value: Rectangle) {
             iItem.attach(this.id, this.viewID);
+
+            this.position = value;
 
             iItem.set('prop:pos', value.toString());
         }

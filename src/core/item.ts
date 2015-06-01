@@ -8,6 +8,18 @@ module xui.core {
     import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
 
+    export enum ITEM_TYPES {
+        UNDEFINED,
+        FILE,
+        LIVE,
+        TEXT,
+        BITMAP,
+        SCREEN,
+        FLASHFILE,
+        GAMESOURCE,
+        HTML
+    }
+
     export interface IItemBase {
         getName(): Promise<string>;
         setName(value: string);
@@ -15,42 +27,55 @@ module xui.core {
         setValue(value: any);
         getKeepLoaded(): Promise<boolean>;
         setKeepLoaded(value: boolean);
-        getType(): Promise<number>;
+        getType(): Promise<ITEM_TYPES>;
         getID(): Promise<string>;
         getSceneID(): Promise<number>;
         getViewID(): Promise<number>;
     }
 
-    export class Item implements IItemBase, IItemLayout, IItemColor {
+    export class Item implements IItemBase,
+                                 IItemLayout,
+                                 IItemColor,
+                                 IItemAudio,
+                                 IItemWindow,
+                                 IItemVideo,
+                                 IItemChroma,
+                                 IItemPlayback {
         private name: string;
         private id: string;
         private sceneID: number;
         private viewID: number;
-        private type: number;
+        private type: ITEM_TYPES;
         private value: any;
         private customName: string;
         private keepLoaded: boolean;
-        private position: Rectangle;
 
-        // Item Types
-        static TYPE_UNDEFINED: number  = 0;
-        static TYPE_FILE: number       = 1;
-        static TYPE_LIVE: number       = 2;
-        static TYPE_TEXT: number       = 3;
-        static TYPE_BITMAP: number     = 4;
-        static TYPE_SCREEN: number     = 5;
-        static TYPE_FLASHFILE: number  = 6;
-        static TYPE_GAMESOURCE: number = 7;
-        static TYPE_HTML: number       = 8;
+        // Private variables won't work with mixins, we need this in ItemLayout
+        position: Rectangle;
+
+        /** Create Item class with all the sub classes */
+        static create(props?: {}) {
+            // When creating this damn thing, we'll need to merge other
+            // sub classes to this giant pile of a poo
+            applyMixins(Item, [
+                ItemLayout,
+                ItemColor,
+                ItemAudio,
+                ItemWindow,
+                ItemVideo,
+                ItemChroma,
+                ItemPlayback
+            ]);
+
+            return new Item(props);
+        }
 
         constructor(props?: {}) {
-            this.id = props['id'];
-            this.name = props['name'];
-            this.sceneID = props['sceneID'];
-            this.viewID = props['viewID'];
-            this.type = props['type'];
-            this.value = JSON.parse(props['value']);
-            this.keepLoaded = props['position'];
+            Object.keys(props).forEach((val) => {
+                if (this[val] !== undefined) {
+                    this[val] = props[val];
+                }
+            });
         }
 
         /** Set name of the item */
@@ -124,14 +149,14 @@ module xui.core {
         }
 
         /** Get the type of the item */
-        getType(): Promise<number> {
+        getType(): Promise<ITEM_TYPES> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:type').then((val) => {
-                    this.type = Number(val);
+                    this.type = ITEM_TYPES[ITEM_TYPES[Number(val)]];
 
-                    resolve(Number(val));
+                    resolve(this.type);
                 });
             });
         }
@@ -181,39 +206,84 @@ module xui.core {
 
         // ItemLayout
         isKeepAspectRatio: () => Promise<boolean>;
-        setKeepAspectRatio: () => void;
+        setKeepAspectRatio: (value: boolean) => void;
         isPositionLocked: () => Promise<boolean>;
-        setPositionLocked: () => void;
+        setPositionLocked: (value: boolean) => void;
         isEnhanceResizeEnabled: () => Promise<boolean>;
-        setEnhanceResizeEnabled: () => void;
+        setEnhanceResizeEnabled: (value: boolean) => void;
         isPixelAlignmentEnabled: () => Promise<boolean>;
-        setPixelAlignmentEnabled: () => void;
+        setPixelAlignmentEnabled: (value: boolean) => void;
         getPosition: () => Promise<Rectangle>;
-        setPosition: () => void;
+        setPosition: (value: Rectangle) => void;
 
         // ItemColor
         getTransparency: () => Promise<number>;
-        setTransparency: () => void;
+        setTransparency: (value: number) => void;
         getBrightness: () => Promise<number>;
-        setBrightness: () => void;
+        setBrightness: (value: number) => void;
         getContrast: () => Promise<number>;
-        setContrast: () => void;
+        setContrast: (value: number) => void;
         getHue: () => Promise<number>;
-        setHue: () => void;
+        setHue: (value: number) => void;
         getSaturation: () => Promise<number>;
-        setSaturation: () => void;
+        setSaturation: (value: number) => void;
         getBorderColor: () => Promise<Color>;
-        setBorderColor: () => void;
-    }
+        setBorderColor: (value: Color) => void;
 
-    // Apply Mixins and combine it to Item class
-    applyMixins(Item, [ItemLayout, ItemColor]);
+        // ItemAudio
+        getVolume: () => Promise<number>;
+        setVolume: (value: number) => void;
+        isMuted: () => Promise<boolean>;
+        setMuted: (value: boolean) => void;
+
+        // ItemWindow
+        isWindowTracking: () => Promise<boolean>;
+        setWindowTracking: (value: boolean) => void;
+
+        // ItemVideo
+        getCuePoints: () => Promise<number[]>;
+
+        // ItemChroma
+        isChromaEnabled: () => Promise<boolean>;
+        setChromaEnabled: (value: boolean) => void;
+        getChromaBrightness: () => Promise<number>;
+        setChromaBrightness: (value: number) => void;
+        getChromaSaturation: () => Promise<number>;
+        setChromaSaturation: (value: number) => void;
+        getChromaHue: () => Promise<number>;
+        setChromaHue: (value: number) => void;
+        getChromaType: () => Promise<CHROMA_TYPE>;
+        setChromaType: (value: CHROMA_TYPE) => void;
+        getChromaColor: () => Promise<Color>;
+        setChromaColor: (value: Color) => void;
+        getChromaPrimaryColor: () => Promise<number>;
+        setChromaPrimaryColor: (value: number) => void;
+        getChromaBalance: () => Promise<number>;
+        setChromaBalance: (value: number) => void;
+        getChromaAntiAlias: () => Promise<number>;
+        setChromaAntiAlias: (value: number) => void;
+        getChromaThreshold: () => Promise<number>;
+        setChromaThreshold: (value: number) => void;
+        getChromaThresholdAA: () => Promise<number>;
+        setChromaThresholdAA: (value: number) => void;
+
+        // ItemPlayback
+        getPlaybackStartPos: () => Promise<number>;
+        setPlaybackStartPos: (value: number) => void;
+        getPlaybackEndPos: () => Promise<number>;
+        setPlaybackEndPos: (value: number) => void;
+        getPlaybackEndAction: () => Promise<PLAYBACK_END_ACTION>;
+        setPlaybackEndAction: (value: PLAYBACK_END_ACTION) => void;
+        getPlaybackDuration: () => Promise<number>;
+        setPlaybackDuration: (value: number) => void;
+    }
 
     function applyMixins(derivedCtor: any, baseCtors: any[]) {
         baseCtors.forEach(baseCtor => {
             Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+                if (name === 'constructor') return;
                 derivedCtor.prototype[name] = baseCtor.prototype[name];
             })
-        }); 
+        });
     }
 }

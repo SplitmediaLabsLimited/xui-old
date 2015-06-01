@@ -232,6 +232,7 @@ declare module xui.core {
     class ItemLayout implements IItemLayout {
         private id;
         private viewID;
+        position: Rectangle;
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio(): Promise<boolean>;
         /** Set Aspect Ratio to ON or OFF */
@@ -300,10 +301,194 @@ declare module xui.core {
     }
 }
 declare module xui.core {
+    interface IItemAudio {
+        getVolume(): Promise<number>;
+        setVolume(value: number): any;
+        isMuted(): Promise<boolean>;
+        setMuted(value: boolean): any;
+    }
+    class ItemAudio implements IItemAudio {
+        id: string;
+        viewID: number;
+        /** Get Item Volume level */
+        getVolume(): Promise<number>;
+        /** Set Volume level of item */
+        setVolume(value: number): void;
+        /** Check if item is muted */
+        isMuted(): Promise<boolean>;
+        /** Set Item Mute to ON or OFF */
+        setMuted(value: boolean): void;
+    }
+}
+declare module xui.core {
+    interface IItemWindow {
+        isWindowTracking(): Promise<boolean>;
+        setWindowTracking(value: boolean): any;
+    }
+    class ItemWindow implements IItemWindow {
+        id: string;
+        viewID: number;
+        /** Check if Window Tracking is ON or OFF */
+        isWindowTracking(): Promise<boolean>;
+        /** Set Window Tracking to ON or OFF */
+        setWindowTracking(value: boolean): void;
+    }
+}
+declare module xui.core {
+    interface IItemVideo {
+        getCuePoints(): Promise<number[]>;
+    }
+    class ItemVideo implements IItemVideo {
+        id: string;
+        viewID: number;
+        /** Get Video item cuepoints */
+        getCuePoints(): Promise<number[]>;
+    }
+}
+declare module xui.core {
+    import Color = internal.utils.Color;
+    enum CHROMA_TYPE {
+        KEY = 0,
+        COLOR = 1,
+        RGB = 2,
+    }
+    enum CHROMA_PRIMARY_COLORS {
+        RED = 0,
+        GREEN = 1,
+        BLUE = 2,
+    }
+    enum CHROMA_ANTIALIAS {
+        NONE = 0,
+        LOW = 1,
+        HIGH = 2,
+    }
+    interface IItemChroma {
+        isChromaEnabled(): Promise<boolean>;
+        setChromaEnabled(value: boolean): any;
+        getChromaBrightness(): Promise<number>;
+        setChromaBrightness(value: number): any;
+        getChromaSaturation(): Promise<number>;
+        setChromaSaturation(value: number): any;
+        getChromaHue(): Promise<number>;
+        setChromaHue(value: number): any;
+        getChromaType(): Promise<CHROMA_TYPE>;
+        setChromaType(value: CHROMA_TYPE): any;
+        getChromaColor(): Promise<Color>;
+        setChromaColor(value: Color): any;
+        getChromaPrimaryColor(): Promise<CHROMA_PRIMARY_COLORS>;
+        setChromaPrimaryColor(value: CHROMA_PRIMARY_COLORS): any;
+        getChromaBalance(): Promise<number>;
+        setChromaBalance(value: number): any;
+        getChromaAntiAlias(): Promise<number>;
+        setChromaAntiAlias(value: number): any;
+        getChromaThreshold(): Promise<number>;
+        setChromaThreshold(value: number): any;
+        getChromaThresholdAA(): Promise<number>;
+        setChromaThresholdAA(value: number): any;
+    }
+    class ItemChroma implements IItemChroma {
+        id: string;
+        viewID: number;
+        /** Check if chroma is enabled or not */
+        isChromaEnabled(): Promise<boolean>;
+        /** Set Chroma to ON or OFF */
+        setChromaEnabled(value: boolean): void;
+        /** Get Chroma brightness */
+        getChromaBrightness(): Promise<number>;
+        /** Set Chroma Brightness */
+        setChromaBrightness(value: number): void;
+        /** Get Chroma Brightness */
+        getChromaSaturation(): Promise<number>;
+        /** Set Chroma Saturation */
+        setChromaSaturation(value: number): void;
+        /** Get Chroma Hue */
+        getChromaHue(): Promise<number>;
+        /** Set Chroma Hue */
+        setChromaHue(value: number): void;
+        /** Get Chroma Type */
+        getChromaType(): Promise<CHROMA_TYPE>;
+        /** Set Chroma Type */
+        setChromaType(value: CHROMA_TYPE): void;
+        /** Get Chroma Color */
+        getChromaColor(): Promise<Color>;
+        /** Set Chroma Color */
+        setChromaColor(value: Color): void;
+        /** Get Chroma Primary Color */
+        getChromaPrimaryColor(): Promise<CHROMA_PRIMARY_COLORS>;
+        /** Set Chroma Primary Color */
+        setChromaPrimaryColor(value: CHROMA_PRIMARY_COLORS): void;
+        /** Get Chroma Balance */
+        getChromaBalance(): Promise<number>;
+        /** Set Chroma Balance */
+        setChromaBalance(value: number): void;
+        /** Get Chroma Anti Alias level */
+        getChromaAntiAlias(): Promise<CHROMA_ANTIALIAS>;
+        /** Set Chroma Anti Alias level */
+        setChromaAntiAlias(value: CHROMA_ANTIALIAS): void;
+        /** Get Chroma Threshold */
+        getChromaThreshold(): Promise<number>;
+        /** Set Chroma Threshold */
+        setChromaThreshold(value: number): void;
+        /** Get Chroma Threshold Anti Alias */
+        getChromaThresholdAA(): Promise<number>;
+        /** Set Chroma Threshold Anti Alias */
+        setChromaThresholdAA(value: number): void;
+    }
+}
+declare module xui.core {
+    enum PLAYBACK_END_ACTION {
+        NOTHING = 0,
+        REWIND = 1,
+        LOOP = 2,
+        HIDE = 3,
+    }
+    interface IItemPlayback {
+        getPlaybackStartPos(): Promise<number>;
+        setPlaybackStartPos(value: number): any;
+        getPlaybackEndPos(): Promise<number>;
+        setPlaybackEndPos(value: number): any;
+        getPlaybackEndAction(): Promise<PLAYBACK_END_ACTION>;
+        setPlaybackEndAction(value: PLAYBACK_END_ACTION): any;
+        getPlaybackDuration(): Promise<number>;
+        setPlaybackDuration(value: number): any;
+    }
+    class ItemPlayback implements IItemPlayback {
+        id: string;
+        viewID: number;
+        /** Get Playback Starting position */
+        getPlaybackStartPos(): Promise<number>;
+        /** Set Playback Starting position */
+        setPlaybackStartPos(value: number): void;
+        /** Get Playback Ending position */
+        getPlaybackEndPos(): Promise<number>;
+        /** Set Playback Ending position */
+        setPlaybackEndPos(value: number): void;
+        /** Get Playback Ending action */
+        getPlaybackEndAction(): Promise<PLAYBACK_END_ACTION>;
+        /** Set Playback Ending action */
+        setPlaybackEndAction(value: PLAYBACK_END_ACTION): void;
+        /** Get Playback Duration */
+        getPlaybackDuration(): Promise<number>;
+        /** Set Playback Duration */
+        setPlaybackDuration(value: number): void;
+    }
+}
+declare module xui.core {
     import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
     import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
+    enum ITEM_TYPES {
+        UNDEFINED = 0,
+        FILE = 1,
+        LIVE = 2,
+        TEXT = 3,
+        BITMAP = 4,
+        SCREEN = 5,
+        FLASHFILE = 6,
+        GAMESOURCE = 7,
+        HTML = 8,
+    }
     interface IItemBase {
         getName(): Promise<string>;
         setName(value: string): any;
@@ -311,12 +496,12 @@ declare module xui.core {
         setValue(value: any): any;
         getKeepLoaded(): Promise<boolean>;
         setKeepLoaded(value: boolean): any;
-        getType(): Promise<number>;
+        getType(): Promise<ITEM_TYPES>;
         getID(): Promise<string>;
         getSceneID(): Promise<number>;
         getViewID(): Promise<number>;
     }
-    class Item implements IItemBase, IItemLayout, IItemColor {
+    class Item implements IItemBase, IItemLayout, IItemColor, IItemAudio, IItemWindow, IItemVideo, IItemChroma, IItemPlayback {
         private name;
         private id;
         private sceneID;
@@ -325,16 +510,9 @@ declare module xui.core {
         private value;
         private customName;
         private keepLoaded;
-        private position;
-        static TYPE_UNDEFINED: number;
-        static TYPE_FILE: number;
-        static TYPE_LIVE: number;
-        static TYPE_TEXT: number;
-        static TYPE_BITMAP: number;
-        static TYPE_SCREEN: number;
-        static TYPE_FLASHFILE: number;
-        static TYPE_GAMESOURCE: number;
-        static TYPE_HTML: number;
+        position: Rectangle;
+        /** Create Item class with all the sub classes */
+        static create(props?: {}): Item;
         constructor(props?: {});
         /** Set name of the item */
         setName(value: string): void;
@@ -349,7 +527,7 @@ declare module xui.core {
         /** Set Keep loaded option to ON or OFF */
         setKeepLoaded(value: boolean): void;
         /** Get the type of the item */
-        getType(): Promise<number>;
+        getType(): Promise<ITEM_TYPES>;
         /** Get Item ID */
         getID(): Promise<string>;
         /** Get Scene ID where the item is loaded */
@@ -359,26 +537,63 @@ declare module xui.core {
         /** Convert the Item object to XML */
         toXML(): XML;
         isKeepAspectRatio: () => Promise<boolean>;
-        setKeepAspectRatio: () => void;
+        setKeepAspectRatio: (value: boolean) => void;
         isPositionLocked: () => Promise<boolean>;
-        setPositionLocked: () => void;
+        setPositionLocked: (value: boolean) => void;
         isEnhanceResizeEnabled: () => Promise<boolean>;
-        setEnhanceResizeEnabled: () => void;
+        setEnhanceResizeEnabled: (value: boolean) => void;
         isPixelAlignmentEnabled: () => Promise<boolean>;
-        setPixelAlignmentEnabled: () => void;
+        setPixelAlignmentEnabled: (value: boolean) => void;
         getPosition: () => Promise<Rectangle>;
-        setPosition: () => void;
+        setPosition: (value: Rectangle) => void;
         getTransparency: () => Promise<number>;
-        setTransparency: () => void;
+        setTransparency: (value: number) => void;
         getBrightness: () => Promise<number>;
-        setBrightness: () => void;
+        setBrightness: (value: number) => void;
         getContrast: () => Promise<number>;
-        setContrast: () => void;
+        setContrast: (value: number) => void;
         getHue: () => Promise<number>;
-        setHue: () => void;
+        setHue: (value: number) => void;
         getSaturation: () => Promise<number>;
-        setSaturation: () => void;
+        setSaturation: (value: number) => void;
         getBorderColor: () => Promise<Color>;
-        setBorderColor: () => void;
+        setBorderColor: (value: Color) => void;
+        getVolume: () => Promise<number>;
+        setVolume: (value: number) => void;
+        isMuted: () => Promise<boolean>;
+        setMuted: (value: boolean) => void;
+        isWindowTracking: () => Promise<boolean>;
+        setWindowTracking: (value: boolean) => void;
+        getCuePoints: () => Promise<number[]>;
+        isChromaEnabled: () => Promise<boolean>;
+        setChromaEnabled: (value: boolean) => void;
+        getChromaBrightness: () => Promise<number>;
+        setChromaBrightness: (value: number) => void;
+        getChromaSaturation: () => Promise<number>;
+        setChromaSaturation: (value: number) => void;
+        getChromaHue: () => Promise<number>;
+        setChromaHue: (value: number) => void;
+        getChromaType: () => Promise<CHROMA_TYPE>;
+        setChromaType: (value: CHROMA_TYPE) => void;
+        getChromaColor: () => Promise<Color>;
+        setChromaColor: (value: Color) => void;
+        getChromaPrimaryColor: () => Promise<number>;
+        setChromaPrimaryColor: (value: number) => void;
+        getChromaBalance: () => Promise<number>;
+        setChromaBalance: (value: number) => void;
+        getChromaAntiAlias: () => Promise<number>;
+        setChromaAntiAlias: (value: number) => void;
+        getChromaThreshold: () => Promise<number>;
+        setChromaThreshold: (value: number) => void;
+        getChromaThresholdAA: () => Promise<number>;
+        setChromaThresholdAA: (value: number) => void;
+        getPlaybackStartPos: () => Promise<number>;
+        setPlaybackStartPos: (value: number) => void;
+        getPlaybackEndPos: () => Promise<number>;
+        setPlaybackEndPos: (value: number) => void;
+        getPlaybackEndAction: () => Promise<PLAYBACK_END_ACTION>;
+        setPlaybackEndAction: (value: PLAYBACK_END_ACTION) => void;
+        getPlaybackDuration: () => Promise<number>;
+        setPlaybackDuration: (value: number) => void;
     }
 }
