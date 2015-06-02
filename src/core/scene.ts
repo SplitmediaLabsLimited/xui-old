@@ -6,7 +6,6 @@ module xui.core {
 
     export class Scene {
         private id: number;
-        private name: string;
         private viewID: string;
 
         constructor(props: {}) {
