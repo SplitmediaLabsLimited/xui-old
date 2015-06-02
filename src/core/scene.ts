@@ -20,9 +20,9 @@ module xui.core {
                     var retArray = [];
                     if (Array.isArray(jsonArr)) {
                         for (var i = 0; i < jsonArr.length; i++) {
+                            jsonArr[i]['sceneID'] = this.id;
+                            jsonArr[i]['viewID'] = parseInt(this.viewID);
                             var item = new Item(jsonArr[i]);
-                            item.sceneID = this.id;
-                            item.viewID = parseInt(this.viewID);
                             retArray.push(item);
                         }
                     }
