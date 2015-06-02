@@ -176,7 +176,7 @@ declare module internal {
         private static baseID;
         constructor(props: any);
         /** Prepare an item for manipulation */
-        static attach(itemID: string, view: number): void;
+        static attach(itemID: string, view: number, slot?: number): void;
         /** Get an item's local property asynchronously */
         static get(name: string, slot?: number): Promise<string>;
         /** Sets an item's local property */
