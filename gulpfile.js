@@ -10,7 +10,7 @@
 		uglify 	   = require('gulp-uglify'),
 		through    = require('through2'),
 		fs         = require('fs'),
-		es         = require('event-stream'),
+		merge      = require('merge2'),
 		concat     = require('gulp-concat');
 
 	var INTERNAL_REF_FILE = 'src/internal/_references.ts',
@@ -74,9 +74,7 @@
 		var plgDep = gulp.src([PLG_CONFIG_PATH + PLG_DEPENDENCY]);
 		var plgConfig = gulp.src([PLG_CONFIG_PATH + PLG_CONFIG_FILE]);
 
-		var plgConfigFull = es.merge(plgDep, plgConfig);
-
-		return es.merge(xuiFile, plgConfigFull)
+		return merge(xuiFile, plgDep, plgConfig)
 			.pipe(concat('xui.js'))
 			.pipe(uglify())
 			.pipe(gulp.dest(DIST_PATH));
