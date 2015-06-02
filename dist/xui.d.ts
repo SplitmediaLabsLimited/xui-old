@@ -508,7 +508,6 @@ declare module xui.core {
         private viewID;
         private type;
         private value;
-        private customName;
         private keepLoaded;
         position: Rectangle;
         constructor(props?: {});
@@ -593,5 +592,17 @@ declare module xui.core {
         setPlaybackEndPos: (value: number) => void;
         setPlaybackEndAction: (value: PLAYBACK_END_ACTION) => void;
         setPlaybackDuration: (value: number) => void;
+    }
+}
+declare module xui.core {
+    import Item = xui.core.Item;
+    class Scene {
+        private id;
+        private name;
+        private viewID;
+        constructor(props: {});
+        getItems(): Promise<Item[]>;
+        isEmpty(): Promise<boolean>;
+        getName(): Promise<string>;
     }
 }

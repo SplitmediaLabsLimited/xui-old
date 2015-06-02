@@ -47,7 +47,6 @@ module xui.core {
         private viewID: number;
         private type: ITEM_TYPES;
         private value: any;
-        private customName: string;
         private keepLoaded: boolean;
 
         // Private variables won't work with mixins, we need this in ItemLayout
@@ -56,11 +55,12 @@ module xui.core {
         constructor(props?: {}) {
             props = props ? props : {};
 
-            Object.keys(props).forEach((val) => {
-                if (this[val] !== undefined) {
-                    this[val] = props[val];
-                }
-            });
+            this.name = props['name'];
+            this.id = props['id'];
+            this.sceneID = props['sceneID'];
+            this.viewID = props['viewID'];
+            this.value = props['value'];
+            this.keepLoaded = props['keeploaded'];
         }
 
         /** Set name of the item */
