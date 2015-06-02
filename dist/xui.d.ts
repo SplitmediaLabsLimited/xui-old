@@ -511,8 +511,6 @@ declare module xui.core {
         private customName;
         private keepLoaded;
         position: Rectangle;
-        /** Create Item class with all the sub classes */
-        static create(props?: {}): Item;
         constructor(props?: {});
         /** Set name of the item */
         setName(value: string): void;
