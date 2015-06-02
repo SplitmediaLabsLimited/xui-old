@@ -32,7 +32,7 @@ module xui.system {
         }
 
         getDetail() {
-            return this.detail;
+            return this.detail === undefined ? '' : this.detail ;
         }
 
         getHwnds(): Number[] {
