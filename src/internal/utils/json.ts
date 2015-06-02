@@ -8,7 +8,7 @@ module internal.utils {
         value: string;
 
         constructor(xml?: any) {
-            if (xml === undefined) {
+            if (xml === undefined || xml === '') {
                 return;
             }
 

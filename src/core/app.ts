@@ -17,7 +17,9 @@ module xui.core {
         /** Gets application's frame time (duration per frame in 100ns unit) */
         static getFrametime(): Promise<string> {
             return new Promise((resolve) => {
-                resolve(iApp.get('frametime'));
+                iApp.get('frametime').then((val) => {
+                    resolve(val);
+                });
             });
         }
 
