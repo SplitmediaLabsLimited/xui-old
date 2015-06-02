@@ -53,24 +53,9 @@ module xui.core {
         // Private variables won't work with mixins, we need this in ItemLayout
         position: Rectangle;
 
-        /** Create Item class with all the sub classes */
-        static create(props?: {}) {
-            // When creating this damn thing, we'll need to merge other
-            // sub classes to this giant pile of a poo
-            applyMixins(Item, [
-                ItemLayout,
-                ItemColor,
-                ItemAudio,
-                ItemWindow,
-                ItemVideo,
-                ItemChroma,
-                ItemPlayback
-            ]);
-
-            return new Item(props);
-        }
-
         constructor(props?: {}) {
+            props = props ? props : {};
+
             Object.keys(props).forEach((val) => {
                 if (this[val] !== undefined) {
                     this[val] = props[val];
@@ -205,77 +190,77 @@ module xui.core {
         }
 
         // ItemLayout
-        isKeepAspectRatio: () => Promise<boolean>;
-        setKeepAspectRatio: (value: boolean) => void;
-        isPositionLocked: () => Promise<boolean>;
-        setPositionLocked: (value: boolean) => void;
-        isEnhanceResizeEnabled: () => Promise<boolean>;
-        setEnhanceResizeEnabled: (value: boolean) => void;
-        isPixelAlignmentEnabled: () => Promise<boolean>;
+        isKeepAspectRatio:        () => Promise<boolean>;
+        isPositionLocked:         () => Promise<boolean>;
+        isEnhanceResizeEnabled:   () => Promise<boolean>;
+        isPixelAlignmentEnabled:  () => Promise<boolean>;
+        getPosition:              () => Promise<Rectangle>;
+        setKeepAspectRatio:       (value: boolean) => void;
+        setPositionLocked:        (value: boolean) => void;
+        setEnhanceResizeEnabled:  (value: boolean) => void;
         setPixelAlignmentEnabled: (value: boolean) => void;
-        getPosition: () => Promise<Rectangle>;
-        setPosition: (value: Rectangle) => void;
+        setPosition:              (value: Rectangle) => void;
 
         // ItemColor
         getTransparency: () => Promise<number>;
+        getBrightness:   () => Promise<number>;
+        getContrast:     () => Promise<number>;
+        getHue:          () => Promise<number>;
+        getSaturation:   () => Promise<number>;
+        getBorderColor:  () => Promise<Color>;
         setTransparency: (value: number) => void;
-        getBrightness: () => Promise<number>;
-        setBrightness: (value: number) => void;
-        getContrast: () => Promise<number>;
-        setContrast: (value: number) => void;
-        getHue: () => Promise<number>;
-        setHue: (value: number) => void;
-        getSaturation: () => Promise<number>;
-        setSaturation: (value: number) => void;
-        getBorderColor: () => Promise<Color>;
-        setBorderColor: (value: Color) => void;
+        setBrightness:   (value: number) => void;
+        setContrast:     (value: number) => void;
+        setHue:          (value: number) => void;
+        setSaturation:   (value: number) => void;
+        setBorderColor:  (value: Color) => void;
 
         // ItemAudio
         getVolume: () => Promise<number>;
+        isMuted:   () => Promise<boolean>;
         setVolume: (value: number) => void;
-        isMuted: () => Promise<boolean>;
-        setMuted: (value: boolean) => void;
+        setMuted:  (value: boolean) => void;
 
         // ItemWindow
-        isWindowTracking: () => Promise<boolean>;
+        isWindowTracking:  () => Promise<boolean>;
         setWindowTracking: (value: boolean) => void;
 
         // ItemVideo
         getCuePoints: () => Promise<number[]>;
 
         // ItemChroma
-        isChromaEnabled: () => Promise<boolean>;
-        setChromaEnabled: (value: boolean) => void;
-        getChromaBrightness: () => Promise<number>;
-        setChromaBrightness: (value: number) => void;
-        getChromaSaturation: () => Promise<number>;
-        setChromaSaturation: (value: number) => void;
-        getChromaHue: () => Promise<number>;
-        setChromaHue: (value: number) => void;
-        getChromaType: () => Promise<CHROMA_TYPE>;
-        setChromaType: (value: CHROMA_TYPE) => void;
-        getChromaColor: () => Promise<Color>;
-        setChromaColor: (value: Color) => void;
+        isChromaEnabled:       () => Promise<boolean>;
+        getChromaBrightness:   () => Promise<number>;
+        getChromaSaturation:   () => Promise<number>;
+        getChromaHue:          () => Promise<number>;
+        getChromaType:         () => Promise<CHROMA_TYPE>;
+        getChromaColor:        () => Promise<Color>;
         getChromaPrimaryColor: () => Promise<number>;
+        getChromaBalance:      () => Promise<number>;
+        getChromaAntiAlias:    () => Promise<number>;
+        getChromaThreshold:    () => Promise<number>;
+        getChromaThresholdAA:  () => Promise<number>;
+        setChromaEnabled:      (value: boolean) => void;
+        setChromaBrightness:   (value: number) => void;
+        setChromaSaturation:   (value: number) => void;
+        setChromaHue:          (value: number) => void;
+        setChromaType:         (value: CHROMA_TYPE) => void;
+        setChromaColor:        (value: Color) => void;
         setChromaPrimaryColor: (value: number) => void;
-        getChromaBalance: () => Promise<number>;
-        setChromaBalance: (value: number) => void;
-        getChromaAntiAlias: () => Promise<number>;
-        setChromaAntiAlias: (value: number) => void;
-        getChromaThreshold: () => Promise<number>;
-        setChromaThreshold: (value: number) => void;
-        getChromaThresholdAA: () => Promise<number>;
-        setChromaThresholdAA: (value: number) => void;
+        setChromaBalance:      (value: number) => void;
+        setChromaAntiAlias:    (value: number) => void;
+        setChromaThreshold:    (value: number) => void;
+        setChromaThresholdAA:  (value: number) => void;
 
         // ItemPlayback
-        getPlaybackStartPos: () => Promise<number>;
-        setPlaybackStartPos: (value: number) => void;
-        getPlaybackEndPos: () => Promise<number>;
-        setPlaybackEndPos: (value: number) => void;
+        getPlaybackStartPos:  () => Promise<number>;
+        getPlaybackEndPos:    () => Promise<number>;
         getPlaybackEndAction: () => Promise<PLAYBACK_END_ACTION>;
+        getPlaybackDuration:  () => Promise<number>;
+        setPlaybackStartPos:  (value: number) => void;
+        setPlaybackEndPos:    (value: number) => void;
         setPlaybackEndAction: (value: PLAYBACK_END_ACTION) => void;
-        getPlaybackDuration: () => Promise<number>;
-        setPlaybackDuration: (value: number) => void;
+        setPlaybackDuration:  (value: number) => void;
     }
 
     function applyMixins(derivedCtor: any, baseCtors: any[]) {
@@ -286,4 +271,14 @@ module xui.core {
             })
         });
     }
+
+    applyMixins(Item, [
+        ItemLayout,
+        ItemColor,
+        ItemAudio,
+        ItemWindow,
+        ItemVideo,
+        ItemChroma,
+        ItemPlayback
+    ]);
 }
