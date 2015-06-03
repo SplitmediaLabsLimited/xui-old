@@ -12,7 +12,6 @@ module xui.core {
         id: string;
         viewID: number;
 
-        /** Check if Window Tracking is ON or OFF */
         isWindowTracking(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -22,8 +21,7 @@ module xui.core {
                 });
             });
         }
-
-        /** Set Window Tracking to ON or OFF */
+        
         setWindowTracking(value: boolean) {
             iItem.attach(this.id, this.viewID);
 

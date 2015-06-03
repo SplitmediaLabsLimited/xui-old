@@ -11,10 +11,9 @@ module xui.core {
     }
 
     export class ItemAudio implements IItemAudio {
-        id: string;
-        viewID: number;
+        private id: string;
+        private viewID: number;
 
-        /** Get Item Volume level */
         getVolume(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -25,7 +24,6 @@ module xui.core {
             });
         }
 
-        /** Set Volume level of item */
         setVolume(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -34,7 +32,6 @@ module xui.core {
             iItem.set('prop:volume', String(value));
         }
 
-        /** Check if item is muted */
         isMuted(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -44,8 +41,7 @@ module xui.core {
                 });
             });
         }
-
-        /** Set Item Mute to ON or OFF */
+        
         setMuted(value: boolean) {
             iItem.attach(this.id, this.viewID);
 

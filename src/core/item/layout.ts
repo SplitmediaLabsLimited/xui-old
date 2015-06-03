@@ -20,11 +20,8 @@ module xui.core {
     export class ItemLayout implements IItemLayout {
         private id: string;
         private viewID: number;
+        private position: Rectangle;
 
-        // Private variables won't work with mixins, Item needs this for toXML()
-        position: Rectangle;
-
-        /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -34,15 +31,13 @@ module xui.core {
                 });
             });
         }
-
-        /** Set Aspect Ratio to ON or OFF */
+        
         setKeepAspectRatio(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:keep_ar', value ? '1' : '0');
         }
 
-        /** Check if Position Locked is set to ON or OFF */
         isPositionLocked(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -53,14 +48,12 @@ module xui.core {
             });
         }
 
-        /** Set Position Lock to ON or OFF */
         setPositionLocked(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:lockmove', value ? '1' : '0');
         }
 
-        /** Check if Enhance Resize is Enabled or Disabled */
         isEnhanceResizeEnabled(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -71,14 +64,12 @@ module xui.core {
             });
         }
 
-        /** Set Enhance Resize to ON or OFF */
         setEnhanceResizeEnabled(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:mipmaps', value ? '1' : '0');
         }
 
-        /** Check if Pixel Alignment is Enabled or Disabled */
         isPixelAlignmentEnabled(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -89,14 +80,12 @@ module xui.core {
             });
         }
 
-        /** Set Pixel Alignment to ON or OFF */
         setPixelAlignmentEnabled(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:pixalign', value ? '1' : '0');
         }
 
-        /** Get the position of the item */
         getPosition():Promise<Rectangle> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -109,7 +98,6 @@ module xui.core {
             });
         }
 
-        /** Set Item position */
         setPosition(value: Rectangle) {
             iItem.attach(this.id, this.viewID);
 

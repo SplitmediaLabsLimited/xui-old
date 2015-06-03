@@ -4,19 +4,19 @@ module xui.core {
     import iItem = internal.Item;
     import Color = internal.utils.Color;
 
-    export enum CHROMA_TYPE {
+    export enum ChromaTypes {
         KEY,
         COLOR,
         RGB
     }
 
-    export enum CHROMA_PRIMARY_COLORS {
+    export enum ChromaPrimaryColors {
         RED,
         GREEN,
         BLUE
     }
 
-    export enum CHROMA_ANTIALIAS {
+    export enum ChromaAntiAlias {
         NONE,
         LOW,
         HIGH
@@ -31,12 +31,12 @@ module xui.core {
         setChromaSaturation(value: number);
         getChromaHue(): Promise<number>;
         setChromaHue(value: number);
-        getChromaType(): Promise<CHROMA_TYPE>;
-        setChromaType(value: CHROMA_TYPE);
+        getChromaType(): Promise<ChromaTypes>;
+        setChromaType(value: ChromaTypes);
         getChromaColor(): Promise<Color>;
         setChromaColor(value: Color);
-        getChromaPrimaryColor(): Promise<CHROMA_PRIMARY_COLORS>;
-        setChromaPrimaryColor(value: CHROMA_PRIMARY_COLORS);
+        getChromaPrimaryColor(): Promise<ChromaPrimaryColors>;
+        setChromaPrimaryColor(value: ChromaPrimaryColors);
         getChromaBalance(): Promise<number>;
         setChromaBalance(value: number);
         getChromaAntiAlias(): Promise<number>;
@@ -51,7 +51,6 @@ module xui.core {
         id: string;
         viewID: number;
 
-        /** Check if chroma is enabled or not */
         isChromaEnabled(): Promise<boolean> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -62,14 +61,12 @@ module xui.core {
             });
         }
 
-        /** Set Chroma to ON or OFF */
         setChromaEnabled(value: boolean) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:key_chromakey', value ? '1' : '0');
         }
 
-        /** Get Chroma brightness */
         getChromaBrightness(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -80,7 +77,6 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Brightness */
         setChromaBrightness(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -89,7 +85,6 @@ module xui.core {
             iItem.set('prop:key_chromabr', String(value));
         }
 
-        /** Get Chroma Brightness */
         getChromaSaturation(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -100,7 +95,6 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Saturation */
         setChromaSaturation(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -109,7 +103,6 @@ module xui.core {
             iItem.set('prop:key_chromasat', String(value));
         }
 
-        /** Get Chroma Hue */
         getChromaHue(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -120,7 +113,6 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Hue */
         setChromaHue(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -129,8 +121,7 @@ module xui.core {
             iItem.set('prop:key_chromahue', String(value));
         }
 
-        /** Get Chroma Type */
-        getChromaType(): Promise<CHROMA_TYPE> {
+        getChromaType(): Promise<ChromaTypes> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
@@ -140,8 +131,7 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Type */
-        setChromaType(value: CHROMA_TYPE) {
+        setChromaType(value: ChromaTypes) {
             iItem.attach(this.id, this.viewID);
 
             value = value < 0 ? 0 : value > 2 ? 2 : value;
@@ -149,7 +139,6 @@ module xui.core {
             iItem.set('prop:key_chromakeytype', String(value));
         }
 
-        /** Get Chroma Color */
         getChromaColor(): Promise<Color> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -164,15 +153,13 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Color */
         setChromaColor(value: Color) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:key_colorrgb', value.getBgr());
         }
 
-        /** Get Chroma Primary Color */
-        getChromaPrimaryColor(): Promise<CHROMA_PRIMARY_COLORS> {
+        getChromaPrimaryColor(): Promise<ChromaPrimaryColors> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
@@ -182,8 +169,7 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Primary Color */
-        setChromaPrimaryColor(value: CHROMA_PRIMARY_COLORS) {
+        setChromaPrimaryColor(value: ChromaPrimaryColors) {
             iItem.attach(this.id, this.viewID);
 
             value = value < 0 ? 0 : value > 2 ? 2 : value;
@@ -191,7 +177,6 @@ module xui.core {
             iItem.set('prop:key_chromargbkeyprimary', String(value));
         }
 
-        /** Get Chroma Balance */
         getChromaBalance(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -202,7 +187,6 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Balance */
         setChromaBalance(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -211,8 +195,7 @@ module xui.core {
             iItem.set('prop:key_chromargbkeybalance', String(value));
         }
 
-        /** Get Chroma Anti Alias level */
-        getChromaAntiAlias(): Promise<CHROMA_ANTIALIAS> {
+        getChromaAntiAlias(): Promise<ChromaAntiAlias> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
@@ -222,8 +205,7 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Anti Alias level */
-        setChromaAntiAlias(value: CHROMA_ANTIALIAS) {
+        setChromaAntiAlias(value: ChromaAntiAlias) {
             iItem.attach(this.id, this.viewID);
 
             value = value < 0 ? 0 : value > 2 ? 2 : value;
@@ -231,7 +213,6 @@ module xui.core {
             iItem.set('prop:key_antialiasing', String(value));
         }
 
-        /** Get Chroma Threshold */
         getChromaThreshold(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -242,7 +223,6 @@ module xui.core {
             });
         }
 
-        /** Set Chroma Threshold */
         setChromaThreshold(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -251,7 +231,6 @@ module xui.core {
             iItem.set('prop:key_chromarang', String(value));
         }
 
-        /** Get Chroma Threshold Anti Alias */
         getChromaThresholdAA(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -261,8 +240,7 @@ module xui.core {
                 });
             });
         }
-
-        /** Set Chroma Threshold Anti Alias */
+        
         setChromaThresholdAA(value: number) {
             iItem.attach(this.id, this.viewID);
 

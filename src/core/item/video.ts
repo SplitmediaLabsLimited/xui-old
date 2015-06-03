@@ -10,8 +10,7 @@ module xui.core {
     export class ItemVideo implements IItemVideo {
         id: string;
         viewID: number;
-
-        /** Get Video item cuepoints */
+        
         getCuePoints(): Promise<number[]> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);

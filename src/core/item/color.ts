@@ -24,7 +24,6 @@ module xui.core {
         private id: string;
         private viewID: number;
 
-        /** Get Item Transparency value */
         getTransparency(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -35,7 +34,6 @@ module xui.core {
             });
         }
 
-        /** Set Item Transparency */
         setTransparency(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -44,7 +42,6 @@ module xui.core {
             iItem.set('prop:alpha', String(value));
         }
 
-        /** Get Item Brightness value */
         getBrightness(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -55,7 +52,6 @@ module xui.core {
             });
         }
 
-        /** Set Item Brightness */
         setBrightness(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -64,7 +60,6 @@ module xui.core {
             iItem.set('prop:cc_brightness', String(value));
         }
 
-        /** Get Item Contrast value */
         getContrast(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -75,7 +70,6 @@ module xui.core {
             });
         }
 
-        /** Set Item Contrast */
         setContrast(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -84,7 +78,6 @@ module xui.core {
             iItem.set('prop:cc_contrast', String(value));
         }
 
-        /** Get Item Hue value */
         getHue(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -95,7 +88,6 @@ module xui.core {
             });
         }
 
-        /** Set Item Hue */
         setHue(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -104,7 +96,6 @@ module xui.core {
             iItem.set('prop:cc_hue', String(value));
         }
 
-        /** Get Item Saturation value */
         getSaturation(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -115,7 +106,6 @@ module xui.core {
             });
         }
 
-        /** Set Item Saturation */
         setSaturation(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -124,7 +114,6 @@ module xui.core {
             iItem.set('prop:cc_saturation', String(value));
         }
 
-        /** Get Border Color */
         getBorderColor(): Promise<Color> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -139,8 +128,7 @@ module xui.core {
                 });
             });
         }
-
-        /** Set Border Color */
+        
         setBorderColor(value: Color) {
             iItem.attach(this.id, this.viewID);
 

@@ -3,7 +3,7 @@
 module xui.core {
     import iItem = internal.Item;
 
-    export enum PLAYBACK_END_ACTION {
+    export enum PlaybackEndAction {
         NOTHING,
         REWIND,
         LOOP,
@@ -15,8 +15,8 @@ module xui.core {
         setPlaybackStartPos(value: number);
         getPlaybackEndPos(): Promise<number>;
         setPlaybackEndPos(value: number);
-        getPlaybackEndAction(): Promise<PLAYBACK_END_ACTION>;
-        setPlaybackEndAction(value: PLAYBACK_END_ACTION);
+        getPlaybackEndAction(): Promise<PlaybackEndAction>;
+        setPlaybackEndAction(value: PlaybackEndAction);
         getPlaybackDuration(): Promise<number>;
         setPlaybackDuration(value: number);
     }
@@ -25,7 +25,6 @@ module xui.core {
         id: string;
         viewID: number;
 
-        /** Get Playback Starting position */
         getPlaybackStartPos(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -36,7 +35,6 @@ module xui.core {
             });
         }
 
-        /** Set Playback Starting position */
         setPlaybackStartPos(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -45,7 +43,6 @@ module xui.core {
             iItem.set('prop:InPoint', String(value * 10));
         }
 
-        /** Get Playback Ending position */
         getPlaybackEndPos(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -56,7 +53,6 @@ module xui.core {
             });
         }
 
-        /** Set Playback Ending position */
         setPlaybackEndPos(value: number) {
             iItem.attach(this.id, this.viewID);
 
@@ -65,8 +61,7 @@ module xui.core {
             iItem.set('prop:OutPoint', String(value * 10));
         }
 
-        /** Get Playback Ending action */
-        getPlaybackEndAction(): Promise<PLAYBACK_END_ACTION> {
+        getPlaybackEndAction(): Promise<PlaybackEndAction> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
@@ -76,14 +71,12 @@ module xui.core {
             });
         }
 
-        /** Set Playback Ending action */
-        setPlaybackEndAction(value: PLAYBACK_END_ACTION) {
+        setPlaybackEndAction(value: PlaybackEndAction) {
             iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:OpWhenFinished', String(value));
         }
 
-        /** Get Playback Duration */
         getPlaybackDuration(): Promise<number> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
@@ -93,8 +86,7 @@ module xui.core {
                 });
             });
         }
-
-        /** Set Playback Duration */
+        
         setPlaybackDuration(value: number) {
             iItem.attach(this.id, this.viewID);
 
