@@ -16,3 +16,4 @@
 /// <reference path="core/item/playback.ts" />
 /// <reference path="core/item.ts" />
 /// <reference path="core/scene.ts" />
+/// <reference path="core/view.ts" />

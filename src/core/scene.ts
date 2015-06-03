@@ -13,6 +13,10 @@ module xui.core {
             this.viewID = props['viewID'];
         }
 
+        getID(): number {
+            return this.id;
+        }
+
         getItems(): Promise<Item[]> {
             return new Promise((resolve) => {
                 iApp.getAsList('presetconfig:' + this.id).then((jsonArr) => {

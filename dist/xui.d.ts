@@ -232,7 +232,7 @@ declare module xui.core {
     class ItemLayout implements IItemLayout {
         private id;
         private viewID;
-        position: Rectangle;
+        private position;
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio(): Promise<boolean>;
         /** Set Aspect Ratio to ON or OFF */
@@ -509,7 +509,7 @@ declare module xui.core {
         private type;
         private value;
         private keepLoaded;
-        position: Rectangle;
+        private position;
         constructor(props?: {});
         /** Set name of the item */
         setName(value: string): void;
@@ -598,11 +598,26 @@ declare module xui.core {
     import Item = xui.core.Item;
     class Scene {
         private id;
-        private name;
         private viewID;
         constructor(props: {});
+        getID(): number;
         getItems(): Promise<Item[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
+    }
+}
+declare module xui.core {
+    import Scene = xui.core.Scene;
+    class View {
+        private id;
+        constructor(id: number);
+        static MAIN: View;
+        static PREVIEW: View;
+        getScenes(): Promise<Scene[]>;
+        getScenesCount(): Promise<number>;
+        setActiveScene(scene: Scene): any;
+        setActiveScene(scene: number): any;
+        getActiveScene(): Promise<Scene>;
+        getScene(sceneID: number): Promise<Scene>;
     }
 }
