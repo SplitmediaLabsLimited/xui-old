@@ -20,7 +20,7 @@ module xui.core {
         setBorderColor(value: Color);
     }
 
-    export class ItemColor implements IItemColor {
+    class ItemColor implements IItemColor {
         private id: string;
         private viewID: number;
 
@@ -135,4 +135,6 @@ module xui.core {
             iItem.set('prop:border', String(value.getIbgr() - 0x80000000));
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemColor]);
 }

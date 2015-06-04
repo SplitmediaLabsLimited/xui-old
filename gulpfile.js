@@ -22,6 +22,8 @@
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
 		PLG_CONFIG_FILE   = 'ConfigWindow.js';
 
+	var TEST_REF_FILE = 'test/specs/_references.ts';
+
 	var TYPEDOC_CONFIG = {
 		mode: 	'file', 
 		out: 	'./docs/', 
@@ -30,6 +32,7 @@
 		theme: 	'minimal',
 		readme: 'none'
 	};
+
 
 	gulp.task('default', [
 		'compile-internal', 'compile-xui', 'merge'
@@ -87,5 +90,14 @@
 
 	gulp.task('watch', function() {
 		gulp.watch('src/**/*.ts', ['default']);
+	});
+
+	gulp.task('generate-test', function() {
+		gulp.src(TEST_REF_FILE)
+			.pipe(typescript({
+				outDir: './test/',
+				out: 'specs.js'
+			}))
+			.pipe(gulp.dest('./test/'));
 	});
 })();

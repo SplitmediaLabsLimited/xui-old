@@ -47,7 +47,7 @@ module xui.core {
         setChromaThresholdAA(value: number);
     }
 
-    export class ItemChroma implements IItemChroma {
+    class ItemChroma implements IItemChroma {
         id: string;
         viewID: number;
 
@@ -249,4 +249,6 @@ module xui.core {
             iItem.set('prop:key_chromaranga', String(value));
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemChroma]);
 }

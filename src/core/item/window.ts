@@ -8,7 +8,7 @@ module xui.core {
         setWindowTracking(value: boolean);
     }
 
-    export class ItemWindow implements IItemWindow {
+    class ItemWindow implements IItemWindow {
         id: string;
         viewID: number;
 
@@ -28,4 +28,6 @@ module xui.core {
             iItem.set('prop:ScrCapTrackWindowTitle', (value ? '0' : '1'));
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemWindow]);
 }

@@ -6,6 +6,7 @@
 /// <reference path="utils/thread.ts" />
 /// <reference path="utils/xml.ts" />
 /// <reference path="utils/json.ts" />
+/// <reference path="utils/mixin.ts" />
 
 /// <reference path="internal.ts" />
 

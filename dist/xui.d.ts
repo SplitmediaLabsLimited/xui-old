@@ -216,205 +216,6 @@ declare module xui.core {
     }
 }
 declare module xui.core {
-    import Rectangle = internal.utils.Rectangle;
-    interface IItemLayout {
-        isKeepAspectRatio(): Promise<boolean>;
-        setKeepAspectRatio(value: boolean): any;
-        isPositionLocked(): Promise<boolean>;
-        setPositionLocked(value: boolean): any;
-        isEnhanceResizeEnabled(): Promise<boolean>;
-        setEnhanceResizeEnabled(value: boolean): any;
-        isPixelAlignmentEnabled(): Promise<boolean>;
-        setPixelAlignmentEnabled(value: boolean): any;
-        getPosition(): Promise<Rectangle>;
-        setPosition(value: Rectangle): any;
-    }
-    class ItemLayout implements IItemLayout {
-        private id;
-        private viewID;
-        private position;
-        isKeepAspectRatio(): Promise<boolean>;
-        setKeepAspectRatio(value: boolean): void;
-        isPositionLocked(): Promise<boolean>;
-        setPositionLocked(value: boolean): void;
-        isEnhanceResizeEnabled(): Promise<boolean>;
-        setEnhanceResizeEnabled(value: boolean): void;
-        isPixelAlignmentEnabled(): Promise<boolean>;
-        setPixelAlignmentEnabled(value: boolean): void;
-        getPosition(): Promise<Rectangle>;
-        setPosition(value: Rectangle): void;
-    }
-}
-declare module xui.core {
-    import Color = internal.utils.Color;
-    interface IItemColor {
-        getTransparency(): Promise<number>;
-        setTransparency(value: number): any;
-        getBrightness(): Promise<number>;
-        setBrightness(value: number): any;
-        getContrast(): Promise<number>;
-        setContrast(value: number): any;
-        getHue(): Promise<number>;
-        setHue(value: number): any;
-        getSaturation(): Promise<number>;
-        setSaturation(value: number): any;
-        getBorderColor(): Promise<Color>;
-        setBorderColor(value: Color): any;
-    }
-    class ItemColor implements IItemColor {
-        private id;
-        private viewID;
-        getTransparency(): Promise<number>;
-        setTransparency(value: number): void;
-        getBrightness(): Promise<number>;
-        setBrightness(value: number): void;
-        getContrast(): Promise<number>;
-        setContrast(value: number): void;
-        getHue(): Promise<number>;
-        setHue(value: number): void;
-        getSaturation(): Promise<number>;
-        setSaturation(value: number): void;
-        getBorderColor(): Promise<Color>;
-        setBorderColor(value: Color): void;
-    }
-}
-declare module xui.core {
-    interface IItemAudio {
-        getVolume(): Promise<number>;
-        setVolume(value: number): any;
-        isMuted(): Promise<boolean>;
-        setMuted(value: boolean): any;
-    }
-    class ItemAudio implements IItemAudio {
-        private id;
-        private viewID;
-        getVolume(): Promise<number>;
-        setVolume(value: number): void;
-        isMuted(): Promise<boolean>;
-        setMuted(value: boolean): void;
-    }
-}
-declare module xui.core {
-    interface IItemWindow {
-        isWindowTracking(): Promise<boolean>;
-        setWindowTracking(value: boolean): any;
-    }
-    class ItemWindow implements IItemWindow {
-        id: string;
-        viewID: number;
-        isWindowTracking(): Promise<boolean>;
-        setWindowTracking(value: boolean): void;
-    }
-}
-declare module xui.core {
-    interface IItemVideo {
-        getCuePoints(): Promise<number[]>;
-    }
-    class ItemVideo implements IItemVideo {
-        id: string;
-        viewID: number;
-        getCuePoints(): Promise<number[]>;
-    }
-}
-declare module xui.core {
-    import Color = internal.utils.Color;
-    enum ChromaTypes {
-        KEY = 0,
-        COLOR = 1,
-        RGB = 2,
-    }
-    enum ChromaPrimaryColors {
-        RED = 0,
-        GREEN = 1,
-        BLUE = 2,
-    }
-    enum ChromaAntiAlias {
-        NONE = 0,
-        LOW = 1,
-        HIGH = 2,
-    }
-    interface IItemChroma {
-        isChromaEnabled(): Promise<boolean>;
-        setChromaEnabled(value: boolean): any;
-        getChromaBrightness(): Promise<number>;
-        setChromaBrightness(value: number): any;
-        getChromaSaturation(): Promise<number>;
-        setChromaSaturation(value: number): any;
-        getChromaHue(): Promise<number>;
-        setChromaHue(value: number): any;
-        getChromaType(): Promise<ChromaTypes>;
-        setChromaType(value: ChromaTypes): any;
-        getChromaColor(): Promise<Color>;
-        setChromaColor(value: Color): any;
-        getChromaPrimaryColor(): Promise<ChromaPrimaryColors>;
-        setChromaPrimaryColor(value: ChromaPrimaryColors): any;
-        getChromaBalance(): Promise<number>;
-        setChromaBalance(value: number): any;
-        getChromaAntiAlias(): Promise<number>;
-        setChromaAntiAlias(value: number): any;
-        getChromaThreshold(): Promise<number>;
-        setChromaThreshold(value: number): any;
-        getChromaThresholdAA(): Promise<number>;
-        setChromaThresholdAA(value: number): any;
-    }
-    class ItemChroma implements IItemChroma {
-        id: string;
-        viewID: number;
-        isChromaEnabled(): Promise<boolean>;
-        setChromaEnabled(value: boolean): void;
-        getChromaBrightness(): Promise<number>;
-        setChromaBrightness(value: number): void;
-        getChromaSaturation(): Promise<number>;
-        setChromaSaturation(value: number): void;
-        getChromaHue(): Promise<number>;
-        setChromaHue(value: number): void;
-        getChromaType(): Promise<ChromaTypes>;
-        setChromaType(value: ChromaTypes): void;
-        getChromaColor(): Promise<Color>;
-        setChromaColor(value: Color): void;
-        getChromaPrimaryColor(): Promise<ChromaPrimaryColors>;
-        setChromaPrimaryColor(value: ChromaPrimaryColors): void;
-        getChromaBalance(): Promise<number>;
-        setChromaBalance(value: number): void;
-        getChromaAntiAlias(): Promise<ChromaAntiAlias>;
-        setChromaAntiAlias(value: ChromaAntiAlias): void;
-        getChromaThreshold(): Promise<number>;
-        setChromaThreshold(value: number): void;
-        getChromaThresholdAA(): Promise<number>;
-        setChromaThresholdAA(value: number): void;
-    }
-}
-declare module xui.core {
-    enum PlaybackEndAction {
-        NOTHING = 0,
-        REWIND = 1,
-        LOOP = 2,
-        HIDE = 3,
-    }
-    interface IItemPlayback {
-        getPlaybackStartPos(): Promise<number>;
-        setPlaybackStartPos(value: number): any;
-        getPlaybackEndPos(): Promise<number>;
-        setPlaybackEndPos(value: number): any;
-        getPlaybackEndAction(): Promise<PlaybackEndAction>;
-        setPlaybackEndAction(value: PlaybackEndAction): any;
-        getPlaybackDuration(): Promise<number>;
-        setPlaybackDuration(value: number): any;
-    }
-    class ItemPlayback implements IItemPlayback {
-        id: string;
-        viewID: number;
-        getPlaybackStartPos(): Promise<number>;
-        setPlaybackStartPos(value: number): void;
-        getPlaybackEndPos(): Promise<number>;
-        setPlaybackEndPos(value: number): void;
-        getPlaybackEndAction(): Promise<PlaybackEndAction>;
-        setPlaybackEndAction(value: PlaybackEndAction): void;
-        getPlaybackDuration(): Promise<number>;
-        setPlaybackDuration(value: number): void;
-    }
-}
-declare module xui.core {
     import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
     import Color = internal.utils.Color;
@@ -592,6 +393,117 @@ declare module xui.core {
         setPlaybackEndAction: (value: PlaybackEndAction) => void;
         /** Set Playback Duration */
         setPlaybackDuration: (value: number) => void;
+    }
+}
+declare module xui.core {
+    import Rectangle = internal.utils.Rectangle;
+    interface IItemLayout {
+        isKeepAspectRatio(): Promise<boolean>;
+        setKeepAspectRatio(value: boolean): any;
+        isPositionLocked(): Promise<boolean>;
+        setPositionLocked(value: boolean): any;
+        isEnhanceResizeEnabled(): Promise<boolean>;
+        setEnhanceResizeEnabled(value: boolean): any;
+        isPixelAlignmentEnabled(): Promise<boolean>;
+        setPixelAlignmentEnabled(value: boolean): any;
+        getPosition(): Promise<Rectangle>;
+        setPosition(value: Rectangle): any;
+    }
+}
+declare module xui.core {
+    import Color = internal.utils.Color;
+    interface IItemColor {
+        getTransparency(): Promise<number>;
+        setTransparency(value: number): any;
+        getBrightness(): Promise<number>;
+        setBrightness(value: number): any;
+        getContrast(): Promise<number>;
+        setContrast(value: number): any;
+        getHue(): Promise<number>;
+        setHue(value: number): any;
+        getSaturation(): Promise<number>;
+        setSaturation(value: number): any;
+        getBorderColor(): Promise<Color>;
+        setBorderColor(value: Color): any;
+    }
+}
+declare module xui.core {
+    interface IItemAudio {
+        getVolume(): Promise<number>;
+        setVolume(value: number): any;
+        isMuted(): Promise<boolean>;
+        setMuted(value: boolean): any;
+    }
+}
+declare module xui.core {
+    interface IItemWindow {
+        isWindowTracking(): Promise<boolean>;
+        setWindowTracking(value: boolean): any;
+    }
+}
+declare module xui.core {
+    interface IItemVideo {
+        getCuePoints(): Promise<number[]>;
+    }
+}
+declare module xui.core {
+    import Color = internal.utils.Color;
+    enum ChromaTypes {
+        KEY = 0,
+        COLOR = 1,
+        RGB = 2,
+    }
+    enum ChromaPrimaryColors {
+        RED = 0,
+        GREEN = 1,
+        BLUE = 2,
+    }
+    enum ChromaAntiAlias {
+        NONE = 0,
+        LOW = 1,
+        HIGH = 2,
+    }
+    interface IItemChroma {
+        isChromaEnabled(): Promise<boolean>;
+        setChromaEnabled(value: boolean): any;
+        getChromaBrightness(): Promise<number>;
+        setChromaBrightness(value: number): any;
+        getChromaSaturation(): Promise<number>;
+        setChromaSaturation(value: number): any;
+        getChromaHue(): Promise<number>;
+        setChromaHue(value: number): any;
+        getChromaType(): Promise<ChromaTypes>;
+        setChromaType(value: ChromaTypes): any;
+        getChromaColor(): Promise<Color>;
+        setChromaColor(value: Color): any;
+        getChromaPrimaryColor(): Promise<ChromaPrimaryColors>;
+        setChromaPrimaryColor(value: ChromaPrimaryColors): any;
+        getChromaBalance(): Promise<number>;
+        setChromaBalance(value: number): any;
+        getChromaAntiAlias(): Promise<number>;
+        setChromaAntiAlias(value: number): any;
+        getChromaThreshold(): Promise<number>;
+        setChromaThreshold(value: number): any;
+        getChromaThresholdAA(): Promise<number>;
+        setChromaThresholdAA(value: number): any;
+    }
+}
+declare module xui.core {
+    enum PlaybackEndAction {
+        NOTHING = 0,
+        REWIND = 1,
+        LOOP = 2,
+        HIDE = 3,
+    }
+    interface IItemPlayback {
+        getPlaybackStartPos(): Promise<number>;
+        setPlaybackStartPos(value: number): any;
+        getPlaybackEndPos(): Promise<number>;
+        setPlaybackEndPos(value: number): any;
+        getPlaybackEndAction(): Promise<PlaybackEndAction>;
+        setPlaybackEndAction(value: PlaybackEndAction): any;
+        getPlaybackDuration(): Promise<number>;
+        setPlaybackDuration(value: number): any;
     }
 }
 declare module xui.core {
