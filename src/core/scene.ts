@@ -17,6 +17,10 @@ module xui.core {
             return this.id;
         }
 
+        getViewID(): string {
+            return this.viewID;
+        }
+
         getItems(): Promise<Item[]> {
             return new Promise((resolve) => {
                 iApp.getAsList('presetconfig:' + this.id).then((jsonArr) => {

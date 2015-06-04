@@ -20,6 +20,10 @@ module xui.core {
         static MAIN = new View(Views.MAIN);
         static PREVIEW = new View(Views.PREVIEW);
 
+        getViewID(): number {
+            return this.id;
+        }
+
         getScenes(): Promise<Scene[]> {
             return new Promise((resolve) => {
                 iApp.get('presetcount').then((count) => {

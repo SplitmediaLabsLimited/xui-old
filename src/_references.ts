@@ -5,8 +5,7 @@
 /// <reference path="system/audio.ts" />
 /// <reference path="system/process.ts" />
 /// <reference path="system/game.ts" />
-/// <reference path="core/app.ts" />
-/// <reference path="core/channel.ts" />
+
 /// <reference path="core/item/layout.ts" />
 /// <reference path="core/item/color.ts" />
 /// <reference path="core/item/audio.ts" />
@@ -17,3 +16,7 @@
 /// <reference path="core/item.ts" />
 /// <reference path="core/scene.ts" />
 /// <reference path="core/view.ts" />
+/// <reference path="core/presentation.ts" />
+/// <reference path="core/app.ts" />
+
+/// <reference path="core/channel.ts" />

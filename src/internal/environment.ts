@@ -13,13 +13,13 @@ module internal {
             }
 
             Environment._isHtml = (window.external &&
-                window.external['AttachVideoItem'] === undefined);
+                window.external['GetConfiguration'] !== undefined);
             Environment._isConfig = (window.external &&
-                window.external['AttachVideoItem'] !== undefined &&
+                window.external['GetConfiguration'] === undefined &&
                 window.external['GetViewId'] !== undefined &&
                 window.external['GetViewId']() !== undefined);
             Environment._isScript = (window.external &&
-                window.external['AttachVideoItem'] !== undefined &&
+                window.external['GetConfiguration'] === undefined &&
                 window.external['GetViewId'] !== undefined &&
                 window.external['GetViewId']() === undefined);
             Environment._initialized = true;

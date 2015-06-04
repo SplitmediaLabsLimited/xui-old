@@ -21,7 +21,7 @@ module internal {
                     let propsJSON: u.JSON = u.JSON.parse(xml),
                         propsArr: u.JSON[] = [];
                     
-                    if (propsJSON.children.length > 0) {
+                    if (propsJSON.children && propsJSON.children.length > 0) {
                         propsArr = propsJSON.children;
                     }
                     
