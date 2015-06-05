@@ -1,5 +1,3 @@
-/// <reference path="_references.ts" />
-
 interface Window {
     OnAsyncCallback: Function;
     OnSceneLoad: Function;
@@ -37,24 +35,24 @@ module internal {
         // END DEBUG
 
         if (
-            window.external && 
+            window.external &&
             window.external[funcName] &&
             window.external[funcName] instanceof Function
         ) {
             ret = window.external[funcName].apply(this, args);
         }
-        
+
         // register callback if present
         if (callback !== null) {
             _callbacks[ret] = callback;
         }
-        
+
         return ret;
     }
 
     /**
-     * Triggered when an async method is called, 
-     * asyncID is returned value in async method call 
+     * Triggered when an async method is called,
+     * asyncID is returned value in async method call
      * and result is real return value for method call.
      */
     window.OnAsyncCallback = function(asyncID: number, result: string) {

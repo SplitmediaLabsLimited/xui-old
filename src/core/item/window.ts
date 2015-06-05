@@ -1,5 +1,3 @@
-/// <reference path="../../_references.ts" />
-
 module xui.core {
     import iItem = internal.Item;
 
@@ -21,7 +19,7 @@ module xui.core {
                 });
             });
         }
-        
+
         setWindowTracking(value: boolean) {
             iItem.attach(this.id, this.viewID);
 

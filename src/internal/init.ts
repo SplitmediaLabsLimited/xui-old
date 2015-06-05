@@ -1,5 +1,3 @@
-/// <reference path="_references.ts" />
-
 module internal {
     export function init(): void {
         // only valid for source plugin

@@ -1,5 +1,3 @@
-/// <reference path="../../_references.ts" />
-
 module xui.core {
     import iItem = internal.Item;
 
@@ -10,7 +8,7 @@ module xui.core {
     class ItemVideo implements IItemVideo {
         id: string;
         viewID: number;
-        
+
         getCuePoints(): Promise<number[]> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);

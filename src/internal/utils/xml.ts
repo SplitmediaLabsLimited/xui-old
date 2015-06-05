@@ -1,11 +1,9 @@
-/// <reference path='../_references.ts' />
-
 module internal.utils {
 
     export class XML {
         private xml: string;
 
-        private static RESERVED_ATTRIBUTES: RegExp = /^(children|tag|value)$/i; 
+        private static RESERVED_ATTRIBUTES: RegExp = /^(children|tag|value)$/i;
 
         constructor(json?: JSON) {
             let attributes = '';
@@ -16,10 +14,10 @@ module internal.utils {
 
             for (let key in json) {
                 if (
-                    !XML.RESERVED_ATTRIBUTES.test(key) && 
+                    !XML.RESERVED_ATTRIBUTES.test(key) &&
                     json[key] !== undefined
                 ) {
-                    attributes += [' ', key, '=\'', json[key], '\''].join('');      
+                    attributes += [' ', key, '=\'', json[key], '\''].join('');
                 }
             }
 
@@ -31,7 +29,7 @@ module internal.utils {
                 json.value += new XML(child).toString();
             }
 
-            this.xml = ['<', json.tag, attributes, '>', 
+            this.xml = ['<', json.tag, attributes, '>',
                 json.value, '</', json.tag, '>'].join('');
         }
 
@@ -47,10 +45,10 @@ module internal.utils {
         {
             return str.replace(/[&<>'']/g, function($0) {
                 return '&' + {
-                    '&':  'amp', 
-                    '<':  'lt', 
-                    '>':  'gt', 
-                    '\'': 'quot', 
+                    '&':  'amp',
+                    '<':  'lt',
+                    '>':  'gt',
+                    '\'': 'quot',
                     '"':  '#39'
                 }[$0] + ';';
             });

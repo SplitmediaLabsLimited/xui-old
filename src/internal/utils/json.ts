@@ -1,5 +1,3 @@
-/// <reference path='../_references.ts' />
-
 module internal.utils {
 
     export class JSON {
@@ -20,7 +18,7 @@ module internal.utils {
 
             // process short ended tags
             sxml = sxml.replace(
-                /<([^\s>]+)([^>]+)\/>/g, 
+                /<([^\s>]+)([^>]+)\/>/g,
                 (match, tagname, attributes) => {
                     return ['<', tagname, attributes, '></', tagname, '>'].join('');
                 }

@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module internal.utils {
 
     export class Point {

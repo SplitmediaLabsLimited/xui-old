@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.core {
     import iApp  = internal.App;
     import iItem = internal.Item;
@@ -101,7 +99,7 @@ module xui.core {
         setValue(value: any) {
             iItem.attach(this.id, this.viewID);
 
-            var xml: string = (typeof value === 'string') ? 
+            var xml: string = (typeof value === 'string') ?
                 value : XML.parseJSON(value).toString();
 
             this.value = JSON.parse(xml);
@@ -188,7 +186,7 @@ module xui.core {
         }
 
         // ItemLayout
-        
+
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio:        () => Promise<boolean>;
 
@@ -221,7 +219,7 @@ module xui.core {
 
 
         // ItemColor
-        
+
         /** Get Item Transparency value */
         getTransparency: () => Promise<number>;
 
@@ -260,7 +258,7 @@ module xui.core {
 
 
         // ItemAudio
-        
+
         /** Get Item Volume level */
         getVolume: () => Promise<number>;
 

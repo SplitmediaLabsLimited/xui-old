@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.core {
     import Rectangle = internal.utils.Rectangle;
     import Audio = xui.system.Audio;

@@ -1,5 +1,127 @@
-/// <reference path="../src/defs/es6-promise.d.ts" />
-/// <reference path="internal.d.ts" />
+declare module internal.utils {
+    class Color {
+        private rgb;
+        private irgb;
+        private bgr;
+        private ibgr;
+        /** Creates a Color class */
+        constructor(props?: {
+            rgb: string;
+            irgb: number;
+            bgr: string;
+            ibgr: number;
+        });
+        /** Gets RGB value */
+        getRgb(): string;
+        /** Sets RGB value */
+        setRgb(rgb: string): void;
+        /** Gets BGR value */
+        getBgr(): string;
+        /** Sets BGR value */
+        setBgr(bgr: string): void;
+        /** Gets RGB decimal value */
+        getIrgb(): number;
+        /** Sets RGB decimal value */
+        setIrgb(irgb: number): void;
+        /** Gets BGR decimal value */
+        getIbgr(): number;
+        /** Sets BGR decimal value */
+        setIbgr(ibgr: number): void;
+    }
+}
+declare module internal.utils {
+    class JSON {
+        tag: string;
+        children: JSON[];
+        value: string;
+        constructor(xml?: any);
+        static parse(xml: any): JSON;
+    }
+}
+declare module internal.utils {
+    function applyMixins(derivedCtor: any, baseCtors: any[]): void;
+}
+declare module internal.utils {
+    class Point {
+        private x;
+        private y;
+        private z;
+        /** Creates a Point class */
+        constructor(props?: {
+            x: number;
+            y: number;
+            z: number;
+        });
+        /** Gets the X coordinate */
+        getX(): number;
+        /** Sets the X coordinate */
+        setX(x: number): void;
+        /** Gets the Y coordinate */
+        getY(): number;
+        /** Sets the Y coordinate */
+        setY(y: number): void;
+        /** Gets the Z coordinate */
+        getZ(): number;
+        /** Sets the Z coordinate */
+        setZ(z: number): void;
+    }
+}
+declare module internal.utils {
+    class Rectangle {
+        private top;
+        private left;
+        private width;
+        private height;
+        private right;
+        private bottom;
+        /** Gets the top value */
+        getTop(): number;
+        /** Sets the top value */
+        setTop(top: number): void;
+        /** Gets the left value */
+        getLeft(): number;
+        /** Sets the left value */
+        setLeft(left: number): void;
+        /** Gets the right value */
+        getRight(): number;
+        /** Sets the right value */
+        setRight(right: number): void;
+        /** Gets the bottom value */
+        getBottom(): number;
+        /** Sets the bottom value */
+        setBottom(bottom: number): void;
+        /** Gets the width value */
+        getWidth(): number;
+        /** Sets the width value */
+        setWidth(width: number): void;
+        /** Gets the height value */
+        getHeight(): number;
+        /** Sets the height value */
+        setHeight(height: number): void;
+        /** Creates a rectangle from a comma-separated string */
+        static parse(str: string): Rectangle;
+        /** Converts a rectangle to a comma-separated string */
+        toString(value?: string): string;
+    }
+}
+declare module internal.utils {
+    class Thread {
+        private callbacks;
+        constructor(callbacks: Function[]);
+        private next(...args);
+        static sync(...callbacks: Function[]): Thread;
+    }
+}
+declare module internal.utils {
+    class XML {
+        private xml;
+        private static RESERVED_ATTRIBUTES;
+        constructor(json?: JSON);
+        toString(): string;
+        static parseJSON(json: JSON): XML;
+        static encode(str: string): string;
+    }
+}
 declare module xui.system {
     import u = internal.utils;
     class Audio {
@@ -76,20 +198,6 @@ declare module xui.system {
     }
 }
 declare module xui.system {
-    class Process {
-        private pid;
-        private detail;
-        private hwnds;
-        private modules;
-        constructor(pid?: Number);
-        getPid(): Number;
-        setPid(pid: Number): void;
-        getDetail(): string;
-        getHwnds(): Number[];
-        getModules(): string[];
-    }
-}
-declare module xui.system {
     import Rectangle = internal.utils.Rectangle;
     import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
@@ -141,56 +249,88 @@ declare module xui.system {
         toXML(): XML;
     }
 }
-declare module xui.core {
-    import Rectangle = internal.utils.Rectangle;
-    import Audio = xui.system.Audio;
-    import JSON = internal.utils.JSON;
+declare module xui.system {
+    class Process {
+        private pid;
+        private detail;
+        private hwnds;
+        private modules;
+        constructor(pid?: Number);
+        getPid(): Number;
+        setPid(pid: Number): void;
+        getDetail(): string;
+        getHwnds(): Number[];
+        getModules(): string[];
+    }
+}
+declare module internal {
+    import u = internal.utils;
     class App {
-        /** Call method of DLL present in Scriptdlls folder */
-        static callDll(): string;
-        /** Gets application's frame time (duration per frame in 100ns unit) */
-        static getFrametime(): Promise<string>;
-        /** Gets application default output resolution */
-        static getResolution(): Promise<Rectangle>;
-        /** Gets application viewport display resolution */
-        static getViewport(): Promise<Rectangle>;
-        /** Refers to XSplit Broadcaster DLL file version number */
-        static getVersion(): Promise<string>;
-        /** Gets the total number of frames rendered */
-        static getFramesRendered(): Promise<string>;
-        /** List of audio input and output devices used by the application */
-        static getAudioDevices(): Promise<Audio[]>;
-        static setAudioDevices(devices: Audio[]): void;
-        static getAudioGain(): Promise<JSON>;
-        static setAudioGain(config: JSON): void;
-        /** Creates a persistent modal dialog */
-        static newDialog(url: string): void;
-        /** Creates a modal dialog that automatically closes on outside click */
-        static newAutoDialog(url: string): void;
-        /** Close a created dialog */
-        static closeDialog(width: Number, height: Number): void;
-        /** Resizes a global script dialog */
-        static resizeSelf(width: Number, height: Number): void;
-        /** Closes a global script dialog */
-        static closeSelf(): void;
-        static TRANSITION_CLOCK: string;
-        static TRANSITION_COLLAPSE: string;
-        static TRANSITION_MOVE_BOTTOM: string;
-        static TRANSITION_MOVE_LEFT: string;
-        static TRANSITION_MOVE_LEFT_RIGHT: string;
-        static TRANSITION_MOVE_RIGHT: string;
-        static TRANSITION_MOVE_TOP: string;
-        static TRANSITION_FAN: string;
-        static TRANSITION_HOLE: string;
-        static TRANSITION_WAVE: string;
-        /** Gets the transition for scene changes. */
-        static getTransition(): Promise<string>;
-        /** Sets the transition for scene changes. */
-        static setTransition(transition: string): void;
-        /** Gets the scene transition duration in milliseconds. */
-        static getTransitionTime(): Promise<Number>;
-        /** Sets the scene transition duration in milliseconds. */
-        static setTransitionTime(time: Number): void;
+        static POSTMESSAGE_CLOSE: string;
+        static POSTMESSAGE_SIZE: string;
+        /** Get the value of the given property */
+        static get(name: string): Promise<string>;
+        /** Gets the value of the given property as list */
+        static getAsList(name: string): Promise<u.JSON[]>;
+        /** Get the value of the given global property */
+        static getGlobalProperty(name: string): string;
+        /** Sets the value of a property */
+        static set(name: string, value: string): Promise<Boolean>;
+        /** Calls a DLL function synchronously */
+        static callDll(func: string, ...arg: string[]): string;
+        /** Calls an application method asynchronously */
+        static callFunc(func: string, arg: string): Promise<string>;
+        static postMessage(key: string, ...args: any[]): Promise<string>;
+    }
+}
+declare module internal {
+    class Environment {
+        private static _isHtml;
+        private static _isConfig;
+        private static _isScript;
+        private static _initialized;
+        static initialize(): void;
+        static isSourceHtml(): Boolean;
+        static isSourceConfig(): Boolean;
+        static isScriptPlugin(): Boolean;
+    }
+}
+declare module internal {
+    function init(): void;
+}
+interface Window {
+    OnAsyncCallback: Function;
+    OnSceneLoad: Function;
+    SetConfiguration: Function;
+    SetBackGroundColor: Function;
+    SetVolume: Function;
+    OnDialogResult: Function;
+}
+declare module internal {
+    /**
+     * Executes an external function
+     */
+    function exec(funcName: string, ...args: any[]): any;
+}
+declare module internal {
+    class Item {
+        private name;
+        private value;
+        private id;
+        private sceneID;
+        private viewID;
+        private static baseID;
+        constructor(props: any);
+        /** Prepare an item for manipulation */
+        static attach(itemID: string, view: number, slot?: number): void;
+        /** Get an item's local property asynchronously */
+        static get(name: string, slot?: number): Promise<string>;
+        /** Sets an item's local property */
+        static set(name: string, value: string, slot?: number): void;
+        /** Calls a function defined in an item/source */
+        static callFunc(func: string, arg: string): void;
+        /** helper function to get current source on init */
+        static setBaseID(id: string): void;
     }
 }
 declare module xui.core {
@@ -396,54 +536,11 @@ declare module xui.core {
     }
 }
 declare module xui.core {
-    import Rectangle = internal.utils.Rectangle;
-    interface IItemLayout {
-        isKeepAspectRatio(): Promise<boolean>;
-        setKeepAspectRatio(value: boolean): any;
-        isPositionLocked(): Promise<boolean>;
-        setPositionLocked(value: boolean): any;
-        isEnhanceResizeEnabled(): Promise<boolean>;
-        setEnhanceResizeEnabled(value: boolean): any;
-        isPixelAlignmentEnabled(): Promise<boolean>;
-        setPixelAlignmentEnabled(value: boolean): any;
-        getPosition(): Promise<Rectangle>;
-        setPosition(value: Rectangle): any;
-    }
-}
-declare module xui.core {
-    import Color = internal.utils.Color;
-    interface IItemColor {
-        getTransparency(): Promise<number>;
-        setTransparency(value: number): any;
-        getBrightness(): Promise<number>;
-        setBrightness(value: number): any;
-        getContrast(): Promise<number>;
-        setContrast(value: number): any;
-        getHue(): Promise<number>;
-        setHue(value: number): any;
-        getSaturation(): Promise<number>;
-        setSaturation(value: number): any;
-        getBorderColor(): Promise<Color>;
-        setBorderColor(value: Color): any;
-    }
-}
-declare module xui.core {
     interface IItemAudio {
         getVolume(): Promise<number>;
         setVolume(value: number): any;
         isMuted(): Promise<boolean>;
         setMuted(value: boolean): any;
-    }
-}
-declare module xui.core {
-    interface IItemWindow {
-        isWindowTracking(): Promise<boolean>;
-        setWindowTracking(value: boolean): any;
-    }
-}
-declare module xui.core {
-    interface IItemVideo {
-        getCuePoints(): Promise<number[]>;
     }
 }
 declare module xui.core {
@@ -489,6 +586,38 @@ declare module xui.core {
     }
 }
 declare module xui.core {
+    import Color = internal.utils.Color;
+    interface IItemColor {
+        getTransparency(): Promise<number>;
+        setTransparency(value: number): any;
+        getBrightness(): Promise<number>;
+        setBrightness(value: number): any;
+        getContrast(): Promise<number>;
+        setContrast(value: number): any;
+        getHue(): Promise<number>;
+        setHue(value: number): any;
+        getSaturation(): Promise<number>;
+        setSaturation(value: number): any;
+        getBorderColor(): Promise<Color>;
+        setBorderColor(value: Color): any;
+    }
+}
+declare module xui.core {
+    import Rectangle = internal.utils.Rectangle;
+    interface IItemLayout {
+        isKeepAspectRatio(): Promise<boolean>;
+        setKeepAspectRatio(value: boolean): any;
+        isPositionLocked(): Promise<boolean>;
+        setPositionLocked(value: boolean): any;
+        isEnhanceResizeEnabled(): Promise<boolean>;
+        setEnhanceResizeEnabled(value: boolean): any;
+        isPixelAlignmentEnabled(): Promise<boolean>;
+        setPixelAlignmentEnabled(value: boolean): any;
+        getPosition(): Promise<Rectangle>;
+        setPosition(value: Rectangle): any;
+    }
+}
+declare module xui.core {
     enum PlaybackEndAction {
         NOTHING = 0,
         REWIND = 1,
@@ -504,6 +633,17 @@ declare module xui.core {
         setPlaybackEndAction(value: PlaybackEndAction): any;
         getPlaybackDuration(): Promise<number>;
         setPlaybackDuration(value: number): any;
+    }
+}
+declare module xui.core {
+    interface IItemVideo {
+        getCuePoints(): Promise<number[]>;
+    }
+}
+declare module xui.core {
+    interface IItemWindow {
+        isWindowTracking(): Promise<boolean>;
+        setWindowTracking(value: boolean): any;
     }
 }
 declare module xui.core {
@@ -531,5 +671,57 @@ declare module xui.core {
         setActiveScene(scene: number): any;
         getActiveScene(): Promise<Scene>;
         getScene(sceneID: number): Promise<Scene>;
+    }
+}
+declare module xui.core {
+    import Rectangle = internal.utils.Rectangle;
+    import Audio = xui.system.Audio;
+    import JSON = internal.utils.JSON;
+    class App {
+        /** Call method of DLL present in Scriptdlls folder */
+        static callDll(): string;
+        /** Gets application's frame time (duration per frame in 100ns unit) */
+        static getFrametime(): Promise<string>;
+        /** Gets application default output resolution */
+        static getResolution(): Promise<Rectangle>;
+        /** Gets application viewport display resolution */
+        static getViewport(): Promise<Rectangle>;
+        /** Refers to XSplit Broadcaster DLL file version number */
+        static getVersion(): Promise<string>;
+        /** Gets the total number of frames rendered */
+        static getFramesRendered(): Promise<string>;
+        /** List of audio input and output devices used by the application */
+        static getAudioDevices(): Promise<Audio[]>;
+        static setAudioDevices(devices: Audio[]): void;
+        static getAudioGain(): Promise<JSON>;
+        static setAudioGain(config: JSON): void;
+        /** Creates a persistent modal dialog */
+        static newDialog(url: string): void;
+        /** Creates a modal dialog that automatically closes on outside click */
+        static newAutoDialog(url: string): void;
+        /** Close a created dialog */
+        static closeDialog(width: Number, height: Number): void;
+        /** Resizes a global script dialog */
+        static resizeSelf(width: Number, height: Number): void;
+        /** Closes a global script dialog */
+        static closeSelf(): void;
+        static TRANSITION_CLOCK: string;
+        static TRANSITION_COLLAPSE: string;
+        static TRANSITION_MOVE_BOTTOM: string;
+        static TRANSITION_MOVE_LEFT: string;
+        static TRANSITION_MOVE_LEFT_RIGHT: string;
+        static TRANSITION_MOVE_RIGHT: string;
+        static TRANSITION_MOVE_TOP: string;
+        static TRANSITION_FAN: string;
+        static TRANSITION_HOLE: string;
+        static TRANSITION_WAVE: string;
+        /** Gets the transition for scene changes. */
+        static getTransition(): Promise<string>;
+        /** Sets the transition for scene changes. */
+        static setTransition(transition: string): void;
+        /** Gets the scene transition duration in milliseconds. */
+        static getTransitionTime(): Promise<Number>;
+        /** Sets the scene transition duration in milliseconds. */
+        static setTransitionTime(time: Number): void;
     }
 }

@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.system {
 
     import App = internal.App;
@@ -12,7 +10,7 @@ module xui.system {
         private modules: string;
 
         constructor(
-            pid ?: Number 
+            pid ?: Number
         ) {
             if(pid !== undefined) {
                 this.setPid(pid);

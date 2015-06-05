@@ -1,5 +1,3 @@
-/// <reference path="../../_references.ts" />
-
 module xui.core {
     import iItem     = internal.Item;
     import Rectangle = internal.utils.Rectangle;
@@ -128,7 +126,7 @@ module xui.core {
                 });
             });
         }
-        
+
         setBorderColor(value: Color) {
             iItem.attach(this.id, this.viewID);
 

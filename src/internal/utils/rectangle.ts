@@ -1,7 +1,5 @@
-/// <reference path="../_references.ts" />
-
 module internal.utils {
-    
+
     export class Rectangle {
         private top: number;
         private left: number;
@@ -21,7 +19,7 @@ module internal.utils {
 
             if (this.bottom !== undefined) {
                 this.setHeight(Math.abs(this.top - this.bottom));
-            } 
+            }
             else if (this.height !== undefined) {
                 this.setBottom(this.top + this.height);
             }

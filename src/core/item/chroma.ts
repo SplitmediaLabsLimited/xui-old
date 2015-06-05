@@ -1,5 +1,3 @@
-/// <reference path="../../_references.ts" />
-
 module xui.core {
     import iItem = internal.Item;
     import Color = internal.utils.Color;
@@ -240,7 +238,7 @@ module xui.core {
                 });
             });
         }
-        
+
         setChromaThresholdAA(value: number) {
             iItem.attach(this.id, this.viewID);
 

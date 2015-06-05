@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.system {
 
     import u   =  internal.utils;
@@ -50,7 +48,7 @@ module xui.system {
             this.hwlevel              = props['hwlevel'];
         }
 
-        /** 
+        /**
          * ID from WASAPI (microphone or speaker) or "default" or
          * "default:<data_flow>" or "default:<data_flow>:<role>"
          */
@@ -83,8 +81,8 @@ module xui.system {
             return this.dataflow;
         }
 
-        /** 
-         * State of the device. Value can be "Active", "Disabled", 
+        /**
+         * State of the device. Value can be "Active", "Disabled",
          * "Not Present", or "Unplugged"
          */
         getState(): string {
@@ -177,7 +175,7 @@ module xui.system {
             device['hwlevel']  = this.getSystemLevel();
             device['hwenable'] = this.isSystemEnabled() ? 1 : 0;
             device['delay']    = this.getDelay();
-            
+
             return u.XML.parseJSON(device).toString();
         }
 
@@ -186,24 +184,24 @@ module xui.system {
             filters          = filters || { dataflow: 'all', state: 'all' };
             filters.dataflow = filters.dataflow || 'all';
             filters.state    = filters.state || 'all';
-            
+
             return new Promise((resolve) => {
                 App.getAsList('wasapienum').then((devices: u.JSON[]) => {
-                    
+
                     var audioDevices: Audio[] = []
 
                     devices.map((device) => {
                         var excludedDataFlow =
                             !/^all$/i.test(filters.dataflow) &&
                             filters.dataflow !== device['dataflow'];
-                            
+
                         var excludedState = !/^all$/i.test(filters.state) &&
                             filters.state !== device['state'];
 
                         if (excludedDataFlow || excludedState) {
                             return;
                         }
-                        
+
                         audioDevices.push(Audio.parse(device));
                     });
 
@@ -221,12 +219,12 @@ module xui.system {
                 dataflow:   deviceJSON['dataflow'],
                 state:      deviceJSON['state'],
                 guid:       deviceJSON['dsoundguid'],
-                
-                defaultCommunication: 
+
+                defaultCommunication:
                     (deviceJSON['defaultcommunication'] === '1'),
-                defaultConsole: 
+                defaultConsole:
                     (deviceJSON['defaultconsole'] === '1'),
-                defaultMultimedia: 
+                defaultMultimedia:
                     (deviceJSON['defaultmultimedia'] === '1')
             });
 

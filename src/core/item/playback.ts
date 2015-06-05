@@ -1,5 +1,3 @@
-/// <reference path="../../_references.ts" />
-
 module xui.core {
     import iItem = internal.Item;
 
@@ -86,7 +84,7 @@ module xui.core {
                 });
             });
         }
-        
+
         setPlaybackDuration(value: number) {
             iItem.attach(this.id, this.viewID);
 

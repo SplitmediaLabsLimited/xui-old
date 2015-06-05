@@ -1,5 +1,3 @@
-/// <reference path="../../_references.ts" />
-
 module xui.core {
     import iItem = internal.Item;
 
@@ -41,7 +39,7 @@ module xui.core {
                 });
             });
         }
-        
+
         setMuted(value: boolean) {
             iItem.attach(this.id, this.viewID);
 

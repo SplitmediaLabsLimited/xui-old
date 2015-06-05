@@ -1,5 +1,3 @@
-/// <reference path="_references.ts" />
-
 module internal {
     import u = internal.utils;
 
@@ -11,7 +9,7 @@ module internal {
         static get(name: string): Promise<string> {
             return new Promise((resolve) => {
                 internal.exec('AppGetPropertyAsync', name, resolve);
-            });    
+            });
         }
 
         /** Gets the value of the given property as list */
@@ -20,11 +18,11 @@ module internal {
                 App.get(name).then((xml: string) => {
                     let propsJSON: u.JSON = u.JSON.parse(xml),
                         propsArr: u.JSON[] = [];
-                    
+
                     if (propsJSON.children.length > 0) {
                         propsArr = propsJSON.children;
                     }
-                    
+
                     resolve(propsArr);
                 });
             });
@@ -69,7 +67,7 @@ module internal {
                 });
                 internal.exec.apply(this, args);
             });
-            
+
         }
     }
 }

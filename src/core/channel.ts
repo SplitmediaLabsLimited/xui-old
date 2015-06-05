@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.core {
     import iApp = internal.App;
 

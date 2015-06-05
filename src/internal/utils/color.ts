@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module internal.utils {
 
     export class Color {
@@ -23,7 +21,7 @@ module internal.utils {
             if (props.bgr) {
                 this.setBgr(props.bgr);
             }
-            
+
             if (props.ibgr) {
                 this.setIbgr(props.ibgr);
             }
@@ -39,7 +37,7 @@ module internal.utils {
             this.rgb = rgb.replace(/^#/, '');
             this.irgb = parseInt(this.rgb, 16);
 
-            this.bgr = [this.rgb.substring(4, 6), this.rgb.substring(2, 4), 
+            this.bgr = [this.rgb.substring(4, 6), this.rgb.substring(2, 4),
                 this.rgb.substring(0, 2)].join('');
             this.ibgr = parseInt(this.bgr, 16);
         }
@@ -51,7 +49,7 @@ module internal.utils {
 
         /** Sets BGR value */
         setBgr(bgr: string) {
-            this.setRgb([bgr.substring(4, 6), bgr.substring(2, 4), 
+            this.setRgb([bgr.substring(4, 6), bgr.substring(2, 4),
                 bgr.substring(0, 2)
             ].join(''));
         }

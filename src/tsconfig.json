@@ -1,0 +1,41 @@
+{
+    "version": "1.5.0-alpha",
+    "compilerOptions": {
+        "target": "es5",
+        "outDir": "dist/",
+        "out": "xui.js",
+        "module": "",
+        "declaration": true
+    },
+    "compileOnSave": false,
+    "files": [
+        "./internal/utils/color.ts",
+        "./internal/utils/json.ts",
+        "./internal/utils/mixin.ts",
+        "./internal/utils/point.ts",
+        "./internal/utils/rectangle.ts",
+        "./internal/utils/thread.ts",
+        "./internal/utils/xml.ts",
+        "./system/audio.ts",
+        "./system/game.ts",
+        "./system/process.ts",
+        "./defs/es6-promise.d.ts",
+        "./internal/app.ts",
+        "./internal/environment.ts",
+        "./internal/init.ts",
+        "./internal/internal.ts",
+        "./internal/item.ts",
+        "./core/channel.ts",
+        "./core/item.ts",
+        "./core/item/audio.ts",
+        "./core/item/chroma.ts",
+        "./core/item/color.ts",
+        "./core/item/layout.ts",
+        "./core/item/playback.ts",
+        "./core/item/video.ts",
+        "./core/item/window.ts",
+        "./core/scene.ts",
+        "./core/view.ts",
+        "./core/app.ts"
+    ]
+}

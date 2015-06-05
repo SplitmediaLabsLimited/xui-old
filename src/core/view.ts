@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.core {
     import iApp = internal.App;
     import Scene = xui.core.Scene;
@@ -12,7 +10,7 @@ module xui.core {
     export class View {
 
         private id: number;
-        
+
         constructor(id: number) {
             this.id = id || 0;
         }

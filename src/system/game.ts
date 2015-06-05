@@ -1,5 +1,3 @@
-/// <reference path="../_references.ts" />
-
 module xui.system {
 
     import Rectangle   =  internal.utils.Rectangle;
@@ -75,7 +73,7 @@ module xui.system {
         getLastFrameTimestamp() {
             return this.lastframets;
         }
-        
+
         static parse(json: JSON): Game {
             var g = new Game();
 

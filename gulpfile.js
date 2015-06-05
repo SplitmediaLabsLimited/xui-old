@@ -3,7 +3,7 @@
 (function()
 {
 	'use strict';
-	
+
 	var gulp       = require('gulp'),
 		typescript = require('gulp-tsc'),
 		typedoc    = require('gulp-typedoc'),
@@ -11,72 +11,45 @@
 		through    = require('through2'),
 		fs         = require('fs'),
 		merge      = require('merge2'),
+		debug      = require('gulp-debug'),
 		concat     = require('gulp-concat');
 
-	var INTERNAL_REF_FILE = 'src/internal/_references.ts',
-		INTERNAL_FILENAME = 'internal.js',
-		XUI_REF_FILE      = 'src/_references.ts',
-		XUI_FILENAME      = 'xui.js',
+	var XUI_FILENAME      = 'xui.js',
 		DIST_PATH         = 'dist/',
 		PLG_CONFIG_PATH   = 'src/config/',
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
-		PLG_CONFIG_FILE   = 'ConfigWindow.js';
-
-	var TEST_REF_FILE = 'test/specs/_references.ts';
-
-	var TYPEDOC_FILE  = './dist/xui.d.ts';
+		PLG_CONFIG_FILE   = 'ConfigWindow.js',
+		TEST_REF_FILE     = 'test/specs/_references.ts',
+		TYPEDOC_FILE      = './dist/xui.d.ts';
 
 	var TYPEDOC_CONFIG = {
-		mode: 	'file', 
-		out: 	'./docs/', 
-		name: 	'XUI Plugin Framework', 
+		mode: 	'file',
+		out: 	'./docs/',
+		name: 	'XUI Plugin Framework',
 		target: 'ES5',
 		theme: 	'minimal',
 		readme: 'none',
 		includeDeclarations: true
 	};
 
+	gulp.task('default', ['compile-xui', 'merge']);
 
-	gulp.task('default', [
-		'compile-internal', 'compile-xui', 'merge'
-	]);
+	gulp.task('compile-xui', function() {
+		// This is evil, but alas, we got no choice
+		var configBuffer = fs.readFileSync('./src/tsconfig.json');
+		var config = JSON.parse(configBuffer.toString());
 
-	gulp.task('compile-internal', function() {
-		return gulp.src(INTERNAL_REF_FILE)
-			.pipe(typescript({
-				declaration: true,
-				outDir: 	 DIST_PATH,
-				out: 		 INTERNAL_FILENAME
-			}))
-			.pipe(gulp.dest(DIST_PATH));
-	});
+		for (var i = 0; i < config.files.length; i++) {
+			config.files[i] = './src' + config.files[i].substr(1);
+		}
 
-	gulp.task('compile-xui', ['compile-internal'], function() {
-		return gulp.src(XUI_REF_FILE)
-			.pipe(typescript({
-				declaration: true,
-				outDir: 	 DIST_PATH,
-				out: 		 XUI_FILENAME
-			}))
+		return gulp.src(config.files)
+			.pipe(typescript(config.compilerOptions))
 			.pipe(gulp.dest(DIST_PATH));
 	});
 
 	gulp.task('merge', ['compile-xui'], function() {
-		var xuiFile = gulp.src([DIST_PATH + XUI_FILENAME])
-			.pipe(through.obj(function(file, encoding, callback) {
-				var internalPath =  DIST_PATH + INTERNAL_FILENAME;
-
-				if (file.isBuffer()) {
-					file.contents = Buffer.concat([
-						fs.readFileSync(internalPath), file.contents
-					]);
-				}
-
-				fs.unlinkSync(internalPath);
-				
-				callback(null, file);
-			}));
-
+		var xuiFile = gulp.src([DIST_PATH + XUI_FILENAME]);
 		var plgDep = gulp.src([PLG_CONFIG_PATH + PLG_DEPENDENCY]);
 		var plgConfig = gulp.src([PLG_CONFIG_PATH + PLG_CONFIG_FILE]);
 

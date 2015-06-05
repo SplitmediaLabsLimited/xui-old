@@ -1,5 +1,3 @@
-/// <reference path='../_references.ts' />
-
 module internal.utils {
     export function applyMixins(derivedCtor: any, baseCtors: any[]) {
         baseCtors.forEach(baseCtor => {
