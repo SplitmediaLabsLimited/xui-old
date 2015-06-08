@@ -10,7 +10,7 @@ module xui.core {
         setMuted(value: boolean);
     }
 
-    export class ItemAudio implements IItemAudio {
+    class ItemAudio implements IItemAudio {
         private id: string;
         private viewID: number;
 
@@ -48,4 +48,6 @@ module xui.core {
             iItem.set('prop:mute', value ? '1' : '0');
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemAudio]);
 }

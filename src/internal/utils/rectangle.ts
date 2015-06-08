@@ -118,15 +118,15 @@ module internal.utils {
                 rect = new Rectangle();
 
             if (params.length === 4) {
-                rect.top = Number(params[0]);
-                rect.left = Number(params[1]);
-                rect.right = Number(params[2]);
-                rect.bottom = Number(params[3]);
+                rect.setTop(Number(params[0]));
+                rect.setLeft(Number(params[1]));
+                rect.setRight(Number(params[2]));
+                rect.setBottom(Number(params[3]));
             }
 
             if (params.length === 2) {
-                rect.width = Number(params[0]);
-                rect.height = Number(params[1]);
+                rect.setWidth(Number(params[0]));
+                rect.setHeight(Number(params[1]));
             }
             return rect;
         }

@@ -384,23 +384,4 @@ module xui.core {
         /** Set Playback Duration */
         setPlaybackDuration:  (value: number) => void;
     }
-
-    function applyMixins(derivedCtor: any, baseCtors: any[]) {
-        baseCtors.forEach(baseCtor => {
-            Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-                if (name === 'constructor') return;
-                derivedCtor.prototype[name] = baseCtor.prototype[name];
-            })
-        });
-    }
-
-    applyMixins(Item, [
-        ItemLayout,
-        ItemColor,
-        ItemAudio,
-        ItemWindow,
-        ItemVideo,
-        ItemChroma,
-        ItemPlayback
-    ]);
 }

@@ -22,14 +22,20 @@
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
 		PLG_CONFIG_FILE   = 'ConfigWindow.js';
 
+	var TEST_REF_FILE = 'test/specs/_references.ts';
+
+	var TYPEDOC_FILE  = './dist/xui.d.ts';
+
 	var TYPEDOC_CONFIG = {
 		mode: 	'file', 
 		out: 	'./docs/', 
 		name: 	'XUI Plugin Framework', 
 		target: 'ES5',
 		theme: 	'minimal',
-		readme: 'none'
+		readme: 'none',
+		includeDeclarations: true
 	};
+
 
 	gulp.task('default', [
 		'compile-internal', 'compile-xui', 'merge'
@@ -82,10 +88,19 @@
 
 
 	gulp.task('generate-typedoc', ['merge'], function() {
-		return gulp.src([XUI_REF_FILE]).pipe(typedoc(TYPEDOC_CONFIG));
+		return gulp.src(TYPEDOC_FILE).pipe(typedoc(TYPEDOC_CONFIG));
 	});
 
 	gulp.task('watch', function() {
 		gulp.watch('src/**/*.ts', ['default']);
+	});
+
+	gulp.task('generate-test', function() {
+		gulp.src(TEST_REF_FILE)
+			.pipe(typescript({
+				outDir: './test/',
+				out: 'specs.js'
+			}))
+			.pipe(gulp.dest('./test/'));
 	});
 })();

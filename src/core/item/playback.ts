@@ -21,7 +21,7 @@ module xui.core {
         setPlaybackDuration(value: number);
     }
 
-    export class ItemPlayback implements IItemPlayback {
+    class ItemPlayback implements IItemPlayback {
         id: string;
         viewID: number;
 
@@ -93,4 +93,6 @@ module xui.core {
             iItem.set('sync:duration', String(value));
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemPlayback]);
 }

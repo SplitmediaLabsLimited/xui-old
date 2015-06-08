@@ -120,6 +120,9 @@ declare module internal.utils {
         static parse(xml: any): JSON;
     }
 }
+declare module internal.utils {
+    function applyMixins(derivedCtor: any, baseCtors: any[]): void;
+}
 interface Window {
     OnAsyncCallback: Function;
     OnSceneLoad: Function;

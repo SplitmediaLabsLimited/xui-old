@@ -17,7 +17,7 @@ module xui.core {
         setPosition(value: Rectangle);
     }
 
-    export class ItemLayout implements IItemLayout {
+    class ItemLayout implements IItemLayout {
         private id: string;
         private viewID: number;
         private position: Rectangle;
@@ -106,4 +106,6 @@ module xui.core {
             iItem.set('prop:pos', value.toString());
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemLayout]);
 }

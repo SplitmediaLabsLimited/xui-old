@@ -7,7 +7,7 @@ module xui.core {
         getCuePoints(): Promise<number[]>;
     }
 
-    export class ItemVideo implements IItemVideo {
+    class ItemVideo implements IItemVideo {
         id: string;
         viewID: number;
         
@@ -30,4 +30,6 @@ module xui.core {
             });
         }
     }
+
+    internal.utils.applyMixins(Item, [ItemVideo]);
 }
