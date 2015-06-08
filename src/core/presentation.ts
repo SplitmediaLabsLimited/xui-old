@@ -37,6 +37,7 @@ module xui.core {
                     let sceneNode: any = {};
                     sceneNode['tag'] = 'placement';
                     sceneNode['name'] = this.sceneDetails[i]['name'];
+                    sceneNode['defpos'] = this.sceneDetails[i]['defpos'];
 
                     let sceneItems = this.sceneDetails[i]['items'];
 
@@ -54,11 +55,11 @@ module xui.core {
 
                 let globalNode: any = {};
                 globalNode['tag'] = 'global';
-                let globalItems = this.global;
+                let globalItems = this.global['children'];
 
                 if (globalItems !== undefined) {
                     for (var k = 0; k < globalItems['length']; k++) {
-                        globalItems[k]['id'] = XML.encode(globalItems[k]['io']);
+                        globalItems[k]['id'] = XML.encode(globalItems[k]['id']);
                     }
 
                     globalNode['children'] = globalItems;

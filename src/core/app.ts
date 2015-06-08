@@ -11,8 +11,10 @@ module xui.core {
     import Scene = xui.core.Scene;
 
     function createSceneXML(scene: Scene): Promise<Scene> {
+        let id = scene.getID();
+
         return new Promise(resolve => {
-            iApp.getAsList('presetconfig:' + scene.getID())
+            let initPromise = iApp.getAsList('presetconfig:' + id)
                 .then(jsonArr => {
                     scene['items'] = jsonArr;
                     return scene;
@@ -22,6 +24,17 @@ module xui.core {
                         resolve(scene);
                     });
                 });
+
+            let defposPromise = iApp.get('presetconfig:' + id).then(xml => {
+                return JSON.parse(xml)['defpos'];
+            });
+
+            defposPromise.then(pos => {
+                scene['defpos'] = pos;
+                return scene;
+            }).then(scene => {
+                return initPromise;
+            });
         });
     }
 
