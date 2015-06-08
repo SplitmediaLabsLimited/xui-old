@@ -14,26 +14,15 @@ module xui.core {
         let id = scene.getID();
 
         return new Promise(resolve => {
-            let initPromise = iApp.getAsList('presetconfig:' + id)
-                .then(jsonArr => {
-                    scene['items'] = jsonArr;
-                    return scene;
-                }).then(scene => {
-                    scene.getName().then(name => {
-                        scene['name'] = name;
-                        resolve(scene);
-                    });
-                });
-
-            let defposPromise = iApp.get('presetconfig:' + id).then(xml => {
-                return JSON.parse(xml)['defpos'];
-            });
-
-            defposPromise.then(pos => {
-                scene['defpos'] = pos;
-                return scene;
-            }).then(scene => {
-                return initPromise;
+            iApp.get('presetconfig:' + id).then(xml => {
+                return JSON.parse(xml);
+            }).then(xml => {
+                scene['defpos'] = xml['defpos'];
+                scene['items'] = xml.children !== undefined ? xml.children : [];
+                return scene.getName();
+            }).then(name => {
+                scene['name'] = name;
+                resolve(scene);
             });
         });
     }
