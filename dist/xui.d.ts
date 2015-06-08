@@ -142,6 +142,23 @@ declare module xui.system {
     }
 }
 declare module xui.core {
+    class Window {
+        private _hwnd;
+        private _pid;
+        private _title;
+        private _state;
+        private _detail;
+        hwnd: number;
+        pid: number;
+        detail: string;
+        title: string;
+        state: number;
+        static parse(args: {
+            hwnd: number;
+        }): Window;
+    }
+}
+declare module xui.core {
     import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
     import Color = internal.utils.Color;

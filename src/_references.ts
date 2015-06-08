@@ -6,6 +6,7 @@
 /// <reference path="system/video.ts" />
 /// <reference path="system/process.ts" />
 /// <reference path="system/game.ts" />
+/// <reference path="system/window.ts" />
 
 /// <reference path="core/item.ts" />
 /// <reference path="core/item/layout.ts" />

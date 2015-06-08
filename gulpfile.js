@@ -46,7 +46,8 @@
 			.pipe(typescript({
 				declaration: true,
 				outDir: 	 DIST_PATH,
-				out: 		 INTERNAL_FILENAME
+				out: 		 INTERNAL_FILENAME,
+				target:      'es5'
 			}))
 			.pipe(gulp.dest(DIST_PATH));
 	});
@@ -56,7 +57,8 @@
 			.pipe(typescript({
 				declaration: true,
 				outDir: 	 DIST_PATH,
-				out: 		 XUI_FILENAME
+				out: 		 XUI_FILENAME,
+				target:      'es5'
 			}))
 			.pipe(gulp.dest(DIST_PATH));
 	});
