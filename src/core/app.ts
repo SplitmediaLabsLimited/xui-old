@@ -230,5 +230,22 @@ module xui.core {
                 });
             });
         }
+
+        /** Loads a Presentation object **/
+        static load(pres: Presentation): void {
+            pres.toXML().then(xml => {
+                iApp.callFunc('loadpresets', xml.toString());
+            });
+        }
+
+        /** Saves the current presentation to a file path **/
+        static save(filename: string): void {
+            iApp.callFunc('savepresets', filename);
+        }
+
+        /** Clear the presentation, and go to the first scene **/
+        static clearPresentation(): void {
+            iApp.callFunc('newpresets', '');
+        }
     }
 }
