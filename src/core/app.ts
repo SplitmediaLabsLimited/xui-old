@@ -207,7 +207,7 @@ module xui.core {
                 }).then(scenes => {
                     return Promise.all(
                         scenes.map((scene, index, scenes) => {
-                            if (index !== scenes.length - 1) {
+                            if (index !== scenes.length) {
                                 return createSceneXML(scene);
                             }
                             else return Promise.resolve(scene);
