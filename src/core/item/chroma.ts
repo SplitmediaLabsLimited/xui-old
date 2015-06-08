@@ -48,8 +48,8 @@ module xui.core {
     }
 
     class ItemChroma implements IItemChroma {
-        id: string;
-        viewID: number;
+        private id: string;
+        private viewID: number;
 
         isChromaEnabled(): Promise<boolean> {
             return new Promise((resolve) => {

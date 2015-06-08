@@ -8,8 +8,8 @@ module xui.core {
     }
 
     class ItemVideo implements IItemVideo {
-        id: string;
-        viewID: number;
+        private id: string;
+        private viewID: number;
         
         getCuePoints(): Promise<number[]> {
             return new Promise((resolve) => {

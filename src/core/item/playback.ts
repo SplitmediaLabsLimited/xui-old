@@ -22,8 +22,8 @@ module xui.core {
     }
 
     class ItemPlayback implements IItemPlayback {
-        id: string;
-        viewID: number;
+        private id: string;
+        private viewID: number;
 
         getPlaybackStartPos(): Promise<number> {
             return new Promise((resolve) => {

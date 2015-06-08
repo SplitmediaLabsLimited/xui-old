@@ -9,8 +9,8 @@ module xui.core {
     }
 
     class ItemWindow implements IItemWindow {
-        id: string;
-        viewID: number;
+        private id: string;
+        private viewID: number;
 
         isWindowTracking(): Promise<boolean> {
             return new Promise((resolve) => {

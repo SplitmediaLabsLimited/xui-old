@@ -524,6 +524,12 @@ declare module xui.core {
         /** Sets the scene transition duration in milliseconds. */
         static setTransitionTime(time: Number): void;
         static getCurrentPresentation(): Promise<Presentation>;
+        /** Loads a Presentation object **/
+        static load(pres: Presentation): void;
+        /** Saves the current presentation to a file path **/
+        static save(filename: string): void;
+        /** Clear the presentation, and go to the first scene **/
+        static clearPresentation(): void;
     }
 }
 declare module xui.core {
