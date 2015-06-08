@@ -3,6 +3,7 @@
 /// <reference path="../dist/internal.d.ts" />
 
 /// <reference path="system/audio.ts" />
+/// <reference path="system/video.ts" />
 /// <reference path="system/process.ts" />
 /// <reference path="system/game.ts" />
 
