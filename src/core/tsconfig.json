@@ -1,0 +1,32 @@
+{
+    "version": "1.5.0-alpha",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./app.ts",
+        "./channel.ts",
+        "./item.ts",
+        "./item/audio.ts",
+        "./item/chroma.ts",
+        "./item/color.ts",
+        "./item/layout.ts",
+        "./item/playback.ts",
+        "./item/video.ts",
+        "./item/window.ts",
+        "./presentation.ts",
+        "./scene.ts",
+        "./view.ts"
+    ]
+}

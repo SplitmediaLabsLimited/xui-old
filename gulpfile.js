@@ -4,14 +4,15 @@
 {
 	'use strict';
 	
-	var gulp       = require('gulp'),
-		typescript = require('gulp-tsc'),
-		typedoc    = require('gulp-typedoc'),
-		uglify 	   = require('gulp-uglify'),
-		through    = require('through2'),
-		fs         = require('fs'),
-		merge      = require('merge2'),
-		concat     = require('gulp-concat');
+	var gulp        = require('gulp'),
+		typescript  = require('gulp-tsc'),
+		typedoc     = require('gulp-typedoc'),
+		uglify 	    = require('gulp-uglify'),
+		through     = require('through2'),
+		fs          = require('fs'),
+		merge       = require('merge2'),
+		concat      = require('gulp-concat'),
+		browserSync = require('browser-sync');
 
 	var INTERNAL_REF_FILE = 'src/internal/_references.ts',
 		INTERNAL_FILENAME = 'internal.js',
@@ -97,12 +98,19 @@
 		gulp.watch('src/**/*.ts', ['default']);
 	});
 
-	gulp.task('generate-test', function() {
-		gulp.src(TEST_REF_FILE)
-			.pipe(typescript({
-				outDir: './test/',
-				out: 'specs.js'
-			}))
-			.pipe(gulp.dest('./test/'));
+	gulp.task('test', function() {
+		browserSync.init({
+		    open: false,
+		    port: 9000,
+		    server: {
+				baseDir: ['./'],
+				middleware: function (req, res, next) {
+					res.setHeader('Access-Control-Allow-Origin', '*');
+					next();
+				}
+		    }
+		});
+		
+		gulp.watch('./test/specs/**/*.js', [browserSync.reload]);
 	});
 })();
