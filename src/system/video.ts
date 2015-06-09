@@ -17,7 +17,7 @@ module xui.system {
             this.disp = props['disp'];
         }
 
-        parse(deviceJSON: JSON): VideoDevice {
+        static parse(deviceJSON: JSON): VideoDevice {
             var vid = new VideoDevice({
                 name: deviceJSON['name'],
                 disp: deviceJSON['disp']

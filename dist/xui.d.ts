@@ -82,7 +82,7 @@ declare module xui.system {
         private name;
         private disp;
         constructor(props?: {});
-        parse(deviceJSON: JSON): VideoDevice;
+        static parse(deviceJSON: JSON): VideoDevice;
         toXML(): XML;
     }
 }
@@ -179,6 +179,35 @@ declare module xui.system {
         static parse(args: {
             hwnd: number;
         }): Window;
+    }
+}
+declare module xui.system {
+    import Window = xui.system.Window;
+    enum AudioDeviceDataflow {
+        RENDER = 1,
+        CAPTURE = 2,
+        ALL = 3,
+    }
+    enum AudioDeviceState {
+        ACTIVE = 1,
+        DISABLED = 2,
+        UNPLUGGED = 4,
+        NOTPRESENT = 8,
+        ALL = 15,
+    }
+    class System {
+        /** List audio input and output devices */
+        static getAudioDevices(dataflow?: AudioDeviceDataflow, state?: AudioDeviceState): Promise<Audio[]>;
+        /** List video devices */
+        static getVideoDevices(): Promise<VideoDevice[]>;
+        /** List currently running games */
+        static getGames(): Promise<Game[]>;
+        /** Get currently running process */
+        static getProcesses(): Promise<Process[]>;
+        /** Lists all visible windows */
+        static getVisibleWindows(): Promise<Window[]>;
+        /** Gets the active or foreground window */
+        static getActiveWindow(): Promise<Window>;
     }
 }
 declare module xui.core {
@@ -509,7 +538,7 @@ declare module xui.core {
         private sceneDetails;
         private global;
         constructor(props: {});
-        toXML(): Promise<XML>;
+        toXML(): XML;
     }
 }
 declare module xui.core {

@@ -233,9 +233,7 @@ module xui.core {
 
         /** Loads a Presentation object **/
         static load(pres: Presentation): void {
-            pres.toXML().then(xml => {
-                iApp.callFunc('loadpresets', xml.toString());
-            });
+            iApp.callFunc('loadpresets', pres.toXML().toString());
         }
 
         /** Saves the current presentation to a file path **/
