@@ -24,50 +24,48 @@ module xui.core {
             this.global = props['global'];
         }
 
-        toXML(): Promise<XML> {
-            return new Promise(resolve => {
-                let xml = new JSON();
-                xml['tag'] = 'configuration';
-                xml['cur'] = this.currentScene.getID();
-                xml['Version'] = this.version;
-                xml['children'] = [];
+        toXML(): XML {
+            let xml = new JSON();
+            xml['tag'] = 'configuration';
+            xml['cur'] = this.currentScene.getID();
+            xml['Version'] = this.version;
+            xml['children'] = [];
 
-                for (var i = 0; i < this.sceneDetails.length; i++) {
-                    let scene = this.sceneDetails[i];
-                    let sceneNode: any = {};
-                    sceneNode['tag'] = 'placement';
-                    sceneNode['name'] = this.sceneDetails[i]['name'];
-                    sceneNode['defpos'] = this.sceneDetails[i]['defpos'];
+            for (var i = 0; i < this.sceneDetails.length; i++) {
+                let scene = this.sceneDetails[i];
+                let sceneNode: any = {};
+                sceneNode['tag'] = 'placement';
+                sceneNode['name'] = this.sceneDetails[i]['name'];
+                sceneNode['defpos'] = this.sceneDetails[i]['defpos'];
 
-                    let sceneItems = this.sceneDetails[i]['items'];
+                let sceneItems = this.sceneDetails[i]['items'];
 
-                    for (var j = 0; j < sceneItems.length; j++) {
-                        let item = sceneItems[j]['item'];
-                        if (item !== undefined) {
-                            sceneItems[j]['item'] = XML.encode(item);
-                        }
-                        sceneItems[j]['name'] = XML.encode(sceneItems[j]['name']);
+                for (var j = 0; j < sceneItems.length; j++) {
+                    let item = sceneItems[j]['item'];
+                    if (item !== undefined) {
+                        sceneItems[j]['item'] = XML.encode(item);
                     }
-
-                    sceneNode['children'] = sceneItems;
-                    xml['children'].push(sceneNode);
+                    sceneItems[j]['name'] = XML.encode(sceneItems[j]['name']);
                 }
 
-                let globalNode: any = {};
-                globalNode['tag'] = 'global';
-                let globalItems = this.global['children'];
+                sceneNode['children'] = sceneItems;
+                xml['children'].push(sceneNode);
+            }
 
-                if (globalItems !== undefined) {
-                    for (var k = 0; k < globalItems['length']; k++) {
-                        globalItems[k]['id'] = XML.encode(globalItems[k]['id']);
-                    }
+            let globalNode: any = {};
+            globalNode['tag'] = 'global';
+            let globalItems = this.global['children'];
 
-                    globalNode['children'] = globalItems;
-                    xml['children'].push(globalNode);
+            if (globalItems !== undefined) {
+                for (var k = 0; k < globalItems['length']; k++) {
+                    globalItems[k]['id'] = XML.encode(globalItems[k]['id']);
                 }
 
-                resolve(XML.parseJSON(xml));
-            });
+                globalNode['children'] = globalItems;
+                xml['children'].push(globalNode);
+            }
+
+            return XML.parseJSON(xml);
         }
     }
 
