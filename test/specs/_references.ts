@@ -7,3 +7,5 @@
 /// <reference path="core/app.ts" />
 /// <reference path="core/view.ts" />
 /// <reference path="core/item.ts" />
+
+/// <reference path="system/window.ts" />

@@ -76,6 +76,17 @@ declare module xui.system {
     }
 }
 declare module xui.system {
+    import JSON = internal.utils.JSON;
+    import XML = internal.utils.XML;
+    class VideoDevice {
+        private name;
+        private disp;
+        constructor(props?: {});
+        parse(deviceJSON: JSON): VideoDevice;
+        toXML(): XML;
+    }
+}
+declare module xui.system {
     class Process {
         private pid;
         private detail;
@@ -141,7 +152,19 @@ declare module xui.system {
         toXML(): XML;
     }
 }
-declare module xui.core {
+declare module xui.system {
+    enum WindowState {
+        HIDE = 0,
+        SHOWNORMAL = 1,
+        SHOWMINIMIZED = 2,
+        MAXIMIZE = 3,
+        SHOWNOACTIVATE = 4,
+        SHOW = 5,
+        MINIMIZE = 6,
+        SHOWMINNOACTIVE = 7,
+        SHOWNA = 8,
+        RESTORE = 9,
+    }
     class Window {
         private _hwnd;
         private _pid;
@@ -152,7 +175,7 @@ declare module xui.core {
         pid: number;
         detail: string;
         title: string;
-        state: number;
+        state: WindowState;
         static parse(args: {
             hwnd: number;
         }): Window;

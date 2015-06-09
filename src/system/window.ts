@@ -1,9 +1,9 @@
 /// <reference path="../_references.ts" />
 
-module xui.core {
+module xui.system {
     import iApp = internal.App;
 
-    enum WindowState {
+    export enum WindowState {
         HIDE,
         SHOWNORMAL,
         SHOWMINIMIZED,
@@ -20,7 +20,7 @@ module xui.core {
         private _hwnd: number;
         private _pid: number;
         private _title: string;
-        private _state: number;
+        private _state: WindowState;
         private _detail: string;
 
         get hwnd(): number {
@@ -64,12 +64,12 @@ module xui.core {
             this._title = val;
         }
 
-        get state(): number {
+        get state(): WindowState {
             return this._state;
         }
 
-        set state(val: number) {
-            this._state = Number(val);
+        set state(val: WindowState) {
+            this._state = val;
         }
 
         static parse(args: { hwnd: number }): Window {

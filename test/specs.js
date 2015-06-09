@@ -126,10 +126,40 @@ describe('xui.core.Item', function () {
         });
     });
 });
+/// <reference path="../_references.ts" />
+var iApp = internal.App;
+var sWindow = xui.system.Window;
+describe('xui.system.Window', function () {
+    var hwnd;
+    var win;
+    beforeEach(function () {
+        hwnd = Number(iApp.callDll('xsplit.GetForegroundWindow'));
+        win = sWindow.parse({ hwnd: hwnd });
+    });
+    it('hwnd should be a number', function () {
+        expect(typeof hwnd).toBe('number');
+    });
+    it('Window.hwnd should be eqaul to hwnd', function () {
+        expect(win.hwnd === hwnd).toBeTruthy();
+    });
+    it('Window.pid should be a number', function () {
+        expect(typeof win.pid).toBe('number');
+    });
+    it('Window.title should be a string', function () {
+        expect(typeof win.title).toBe('string');
+    });
+    it('Window.state should be a number', function () {
+        expect(typeof win.state).toBe('number');
+    });
+    it('Window.detail should be a string', function () {
+        expect(typeof win.detail).toBe('string');
+    });
+});
 /// <reference path="../../dist/xui.d.ts" />
 /// <reference path="../defs/jasmine.d.ts" />
 /// <reference path="matchers.d.ts" />
 /// <reference path="matchers.ts" />
 /// <reference path="core/app.ts" />
 /// <reference path="core/view.ts" />
-/// <reference path="core/item.ts" /> 
+/// <reference path="core/item.ts" />
+/// <reference path="system/window.ts" /> 
