@@ -32,7 +32,7 @@ module xui.core {
                 var ret: Array<Scene> = [];
                 var regex: RegExp    = new RegExp(filter['name'], 'gi');
 
-                iApp.getAsList('presetconfig').then((config) => {
+                iApp.getAsList('presetconfig').then(config => {
                     for (var i = 0; i < config.length; i++) {
                         if ((filter['name'] && regex.test(config[i]['name'])) ||
                             filter['id'] === (i + 1) ||
@@ -88,36 +88,36 @@ module xui.core {
             var pItems: Array<Item> = [];
 
             // @TODO: Discuss if this is an 'ok' approach
-            var _parseItems = (resolve) => {
-                pItems.forEach((item, i) => {
-                    item.getID().then((id) => {
+            var _parseItems = resolve => {
+                pItems.forEach((item, idx) => {
+                    item.getID().then(id => {
                         if (Number(id) === iID) {
                             matches.push(item);
                         } else {
                             return item.getName();
                         }
-                    }).then((name) => {
+                    }).then(name => {
                         if (name.match(keyword) !== null) {
                             matches.push(item);
                         } else {
                             return item.getValue();
                         }
-                    }).then((val) => {
+                    }).then(val => {
                         if (val.value.match(keyword) !== null) {
                             matches.push(item);
                         }
 
-                        if (i === pItems.length - 1) {
+                        if (idx === pItems.length - 1) {
                             resolve(matches);
                         }
                     });
                 });
             };
 
-            return new Promise((resolve) => {
-                this.getScenes().then((scenes) => {
+            return new Promise(resolve => {
+                this.getScenes().then(scenes => {
                     scenes.forEach((scene, idx) => {
-                        scene.getItems().then((items) => {
+                        scene.getItems().then(items => {
                             if (items.length > 0) {
                                 pItems = pItems.concat(items);
                             }

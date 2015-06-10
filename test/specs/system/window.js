@@ -18,18 +18,18 @@ describe('xui.system.Window', function() {
     });
 
     it('Window.pid should be a number', function() {
-        expect(typeof win.pid).toBe('number');
+        expect(win.getPID()).not.toBeNaN();
     });
 
     it('Window.title should be a string', function() {
-        expect(typeof win.title).toBe('string');
+        expect(typeof win.getTitle()).toBe('string');
     });
 
     it('Window.state should be a number', function() {
-        expect(typeof win.state).toBe('number');
+        expect(win.getState()).not.toBeNaN();
     });
 
     it('Window.detail should be a string', function() {
-        expect(typeof win.detail).toBe('string');
+        expect(typeof win.getDetail()).toBe('string');
     });
 });
