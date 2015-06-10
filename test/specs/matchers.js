@@ -1,4 +1,8 @@
+/* globals beforeEach, jasmine */
+
 beforeEach(function() {
+    'use strict';
+    
     jasmine.addMatchers({
         toBeInstanceOf: function() {
             return { 

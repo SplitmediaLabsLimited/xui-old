@@ -1,4 +1,8 @@
+/* globals describe, it, expect, xui, internal */
+
 describe('xui.core.Presentation', function() {
+    'use strict';
+
     var App = xui.core.App;
     var promise = App.getCurrentPresentation();
 

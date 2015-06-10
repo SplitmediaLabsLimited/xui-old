@@ -1,5 +1,9 @@
+/* globals describe, it, expect, beforeEach, xui */
+
 // @TODO: Test all methods of Item class and it's amazing sub classes
 describe('xui.core.Item', function() {
+    'use strict';
+
     var scene = new xui.core.Scene({ id: 0, viewID: 0 });
     var item;
 
@@ -14,7 +18,7 @@ describe('xui.core.Item', function() {
     describe('should be able to fetch', function() {
         it('the type', function(done) {
             item.getType().then(function(val) {
-                expect(Number(val) !== NaN).toBeTruthy();
+                expect(val).not.toBeNaN();
 
                 done();
             });

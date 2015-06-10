@@ -1,4 +1,8 @@
+/* globals describe, it, expect, xui */
+
 describe('xui.core.App', function() {
+    'use strict';
+
     var App = xui.core.App;
     
     describe('should get audio devices', function() {

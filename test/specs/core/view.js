@@ -1,4 +1,8 @@
+/* globals describe, it, expect, xui */
+
 describe('xui.core.View', function() {
+    'use strict';
+
     var view = xui.core.View.MAIN;
 
     describe('should be able to fetch', function() {

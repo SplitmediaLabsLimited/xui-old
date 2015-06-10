@@ -1,4 +1,7 @@
+/* globals describe, it, expect, xui */
+
 describe('xui.core.Scene', function() {
+    'use strict';
 
     describe('static get', function() {
         it('should be a damn function', function() {
@@ -12,6 +15,8 @@ describe('xui.core.Scene', function() {
             
             promise.then(function(scene) {
                 expect(scene).toBeInstanceOf(xui.core.Scene);
+
+                done();
             });
         });
         
@@ -22,6 +27,8 @@ describe('xui.core.Scene', function() {
             
             promise.then(function(scene) {
                 expect(scene).toBeInstanceOf(xui.core.Scene);
+
+                done();
             });
         });
     });

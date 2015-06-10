@@ -1,8 +1,12 @@
-var App = internal.App,
-    Window = xui.system.Window;
+/* globals describe, it, expect, xui, internal, beforeEach */
 
 describe('xui.system.Window', function() {
-    var hwnd, win;
+    'use strict';
+
+    var App = internal.App;
+    var Window = xui.system.Window;
+    var hwnd;
+    var win;
 
     beforeEach(function() {
         hwnd = Number(App.callDll('xsplit.GetForegroundWindow'));
