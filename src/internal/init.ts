@@ -1,6 +1,11 @@
 /// <reference path="_references.ts" />
 
 module internal {
+
+    export function persistConfig(config: {}): void {
+        window['internal'].persistConfig = config;
+    }
+
     export function init(): void {
         // only valid for source plugin
         if(Environment.isSourceHtml()) {
@@ -19,6 +24,8 @@ module internal {
                                 internal.exec('SetBrowserProperty',
                                     'Configuration',
                                     JSON.stringify(configObj));
+
+                                persistConfig(configObj);
                                 break;
                             }
                         }

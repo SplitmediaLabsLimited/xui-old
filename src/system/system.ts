@@ -22,10 +22,10 @@ module xui.system {
     export class System {
         /** List audio input and output devices */
         static getAudioDevices(dataflow = AudioDeviceDataflow.ALL,
-                state = AudioDeviceState.ALL): Promise<Audio[]> {
+                state = AudioDeviceState.ALL): Promise<AudioDevice[]> {
             return new Promise(resolve => {
                 iApp.getAsList('wasapienum').then(devicesJSON => {
-                    let devices: Audio[] = [];
+                    let devices: AudioDevice[] = [];
                     if (devicesJSON !== undefined) {
                         for (var i = 0; i < devicesJSON.length; i++) {
                             let device = devicesJSON[i];
@@ -39,7 +39,7 @@ module xui.system {
                             if ((bitsFlow & dataflow) !== bitsFlow) {
                                 continue;
                             }
-                            devices.push(Audio.parse(device));
+                            devices.push(AudioDevice.parse(device));
                         }
                     }
                     resolve(devices);
@@ -54,7 +54,9 @@ module xui.system {
                     let devs: VideoDevice[] = [];
                     if (devicesJSON !== undefined) {
                         for (var i = 0; i < devicesJSON.length; i++) {
-                            devs.push(VideoDevice.parse(devicesJSON[i]));
+                            if (!/XSplit/ig.test(devicesJSON[i]['name'])) {
+                                devs.push(VideoDevice.parse(devicesJSON[i]));
+                            }
                         }
                     }
                     resolve(devs);

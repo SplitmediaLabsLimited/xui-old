@@ -61,5 +61,10 @@ module internal {
         static setBaseID(id: string): void {
             Item.baseID = id;
         }
+
+        /** helper function for Item.getCurrentSource() */
+        static getBaseID(): string {
+            return Item.baseID;
+        }
     }
 }

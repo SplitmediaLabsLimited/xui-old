@@ -188,8 +188,11 @@ declare module internal {
         static callFunc(func: string, arg: string): void;
         /** helper function to get current source on init */
         static setBaseID(id: string): void;
+        /** helper function for Item.getCurrentSource() */
+        static getBaseID(): string;
     }
 }
 declare module internal {
+    function persistConfig(config: {}): void;
     function init(): void;
 }

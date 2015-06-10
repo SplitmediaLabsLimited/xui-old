@@ -5,7 +5,7 @@ module xui.system {
     import u   =  internal.utils;
     import App = internal.App;
 
-    export class Audio {
+    export class AudioDevice {
         static STATE_ACTIVE: string = 'Active';
 
         static DATAFLOW_RENDER: string = 'Render';
@@ -166,7 +166,7 @@ module xui.system {
             return this;
         }
 
-        /** Converts the Audio item to XML string */
+        /** Converts the AudioDevice item to XML string */
         toString(): string {
             var device = new u.JSON();
             device.tag = 'dev';
@@ -182,7 +182,7 @@ module xui.system {
         }
 
         /** List audio devices of the system */
-        static list(filters: any): Promise<Audio[]> {
+        static list(filters: any): Promise<AudioDevice[]> {
             filters          = filters || { dataflow: 'all', state: 'all' };
             filters.dataflow = filters.dataflow || 'all';
             filters.state    = filters.state || 'all';
@@ -190,7 +190,7 @@ module xui.system {
             return new Promise((resolve) => {
                 App.getAsList('wasapienum').then((devices: u.JSON[]) => {
                     
-                    var audioDevices: Audio[] = []
+                    var audioDevices: AudioDevice[] = []
 
                     devices.map((device) => {
                         var excludedDataFlow =
@@ -204,7 +204,7 @@ module xui.system {
                             return;
                         }
                         
-                        audioDevices.push(Audio.parse(device));
+                        audioDevices.push(AudioDevice.parse(device));
                     });
 
                     resolve(audioDevices);
@@ -212,8 +212,8 @@ module xui.system {
             });
         }
 
-        static parse(deviceJSON: u.JSON): Audio {
-            var audio: Audio = new Audio({
+        static parse(deviceJSON: u.JSON): AudioDevice {
+            var audio: AudioDevice = new AudioDevice({
                 id:         deviceJSON['id'],
                 name:       deviceJSON['name'],
                 adapter:    deviceJSON['adapter'],

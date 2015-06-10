@@ -187,6 +187,18 @@ module xui.core {
             return XML.parseJSON(item);
         }
 
+        /** Get the current source (when called for sources), or the source that
+         * was right-clicked to open the config window (when called from the
+         * config window). */
+        getCurrentSource(): Item {
+            let item = new Item({
+                id: iItem.getBaseID(),
+                view: 0 // always MAIN
+            });
+            
+            return item;
+        }
+
         // ItemLayout
         
         /** Check if Aspect Ratio is set to ON or OFF */

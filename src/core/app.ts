@@ -2,7 +2,7 @@
 
 module xui.core {
     import Rectangle = internal.utils.Rectangle;
-    import Audio = xui.system.Audio;
+    import AudioDevice = xui.system.AudioDevice;
     import iApp = internal.App;
     import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
@@ -85,17 +85,17 @@ module xui.core {
 
         // Audio Services
         /** List of audio input and output devices used by the application */
-        static getAudioDevices(): Promise<Audio[]> {
+        static getAudioDevices(): Promise<AudioDevice[]> {
             return new Promise(resolve => {
                 iApp.getAsList('microphonedev2').then(arr => {
                     resolve(arr.map(val => {
-                        return Audio.parse(val);
+                        return AudioDevice.parse(val);
                     }));
                 });
             });
         }
 
-        static setAudioDevices(devices: Audio[]): void {
+        static setAudioDevices(devices: AudioDevice[]): void {
             var dev = '';
             if (Array.isArray(devices)) {
                 for (var i = 0; i < devices.length; ++i) {

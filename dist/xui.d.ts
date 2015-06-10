@@ -2,7 +2,7 @@
 /// <reference path="internal.d.ts" />
 declare module xui.system {
     import u = internal.utils;
-    class Audio {
+    class AudioDevice {
         static STATE_ACTIVE: string;
         static DATAFLOW_RENDER: string;
         static DATAFLOW_CAPTURE: string;
@@ -51,28 +51,28 @@ declare module xui.system {
         /** Returns the value of the software audio level */
         getLevel(): Number;
         /** Sets the value of the software audio level */
-        setLevel(level: Number): Audio;
+        setLevel(level: Number): AudioDevice;
         /** Returns true if software audio is enabled */
         isEnabled(): boolean;
         /** Enables/disables software audio */
-        setEnabled(enabled: boolean): Audio;
+        setEnabled(enabled: boolean): AudioDevice;
         /** Returns the value of the system audio level */
         getSystemLevel(): Number;
         /** Sets the value of the system audio level */
-        setSystemLevel(hwlevel: Number): Audio;
+        setSystemLevel(hwlevel: Number): AudioDevice;
         /** Returns true if system audio is enabled */
         isSystemEnabled(): boolean;
         /** Enables/disables system audio */
-        setSystemEnabled(enabled: boolean): Audio;
+        setSystemEnabled(enabled: boolean): AudioDevice;
         /** Returns the loopback capture delay value (100 nanoseconds units) */
         getDelay(): Number;
         /** Sets the loopback capture delay value (100 nanoseconds units) */
-        setDelay(delay: Number): Audio;
-        /** Converts the Audio item to XML string */
+        setDelay(delay: Number): AudioDevice;
+        /** Converts the AudioDevice item to XML string */
         toString(): string;
         /** List audio devices of the system */
-        static list(filters: any): Promise<Audio[]>;
-        static parse(deviceJSON: u.JSON): Audio;
+        static list(filters: any): Promise<AudioDevice[]>;
+        static parse(deviceJSON: u.JSON): AudioDevice;
     }
 }
 declare module xui.system {
@@ -197,7 +197,7 @@ declare module xui.system {
     }
     class System {
         /** List audio input and output devices */
-        static getAudioDevices(dataflow?: AudioDeviceDataflow, state?: AudioDeviceState): Promise<Audio[]>;
+        static getAudioDevices(dataflow?: AudioDeviceDataflow, state?: AudioDeviceState): Promise<AudioDevice[]>;
         /** List video devices */
         static getVideoDevices(): Promise<VideoDevice[]>;
         /** List currently running games */
@@ -270,6 +270,10 @@ declare module xui.core {
         getViewID(): Promise<number>;
         /** Convert the Item object to XML */
         toXML(): XML;
+        /** Get the current source (when called for sources), or the source that
+         * was right-clicked to open the config window (when called from the
+         * config window). */
+        getCurrentSource(): Item;
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio: () => Promise<boolean>;
         /** Check if Position Locked is set to ON or OFF */
@@ -543,7 +547,7 @@ declare module xui.core {
 }
 declare module xui.core {
     import Rectangle = internal.utils.Rectangle;
-    import Audio = xui.system.Audio;
+    import AudioDevice = xui.system.AudioDevice;
     import JSON = internal.utils.JSON;
     import Presentation = xui.core.Presentation;
     class App {
@@ -560,8 +564,8 @@ declare module xui.core {
         /** Gets the total number of frames rendered */
         static getFramesRendered(): Promise<string>;
         /** List of audio input and output devices used by the application */
-        static getAudioDevices(): Promise<Audio[]>;
-        static setAudioDevices(devices: Audio[]): void;
+        static getAudioDevices(): Promise<AudioDevice[]>;
+        static setAudioDevices(devices: AudioDevice[]): void;
         static getAudioGain(): Promise<JSON>;
         static setAudioGain(config: JSON): void;
         /** Creates a persistent modal dialog */
