@@ -11,7 +11,7 @@ describe('xui.core.App', function() {
             App.getAudioDevices().then(function(audios) {
                 expect(audios).toBeInstanceOf(Array);
                 
-                expect(audios).eachToBeInstanceOf(xui.system.Audio);
+                expect(audios).eachToBeInstanceOf(xui.system.AudioDevice);
 
                 done();
             });
