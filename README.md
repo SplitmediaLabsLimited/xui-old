@@ -6,21 +6,21 @@ Plugins are important tools for extending the utility of XSplit Broadcaster. In 
 
 ## Plugins
 
-All plugins should include all files distributed and packaged into the XUI framework in order to work correctly.
+All plugins should import `xui.js` in order to work correctly. This is a library containing all the methods of the XUI plugin framework.
 
 ### *Source Plugins*
 
-Source plugins are those that are added to the stage for recording. Source plugins are composed of two parts: the source and the configuration. The source is an HTML file that will be captured in a recording or a live stream. The configuration is an HTML file that allows a user to manipulate elements within a source. The XUI framework provides methods to allow communication between the source and the configuration HTML. 
+Source plugins are those that are added to the stage for recording. Source plugins are composed of two parts: the source/base HTML and the configuration HTML. The source/base is an HTML file that will be captured in a recording or a live stream. The configuration is an HTML file that allows a user to manipulate elements within a source. The XUI framework provides methods to allow communication between the source and the configuration HTML. `xui.js` must be imported into both the base and the configuration in order for the components to work properly.
 
-In order to quickly develop a working prototype of a plugin, developers should host their source and configuration HTML either remotely or locally. A user may add the plugin to their presentation by adding a Web Page URL source, and entering the URL for the source HTML.
+In order to quickly develop a working prototype of a plugin, developers should host their source and configuration HTML (this may be done either remotely or locally). A user may add the plugin to their presentation by adding a Web Page URL source, and entering the URL for the source HTML.
 
 Right-clicking a source opens a configuration window, which developers can implement. The XUI framework allows for sources to specify where their configuration HTML is hosted. This is accomplished by specifying metadata in their source HTML, as seen in the following example:
 
 `<meta name="config-url" content="http://www.xspl.it/plugin/test-config.html">`
 
-If the files from the XUI Framework have been included in the source HTML, then this metadata should already be automatically processed.
+If `xui.js` has been included in the source HTML, then this metadata should already be automatically processed.
 
-In addition to the application methods exposed by the XUI Framework, there are also a number of methods available for the rendering of the configuration HTML. For more information about developing the configuration window, check [this link](#configClass).
+In addition to the application methods exposed by the XUI Framework, there are also a number of methods available for the configuration window. For more information about rendering/developing the configuration window, check [this link](#configClass). For more information about handling source plugin configuration through the configuration window, check [this link](#configObject).
 
 ### *Script Plugins*
 
@@ -29,6 +29,19 @@ Global script plugins are powerful add-ons that leverage a larger set of functio
 ## Plugin Framework
 
 XSplit Broadcaster's functions may be used by developers through the Plugin Framework. For the latest documentation, click [here](http://splitmedialabslimited.github.io/xui/docs/).
+
+## <a name="configObject"></a>Appendix: Handling configuration objects for Source Plugins
+
+Source plugins can be configured in many different ways. For example, there might be a text size or a background color setting for your plugin. To achieve this configurability, each source plugin has a configuration object that may be persisted. This configuration object is simply a JSON object that the developer specifies.
+
+By using any instance of the `Item` (`xui.core.Item`) class, it is possible to save and load configuration strings. Observe the following code:
+
+```javascript
+var item = Item.getCurrentSource();
+item.loadConfiguration().then(function(config) {
+	// read config object here
+});
+```
 
 ## <a name="configClass"></a>Appendix: Developing the Source Configuration Window
 
