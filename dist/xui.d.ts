@@ -172,10 +172,10 @@ declare module xui.system {
         private _state;
         private _detail;
         hwnd: number;
-        pid: number;
-        detail: string;
-        title: string;
-        state: WindowState;
+        getPID(): number;
+        getTitle(): string;
+        getState(): WindowState;
+        getDetail(): string;
         static parse(args: {
             hwnd: number;
         }): Window;
