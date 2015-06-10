@@ -21,7 +21,8 @@
 		DIST_PATH         = 'dist/',
 		PLG_CONFIG_PATH   = 'src/config/',
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
-		PLG_CONFIG_FILE   = 'ConfigWindow.js';
+		PLG_CONFIG_FILE   = 'ConfigWindow.js',
+		SRC_UTIL_FILE     = 'src/source/source.js';
 
 	var TEST_REF_FILE = 'test/specs/_references.ts';
 
@@ -81,9 +82,10 @@
 			}));
 
 		var plgDep = gulp.src([PLG_CONFIG_PATH + PLG_DEPENDENCY]);
+		var sourceUtil = gulp.src([SRC_UTIL_FILE]);
 		var plgConfig = gulp.src([PLG_CONFIG_PATH + PLG_CONFIG_FILE]);
 
-		return merge(xuiFile, plgDep, plgConfig)
+		return merge(xuiFile, plgDep, sourceUtil, plgConfig)
 			.pipe(concat('xui.js'))
 			.pipe(uglify())
 			.pipe(gulp.dest(DIST_PATH));
