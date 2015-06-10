@@ -117,7 +117,6 @@ module xui.core {
             return new Promise((resolve) => {
                 this.getScenes().then((scenes) => {
                     scenes.forEach((scene, idx) => {
-                        console.log(scenes.length);
                         scene.getItems().then((items) => {
                             if (items.length > 0) {
                                 pItems = pItems.concat(items);
