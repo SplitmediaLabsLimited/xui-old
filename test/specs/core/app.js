@@ -10,7 +10,7 @@ describe('xui.core.App', function() {
         it('that returns an array of xui.system.Audio', function(done) {
             App.getAudioDevices().then(function(audios) {
                 expect(audios).toBeInstanceOf(Array);
-                debugger;
+                
                 expect(audios).eachToBeInstanceOf(xui.system.Audio);
 
                 done();

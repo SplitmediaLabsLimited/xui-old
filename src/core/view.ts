@@ -3,6 +3,7 @@
 module xui.core {
     import iApp = internal.App;
     import Scene = xui.core.Scene;
+    import Item = xui.core.Item;
 
     enum Views {
         MAIN = 0,
@@ -24,13 +25,22 @@ module xui.core {
             return this.id;
         }
 
-        getScenes(): Promise<Scene[]> {
+        getScenes(filter?: { name?: string, id?: number }): Promise<Scene[]> {
+            filter = filter ? filter : {};
+
             return new Promise((resolve) => {
-                iApp.get('presetcount').then((count) => {
-                    var ret = [];
-                    for (var i = parseInt(count) - 1; i >= 0; i--) {
-                        ret.unshift(new Scene({ id: i, viewID: this.id }))
+                var ret: Array<Scene> = [];
+                var regex: RegExp    = new RegExp(filter['name'], 'gi');
+
+                iApp.getAsList('presetconfig').then((config) => {
+                    for (var i = 0; i < config.length; i++) {
+                        if ((filter['name'] && regex.test(config[i]['name'])) ||
+                            filter['id'] === (i + 1) ||
+                            Object.keys(filter).length === 0) {
+                            ret.push(new Scene({ id: i, viewID: this.id }));
+                        }
                     }
+
                     resolve(ret);
                 });
             });
@@ -40,13 +50,11 @@ module xui.core {
             return new Promise((resolve) => {
                 iApp.get('presetcount').then((count) => {
                     resolve(count);
-                    });
+                });
             });
         }
 
-        setActiveScene(scene: Scene);
-        setActiveScene(scene: number);
-        setActiveScene(scene: any) {
+        setActiveScene(scene: Scene | number | any) {
             if (typeof scene === "object") {
                 iApp.set('preset', scene.getID().toString());
             } else if (typeof scene === "number") {
@@ -66,6 +74,62 @@ module xui.core {
         getScene(sceneID: number): Promise<Scene> {
             return new Promise((resolve) => {
                 resolve(new Scene({ id: sceneID, viewID: this.id }));
+            });
+        }
+
+        searchItems(value: { id?: number, keyword?: string }): Promise<Item[]> {
+            if (value['id'] === undefined && value['keyword'] === undefined) {
+                return;
+            }
+
+            var keyword: string = value['keyword'];
+            var iID: number = value['id'];
+            var matches: Array<Item> = [];
+            var pItems: Array<Item> = [];
+
+            // @TODO: Discuss if this is an 'ok' approach
+            var _parseItems = (resolve) => {
+                pItems.forEach((item, i) => {
+                    item.getID().then((id) => {
+                        if (Number(id) === iID) {
+                            matches.push(item);
+                        } else {
+                            return item.getName();
+                        }
+                    }).then((name) => {
+                        if (name.match(keyword) !== null) {
+                            matches.push(item);
+                        } else {
+                            return item.getValue();
+                        }
+                    }).then((val) => {
+                        if (val.value.match(keyword) !== null) {
+                            matches.push(item);
+                        }
+
+                        if (i === pItems.length - 1) {
+                            resolve(matches);
+                        }
+                    });
+                });
+            };
+
+            return new Promise((resolve) => {
+                this.getScenes().then((scenes) => {
+                    scenes.forEach((scene, idx) => {
+                        console.log(scenes.length);
+                        scene.getItems().then((items) => {
+                            if (items.length > 0) {
+                                pItems = pItems.concat(items);
+                            }
+
+                            // Valid scene is only until index 11
+                            if (idx === 11) {
+                                _parseItems(resolve);
+                            }
+                        });
+                    });
+                });
             });
         }
     }

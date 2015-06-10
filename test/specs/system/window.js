@@ -6,11 +6,11 @@ describe('xui.system.Window', function() {
 
     beforeEach(function() {
         hwnd = Number(App.callDll('xsplit.GetForegroundWindow'));
-        win = sWindow.parse({ hwnd: hwnd });
+        win = Window.parse({ hwnd: hwnd });
     });
 
     it('hwnd should be a number', function() {
-        expect(typeof hwnd).toBe('number');
+        expect(hwnd).not.toBeNaN();
     });
 
     it('Window.hwnd should be eqaul to hwnd', function() {
