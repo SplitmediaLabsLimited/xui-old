@@ -17,6 +17,7 @@
 /// <reference path="core/item/video.ts" />
 /// <reference path="core/item/chroma.ts" />
 /// <reference path="core/item/playback.ts" />
+/// <reference path="core/item/config.ts" />
 /// <reference path="core/scene.ts" />
 /// <reference path="core/view.ts" />
 /// <reference path="core/presentation.ts" />

@@ -238,7 +238,7 @@ declare module xui.core {
         getSceneID(): Promise<number>;
         getViewID(): Promise<number>;
     }
-    class Item implements IItemBase, IItemLayout, IItemColor, IItemAudio, IItemWindow, IItemVideo, IItemChroma, IItemPlayback {
+    class Item implements IItemBase, IItemLayout, IItemColor, IItemAudio, IItemWindow, IItemVideo, IItemChroma, IItemPlayback, IItemConfigurable {
         private name;
         private id;
         private sceneID;
@@ -392,6 +392,12 @@ declare module xui.core {
         setPlaybackEndAction: (value: PlaybackEndAction) => void;
         /** Set Playback Duration */
         setPlaybackDuration: (value: number) => void;
+        /** Load the saved browser configuration */
+        loadConfig: () => Promise<JSON>;
+        /** Save the configuration object */
+        saveConfig: (configObj: JSON) => void;
+        /** Apply changes based on passed configuration object */
+        applyConfig: (configObj: JSON) => void;
     }
 }
 declare module xui.core {
@@ -503,6 +509,14 @@ declare module xui.core {
         setPlaybackEndAction(value: PlaybackEndAction): any;
         getPlaybackDuration(): Promise<number>;
         setPlaybackDuration(value: number): any;
+    }
+}
+declare module xui.core {
+    import JSON = internal.utils.JSON;
+    interface IItemConfigurable {
+        loadConfig(): Promise<JSON>;
+        saveConfig(configObj: JSON): void;
+        applyConfig(configObj: JSON): void;
     }
 }
 declare module xui.core {

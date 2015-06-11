@@ -40,7 +40,8 @@ module xui.core {
                                  IItemWindow,
                                  IItemVideo,
                                  IItemChroma,
-                                 IItemPlayback {
+                                 IItemPlayback,
+                                 IItemConfigurable {
         private name: string;
         private id: string;
         private sceneID: number;
@@ -395,5 +396,16 @@ module xui.core {
 
         /** Set Playback Duration */
         setPlaybackDuration:  (value: number) => void;
+
+        // ItemConfigurable
+
+        /** Load the saved browser configuration */
+        loadConfig: () => Promise<JSON>;
+
+        /** Save the configuration object */
+        saveConfig: (configObj: JSON) => void;
+
+        /** Apply changes based on passed configuration object */
+        applyConfig: (configObj: JSON) => void;
     }
 }
