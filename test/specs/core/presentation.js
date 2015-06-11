@@ -8,8 +8,8 @@ describe('xui.core.Presentation', function() {
 
     describe('should be able to convert the presentation', function() {
         it('into an XML object', function(done) {
-            promise.then(function(xml) {
-                expect(xml).toBeInstanceOf(internal.utils.XML);
+            promise.then(function(presentation) {
+                expect(presentation.toXML()).toBeInstanceOf(internal.utils.XML);
 
                 done();
             });

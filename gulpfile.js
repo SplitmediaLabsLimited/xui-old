@@ -23,8 +23,6 @@
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
 		PLG_CONFIG_FILE   = 'ConfigWindow.js';
 
-	var TEST_REF_FILE = 'test/specs/_references.ts';
-
 	var TYPEDOC_FILE  = './dist/xui.d.ts';
 
 	var TYPEDOC_CONFIG = {
