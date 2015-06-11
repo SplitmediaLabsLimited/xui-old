@@ -10,6 +10,38 @@ module xui.core {
         PREVIEW = 1
     }
 
+    function parseItems(items, iID, keyword, resolve) {
+        var matches: Array<Item> = [];
+
+        items.forEach((item, idx) => {
+            item.getID().then(id => {
+                if (Number(id) === iID) {
+                    matches.push(item);
+                }
+
+                return item.getName();
+            }).then(name => {
+                if (name.match(keyword) !== null) {
+                    matches.push(item);
+                } else {
+                    return item.getValue();
+                }
+
+                if (idx === items.length - 1) {
+                    resolve(matches);
+                }
+            }).then(val => {
+                if (val.value.match(keyword) !== null) {
+                    matches.push(item);
+                }
+
+                if (idx === items.length - 1) {
+                    resolve(matches);
+                }
+            });
+        });
+    };
+
     export class View {
 
         private id: number;
@@ -86,36 +118,9 @@ module xui.core {
 
             var keyword: string = value['keyword'];
             var iID: number = value['id'];
-            var matches: Array<Item> = [];
             var pItems: Array<Item> = [];
 
             // @TODO: Discuss if this is an 'ok' approach
-            var _parseItems = resolve => {
-                pItems.forEach((item, idx) => {
-                    item.getID().then(id => {
-                        if (Number(id) === iID) {
-                            matches.push(item);
-                        } else {
-                            return item.getName();
-                        }
-                    }).then(name => {
-                        if (name.match(keyword) !== null) {
-                            matches.push(item);
-                        } else {
-                            return item.getValue();
-                        }
-                    }).then(val => {
-                        if (val.value.match(keyword) !== null) {
-                            matches.push(item);
-                        }
-
-                        if (idx === pItems.length - 1) {
-                            resolve(matches);
-                        }
-                    });
-                });
-            };
-
             return new Promise(resolve => {
                 this.getScenes().then(scenes => {
                     scenes.forEach((scene, idx) => {
@@ -125,8 +130,8 @@ module xui.core {
                             }
 
                             // Valid scene is only until index 11
-                            if (idx === 11) {
-                                _parseItems(resolve);
+                            if (idx === scenes.length - 1) {
+                                parseItems(pItems, keyword, iID, resolve);
                             }
                         });
                     });
