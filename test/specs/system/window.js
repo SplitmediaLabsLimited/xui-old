@@ -1,16 +1,20 @@
-var App = internal.App,
-    Window = xui.system.Window;
+/* globals describe, it, expect, xui, internal, beforeEach */
 
 describe('xui.system.Window', function() {
-    var hwnd, win;
+    'use strict';
+
+    var App = internal.App;
+    var Window = xui.system.Window;
+    var hwnd;
+    var win;
 
     beforeEach(function() {
         hwnd = Number(App.callDll('xsplit.GetForegroundWindow'));
-        win = sWindow.parse({ hwnd: hwnd });
+        win = Window.parse({ hwnd: hwnd });
     });
 
     it('hwnd should be a number', function() {
-        expect(typeof hwnd).toBe('number');
+        expect(hwnd).not.toBeNaN();
     });
 
     it('Window.hwnd should be eqaul to hwnd', function() {
@@ -18,18 +22,18 @@ describe('xui.system.Window', function() {
     });
 
     it('Window.pid should be a number', function() {
-        expect(typeof win.pid).toBe('number');
+        expect(win.getPID()).not.toBeNaN();
     });
 
     it('Window.title should be a string', function() {
-        expect(typeof win.title).toBe('string');
+        expect(typeof win.getTitle()).toBe('string');
     });
 
     it('Window.state should be a number', function() {
-        expect(typeof win.state).toBe('number');
+        expect(win.getState()).not.toBeNaN();
     });
 
     it('Window.detail should be a string', function() {
-        expect(typeof win.detail).toBe('string');
+        expect(typeof win.getDetail()).toBe('string');
     });
 });

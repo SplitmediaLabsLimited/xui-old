@@ -172,10 +172,10 @@ declare module xui.system {
         private _state;
         private _detail;
         hwnd: number;
-        pid: number;
-        detail: string;
-        title: string;
-        state: WindowState;
+        getPID(): number;
+        getTitle(): string;
+        getState(): WindowState;
+        getDetail(): string;
         static parse(args: {
             hwnd: number;
         }): Window;
@@ -534,18 +534,25 @@ declare module xui.core {
 }
 declare module xui.core {
     import Scene = xui.core.Scene;
+    import Item = xui.core.Item;
     class View {
         private id;
         constructor(id: number);
         static MAIN: View;
         static PREVIEW: View;
         getViewID(): number;
-        getScenes(): Promise<Scene[]>;
+        getScenes(filter?: {
+            name?: string;
+            id?: number;
+        }): Promise<Scene[]>;
         getScenesCount(): Promise<number>;
-        setActiveScene(scene: Scene): any;
-        setActiveScene(scene: number): any;
+        setActiveScene(scene: Scene | number | any): void;
         getActiveScene(): Promise<Scene>;
         getScene(sceneID: number): Promise<Scene>;
+        searchItems(value: {
+            id?: number;
+            keyword?: string;
+        }): Promise<Item[]>;
     }
 }
 declare module xui.core {

@@ -30,46 +30,30 @@ module xui.system {
         set hwnd(val: number) {
             this._hwnd = Number(val);
 
-            this.title = iApp.callDll('xsplit.GetWindowTitle', 
+            this._pid = Number(iApp.callDll('xsplit.GetWindowProcessId', 
+                String(this._hwnd)));
+            this._title = iApp.callDll('xsplit.GetWindowTitle', 
                 String(this._hwnd));
-            this.state = Number(iApp.callDll('xsplit.GetWindowState', 
+            this._state = Number(iApp.callDll('xsplit.GetWindowState', 
                 String(this._hwnd)));
-            this.pid = Number(iApp.callDll('xsplit.GetWindowProcessId', 
-                String(this._hwnd)));
+            this._detail = iApp.callDll('xsplit.GetProcessDetails',
+                String(this._pid));
         }
 
-        get pid(): number {
+        getPID(): number {
             return this._pid;
         }
 
-        set pid(val: number) {
-            this._pid = Number(val);
-            this.detail = iApp.callDll('xsplit.GetProcessDetails', 
-                String(val));
-        }
-
-        get detail(): string {
-            return this._detail;
-        }
-
-        set detail(val: string) {
-            this._detail = val;
-        }
-
-        get title(): string {
+        getTitle(): string {
             return this._title;
         }
 
-        set title(val: string) {
-            this._title = val;
-        }
-
-        get state(): WindowState {
+        getState(): WindowState {
             return this._state;
         }
 
-        set state(val: WindowState) {
-            this._state = val;
+        getDetail(): string {
+            return this._detail;
         }
 
         static parse(args: { hwnd: number }): Window {

@@ -1,10 +1,13 @@
-/// <reference path="../_references.ts" />
+/* globals describe, it, expect, xui */
 
 describe('xui.core.Scene', function() {
+    'use strict';
 
     describe('static get', function() {
-        expect(xui.core.Scene.get).toBeInstanceOf(Function);
-        
+        it('should be a damn function', function() {
+            expect(xui.core.Scene.get).toBeInstanceOf(Function);
+        });
+
         it('should be able to the current Scene', function(done) {
             var promise = xui.core.Scene.get();
             
@@ -12,6 +15,8 @@ describe('xui.core.Scene', function() {
             
             promise.then(function(scene) {
                 expect(scene).toBeInstanceOf(xui.core.Scene);
+
+                done();
             });
         });
         
@@ -22,6 +27,8 @@ describe('xui.core.Scene', function() {
             
             promise.then(function(scene) {
                 expect(scene).toBeInstanceOf(xui.core.Scene);
+
+                done();
             });
         });
     });

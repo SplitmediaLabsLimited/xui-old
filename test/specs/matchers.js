@@ -1,17 +1,15 @@
+/* globals beforeEach, jasmine */
+
 beforeEach(function() {
+    'use strict';
+    
     jasmine.addMatchers({
         toBeInstanceOf: function() {
             return { 
                 compare: function(actual, expected) {
                     var pass = true;
-        
-                    for (var i = 0; i < actual.length; i++) {
-                        pass = (actual[i] instanceof expected);
-        
-                        if (!pass) {
-                            break;
-                        }    
-                    }
+
+                    pass = (actual instanceof expected);
         
                     return { pass: pass };
                 }
@@ -21,13 +19,12 @@ beforeEach(function() {
         eachToBeInstanceOf: function() {
             return {
                 compare: function(actual, expected) {
-                    var pass = true;
+                    var pass = (actual.length > 0);
         
                     for (var i = 0; i < actual.length; i++) {
                         pass = (actual[i] instanceof expected);
         
                         if (!pass) {
-                            console.log(actual[i]);
                             break;
                         }    
                     }
