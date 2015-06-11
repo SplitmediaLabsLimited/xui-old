@@ -34,13 +34,15 @@ module xui.core {
 
                 iApp.getAsList('presetconfig').then(config => {
                     for (var i = 0; i < config.length; i++) {
+                        if (config[i]['tag'] === 'global') {
+                            continue;
+                        }
                         if ((filter['name'] && regex.test(config[i]['name'])) ||
                             filter['id'] === (i + 1) ||
                             Object.keys(filter).length === 0) {
                             ret.push(new Scene({ id: i, viewID: this.id }));
                         }
                     }
-
                     resolve(ret);
                 });
             });
