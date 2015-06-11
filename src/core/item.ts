@@ -167,7 +167,13 @@ module xui.core {
         /** Get the View ID where the item is loaded */
         getViewID(): Promise<number> {
             return new Promise((resolve) => {
-                resolve(this.viewID);
+                iItem.attach(this.id, this.viewID);
+
+                iItem.get('prop:viewid').then((val) => {
+                    this.viewID = Number(val);
+
+                    resolve(this.viewID);
+                });
             });
         }
 

@@ -4,6 +4,7 @@ module xui.core {
     import iApp = internal.App;
     import Item = xui.core.Item;
     import JSON = internal.utils.JSON;
+    import iItem = internal.Item;
     import Environment = internal.Environment;
 
     export class Scene {
@@ -58,13 +59,15 @@ module xui.core {
 
         static get(id?: number): Promise<Scene> {
             return new Promise((resolve) => {
+                var viewID: number;
+                var currentItem: Item = new Item({ id: iItem.getBaseID() });
+
                 if (id === undefined) {
                     if (Environment.isSourceHtml()) {
                         let curScene: JSON;
-                        let viewID: number;
 
-                        iApp.get('prop:viewid', true).then((id) => {
-                            viewID = Number(id);
+                        currentItem.getViewID().then((vID) => {
+                            viewID = Number(vID);
                             return iApp.get('presetconfig:-1');
                         }).then((sceneString) => {
                             curScene = JSON.parse(sceneString);
@@ -80,9 +83,18 @@ module xui.core {
                         });
                     }
                 } else {
-                    xui.core.View.MAIN.getScene(id).then((scene) => {
-                        resolve(scene);
-                    });
+                    if (Environment.isSourceHtml()) {
+                        currentItem.getViewID().then((vID) => {
+                            viewID = Number(vID);
+                            return new xui.core.View(viewID).getScene(id);
+                        }).then((scene) => {
+                            resolve(scene);
+                        });
+                    } else {
+                        xui.core.View.MAIN.getScene(id).then((scene) => {
+                            resolve(scene);
+                        });
+                    }
                 }
             });
         }

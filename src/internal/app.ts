@@ -8,13 +8,9 @@ module internal {
         static POSTMESSAGE_SIZE: string = '2';
 
         /** Get the value of the given property */
-        static get(name: string, isLocal?: boolean): Promise<string> {
+        static get(name: string): Promise<string> {
             return new Promise((resolve) => {
-                if (isLocal) {
-                    internal.exec('GetLocalPropertyAsync', name, resolve);
-                } else {
-                    internal.exec('AppGetPropertyAsync', name, resolve);
-                }
+                internal.exec('AppGetPropertyAsync', name, resolve);
             });    
         }
 
