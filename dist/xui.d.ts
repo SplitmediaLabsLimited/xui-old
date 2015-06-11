@@ -606,7 +606,7 @@ declare module xui.core {
         static setTransitionTime(time: Number): void;
         static getCurrentPresentation(): Promise<Presentation>;
         /** Loads a Presentation object **/
-        static load(pres: Presentation): void;
+        static load(pres: Presentation | string): void;
         /** Saves the current presentation to a file path **/
         static save(filename: string): void;
         /** Clear the presentation, and go to the first scene **/
