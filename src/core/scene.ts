@@ -3,6 +3,8 @@
 module xui.core {
     import iApp = internal.App;
     import Item = xui.core.Item;
+    import JSON = internal.utils.JSON;
+    import Environment = internal.Environment;
 
     export class Scene {
         private id: number;
@@ -51,6 +53,37 @@ module xui.core {
                 iApp.get('presetname:' + this.id).then((val) => {
                     resolve(val);
                 });
+            });
+        }
+
+        static get(id?: number): Promise<Scene> {
+            return new Promise((resolve) => {
+                if (id === undefined) {
+                    if (Environment.isSourceHtml()) {
+                        let curScene: JSON;
+                        let viewID: number;
+
+                        iApp.get('prop:viewid', true).then((id) => {
+                            viewID = Number(id);
+                            return iApp.get('presetconfig:-1');
+                        }).then((sceneString) => {
+                            curScene = JSON.parse(sceneString);
+                            return new xui.core.View(viewID).getScenes({ 
+                                name: curScene['name']
+                            });
+                        }).then((scene) => {
+                            resolve(scene[0]);
+                        });
+                    } else {
+                        xui.core.View.MAIN.getActiveScene().then((scene) => {
+                            resolve(scene);
+                        });
+                    }
+                } else {
+                    xui.core.View.MAIN.getScene(id).then((scene) => {
+                        resolve(scene);
+                    });
+                }
             });
         }
     }

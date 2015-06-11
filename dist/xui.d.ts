@@ -516,6 +516,7 @@ declare module xui.core {
         getItems(): Promise<Item[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
+        static get(id?: number): Promise<Scene>;
     }
 }
 declare module xui.core {

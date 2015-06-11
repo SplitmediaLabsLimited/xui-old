@@ -155,7 +155,7 @@ declare module internal {
         static POSTMESSAGE_CLOSE: string;
         static POSTMESSAGE_SIZE: string;
         /** Get the value of the given property */
-        static get(name: string): Promise<string>;
+        static get(name: string, isLocal?: boolean): Promise<string>;
         /** Gets the value of the given property as list */
         static getAsList(name: string): Promise<u.JSON[]>;
         /** Get the value of the given global property */
