@@ -9,6 +9,8 @@ module xui.core {
     import Presentation = xui.core.Presentation;
     import View = xui.core.View;
     import Scene = xui.core.Scene;
+    import VideoDevice = xui.system.VideoDevice;
+    import Game = xui.system.Game;
 
     function createSceneXML(scene: Scene): Promise<Scene> {
         let id = scene.getID();
@@ -248,6 +250,64 @@ module xui.core {
         /** Clear the presentation, and go to the first scene **/
         static clearPresentation(): void {
             iApp.callFunc('newpresets', '');
+        }
+
+        // Video Item services
+        static addVideoDevice(device: VideoDevice): void {
+            if (device !== undefined) {
+                let item = new Item();
+                item['value'] = XML.encode(device['disp'].toUpperCase());
+                item['name'] = device['name'];
+                item['type'] = ItemTypes.LIVE;
+
+                iApp.callFunc('additem', item.toXML().toString());
+            }
+        }
+
+        static addGame(gameSource: Game): void {
+            if (gameSource !== undefined) {
+                let item = new Item();
+                item['name'] = gameSource.getWindowName() + ' (' + gameSource
+                    .getGapiType() + ')';
+                item['value'] = XML.encode(gameSource.toXML().toString());
+                item['type'] = ItemTypes.GAMESOURCE;
+                item['visible'] = true;
+                item['volume'] = 100;
+
+                iApp.callFunc('additem', item.toXML().toString());
+            }
+        }
+
+        static addFile(file: string): void {
+            if (file !== undefined) {
+                let item = new Item();
+                item['value'] = file;
+                item['name'] = file;
+                item['type'] = ItemTypes.FILE;
+
+                iApp.callFunc('additem', item.toXML().toString());
+            }
+        }
+
+        static addScreen(): void {
+            iApp.callFunc('addscreen', '');
+        }
+
+        static addUrl(url: string): void {
+            if (url !== undefined) {
+                let item = new Item();
+                item['value'] = url;
+                item['name'] = url;
+                item['type'] = ItemTypes.HTML;
+
+                iApp.callFunc('additem', item.toXML().toString());
+            }
+        }
+
+        static removeSource(item: Item): void {
+            if (item !== undefined) {
+                iApp.callFunc('removesrc', item['id']);
+            }
         }
     }
 }

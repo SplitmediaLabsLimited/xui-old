@@ -264,7 +264,7 @@ declare module xui.core {
         getType(): Promise<ItemTypes>;
         /** Get Item ID */
         getID(): Promise<string>;
-        /** Get Scene ID where the item is loaded */
+        /** Get (1-indexed) Scene ID where the item is loaded */
         getSceneID(): Promise<number>;
         /** Get the View ID where the item is loaded */
         getViewID(): Promise<number>;
@@ -558,6 +558,8 @@ declare module xui.core {
     import AudioDevice = xui.system.AudioDevice;
     import JSON = internal.utils.JSON;
     import Presentation = xui.core.Presentation;
+    import VideoDevice = xui.system.VideoDevice;
+    import Game = xui.system.Game;
     class App {
         /** Call method of DLL present in Scriptdlls folder */
         static callDll(): string;
@@ -611,6 +613,12 @@ declare module xui.core {
         static save(filename: string): void;
         /** Clear the presentation, and go to the first scene **/
         static clearPresentation(): void;
+        static addVideoDevice(device: VideoDevice): void;
+        static addGame(gameSource: Game): void;
+        static addFile(file: string): void;
+        static addScreen(): void;
+        static addUrl(url: string): void;
+        static removeSource(item: Item): void;
     }
 }
 declare module xui.core {

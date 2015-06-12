@@ -157,10 +157,10 @@ module xui.core {
             });
         }
 
-        /** Get Scene ID where the item is loaded */
+        /** Get (1-indexed) Scene ID where the item is loaded */
         getSceneID(): Promise<number> {
             return new Promise((resolve) => {
-                resolve(this.sceneID);
+                resolve(Number(this.sceneID) + 1);
             });
         }
 
@@ -179,13 +179,18 @@ module xui.core {
 
         /** Convert the Item object to XML */
         toXML(): XML {
-            var item: JSON;
+            var item: JSON = new JSON();
 
             item['tag'] = 'item';
-            item['pos_left'] = this.position.getLeft() || 0.250000;
-            item['pos_top'] = this.position.getTop() || 0.250000;
-            item['pos_right'] = this.position.getRight() || 0.250000;
-            item['pos_bottom'] = this.position.getBottom() || 0.250000;
+            if (this.position === undefined) { // new items don't have positions
+                item['pos_left'] = item['pos_top'] = 0.250000;
+                item['pos_right'] = item['pos_bottom'] = 0.750000;
+            } else {
+                item['pos_left'] = this.position.getLeft() || 0.250000;
+                item['pos_top'] = this.position.getTop() || 0.250000;
+                item['pos_right'] = this.position.getRight() || 0.250000;
+                item['pos_bottom'] = this.position.getBottom() || 0.250000;
+            }
             item['name'] = this.name;
             item['item'] = this.value;
             item['type'] = this.type;
