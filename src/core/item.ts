@@ -23,8 +23,8 @@ module xui.core {
     export interface IItemBase {
         getName(): Promise<string>;
         setName(value: string);
-        getValue(): Promise<JSON>;
-        setValue(value: any);
+        getValue(): Promise<string|XML>;
+        setValue(value: string|XML);
         getKeepLoaded(): Promise<boolean>;
         setKeepLoaded(value: boolean);
         getType(): Promise<ItemTypes>;
@@ -84,13 +84,21 @@ module xui.core {
         }
 
         /** Get the video item's main definition */
-        getValue(): Promise<JSON> {
+        getValue(): Promise<string|XML> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:item').then((val) => {
                     val = (val === 'null') ? '' : val;
-                    this.value = JSON.parse(val);
+
+                    try {
+                        this.value = XML.parseJSON(JSON.parse(val));
+                        resolve(this.value);
+                    } catch (e) {
+                        // value is not JSON
+                        this.value = val;
+                        resolve(val);
+                    }
 
                     resolve(this.value);
                 });
@@ -98,15 +106,17 @@ module xui.core {
         }
 
         /** Set the video item's main definition */
-        setValue(value: any) {
+        setValue(value: string | XML) {
             iItem.attach(this.id, this.viewID);
 
-            var xml: string = (typeof value === 'string') ? 
-                value : XML.parseJSON(value).toString();
+            var val: string = (typeof value === 'string') ? 
+                <string> value : (<XML> value).toString();
 
-            this.value = JSON.parse(xml);
+            if (typeof value !== 'string') { // XML
+                this.value = JSON.parse(val);
+            }
 
-            iItem.set('prop:item', xml);
+            iItem.set('prop:item', val);
         }
 
         /** Get Keep loaded option */
