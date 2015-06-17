@@ -57,7 +57,7 @@ module xui.core {
             return this.id;
         }
 
-        getScenes(filter?: { name?: string, id?: number }): Promise<Scene[]> {
+        getScenes(filter?: {}): Promise<Scene[]> {
             filter = filter ? filter : {};
 
             return new Promise((resolve) => {
@@ -111,7 +111,7 @@ module xui.core {
             });
         }
 
-        searchItems(value: { id?: number, keyword?: string }): Promise<Item[]> {
+        searchItems(value: {}): Promise<Item[]> {
             if (value['id'] === undefined && value['keyword'] === undefined) {
                 return;
             }
