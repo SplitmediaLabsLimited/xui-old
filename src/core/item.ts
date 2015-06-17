@@ -91,6 +91,11 @@ module xui.core {
                 iItem.get('prop:item').then((val) => {
                     val = (val === 'null') ? '' : val;
 
+                    if (val === '') { // don't return XML for null values
+                        this.value = '';
+                        resolve(val);
+                    }
+
                     try {
                         this.value = XML.parseJSON(JSON.parse(val));
                         resolve(this.value);
