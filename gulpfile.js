@@ -31,8 +31,7 @@
 		name: 	'XUI Plugin Framework', 
 		target: 'ES6',
 		theme: 	'default',
-		readme: 'none',
-		includeDeclarations: true
+		readme: 'none'
 	};
 
 
