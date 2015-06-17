@@ -138,5 +138,56 @@ module xui.core {
                 });
             });
         }
+
+        searchItems2(key: string): Promise<Item[]> {
+            // detect if UUID or keyword
+            let isID: boolean = /^{[A-F0-9-]*}$/i.test(key);
+            let matches: Item[] = [];
+
+            if (isID) {
+                return new Promise(resolve => {
+                    this.getScenes().then(scenes => {
+                        scenes.forEach(scene => {
+                            scene.getItems().then(items => {
+                                items.some(item => { // assume ID is unique
+                                    if (item['id'] === key) {
+                                        matches.push(item);
+                                        resolve(matches);
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                                });
+                            });
+                        });
+                    });
+                    resolve(matches);
+                });
+            } else {
+                return new Promise(resolve => {
+                    this.getScenes().then(scenes => {
+                        scenes.forEach(scene => {
+                            scene.getItems().then(items => {
+                                items.forEach((item, idx) => { 
+                                    item.getName().then(name => {
+                                        if (name.match(key)) {
+                                            matches.push(item);
+                                            return '';
+                                        } else {
+                                            return item.getValue();
+                                        }
+                                    }).then(value => {
+                                        if (value.toString().match(key)) {
+                                            matches.push(item);
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                    });
+                    resolve(matches);
+                });
+            }
+        }
     }
 }
