@@ -182,6 +182,18 @@ declare module xui.system {
     }
 }
 declare module xui.system {
+    class File {
+        private file;
+        constructor(file: string);
+        toString(): string;
+    }
+    class URL {
+        private url;
+        constructor(url: string);
+        toString(): string;
+    }
+}
+declare module xui.system {
     import Window = xui.system.Window;
     enum AudioDeviceDataflow {
         RENDER = 1,
@@ -211,7 +223,6 @@ declare module xui.system {
     }
 }
 declare module xui.core {
-    import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
     import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
@@ -229,8 +240,8 @@ declare module xui.core {
     interface IItemBase {
         getName(): Promise<string>;
         setName(value: string): any;
-        getValue(): Promise<JSON>;
-        setValue(value: any): any;
+        getValue(): Promise<string | XML>;
+        setValue(value: string | XML): any;
         getKeepLoaded(): Promise<boolean>;
         setKeepLoaded(value: boolean): any;
         getType(): Promise<ItemTypes>;
@@ -253,9 +264,9 @@ declare module xui.core {
         /** Get the current name of the item */
         getName(): Promise<string>;
         /** Get the video item's main definition */
-        getValue(): Promise<JSON>;
+        getValue(): Promise<string | XML>;
         /** Set the video item's main definition */
-        setValue(value: any): void;
+        setValue(value: string | XML): void;
         /** Get Keep loaded option */
         getKeepLoaded(): Promise<boolean>;
         /** Set Keep loaded option to ON or OFF */
@@ -507,6 +518,10 @@ declare module xui.core {
 }
 declare module xui.core {
     import Item = xui.core.Item;
+    import VideoDevice = xui.system.VideoDevice;
+    import Game = xui.system.Game;
+    import File = xui.system.File;
+    import URL = xui.system.URL;
     class Scene {
         private id;
         private viewID;
@@ -517,6 +532,13 @@ declare module xui.core {
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
         static get(id?: number): Promise<Scene>;
+        add(item: VideoDevice | Game | File | URL | void): void;
+        private addVideoDevice(device);
+        private addGame(gameSource);
+        private addFile(file);
+        private addScreen();
+        private addUrl(url);
+        private removeSource(item);
     }
 }
 declare module xui.core {
@@ -528,18 +550,12 @@ declare module xui.core {
         static MAIN: View;
         static PREVIEW: View;
         getViewID(): number;
-        getScenes(filter?: {
-            name?: string;
-            id?: number;
-        }): Promise<Scene[]>;
+        getScenes(filter?: {}): Promise<Scene[]>;
         getScenesCount(): Promise<number>;
         setActiveScene(scene: Scene | number | any): void;
         getActiveScene(): Promise<Scene>;
         getScene(sceneID: number): Promise<Scene>;
-        searchItems(value: {
-            id?: number;
-            keyword?: string;
-        }): Promise<Item[]>;
+        searchItems(key: string): Promise<Item[]>;
     }
 }
 declare module xui.core {
@@ -558,36 +574,36 @@ declare module xui.core {
     import AudioDevice = xui.system.AudioDevice;
     import JSON = internal.utils.JSON;
     import Presentation = xui.core.Presentation;
-    import VideoDevice = xui.system.VideoDevice;
-    import Game = xui.system.Game;
     class App {
+        private static instance;
+        static getInstance(): App;
         /** Call method of DLL present in Scriptdlls folder */
-        static callDll(): string;
+        callDll(): string;
         /** Gets application's frame time (duration per frame in 100ns unit) */
-        static getFrametime(): Promise<string>;
+        getFrametime(): Promise<string>;
         /** Gets application default output resolution */
-        static getResolution(): Promise<Rectangle>;
+        getResolution(): Promise<Rectangle>;
         /** Gets application viewport display resolution */
-        static getViewport(): Promise<Rectangle>;
+        getViewport(): Promise<Rectangle>;
         /** Refers to XSplit Broadcaster DLL file version number */
-        static getVersion(): Promise<string>;
+        getVersion(): Promise<string>;
         /** Gets the total number of frames rendered */
-        static getFramesRendered(): Promise<string>;
+        getFramesRendered(): Promise<string>;
         /** List of audio input and output devices used by the application */
-        static getAudioDevices(): Promise<AudioDevice[]>;
-        static setAudioDevices(devices: AudioDevice[]): void;
-        static getAudioGain(): Promise<JSON>;
-        static setAudioGain(config: JSON): void;
+        getAudioDevices(): Promise<AudioDevice[]>;
+        setAudioDevices(devices: AudioDevice[]): void;
+        getAudioGain(): Promise<JSON>;
+        setAudioGain(config: JSON): void;
         /** Creates a persistent modal dialog */
-        static newDialog(url: string): void;
+        newDialog(url: string): void;
         /** Creates a modal dialog that automatically closes on outside click */
-        static newAutoDialog(url: string): void;
+        newAutoDialog(url: string): void;
         /** Close a created dialog */
-        static closeDialog(width: Number, height: Number): void;
+        closeDialog(width: Number, height: Number): void;
         /** Resizes a global script dialog */
-        static resizeSelf(width: Number, height: Number): void;
+        resizeSelf(width: Number, height: Number): void;
         /** Closes a global script dialog */
-        static closeSelf(): void;
+        closeSelf(): void;
         static TRANSITION_CLOCK: string;
         static TRANSITION_COLLAPSE: string;
         static TRANSITION_MOVE_BOTTOM: string;
@@ -599,26 +615,21 @@ declare module xui.core {
         static TRANSITION_HOLE: string;
         static TRANSITION_WAVE: string;
         /** Gets the transition for scene changes. */
-        static getTransition(): Promise<string>;
+        getTransition(): Promise<string>;
         /** Sets the transition for scene changes. */
-        static setTransition(transition: string): void;
+        setTransition(transition: string): void;
         /** Gets the scene transition duration in milliseconds. */
-        static getTransitionTime(): Promise<Number>;
+        getTransitionTime(): Promise<Number>;
         /** Sets the scene transition duration in milliseconds. */
-        static setTransitionTime(time: Number): void;
-        static getCurrentPresentation(): Promise<Presentation>;
+        setTransitionTime(time: Number): void;
+        getCurrentPresentation(): Promise<Presentation>;
         /** Loads a Presentation object **/
-        static load(pres: Presentation | string): void;
+        load(pres: Presentation): void;
+        load(pres: string): void;
         /** Saves the current presentation to a file path **/
-        static save(filename: string): void;
+        save(filename: string): void;
         /** Clear the presentation, and go to the first scene **/
-        static clearPresentation(): void;
-        static addVideoDevice(device: VideoDevice): void;
-        static addGame(gameSource: Game): void;
-        static addFile(file: string): void;
-        static addScreen(): void;
-        static addUrl(url: string): void;
-        static removeSource(item: Item): void;
+        clearPresentation(): void;
     }
 }
 declare module xui.core {

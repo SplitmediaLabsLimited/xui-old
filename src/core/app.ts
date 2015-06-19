@@ -36,6 +36,15 @@ module xui.core {
     }
 
     export class App {
+        private static instance: App;
+
+        static getInstance(): App {
+            if (App.instance === undefined) {
+                App.instance = new App();
+            }
+            return App.instance;
+        }
+        
         // App base services
         /** Call method of DLL present in Scriptdlls folder */
         callDll(): string {

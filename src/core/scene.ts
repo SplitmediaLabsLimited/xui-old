@@ -8,6 +8,8 @@ module xui.core {
     import Environment = internal.Environment;
     import VideoDevice = xui.system.VideoDevice;
     import Game = xui.system.Game;
+    import File = xui.system.File;
+    import URL = xui.system.URL;
     import XML = internal.utils.XML;
 
     export class Scene {
@@ -102,59 +104,75 @@ module xui.core {
             });
         }
 
-        // Video Item services
-        static addVideoDevice(device: VideoDevice): void {
+        // Source-related Item services
+        add(item: VideoDevice | Game | File | URL | void): void {
+            if (item instanceof VideoDevice) {
+                this.addVideoDevice(item);
+            } else if (item instanceof Game) {
+                this.addGame(item);
+            } else if (item instanceof File) {
+                this.addFile(item);
+            } else if (item instanceof URL) {
+                this.addUrl(item);
+            } else {
+                this.addScreen();
+            }
+        }
+
+        private addVideoDevice(device: VideoDevice): void {
             if (device !== undefined) {
-                let item = new Item();
-                item['value'] = XML.encode(device['disp'].toUpperCase());
-                item['name'] = device['name'];
-                item['type'] = ItemTypes.LIVE;
+                let item = new Item({
+                    'value' : XML.encode(device['disp'].toUpperCase()),
+                    'name'  : device['name'],
+                    'type'  : ItemTypes.LIVE
+                });
 
                 iApp.callFunc('additem', item.toXML().toString());
             }
         }
 
-        static addGame(gameSource: Game): void {
+        private addGame(gameSource: Game): void {
             if (gameSource !== undefined) {
-                let item = new Item();
-                item['name'] = gameSource.getWindowName() + ' (' + gameSource
-                    .getGapiType() + ')';
-                item['value'] = XML.encode(gameSource.toXML().toString());
-                item['type'] = ItemTypes.GAMESOURCE;
-                item['visible'] = true;
-                item['volume'] = 100;
+                let item = new Item({
+                    'name'    : gameSource.getWindowName() + ' (' + gameSource
+                                .getGapiType() + ')',
+                    'value'   : XML.encode(gameSource.toXML().toString()),
+                    'type'    : ItemTypes.GAMESOURCE
+                });
 
                 iApp.callFunc('additem', item.toXML().toString());
             }
         }
 
-        static addFile(file: string): void {
+        private addFile(file: File): void {
             if (file !== undefined) {
-                let item = new Item();
-                item['value'] = file;
-                item['name'] = file;
-                item['type'] = ItemTypes.FILE;
+                let item = new Item({
+                    'value' : file.toString(),
+                    'name'  : file.toString(),
+                    'type'  : ItemTypes.FILE
+                });
 
                 iApp.callFunc('additem', item.toXML().toString());
             }
         }
 
-        static addScreen(): void {
+        private addScreen(): void {
             iApp.callFunc('addscreen', '');
         }
 
-        static addUrl(url: string): void {
+        private addUrl(url: URL): void {
             if (url !== undefined) {
-                let item = new Item();
-                item['value'] = url;
-                item['name'] = url;
-                item['type'] = ItemTypes.HTML;
+                let item = new Item({
+                    'value' : url.toString(),
+                    'name'  : url.toString(),
+                    'type'  : ItemTypes.HTML
+                });
 
                 iApp.callFunc('additem', item.toXML().toString());
             }
         }
 
-        static removeSource(item: Item): void {
+        private removeSource(item: Item): void {
             if (item !== undefined) {
                 iApp.callFunc('removesrc', item['id']);
             }
