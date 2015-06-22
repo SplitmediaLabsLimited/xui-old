@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Config</title>
+        <style>
+        #output {
+            background: #fff;
+            border: 1px solid #000;
+            min-height: 40px;
+        }
+        </style>
+    </head>
+    <body>
+        <p>Functional Testing like a boxx, err, <strong>BOSS</strong></p>
+        <p>Because we can't console log the messages:</p>
+        <pre id="output"></pre>
+        <script src="../../../dist/xui.js"></script>
+        <script>
+        // Because we're lazy, we'll just make everything inline <3
+        
+        /* globals xui */
+        'use strict';
+
+        // Utility function
+        var logger = {
+            log : function() {
+                var p = document.createElement('p');
+                var args = Array.prototype.slice.call(arguments);
+
+                p.textContent = args.join('\t');
+                document.getElementById('output').appendChild(p);
+            }
+        };
+
+        // Configure the configuration window
+        try {
+            var config = xui.config.ConfigWindow.getInstance();
+            var item = xui.core.Item.getCurrentSource();
+            var iItem = internal.Item;
+
+            logger.log('Internal Item ID :: ', iItem.getBaseID());
+
+            config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
+            
+            item.getID().then(function(id) {
+                logger.log('ItemID :: ', id);
+            });
+
+            item.loadConfig().then(function(config) {
+                logger.log('loadConfig() :: ', config);
+            });
+
+            item.applyConfig({
+                color: 'red'
+            });
+        } catch (err) {
+            logger.log('ERR :: ', err);
+        }
+        </script>
+    </body>
+</html>

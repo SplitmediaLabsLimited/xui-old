@@ -217,7 +217,7 @@ module xui.core {
         /** Get the current source (when called for sources), or the source that
          * was right-clicked to open the config window (when called from the
          * config window). */
-        getCurrentSource(): Item {
+        static getCurrentSource(): Item {
             let item = new Item({
                 id: iItem.getBaseID(),
                 view: 0 // always MAIN

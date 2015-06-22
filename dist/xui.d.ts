@@ -285,7 +285,7 @@ declare module xui.core {
         /** Get the current source (when called for sources), or the source that
          * was right-clicked to open the config window (when called from the
          * config window). */
-        getCurrentSource(): Item;
+        static getCurrentSource(): Item;
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio: () => Promise<boolean>;
         /** Check if Position Locked is set to ON or OFF */
