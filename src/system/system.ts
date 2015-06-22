@@ -86,7 +86,7 @@ module xui.system {
                     iApp.callDll('xsplit.EnumProcesses') || '').split(',');
                 let processes = [];
                 for (var i = 0; i < list.length; i++) {
-                    processes.push(new Process().setPid(Number(list[i])));
+                    processes.push(new Process(Number(list[i])));
                 }
                 resolve(processes);
             });

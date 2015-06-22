@@ -1,0 +1,18 @@
+{
+  "name": "xui",
+  "version": "0.1.0",
+  "homepage": "https://github.com/SplitmediaLabsLimited/xui",
+  "authors": [
+    "xui@splitmedialabs.com"
+  ],
+  "description": "plugin framework",
+  "main": "dist/xui.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

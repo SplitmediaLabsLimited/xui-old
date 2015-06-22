@@ -11,7 +11,7 @@ module internal {
         if (Environment.isSourceHtml()) {
             // initialize config URL if necessary
             internal.exec('GetLocalPropertyAsync', 'prop:BrowserConfiguration',
-                (result) => {
+                result => {
                     var configObj = JSON.parse(decodeURIComponent(result));
                     if (configObj === null) {
                         configObj = {};
@@ -35,8 +35,8 @@ module internal {
 
         if (Environment.isSourceHtml() || Environment.isSourceConfig()) {
             // initialize Item.getSource() functions
-            internal.exec('GetLocalPropertyAsync', 'prop:BrowserConfiguration',
-                (result) => {
+            internal.exec('GetLocalPropertyAsync', 'prop:id',
+                result => {
                     internal.Item.setBaseID(decodeURIComponent(result));
                 });
         }

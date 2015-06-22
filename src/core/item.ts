@@ -23,8 +23,8 @@ module xui.core {
     export interface IItemBase {
         getName(): Promise<string>;
         setName(value: string);
-        getValue(): Promise<JSON>;
-        setValue(value: any);
+        getValue(): Promise<string|XML>;
+        setValue(value: string|XML);
         getKeepLoaded(): Promise<boolean>;
         setKeepLoaded(value: boolean);
         getType(): Promise<ItemTypes>;
@@ -85,13 +85,26 @@ module xui.core {
         }
 
         /** Get the video item's main definition */
-        getValue(): Promise<JSON> {
+        getValue(): Promise<string|XML> {
             return new Promise((resolve) => {
                 iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:item').then((val) => {
                     val = (val === 'null') ? '' : val;
-                    this.value = JSON.parse(val);
+
+                    if (val === '') { // don't return XML for null values
+                        this.value = '';
+                        resolve(val);
+                    }
+
+                    try {
+                        this.value = XML.parseJSON(JSON.parse(val));
+                        resolve(this.value);
+                    } catch (e) {
+                        // value is not JSON
+                        this.value = val;
+                        resolve(val);
+                    }
 
                     resolve(this.value);
                 });
@@ -99,15 +112,17 @@ module xui.core {
         }
 
         /** Set the video item's main definition */
-        setValue(value: any) {
+        setValue(value: string | XML) {
             iItem.attach(this.id, this.viewID);
 
-            var xml: string = (typeof value === 'string') ? 
-                value : XML.parseJSON(value).toString();
+            var val: string = (typeof value === 'string') ? 
+                <string> value : (<XML> value).toString();
 
-            this.value = JSON.parse(xml);
+            if (typeof value !== 'string') { // XML
+                this.value = JSON.parse(val);
+            }
 
-            iItem.set('prop:item', xml);
+            iItem.set('prop:item', val);
         }
 
         /** Get Keep loaded option */
@@ -158,29 +173,40 @@ module xui.core {
             });
         }
 
-        /** Get Scene ID where the item is loaded */
+        /** Get (1-indexed) Scene ID where the item is loaded */
         getSceneID(): Promise<number> {
             return new Promise((resolve) => {
-                resolve(this.sceneID);
+                resolve(Number(this.sceneID) + 1);
             });
         }
 
         /** Get the View ID where the item is loaded */
         getViewID(): Promise<number> {
             return new Promise((resolve) => {
-                resolve(this.viewID);
+                iItem.attach(this.id, this.viewID);
+
+                iItem.get('prop:viewid').then((val) => {
+                    this.viewID = Number(val);
+
+                    resolve(this.viewID);
+                });
             });
         }
 
         /** Convert the Item object to XML */
         toXML(): XML {
-            var item: JSON;
+            var item: JSON = new JSON();
 
             item['tag'] = 'item';
-            item['pos_left'] = this.position.getLeft() || 0.250000;
-            item['pos_top'] = this.position.getTop() || 0.250000;
-            item['pos_right'] = this.position.getRight() || 0.250000;
-            item['pos_bottom'] = this.position.getBottom() || 0.250000;
+            if (this.position === undefined) { // new items don't have positions
+                item['pos_left'] = item['pos_top'] = 0.250000;
+                item['pos_right'] = item['pos_bottom'] = 0.750000;
+            } else {
+                item['pos_left'] = this.position.getLeft() || 0.250000;
+                item['pos_top'] = this.position.getTop() || 0.250000;
+                item['pos_right'] = this.position.getRight() || 0.250000;
+                item['pos_bottom'] = this.position.getBottom() || 0.250000;
+            }
             item['name'] = this.name;
             item['item'] = this.value;
             item['type'] = this.type;

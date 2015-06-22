@@ -36,14 +36,23 @@ module xui.core {
     }
 
     export class App {
+        private static instance: App;
+
+        static getInstance(): App {
+            if (App.instance === undefined) {
+                App.instance = new App();
+            }
+            return App.instance;
+        }
+        
         // App base services
         /** Call method of DLL present in Scriptdlls folder */
-        static callDll(): string {
+        callDll(): string {
             return iApp.callDll.apply(this, arguments);
         }
 
         /** Gets application's frame time (duration per frame in 100ns unit) */
-        static getFrametime(): Promise<string> {
+        getFrametime(): Promise<string> {
             return new Promise(resolve => {
                 iApp.get('frametime').then(val => {
                     resolve(val);
@@ -52,7 +61,7 @@ module xui.core {
         }
 
         /** Gets application default output resolution */
-        static getResolution() : Promise<Rectangle> {
+        getResolution() : Promise<Rectangle> {
             return new Promise(resolve => {
                 iApp.get('resolution').then(val => {
                     resolve(Rectangle.parse(val));
@@ -61,7 +70,7 @@ module xui.core {
         }
 
         /** Gets application viewport display resolution */
-        static getViewport() : Promise<Rectangle> {
+        getViewport() : Promise<Rectangle> {
             return new Promise(resolve => {
                 iApp.get('viewport').then(val => {
                     resolve(Rectangle.parse(val));
@@ -70,14 +79,14 @@ module xui.core {
         }
 
         /** Refers to XSplit Broadcaster DLL file version number */
-        static getVersion() : Promise<string> {
+        getVersion() : Promise<string> {
             return new Promise(resolve => {
                 resolve(iApp.get('version'));
             });
         }
 
         /** Gets the total number of frames rendered */
-        static getFramesRendered() : Promise<string> {
+        getFramesRendered() : Promise<string> {
             return new Promise(resolve => {
                 resolve(iApp.get('version'));
             });
@@ -85,7 +94,7 @@ module xui.core {
 
         // Audio Services
         /** List of audio input and output devices used by the application */
-        static getAudioDevices(): Promise<AudioDevice[]> {
+        getAudioDevices(): Promise<AudioDevice[]> {
             return new Promise(resolve => {
                 iApp.getAsList('microphonedev2').then(arr => {
                     resolve(arr.map(val => {
@@ -95,7 +104,7 @@ module xui.core {
             });
         }
 
-        static setAudioDevices(devices: AudioDevice[]): void {
+        setAudioDevices(devices: AudioDevice[]): void {
             var dev = '';
             if (Array.isArray(devices)) {
                 for (var i = 0; i < devices.length; ++i) {
@@ -106,7 +115,7 @@ module xui.core {
             iApp.set('microphonedev2', dev);
         }
 
-        static getAudioGain(): Promise<JSON> {
+        getAudioGain(): Promise<JSON> {
             return new Promise(resolve => {
                 iApp.get('microphonegain').then(val => {
                     resolve(JSON.parse(val));
@@ -114,7 +123,7 @@ module xui.core {
             });
         }
 
-        static setAudioGain(config: JSON): void {
+        setAudioGain(config: JSON): void {
             config.tag = 'configuration';
 
             iApp.set('microphonegain', XML.parseJSON(config).toString());
@@ -122,32 +131,32 @@ module xui.core {
 
         // Dialog Services
         /** Creates a persistent modal dialog */
-        static newDialog(url: string): void {
+        newDialog(url: string): void {
             if (url !== undefined && url !== '') {
                 iApp.callFunc('newdialog', url);
             }
         }
 
         /** Creates a modal dialog that automatically closes on outside click */
-        static newAutoDialog(url: string): void {
+        newAutoDialog(url: string): void {
             if (url !== undefined && url !== '') {
                 iApp.callFunc('newautodialog', url);
             }
         }
 
         /** Close a created dialog */
-        static closeDialog(width: Number, height: Number): void {
+        closeDialog(width: Number, height: Number): void {
             // currently only works for source config
             internal.exec('CloseDialog');
         }
 
         /** Resizes a global script dialog */
-        static resizeSelf(width: Number, height: Number): void {
+        resizeSelf(width: Number, height: Number): void {
             iApp.postMessage(iApp.POSTMESSAGE_SIZE, width, height);
         }
 
         /** Closes a global script dialog */
-        static closeSelf(): void {
+        closeSelf(): void {
             iApp.postMessage(iApp.POSTMESSAGE_CLOSE);
         }
 
@@ -164,7 +173,7 @@ module xui.core {
         static TRANSITION_WAVE: string             = 'wave';
 
         /** Gets the transition for scene changes. */
-        static getTransition(): Promise<string> {
+        getTransition(): Promise<string> {
             return new Promise(resolve => {
                 iApp.get('transitionid').then((val) => {
                     resolve(val);
@@ -173,12 +182,12 @@ module xui.core {
         }
 
         /** Sets the transition for scene changes. */
-        static setTransition(transition: string): void {
+        setTransition(transition: string): void {
             iApp.set('transitionid', transition);
         }
 
         /** Gets the scene transition duration in milliseconds. */
-        static getTransitionTime(): Promise<Number> {
+        getTransitionTime(): Promise<Number> {
             return new Promise(resolve => {
                 iApp.get('transitiontime').then(val => {
                     resolve(Number(val));
@@ -187,12 +196,12 @@ module xui.core {
         }
 
         /** Sets the scene transition duration in milliseconds. */
-        static setTransitionTime(time: Number): void {
+        setTransitionTime(time: Number): void {
             iApp.set('transitiontime', time.toString());
         }
 
         // Presentation services
-        static getCurrentPresentation(): Promise<Presentation> {
+        getCurrentPresentation(): Promise<Presentation> {
             return new Promise(resolve => {
                 let active: Scene,
                     version: string,
@@ -202,7 +211,7 @@ module xui.core {
 
                 View.MAIN.getActiveScene().then(activeScene => {
                     active = activeScene;
-                    return App.getVersion();
+                    return this.getVersion();
                 }).then(v => {
                     version = v;
                     return View.MAIN.getScenes();
@@ -232,17 +241,23 @@ module xui.core {
         }
 
         /** Loads a Presentation object **/
-        static load(pres: Presentation): void {
-            iApp.callFunc('loadpresets', pres.toXML().toString());
+        load(pres: Presentation): void;
+        load(pres: string): void;
+        load(pres: any): void {
+            if (pres instanceof Presentation) {
+                iApp.callFunc('loadpresets', pres.toXML().toString());
+            } else if (/\.bpres$/i.test(<string>pres)) {
+                iApp.callFunc('loadpresets', <string>pres);
+            }
         }
 
         /** Saves the current presentation to a file path **/
-        static save(filename: string): void {
+        save(filename: string): void {
             iApp.callFunc('savepresets', filename);
         }
 
         /** Clear the presentation, and go to the first scene **/
-        static clearPresentation(): void {
+        clearPresentation(): void {
             iApp.callFunc('newpresets', '');
         }
     }

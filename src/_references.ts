@@ -7,6 +7,7 @@
 /// <reference path="system/process.ts" />
 /// <reference path="system/game.ts" />
 /// <reference path="system/window.ts" />
+/// <reference path="system/types.ts" />
 /// <reference path="system/system.ts" />
 
 /// <reference path="core/item.ts" />
