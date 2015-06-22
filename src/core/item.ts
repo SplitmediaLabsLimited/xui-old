@@ -63,19 +63,19 @@ module xui.core {
 
         /** Set name of the item */
         setName(value: string) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
             this.name = value;
 
-            iItem.set('prop:name', this.name);
+            iItem.set('prop:name', this.name, slot);
         }
 
         /** Get the current name of the item */
         getName(): Promise<string> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:name').then((val) => {
+                iItem.get('prop:name', slot).then((val) => {
                     this.name = val;
 
                     resolve(val);

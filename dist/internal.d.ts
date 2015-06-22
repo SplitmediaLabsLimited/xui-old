@@ -177,9 +177,13 @@ declare module internal {
         private sceneID;
         private viewID;
         private static baseID;
+        private static MAX_SLOTS;
+        private static lastSlot;
+        private static itemSlotMap;
         constructor(props: any);
         /** Prepare an item for manipulation */
-        static attach(itemID: string, view: number, slot?: number): void;
+        static attach(itemID: string, view: number): number;
+        private static cacheItemID(itemID, viewID?);
         /** Get an item's local property asynchronously */
         static get(name: string, slot?: number): Promise<string>;
         /** Sets an item's local property */

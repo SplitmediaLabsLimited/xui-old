@@ -10,6 +10,10 @@ module internal {
 
         private static baseID: string;
 
+        private static MAX_SLOTS: number = 2;
+        private static lastSlot: number = Item.MAX_SLOTS - 1;
+        private static itemSlotMap: string[] = [];
+
         constructor(props: any) {
             var props = props || {};
             this.name       = props.name;
@@ -21,22 +25,42 @@ module internal {
 
 
         /** Prepare an item for manipulation */
-        static attach(itemID: string, view: number, slot?: number): void {
+        static attach(itemID: string, view: number): number {
             if (Environment.isScriptPlugin()) {
-                internal.exec('SearchVideoItem', itemID, String(view));
+                return Item.cacheItemID(itemID);
             } else {
-                internal.exec('AttachVideoItem' +
-                    (String(slot) === '2' ? '2' : ''),
-                    itemID,
-                    String(view));
+                return Item.cacheItemID(itemID, view);
             }
         }
 
+        // returns 0-indexed slot where item ID is cached/attached
+        private static cacheItemID(itemID: string, viewID?: number): number {
+            let slot = Item.itemSlotMap.indexOf(itemID);
+            if (slot === -1) {
+                slot = ++Item.lastSlot % Item.MAX_SLOTS;
+                Item.itemSlotMap[slot] = itemID;
+                if (viewID === undefined) {
+                    internal.exec('SearchVideoItem' +
+                        (String(slot) === '0' ? '' : (slot + 1)),
+                        itemID
+                    );
+                } else {
+                    internal.exec('AttachVideoItem' +
+                        (String(slot) === '0' ? '' : (slot + 1)),
+                        itemID,
+                        String(viewID)
+                    );
+                }
+            }
+
+            return slot;
+        }
+
         /** Get an item's local property asynchronously */
-        static get(name: string, slot?: number): Promise<string> {
+        static get(name: string, slot: number = 0): Promise<string> {
             return new Promise((resolve) => {
                 internal.exec('GetLocalPropertyAsync' +
-                    (String(slot) === '2' ? '2' : ''),
+                    (String(slot) === '0' ? '' : slot),
                     name,
                     (val) => {
                         resolve(val);
@@ -45,9 +69,12 @@ module internal {
         }
 
         /** Sets an item's local property */
-        static set(name: string, value: string, slot?: number): void {
+        static set(name: string, value: string, slot: number = 0): void {
+            if (slot === undefined) {
+                slot = 0;
+            }
             internal.exec('SetLocalPropertyAsync' +
-                (String(slot) === '2' ? '2' : ''),
+                (String(slot) === '0' ? '' : slot),
                 name,
                 value);
         }
