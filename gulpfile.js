@@ -23,6 +23,9 @@
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
 		PLG_CONFIG_FILE   = 'ConfigWindow.js';
 
+	var DEPENDENCY_INJECT_LIB = 'lib/di4js.min.js',
+		DEPENDENCY_INJECT     = 'src/init.js';
+
 	var TYPEDOC_FILE  = './src/_references.ts';
 
 	var TYPEDOC_CONFIG = {
@@ -33,7 +36,6 @@
 		theme: 	'default',
 		readme: 'none'
 	};
-
 
 	gulp.task('default', [
 		'compile-internal', 'compile-xui', 'merge'
@@ -80,8 +82,11 @@
 		var plgDep = gulp.src([PLG_CONFIG_PATH + PLG_DEPENDENCY]);
 		var plgConfig = gulp.src([PLG_CONFIG_PATH + PLG_CONFIG_FILE]);
 
-		return merge(xuiFile, plgDep, plgConfig)
-			.pipe(concat('xui.js'))
+		var depLib = gulp.src(DEPENDENCY_INJECT_LIB),
+			depInjection = gulp.src(DEPENDENCY_INJECT);
+
+		return merge(xuiFile, depLib, depInjection, plgDep, plgConfig)
+			.pipe(concat(XUI_FILENAME))
 			.pipe(uglify())
 			.pipe(gulp.dest(DIST_PATH));
 	});

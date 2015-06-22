@@ -35,15 +35,47 @@ module xui.core {
         });
     }
 
-    export class App {
-        private static instance: App;
+    export interface IAppBase {
+        callDll(): string;
+        getFrametime(): Promise<string>;
+        getResolution(): Promise<Rectangle>;
+        getViewport(): Promise<Rectangle>;
+        getVersion(): Promise<string>;
+        getFramesRendered(): Promise<string>;
+    }
 
-        static getInstance(): App {
-            if (App.instance === undefined) {
-                App.instance = new App();
-            }
-            return App.instance;
-        }
+    export interface IAppAudio {
+        getAudioDevices(): Promise<AudioDevice[]>;
+        setAudioDevices(devices: AudioDevice[]);
+        getAudioGain(): Promise<JSON>;
+        setAudioGain(config: JSON);
+    }
+
+    export interface IAppDialog {
+        newDialog(url: string);
+        newAutoDialog(url: string);
+        closeDialog();
+    }
+
+    export interface IAppTransition {
+        getTransition(): Promise<string>;
+        setTransition(transition: string);
+        getTransitionTime(): Promise<Number>;
+        setTransitionTime(time: Number);
+    }
+    
+    export interface IAppPresentation {
+        load(pres: Presentation);
+        load(pres: string);
+        save(filename: string);
+        clearPresentation();
+    }
+
+    export class App implements IAppBase,
+                                IAppAudio,
+                                IAppDialog,
+                                IAppTransition,
+                                IAppPresentation {
         
         // App base services
         /** Call method of DLL present in Scriptdlls folder */
@@ -145,19 +177,9 @@ module xui.core {
         }
 
         /** Close a created dialog */
-        closeDialog(width: Number, height: Number): void {
+        closeDialog(): void {
             // currently only works for source config
             internal.exec('CloseDialog');
-        }
-
-        /** Resizes a global script dialog */
-        resizeSelf(width: Number, height: Number): void {
-            iApp.postMessage(iApp.POSTMESSAGE_SIZE, width, height);
-        }
-
-        /** Closes a global script dialog */
-        closeSelf(): void {
-            iApp.postMessage(iApp.POSTMESSAGE_CLOSE);
         }
 
         // Transition Services

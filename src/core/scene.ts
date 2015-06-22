@@ -12,7 +12,16 @@ module xui.core {
     import URL = xui.system.URL;
     import XML = internal.utils.XML;
 
-    export class Scene {
+    export interface IScene {
+        getID(): number;
+        getViewID(): string;
+        getItems(): Promise<IItemBase[]>;
+        isEmpty(): Promise<boolean>;
+        getName(): Promise<string>;
+        add(item: VideoDevice | Game | File | URL | void);
+    }
+
+    export class Scene implements IScene{
         private id: number;
         private viewID: string;
 

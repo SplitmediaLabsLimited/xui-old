@@ -522,7 +522,15 @@ declare module xui.core {
     import Game = xui.system.Game;
     import File = xui.system.File;
     import URL = xui.system.URL;
-    class Scene {
+    interface IScene {
+        getID(): number;
+        getViewID(): string;
+        getItems(): Promise<IItemBase[]>;
+        isEmpty(): Promise<boolean>;
+        getName(): Promise<string>;
+        add(item: VideoDevice | Game | File | URL | void): any;
+    }
+    class Scene implements IScene {
         private id;
         private viewID;
         constructor(props: {});
@@ -544,7 +552,15 @@ declare module xui.core {
 declare module xui.core {
     import Scene = xui.core.Scene;
     import Item = xui.core.Item;
-    class View {
+    interface IView {
+        getViewID(): number;
+        getScenes(filter?: {}): Promise<IScene[]>;
+        setActiveScene(scene: IScene | number): any;
+        getActiveScene(): Promise<IScene>;
+        getScene(sceneID: number): Promise<IScene>;
+        searchItems(key: string): Promise<IItemBase[]>;
+    }
+    class View implements IView {
         private id;
         constructor(id: number);
         static MAIN: View;
@@ -552,7 +568,7 @@ declare module xui.core {
         getViewID(): number;
         getScenes(filter?: {}): Promise<Scene[]>;
         getScenesCount(): Promise<number>;
-        setActiveScene(scene: Scene | number | any): void;
+        setActiveScene(scene: Scene | number): void;
         getActiveScene(): Promise<Scene>;
         getScene(sceneID: number): Promise<Scene>;
         searchItems(key: string): Promise<Item[]>;
@@ -574,9 +590,38 @@ declare module xui.core {
     import AudioDevice = xui.system.AudioDevice;
     import JSON = internal.utils.JSON;
     import Presentation = xui.core.Presentation;
-    class App {
-        private static instance;
-        static getInstance(): App;
+    interface IAppBase {
+        callDll(): string;
+        getFrametime(): Promise<string>;
+        getResolution(): Promise<Rectangle>;
+        getViewport(): Promise<Rectangle>;
+        getVersion(): Promise<string>;
+        getFramesRendered(): Promise<string>;
+    }
+    interface IAppAudio {
+        getAudioDevices(): Promise<AudioDevice[]>;
+        setAudioDevices(devices: AudioDevice[]): any;
+        getAudioGain(): Promise<JSON>;
+        setAudioGain(config: JSON): any;
+    }
+    interface IAppDialog {
+        newDialog(url: string): any;
+        newAutoDialog(url: string): any;
+        closeDialog(): any;
+    }
+    interface IAppTransition {
+        getTransition(): Promise<string>;
+        setTransition(transition: string): any;
+        getTransitionTime(): Promise<Number>;
+        setTransitionTime(time: Number): any;
+    }
+    interface IAppPresentation {
+        load(pres: Presentation): any;
+        load(pres: string): any;
+        save(filename: string): any;
+        clearPresentation(): any;
+    }
+    class App implements IAppBase, IAppAudio, IAppDialog, IAppTransition, IAppPresentation {
         /** Call method of DLL present in Scriptdlls folder */
         callDll(): string;
         /** Gets application's frame time (duration per frame in 100ns unit) */
@@ -599,11 +644,7 @@ declare module xui.core {
         /** Creates a modal dialog that automatically closes on outside click */
         newAutoDialog(url: string): void;
         /** Close a created dialog */
-        closeDialog(width: Number, height: Number): void;
-        /** Resizes a global script dialog */
-        resizeSelf(width: Number, height: Number): void;
-        /** Closes a global script dialog */
-        closeSelf(): void;
+        closeDialog(): void;
         static TRANSITION_CLOCK: string;
         static TRANSITION_COLLAPSE: string;
         static TRANSITION_MOVE_BOTTOM: string;

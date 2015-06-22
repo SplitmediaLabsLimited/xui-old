@@ -10,7 +10,16 @@ module xui.core {
         PREVIEW = 1
     }
 
-    export class View {
+    export interface IView {
+        getViewID(): number;
+        getScenes(filter?: {}): Promise<IScene[]>;
+        setActiveScene(scene: IScene | number);
+        getActiveScene(): Promise<IScene>;
+        getScene(sceneID: number): Promise<IScene>;
+        searchItems(key: string): Promise<IItemBase[]>;
+    }
+
+    export class View implements IView {
 
         private id: number;
         
@@ -56,7 +65,7 @@ module xui.core {
             });
         }
 
-        setActiveScene(scene: Scene | number | any) {
+        setActiveScene(scene: Scene | number) {
             if (typeof scene === "object") {
                 iApp.set('preset', scene.getID().toString());
             } else if (typeof scene === "number") {
