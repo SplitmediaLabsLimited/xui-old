@@ -3,8 +3,6 @@
 <head>
     <title>XUI Framework Test</title>
 
-    <meta name="config-url" content="http://repo.dev/xui/test/unit/config.html">
-
     <link rel="shortcut icon" type="image/png" href="jasmine/jasmine_favicon.png">
     <link rel="stylesheet" href="jasmine/jasmine.css">
 
@@ -30,5 +28,13 @@
     <script src="./specs/core/app.js"></script>
 </head>
 <body>
+    <script>
+    /* globals xui */
+    'use strict';
+
+    var config = xui.config.ConfigWindow.getInstance();
+
+    config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
+    </script>
 </body>
 </html>

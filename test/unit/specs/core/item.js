@@ -1,4 +1,4 @@
-/* globals describe, it, expect, beforeEach, xui */
+/* globals describe, it, expect, beforeAll, xui, internal */
 
 // @TODO: Test all methods of Item class and it's amazing sub classes
 describe('xui.core.Item', function() {
@@ -7,12 +7,17 @@ describe('xui.core.Item', function() {
     var scene = new xui.core.Scene({ id: 0, viewID: 0 });
     var item;
 
-    beforeEach(function(done) {
-        scene.getItems().then(function(items) {
-            item = items[0];
-            
+    beforeAll(function(done) {
+        if (internal.Environment.isScriptPlugin()) {
+            scene.getItems().then(function(items) {
+                item = items[0];
+                
+                done();
+            });
+        } else {
+            item = xui.core.Item.getCurrentSource();
             done();
-        });
+        }
     });
 
     describe('should be able to fetch', function() {
@@ -21,6 +26,28 @@ describe('xui.core.Item', function() {
                 expect(val).not.toBeNaN();
 
                 done();
+            });
+        });
+
+        it('the configuration', function(done) {
+            item.loadConfig().then(function(config) {
+                expect(config).toBeDefined();
+
+                done();
+            });
+        });
+    });
+
+    describe('should be able to save', function() {
+        it('config', function() {
+            item.loadConfig().then(function(config) {
+                var test = item.saveConfig(JSON.parse(config));
+
+                if (internal.Environment.isSourceHtml()) {
+                    expect(test).toBeTruthy();
+                } else {
+                    expect(test).toBeFalsy();
+                }
             });
         });
     });
