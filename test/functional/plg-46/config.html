@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Config</title>
+        <style>
+        #output {
+            background: #fff;
+            border: 1px solid #000;
+            min-height: 40px;
+        }
+        </style>
+    </head>
+    <body>
+        <p>Functional Testing like a boxx, err, <strong>BOSS</strong></p>
+        <script src="../../../dist/xui.js"></script>
+        <script>
+        // Because we're lazy, we'll just make everything inline <3
+        
+        /* globals xui, internal, console */
+        'use strict';
+
+        // Configure the configuration window
+        try {
+            var config = xui.config.ConfigWindow.getInstance();
+            var item = xui.core.Item.getCurrentSource();
+            var iItem = internal.Item;
+
+            console.trace('Internal Item ID :: ', iItem.getBaseID());
+
+            config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
+            
+            item.getID().then(function(id) {
+                console.trace('ItemID :: ', id);
+            });
+
+            item.loadConfig().then(function(config) {
+                console.trace('loadConfig() :: ', config);
+            });
+
+            item.applyConfig({
+                color: 'red'
+            });
+        } catch (err) {
+            console.trace('ERR :: ', err);
+        }
+        </script>
+    </body>
+</html>

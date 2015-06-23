@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XUI Framework Test</title>
+
+    <link rel="shortcut icon" type="image/png" href="jasmine/jasmine_favicon.png">
+    <link rel="stylesheet" href="jasmine/jasmine.css">
+
+    <script src="jasmine/jasmine.js"></script>
+    <script src="jasmine/jasmine-html.js"></script>
+    <script src="jasmine/boot.js"></script>
+    
+    <script src="./specs/matchers.js"></script>
+    
+    <script src="../../dist/xui.js"></script>
+    
+    <script src="./specs/core/view.js"></script>
+    <script src="./specs/core/scene.js"></script>
+    <script src="./specs/core/item.js"></script>
+    <script src="./specs/core/presentation.js"></script>
+    
+    <script src="./specs/system/audio.js"></script>
+    <script src="./specs/system/window.js"></script>
+    <script src="./specs/system/video.js"></script>
+    <script src="./specs/system/system.js"></script>
+
+    <!-- Test the app class last since... it would clear the presentation lol -->
+    <script src="./specs/core/app.js"></script>
+</head>
+<body>
+    <script>
+    /* globals xui */
+    'use strict';
+
+    var config = xui.config.ConfigWindow.getInstance();
+
+    config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
+    </script>
+</body>
+</html>

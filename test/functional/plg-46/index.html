@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XUI Framework Test</title>
+        <meta name="config-url" content="http://repo.dev/xui/test/functional/plg-46/config.html">
+    </head>
+    <body>
+        <script src="../../../dist/xui.js"></script>
+        <script>
+        // Because we're lazy, we'll just make everything inline <3
+        
+        /* globals xui, console */
+        'use strict';
+        
+        var item = xui.core.Item.getCurrentSource();
+        var emitter = xui.source.SourceWindow.getInstance();
+
+        item.loadConfig().then(function(config) {
+            console.trace('loadConfig() :: ', config);
+        });
+
+        emitter.on('apply-config', function(config) {
+            console.trace('EventEmitter(apply-config) :: ', config);
+
+            // Save it to its config
+            item.saveConfig(config);
+        });
+        </script>
+    </body>
+</html>
