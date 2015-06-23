@@ -38,6 +38,7 @@ module internal {
             let slot = Item.itemSlotMap.indexOf(itemID);
             if (slot === -1) {
                 slot = ++Item.lastSlot % Item.MAX_SLOTS;
+                Item.lastSlot = slot;
                 Item.itemSlotMap[slot] = itemID;
                 if (viewID === undefined) {
                     internal.exec('SearchVideoItem' +
@@ -60,7 +61,7 @@ module internal {
         static get(name: string, slot: number = 0): Promise<string> {
             return new Promise((resolve) => {
                 internal.exec('GetLocalPropertyAsync' +
-                    (String(slot) === '0' ? '' : slot),
+                    (String(slot) === '0' ? '' : slot + 1),
                     name,
                     (val) => {
                         resolve(val);
@@ -71,7 +72,7 @@ module internal {
         /** Sets an item's local property */
         static set(name: string, value: string, slot: number = 0): void {
             internal.exec('SetLocalPropertyAsync' +
-                (String(slot) === '0' ? '' : slot),
+                (String(slot) === '0' ? '' : slot + 1),
                 name,
                 value);
         }
