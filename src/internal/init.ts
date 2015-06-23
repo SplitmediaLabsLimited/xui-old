@@ -8,7 +8,7 @@ module internal {
 
     export function init(): void {
         // only valid for source plugin
-        if(Environment.isSourceHtml()) {
+        if (Environment.isSourceHtml()) {
             // initialize config URL if necessary
             internal.exec('GetLocalPropertyAsync', 'prop:BrowserConfiguration',
                 result => {
@@ -31,7 +31,9 @@ module internal {
                         }
                     }
                 });
+        }
 
+        if (Environment.isSourceHtml() || Environment.isSourceConfig()) {
             // initialize Item.getSource() functions
             internal.exec('GetLocalPropertyAsync', 'prop:id',
                 result => {

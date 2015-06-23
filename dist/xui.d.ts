@@ -223,6 +223,7 @@ declare module xui.system {
     }
 }
 declare module xui.core {
+    import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
     import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
@@ -249,7 +250,7 @@ declare module xui.core {
         getSceneID(): Promise<number>;
         getViewID(): Promise<number>;
     }
-    class Item implements IItemBase, IItemLayout, IItemColor, IItemAudio, IItemWindow, IItemVideo, IItemChroma, IItemPlayback {
+    class Item implements IItemBase, IItemLayout, IItemColor, IItemAudio, IItemWindow, IItemVideo, IItemChroma, IItemPlayback, IItemConfigurable {
         private name;
         private id;
         private sceneID;
@@ -284,7 +285,7 @@ declare module xui.core {
         /** Get the current source (when called for sources), or the source that
          * was right-clicked to open the config window (when called from the
          * config window). */
-        getCurrentSource(): Item;
+        static getCurrentSource(): Item;
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio: () => Promise<boolean>;
         /** Check if Position Locked is set to ON or OFF */
@@ -403,6 +404,12 @@ declare module xui.core {
         setPlaybackEndAction: (value: PlaybackEndAction) => void;
         /** Set Playback Duration */
         setPlaybackDuration: (value: number) => void;
+        /** Load the saved browser configuration */
+        loadConfig: () => Promise<JSON>;
+        /** Save the configuration object */
+        saveConfig: (configObj: JSON) => void;
+        /** Apply changes based on passed configuration object */
+        applyConfig: (configObj: JSON) => void;
     }
 }
 declare module xui.core {
@@ -514,6 +521,14 @@ declare module xui.core {
         setPlaybackEndAction(value: PlaybackEndAction): any;
         getPlaybackDuration(): Promise<number>;
         setPlaybackDuration(value: number): any;
+    }
+}
+declare module xui.core {
+    import JSON = internal.utils.JSON;
+    interface IItemConfigurable {
+        loadConfig(): Promise<JSON>;
+        saveConfig(configObj: JSON): void;
+        applyConfig(configObj: JSON): void;
     }
 }
 declare module xui.core {

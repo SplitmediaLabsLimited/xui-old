@@ -40,7 +40,8 @@ module xui.core {
                                  IItemWindow,
                                  IItemVideo,
                                  IItemChroma,
-                                 IItemPlayback {
+                                 IItemPlayback,
+                                 IItemConfigurable {
         private name: string;
         private id: string;
         private sceneID: number;
@@ -216,7 +217,7 @@ module xui.core {
         /** Get the current source (when called for sources), or the source that
          * was right-clicked to open the config window (when called from the
          * config window). */
-        getCurrentSource(): Item {
+        static getCurrentSource(): Item {
             let item = new Item({
                 id: iItem.getBaseID(),
                 view: 0 // always MAIN
@@ -421,5 +422,16 @@ module xui.core {
 
         /** Set Playback Duration */
         setPlaybackDuration:  (value: number) => void;
+
+        // ItemConfigurable
+
+        /** Load the saved browser configuration */
+        loadConfig: () => Promise<JSON>;
+
+        /** Save the configuration object */
+        saveConfig: (configObj: JSON) => void;
+
+        /** Apply changes based on passed configuration object */
+        applyConfig: (configObj: JSON) => void;
     }
 }
