@@ -70,9 +70,6 @@ module internal {
 
         /** Sets an item's local property */
         static set(name: string, value: string, slot: number = 0): void {
-            if (slot === undefined) {
-                slot = 0;
-            }
             internal.exec('SetLocalPropertyAsync' +
                 (String(slot) === '0' ? '' : slot),
                 name,

@@ -24,73 +24,73 @@ module xui.core {
 
         isKeepAspectRatio(): Promise<boolean> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:keep_ar').then((val) => {
+                iItem.get('prop:keep_ar', slot).then((val) => {
                     resolve(val === '1');
                 });
             });
         }
         
         setKeepAspectRatio(value: boolean) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:keep_ar', value ? '1' : '0');
+            iItem.set('prop:keep_ar', value ? '1' : '0', slot);
         }
 
         isPositionLocked(): Promise<boolean> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:lockmove').then((val) => {
+                iItem.get('prop:lockmove', slot).then((val) => {
                     resolve(val === '1');
                 });
             });
         }
 
         setPositionLocked(value: boolean) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:lockmove', value ? '1' : '0');
+            iItem.set('prop:lockmove', value ? '1' : '0', slot);
         }
 
         isEnhanceResizeEnabled(): Promise<boolean> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:mipmaps').then((val) => {
+                iItem.get('prop:mipmaps', slot).then((val) => {
                     resolve(val === '1');
                 });
             });
         }
 
         setEnhanceResizeEnabled(value: boolean) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:mipmaps', value ? '1' : '0');
+            iItem.set('prop:mipmaps', value ? '1' : '0', slot);
         }
 
         isPixelAlignmentEnabled(): Promise<boolean> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:pixalign').then((val) => {
+                iItem.get('prop:pixalign', slot).then((val) => {
                     resolve(val === '1');
                 });
             });
         }
 
         setPixelAlignmentEnabled(value: boolean) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:pixalign', value ? '1' : '0');
+            iItem.set('prop:pixalign', value ? '1' : '0', slot);
         }
 
         getPosition():Promise<Rectangle> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:pos').then((val) => {
+                iItem.get('prop:pos', slot).then((val) => {
                     this.position = Rectangle.parse(val);
 
                     resolve(this.position);
@@ -99,11 +99,11 @@ module xui.core {
         }
 
         setPosition(value: Rectangle) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
             this.position = value;
 
-            iItem.set('prop:pos', value.toString());
+            iItem.set('prop:pos', value.toString(), slot);
         }
     }
 

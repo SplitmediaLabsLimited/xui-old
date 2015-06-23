@@ -14,18 +14,18 @@ module xui.core {
 
         isWindowTracking(): Promise<boolean> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:ScrCapTrackWindowTitle').then((val) => {
+                iItem.get('prop:ScrCapTrackWindowTitle', slot).then((val) => {
                     resolve(val === '0');
                 });
             });
         }
         
         setWindowTracking(value: boolean) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:ScrCapTrackWindowTitle', (value ? '0' : '1'));
+            iItem.set('prop:ScrCapTrackWindowTitle', (value ? '0' : '1'), slot);
         }
     }
 

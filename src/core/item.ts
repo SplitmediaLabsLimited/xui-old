@@ -86,9 +86,9 @@ module xui.core {
         /** Get the video item's main definition */
         getValue(): Promise<string|XML> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:item').then((val) => {
+                iItem.get('prop:item', slot).then((val) => {
                     val = (val === 'null') ? '' : val;
 
                     if (val === '') { // don't return XML for null values
@@ -112,7 +112,7 @@ module xui.core {
 
         /** Set the video item's main definition */
         setValue(value: string | XML) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
             var val: string = (typeof value === 'string') ? 
                 <string> value : (<XML> value).toString();
@@ -121,15 +121,15 @@ module xui.core {
                 this.value = JSON.parse(val);
             }
 
-            iItem.set('prop:item', val);
+            iItem.set('prop:item', val, slot);
         }
 
         /** Get Keep loaded option */
         getKeepLoaded(): Promise<boolean> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:keeploaded').then((val) => {
+                iItem.get('prop:keeploaded', slot).then((val) => {
                     this.keepLoaded = (val === '1');
 
                     resolve(this.keepLoaded);
@@ -139,19 +139,19 @@ module xui.core {
 
         /** Set Keep loaded option to ON or OFF */
         setKeepLoaded(value: boolean) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
             this.keepLoaded = value;
 
-            iItem.set('prop:keeploaded', this.keepLoaded ? '1' : '0');
+            iItem.set('prop:keeploaded', (this.keepLoaded ? '1' : '0'), slot);
         }
 
         /** Get the type of the item */
         getType(): Promise<ItemTypes> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:type').then((val) => {
+                iItem.get('prop:type', slot).then((val) => {
                     this.type = ItemTypes[ItemTypes[Number(val)]];
 
                     resolve(this.type);
@@ -162,9 +162,9 @@ module xui.core {
         /** Get Item ID */
         getID(): Promise<string> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:id').then((val) => {
+                iItem.get('prop:id', slot).then((val) => {
                     this.id = val;
 
                     resolve(this.id);
@@ -182,9 +182,9 @@ module xui.core {
         /** Get the View ID where the item is loaded */
         getViewID(): Promise<number> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:viewid').then((val) => {
+                iItem.get('prop:viewid', slot).then((val) => {
                     this.viewID = Number(val);
 
                     resolve(this.viewID);

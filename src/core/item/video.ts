@@ -13,9 +13,9 @@ module xui.core {
         
         getCuePoints(): Promise<number[]> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:CuePoints').then((val) => {
+                iItem.get('prop:CuePoints', slot).then((val) => {
                     var cuepoints: string[];;
                     var ret: number[];
 

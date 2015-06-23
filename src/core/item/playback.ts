@@ -27,70 +27,70 @@ module xui.core {
 
         getPlaybackStartPos(): Promise<number> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:InPoint').then((val) => {
+                iItem.get('prop:InPoint', slot).then((val) => {
                     resolve(Number(val) / 10);
                 });
             });
         }
 
         setPlaybackStartPos(value: number) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
             value = value < 0 ? 0 : value;
 
-            iItem.set('prop:InPoint', String(value * 10));
+            iItem.set('prop:InPoint', String(value * 10), slot);
         }
 
         getPlaybackEndPos(): Promise<number> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:OutPoint').then((val) => {
+                iItem.get('prop:OutPoint', slot).then((val) => {
                     resolve(Number(val) / 10);
                 });
             });
         }
 
         setPlaybackEndPos(value: number) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
             value = value < 0 ? 0 : value;
 
-            iItem.set('prop:OutPoint', String(value * 10));
+            iItem.set('prop:OutPoint', String(value * 10), slot);
         }
 
         getPlaybackEndAction(): Promise<PlaybackEndAction> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:OpWhenFinished').then((val) => {
+                iItem.get('prop:OpWhenFinished', slot).then((val) => {
                     resolve(Number(val));
                 });
             });
         }
 
         setPlaybackEndAction(value: PlaybackEndAction) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:OpWhenFinished', String(value));
+            iItem.set('prop:OpWhenFinished', String(value), slot);
         }
 
         getPlaybackDuration(): Promise<number> {
             return new Promise((resolve) => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('sync:duration').then((val) => {
+                iItem.get('sync:duration', slot).then((val) => {
                     resolve(Number(val));
                 });
             });
         }
         
         setPlaybackDuration(value: number) {
-            iItem.attach(this.id, this.viewID);
+            let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('sync:duration', String(value));
+            iItem.set('sync:duration', String(value), slot);
         }
     }
 
