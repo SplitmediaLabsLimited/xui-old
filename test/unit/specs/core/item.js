@@ -50,7 +50,7 @@ describe('xui.core.Item', function() {
                 if (type === 5 || type === 7) {
                     expect(val).toBeInstanceOf(internal.utils.XML);
                 } else {
-                    expect(val).toBeInstanceOf(String);
+                    expect(typeof val).toBe('string');
                 }
                 done();
             });
@@ -58,7 +58,7 @@ describe('xui.core.Item', function() {
 
         it('the save source in memory setting', function(done) {
             item.getKeepLoaded().then(function(val) {
-                expect(val).toBeInstanceOf(Boolean);
+                expect(typeof val).toBe('boolean');
                 done();
             });
         });
@@ -87,5 +87,38 @@ describe('xui.core.Item', function() {
 
     it('should be able to parse itself to XML', function() {
         expect(item.toXML()).toBeInstanceOf(internal.utils.XML);
+    });
+
+    describe('should be able to', function() {
+        var config = '';
+
+        it('load the configuration', function(done) {
+            item.loadConfig().then(function(val) {
+                expect(val).toBeInstanceOf(internal.utils.JSON);
+                config = val;
+                done();
+            });
+        });
+
+        it('save the configuration', function() {
+            if (internal.Environment.isSourceHtml()) {
+                expect(item.saveConfig(config)).toBeUndefined();
+            } else {
+                expect(item.saveConfig(config)).toThrow();
+            }
+        });
+
+        it('apply the configuration', function(done) {
+            expect(item.applyConfig(config)).not.toThrow();
+            if (internal.Environment.isSourceHtml()) {
+                var emitter = xui.source.SourceWindow.getInstance();
+                emitter.on('apply-config', function(config) {
+                    expect(config).toEqual(config);
+                    done();
+                });
+            } else {
+                done();
+            }
+        });
     });
 });
