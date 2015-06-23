@@ -220,7 +220,7 @@ module xui.core {
         static getCurrentSource(): Item {
             let item = new Item({
                 id: iItem.getBaseID(),
-                view: 0 // always MAIN
+                viewID: 0 // always MAIN
             });
             
             return item;

@@ -34,8 +34,8 @@ module xui.core {
             }
 
             if (Environment.isSourceHtml()) {
-                internal.exec('SetBrowserProperty', window['JSON'].stringify(
-                    configObj));
+                internal.exec('SetBrowserProperty', 'Configuration',
+                    window['JSON'].stringify(configObj));
             } else {
                 throw new Error(
                     'Only the source HTML itself may save configuration.' +
