@@ -180,10 +180,12 @@ declare module internal {
         private static MAX_SLOTS;
         private static lastSlot;
         private static itemSlotMap;
+        private static islockedSourceSlot;
         constructor(props: any);
         /** Prepare an item for manipulation */
         static attach(itemID: string, view: number): number;
         private static cacheItemID(itemID, viewID?);
+        static lockSourceSlot(itemID: string): void;
         /** Get an item's local property asynchronously */
         static get(name: string, slot?: number): Promise<string>;
         /** Sets an item's local property */

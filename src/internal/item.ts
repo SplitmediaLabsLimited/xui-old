@@ -13,6 +13,7 @@ module internal {
         private static MAX_SLOTS: number = 2;
         private static lastSlot: number = Item.MAX_SLOTS - 1;
         private static itemSlotMap: string[] = [];
+        private static islockedSourceSlot: boolean = false;
 
         constructor(props: any) {
             var props = props || {};
@@ -38,6 +39,9 @@ module internal {
             let slot = Item.itemSlotMap.indexOf(itemID);
             if (slot === -1) {
                 slot = ++Item.lastSlot % Item.MAX_SLOTS;
+                if (Item.islockedSourceSlot && slot === 0) {
+                    ++slot; // source cannot attach to first slot
+                }
                 Item.lastSlot = slot;
                 Item.itemSlotMap[slot] = itemID;
                 if (viewID === undefined) {
@@ -55,6 +59,16 @@ module internal {
             }
 
             return slot;
+        }
+
+        static lockSourceSlot(itemID: string) {
+            if (itemID !== undefined) {
+                Item.islockedSourceSlot = true;
+                Item.itemSlotMap[0] = itemID;
+            } else {
+                Item.islockedSourceSlot = false;
+                Item.itemSlotMap[0] = '';
+            }
         }
 
         /** Get an item's local property asynchronously */

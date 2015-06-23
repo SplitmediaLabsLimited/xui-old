@@ -37,7 +37,12 @@ module internal {
             // initialize Item.getSource() functions
             internal.exec('GetLocalPropertyAsync', 'prop:id',
                 result => {
-                    internal.Item.setBaseID(decodeURIComponent(result));
+                    let id = decodeURIComponent(result);
+                    internal.Item.setBaseID(id);
+
+                    if (Environment.isSourceHtml()) {
+                        internal.Item.lockSourceSlot(id);
+                    }
                 });
         }
     }
