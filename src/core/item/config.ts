@@ -37,7 +37,9 @@ module xui.core {
                 internal.exec('SetBrowserProperty', window['JSON'].stringify(
                     configObj));
             } else {
-                Error('Only the source HTML itself may save configuration.');
+                throw new Error(
+                    'Only the source HTML itself may save configuration.' +
+                    ' Consider applyConfig() instead.');
             }
         }
 
