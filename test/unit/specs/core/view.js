@@ -74,16 +74,21 @@ describe('xui.core.View', function() {
 
     describe('should be able to search items', function() {
         describe('by keyword', function() {
-            var promise = view.searchItems({keyword: 'Webcam'});
+            var promise = view.searchItems('Webcam');
 
             it('through a promise', function() {
                 expect(promise).toBeInstanceOf(Promise);
             });
 
             it('an array of Items', function(done) {
-                promise.then(function(scenes) {
-                    expect(scenes).toBeInstanceOf(Array);
-                    expect(scenes).eachToBeInstanceOf(xui.core.Item);
+                promise.then(function(items) {
+                    expect(items).toBeInstanceOf(Array);
+                    expect(items).eachToBeInstanceOf(xui.core.Item);
+                    for (var i = 0; i < items.length; i++) {
+                        if (!items[i].name.match(/Webcam/ig)) {
+                            expect(items[i].value).toMatch(/Webcam/ig);
+                        }
+                    }
                     done();
                 });
             });
