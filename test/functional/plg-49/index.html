@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XUI Framework Test (Functional)</title>
+        <meta name="config-url" content="http://repo.dev/xui/test/functional/plg-46/config.html">
+    </head>
+    <body>
+        <p style="color:#FFF">
+            You should need to have atleast 2 other source items on this
+            scene for this testing to work :)
+        </p>
+        <button id="0" class="source">Manipulate source #1</button>
+        <button id="1" class="source">Manipulate source #2</button>
+        <button id="me">Manipulate Me!</button>
+        <script src="../../../dist/xui.js"></script>
+        <script>
+        // Because we're lazy, we'll just make everything inline <3
+        
+        /* globals xui */
+        'use strict';
+        
+        var item = xui.core.Item.getCurrentSource();
+
+        xui.core.Scene.get().then(function(scene) {
+            return scene.getItems();
+        }).then(function(items) {
+            return new Promise(function(resolve) {
+                item.getID().then(function(id) {
+                    var itemArr = [];
+                    items.forEach(function(cItem, idx, arr) {
+                        if (cItem.id !== id) {
+                            itemArr.push(cItem);
+                        }
+                        if (idx === (arr.length - 1)) resolve(itemArr);
+                    });
+                });
+            });
+        }).then(function(items) {
+            // Attach events here
+            var sources = document.querySelectorAll('.source');
+            var me = document.getElementById('me');
+
+            me.addEventListener('click', function() {
+                item.getID();
+            });
+
+            var _getID = function() { items[this.id].getID(); };
+            for (var i = 0; i < sources.length; i++) {
+                sources[i].addEventListener('click', _getID.bind({id: i}));
+            }
+        });
+
+        </script>
+    </body>
+</html>
