@@ -2,16 +2,25 @@
     'use strict';
 
     window.addEventListener("load", function() {
+
+        // scope into xui namespace
+        xui.DependencyContainer = di;
+        delete window.di;
         // base class dependencies
-        di
-            .register('App')
+
+        xui.DependencyContainer
+            .register('app')
                 .as(xui.core.App)
                 .asSingleton()
-            .register('View')
-                .as(xui.core.View)
-            .register('Scene')
-                .as(xui.core.Scene)
-            .register('Item')
-                .as(xui.core.Item);
+            .register('currentItem')
+                .as(xui.core.Item.getCurrentSource)
+            .register('currentScene')
+                .as(xui.core.Scene.get)
+            .register('mainView')
+                .instance(xui.core.View.MAIN)
+            .register('sourceWindow')
+                .as(xui.source.SourceWindow.getInstance)
+            .register('configWindow')
+                .as(xui.config.ConfigWindow.getInstance);
     });
 }());
