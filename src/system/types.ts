@@ -21,4 +21,7 @@ module xui.system {
             return this.url;
         }
     }
+
+    export class Screen {
+    }
 }

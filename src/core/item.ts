@@ -50,6 +50,7 @@ module xui.core {
         private value: any;
         private keepLoaded: boolean;
         private position: Rectangle;
+        private item: string;
 
         constructor(props?: {}) {
             props = props ? props : {};
@@ -60,6 +61,8 @@ module xui.core {
             this.viewID = props['viewID'];
             this.value = props['value'];
             this.keepLoaded = props['keeploaded'];
+            this.type = props['type'];
+            this.item = props['item'];
         }
 
         /** Set name of the item */

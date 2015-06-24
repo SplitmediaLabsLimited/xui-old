@@ -3,7 +3,7 @@
 module internal {
 
     export function persistConfig(config: {}): void {
-        window['internal'].persistConfig = config;
+        internal['persistedConfig'] = config;
     }
 
     function readMetaConfigUrl(): Promise<any> {

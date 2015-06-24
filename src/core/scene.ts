@@ -10,6 +10,7 @@ module xui.core {
     import Game = xui.system.Game;
     import File = xui.system.File;
     import URL = xui.system.URL;
+    import Screen = xui.system.Screen;
     import XML = internal.utils.XML;
 
     export interface IScene {
@@ -18,7 +19,7 @@ module xui.core {
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
-        add(item: VideoDevice | Game | File | URL | void);
+        add(item: VideoDevice | Game | File | URL | Screen);
     }
 
     export class Scene implements IScene{
@@ -114,7 +115,7 @@ module xui.core {
         }
 
         // Source-related Item services
-        add(item: VideoDevice | Game | File | URL | void): void {
+        add(item: VideoDevice | Game | File | URL | Screen): void {
             if (item instanceof VideoDevice) {
                 this.addVideoDevice(item);
             } else if (item instanceof Game) {
@@ -123,7 +124,7 @@ module xui.core {
                 this.addFile(item);
             } else if (item instanceof URL) {
                 this.addUrl(item);
-            } else {
+            } else if (item instanceof Screen) {
                 this.addScreen();
             }
         }

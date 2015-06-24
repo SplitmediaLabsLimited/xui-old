@@ -21,7 +21,7 @@ module xui.core {
 
                 iItem.get('prop:BrowserConfiguration').then(config => {
                     let configObj = window['JSON'].parse(config);
-                    let persist = internal['persistConfig'];
+                    let persist = internal['persistedConfig'];
                     for (var key in persist) {
                         delete configObj[key];
                     }
@@ -33,7 +33,7 @@ module xui.core {
         saveConfig(configObj: JSON) {
             // add persisted configuration if available
             // currently only top level merging is available
-            let persist = internal['persistConfig'];
+            let persist = internal['persistedConfig'];
             for (var key in persist) {
                 configObj['key'] = persist['key'];
             }

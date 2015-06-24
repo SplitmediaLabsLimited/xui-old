@@ -192,6 +192,8 @@ declare module xui.system {
         constructor(url: string);
         toString(): string;
     }
+    class Screen {
+    }
 }
 declare module xui.system {
     import Window = xui.system.Window;
@@ -259,6 +261,7 @@ declare module xui.core {
         private value;
         private keepLoaded;
         private position;
+        private item;
         constructor(props?: {});
         /** Set name of the item */
         setName(value: string): void;
@@ -537,13 +540,14 @@ declare module xui.core {
     import Game = xui.system.Game;
     import File = xui.system.File;
     import URL = xui.system.URL;
+    import Screen = xui.system.Screen;
     interface IScene {
         getID(): number;
         getViewID(): string;
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
-        add(item: VideoDevice | Game | File | URL | void): any;
+        add(item: VideoDevice | Game | File | URL | Screen): any;
     }
     class Scene implements IScene {
         private id;
@@ -555,7 +559,7 @@ declare module xui.core {
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
         static get(id?: number): Promise<Scene>;
-        add(item: VideoDevice | Game | File | URL | void): void;
+        add(item: VideoDevice | Game | File | URL | Screen): void;
         private addVideoDevice(device);
         private addGame(gameSource);
         private addFile(file);
