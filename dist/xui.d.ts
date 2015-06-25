@@ -559,6 +559,7 @@ declare module xui.core {
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
+        setName(name: string): any;
         add(item: VideoDevice | Game | File | URL | ScreenRegion): any;
     }
     class Scene implements IScene {
@@ -570,6 +571,7 @@ declare module xui.core {
         getItems(): Promise<Item[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
+        setName(name: string): void;
         static get(id?: number): Promise<Scene>;
         add(item: VideoDevice | Game | File | URL | ScreenRegion): void;
         private addVideoDevice(device);

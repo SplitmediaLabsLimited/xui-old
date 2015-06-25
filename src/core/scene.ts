@@ -19,6 +19,7 @@ module xui.core {
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
+        setName(name: string);
         add(item: VideoDevice | Game | File | URL | ScreenRegion);
     }
 
@@ -74,6 +75,10 @@ module xui.core {
                     resolve(val);
                 });
             });
+        }
+
+        setName(name: string) {
+            iApp.set('presetname:' + this.id, name);
         }
 
         static get(id?: number): Promise<Scene> {
