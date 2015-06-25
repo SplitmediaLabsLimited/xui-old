@@ -86,9 +86,9 @@ module xui.core {
                             return iApp.get('presetconfig:-1');
                         }).then((sceneString) => {
                             curScene = JSON.parse(sceneString);
-                            return new xui.core.View(viewID).getScenes({ 
-                                name: curScene['name']
-                            });
+                            return new xui.core.View(viewID).getScenes(
+                                curScene['name']
+                            );
                         }).then((scene) => {
                             resolve(scene[0]);
                         });

@@ -35,7 +35,7 @@ module xui.core {
             // currently only top level merging is available
             let persist = internal['persistedConfig'];
             for (var key in persist) {
-                configObj['key'] = persist['key'];
+                configObj[key] = persist[key];
             }
 
             if (Environment.isSourceHtml()) {

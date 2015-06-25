@@ -7,6 +7,7 @@ module xui.core {
     import XML   = internal.utils.XML;
     import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
+    import Environment = internal.Environment;
 
     export enum ItemTypes {
         UNDEFINED,
@@ -166,13 +167,7 @@ module xui.core {
         /** Get Item ID */
         getID(): Promise<string> {
             return new Promise((resolve) => {
-                let slot = iItem.attach(this.id, this.viewID);
-
-                iItem.get('prop:id', slot).then((val) => {
-                    this.id = val;
-
-                    resolve(this.id);
-                });
+                resolve(this.id);
             });
         }
 
@@ -220,13 +215,59 @@ module xui.core {
         /** Get the current source (when called for sources), or the source that
          * was right-clicked to open the config window (when called from the
          * config window). */
-        static getCurrentSource(): Item {
-            let item = new Item({
-                id: iItem.getBaseID(),
-                viewID: 0 // always MAIN
-            });
-            
-            return item;
+        static getCurrentSource(): Promise<Item> {
+            if (Environment.isScriptPlugin()) {
+                throw new Error('Script plugins do not have a ' +
+                    'source associated with them.');
+            } else {
+                return new Promise(resolve => {
+                    iApp.get('presetconfig:-1').then(xml => {
+                        return new JSON(xml);
+                    }).then(json => {
+                        let name = json['name'];
+                        return View.MAIN.getScenes(name);
+                    }).then(scenes => {
+                        if (scenes.length === 1) {
+                            let item = new Item({
+                                id: iItem.getBaseID(),
+                                sceneID: scenes[0].getID(),
+                                viewID: 0 // always MAIN
+                            });
+                            resolve(item);
+                        } else {
+                            // check which scene contains item
+                            let searchPromises = [];
+                            for (var i = 0; i < scenes.length; i++) {
+                                var scene = scenes[i];
+                                (scene => {
+                                    searchPromises.push(new Promise(found => {
+                                        console.log('scene id: ' + scene['id']);
+                                        scene.getItems().then(items => {
+                                            for (var j = 0; j < items.length;
+                                                j++) {
+                                                items[j].getID().then(id => {
+                                                    if (id === iItem.getBaseID()
+                                                        ) {
+                                                        found(scene);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }));
+                                })(scenes[i]);
+                            }
+                            Promise.race(searchPromises).then(scene => {
+                                let item = new Item({
+                                    id: iItem.getBaseID(),
+                                    sceneID: scene.getID(),
+                                    viewID: 0 // always MAIN
+                                });
+                                resolve(item);
+                            });
+                        }
+                    });
+                });
+            }
         }
 
         // ItemLayout

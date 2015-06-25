@@ -288,7 +288,7 @@ declare module xui.core {
         /** Get the current source (when called for sources), or the source that
          * was right-clicked to open the config window (when called from the
          * config window). */
-        static getCurrentSource(): Item;
+        static getCurrentSource(): Promise<Item>;
         /** Check if Aspect Ratio is set to ON or OFF */
         isKeepAspectRatio: () => Promise<boolean>;
         /** Check if Position Locked is set to ON or OFF */
@@ -573,7 +573,7 @@ declare module xui.core {
     import Item = xui.core.Item;
     interface IView {
         getViewID(): number;
-        getScenes(filter?: {}): Promise<IScene[]>;
+        getScenes(filter?: number | string | void): Promise<IScene[]>;
         setActiveScene(scene: IScene | number): any;
         getActiveScene(): Promise<IScene>;
         getScene(sceneID: number): Promise<IScene>;
@@ -585,7 +585,7 @@ declare module xui.core {
         static MAIN: View;
         static PREVIEW: View;
         getViewID(): number;
-        getScenes(filter?: {}): Promise<Scene[]>;
+        getScenes(filter?: number | string | void): Promise<Scene[]>;
         getScenesCount(): Promise<number>;
         setActiveScene(scene: Scene | number): void;
         getActiveScene(): Promise<Scene>;

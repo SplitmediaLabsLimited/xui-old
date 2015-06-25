@@ -12,7 +12,7 @@ module xui.core {
 
     export interface IView {
         getViewID(): number;
-        getScenes(filter?: {}): Promise<IScene[]>;
+        getScenes(filter?: number | string | void): Promise<IScene[]>;
         setActiveScene(scene: IScene | number);
         getActiveScene(): Promise<IScene>;
         getScene(sceneID: number): Promise<IScene>;
@@ -34,21 +34,24 @@ module xui.core {
             return this.id;
         }
 
-        getScenes(filter?: {}): Promise<Scene[]> {
-            filter = filter ? filter : {};
-
+        getScenes(filter?: number | string | void): Promise<Scene[]> {
             return new Promise((resolve) => {
-                var ret: Array<Scene> = [];
-                var regex: RegExp    = new RegExp(filter['name'], 'gi');
+                let ret: Array<Scene> = [];
+                let regex = typeof filter === 'string' ?
+                    new RegExp(filter, 'gi') : new RegExp('');
 
                 iApp.getAsList('presetconfig').then(config => {
                     for (var i = 0; i < config.length; i++) {
                         if (config[i]['tag'] === 'global') {
                             continue;
                         }
-                        if ((filter['name'] && regex.test(config[i]['name'])) ||
-                            filter['id'] === (i + 1) ||
-                            Object.keys(filter).length === 0) {
+
+                        if (typeof filter === 'number' && i === filter) {
+                            ret.push(new Scene({ id: i, viewID: this.id }));
+                            break;
+                        } else if (filter === undefined ||
+                            (typeof filter === 'string' &&
+                            regex.test(config[i]['name']))) {
                             ret.push(new Scene({ id: i, viewID: this.id }));
                         }
                     }
