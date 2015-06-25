@@ -542,8 +542,8 @@ declare module xui.core {
     import URL = xui.system.URL;
     import Screen = xui.system.Screen;
     interface IScene {
-        getID(): number;
-        getViewID(): string;
+        getID(): Promise<number>;
+        getViewID(): Promise<number>;
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
@@ -553,8 +553,8 @@ declare module xui.core {
         private id;
         private viewID;
         constructor(props: {});
-        getID(): number;
-        getViewID(): string;
+        getID(): Promise<number>;
+        getViewID(): Promise<number>;
         getItems(): Promise<Item[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
@@ -572,7 +572,7 @@ declare module xui.core {
     import Scene = xui.core.Scene;
     import Item = xui.core.Item;
     interface IView {
-        getViewID(): number;
+        getViewID(): Promise<number>;
         getScenes(filter?: number | string | void): Promise<IScene[]>;
         setActiveScene(scene: IScene | number): any;
         getActiveScene(): Promise<IScene>;
@@ -584,7 +584,7 @@ declare module xui.core {
         constructor(id: number);
         static MAIN: View;
         static PREVIEW: View;
-        getViewID(): number;
+        getViewID(): Promise<number>;
         getScenes(filter?: number | string | void): Promise<Scene[]>;
         getScenesCount(): Promise<number>;
         setActiveScene(scene: Scene | number): void;

@@ -11,18 +11,19 @@ module xui.core {
     import Scene = xui.core.Scene;
 
     function createSceneXML(scene: Scene): Promise<Scene> {
-        let id = scene.getID();
-
         return new Promise(resolve => {
-            iApp.get('presetconfig:' + id).then(xml => {
-                return JSON.parse(xml);
-            }).then(xml => {
-                scene['defpos'] = xml['defpos'];
-                scene['items'] = xml.children !== undefined ? xml.children : [];
-                return scene.getName();
-            }).then(name => {
-                scene['name'] = name;
-                resolve(scene);
+            scene.getID().then(id => {
+                iApp.get('presetconfig:' + id).then(xml => {
+                    return JSON.parse(xml);
+                }).then(xml => {
+                    scene['defpos'] = xml['defpos'];
+                    scene['items'] = xml.children !== undefined ?
+                        xml.children : [];
+                    return scene.getName();
+                }).then(name => {
+                    scene['name'] = name;
+                    resolve(scene);
+                });
             });
         });
     }

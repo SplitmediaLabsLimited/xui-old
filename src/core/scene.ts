@@ -14,8 +14,8 @@ module xui.core {
     import XML = internal.utils.XML;
 
     export interface IScene {
-        getID(): number;
-        getViewID(): string;
+        getID(): Promise<number>;
+        getViewID(): Promise<number>;
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
@@ -24,19 +24,23 @@ module xui.core {
 
     export class Scene implements IScene{
         private id: number;
-        private viewID: string;
+        private viewID: number;
 
         constructor(props: {}) {
             this.id = props['id'];
             this.viewID = props['viewID'];
         }
 
-        getID(): number {
-            return this.id;
+        getID(): Promise<number> {
+            return new Promise(resolve => {
+                resolve(this.id);
+            });
         }
 
-        getViewID(): string {
-            return this.viewID;
+        getViewID(): Promise<number> {
+            return new Promise(resolve => {
+                resolve(this.viewID);
+            });
         }
 
         getItems(): Promise<Item[]> {
@@ -46,7 +50,7 @@ module xui.core {
                     if (Array.isArray(jsonArr)) {
                         for (var i = 0; i < jsonArr.length; i++) {
                             jsonArr[i]['sceneID'] = this.id;
-                            jsonArr[i]['viewID'] = parseInt(this.viewID);
+                            jsonArr[i]['viewID'] = this.viewID;
                             var item = new Item(jsonArr[i]);
                             retArray.push(item);
                         }

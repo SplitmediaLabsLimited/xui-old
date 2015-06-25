@@ -228,12 +228,14 @@ module xui.core {
                         return View.MAIN.getScenes(name);
                     }).then(scenes => {
                         if (scenes.length === 1) {
-                            let item = new Item({
-                                id: iItem.getBaseID(),
-                                sceneID: scenes[0].getID(),
-                                viewID: 0 // always MAIN
+                            scenes[0].getID().then(id => {
+                                let item = new Item({
+                                    id: iItem.getBaseID(),
+                                    sceneID: id,
+                                    viewID: 0 // always MAIN
+                                });
+                                resolve(item);
                             });
-                            resolve(item);
                         } else {
                             // check which scene contains item
                             let searchPromises = [];
@@ -257,12 +259,15 @@ module xui.core {
                                 })(scenes[i]);
                             }
                             Promise.race(searchPromises).then(scene => {
-                                let item = new Item({
-                                    id: iItem.getBaseID(),
-                                    sceneID: scene.getID(),
-                                    viewID: 0 // always MAIN
+                                scene.getID().then(id => {
+                                    let item = new Item({
+                                        id: iItem.getBaseID(),
+                                        sceneID: id,
+                                        viewID: 0 // always MAIN
+                                    });
+                                    resolve(item);
                                 });
-                                resolve(item);
+
                             });
                         }
                     });
