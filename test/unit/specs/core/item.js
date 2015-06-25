@@ -4,7 +4,7 @@
 describe('xui.core.Item', function() {
     'use strict';
 
-    var scene = new xui.core.Scene({ id: 0, viewID: 0 });
+    var scene = new xui.core.Scene({ id: 3, viewID: 0 });
     var item;
 
     beforeAll(function(done) {
@@ -14,8 +14,10 @@ describe('xui.core.Item', function() {
                 done();
             });
         } else {
-            item = xui.core.Item.getCurrentSource();
-            done();
+            xui.core.Item.getCurrentSource().then(function(ret) {
+                item = ret;
+                done();
+            });
         }
     });
 
@@ -24,15 +26,15 @@ describe('xui.core.Item', function() {
 
         it('the current item', function() {
             if (internal.Environment.isScriptPlugin()) {
-                expect(xui.core.Item.getCurrentSource()).toBeUndefined();
+                expect(xui.core.Item.getCurrentSource).toThrow();
             } else {
-                expect(xui.core.Item.getCurrentSource()).toBeDefined();
+                expect(xui.core.Item.getCurrentSource()).toBeInstanceOf(Promise);
             }
         });
 
         it('the name', function(done) {
             item.getName().then(function(val) {
-                expect(val).toBeDefined(); 
+                expect(val).toBeDefined();
                 done();
             });
         });
@@ -94,8 +96,12 @@ describe('xui.core.Item', function() {
 
         it('load the configuration', function(done) {
             item.loadConfig().then(function(val) {
-                expect(val).toBeInstanceOf(internal.utils.JSON);
-                config = val;
+                if (val) {
+                    expect(typeof val).toBe('object');
+                    config = val;
+                } else {
+                    expect(val).toBeNull();
+                }
                 done();
             });
         });
@@ -104,18 +110,20 @@ describe('xui.core.Item', function() {
             if (internal.Environment.isSourceHtml()) {
                 expect(item.saveConfig(config)).toBeUndefined();
             } else {
-                expect(item.saveConfig(config)).toThrow();
+                expect(item.saveConfig).toThrow();
             }
         });
 
         it('apply the configuration', function(done) {
-            expect(item.applyConfig(config)).not.toThrow();
+            expect(item.applyConfig).not.toThrow();
             if (internal.Environment.isSourceHtml()) {
                 var emitter = xui.source.SourceWindow.getInstance();
+                item.applyConfig(config);
                 emitter.on('apply-config', function(config) {
                     expect(config).toEqual(config);
                     done();
                 });
+                done();
             } else {
                 done();
             }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>XUI Framework Test (Functional)</title>
-        <meta name="config-url" content="http://repo.dev/xui/test/functional/plg-46/config.html">
+        <title>XUI Framework Test (Functional PLG-49)</title>
+        <meta name="config-url" content="http://repo.dev/xui/test/functional/plg-49/config.html">
     </head>
     <body>
         <p style="color:#FFF">
@@ -19,35 +19,40 @@
         /* globals xui */
         'use strict';
         
-        var item = xui.core.Item.getCurrentSource();
+        document.addEventListener('xui-ready', function() {
+            var item = xui.core.Item.getCurrentSource();
 
-        xui.core.Scene.get().then(function(scene) {
-            return scene.getItems();
-        }).then(function(items) {
-            return new Promise(function(resolve) {
-                item.getID().then(function(id) {
-                    var itemArr = [];
-                    items.forEach(function(cItem, idx, arr) {
-                        if (cItem.id !== id) {
-                            itemArr.push(cItem);
-                        }
-                        if (idx === (arr.length - 1)) resolve(itemArr);
+            xui.core.Scene.get().then(function(scene) {
+                return scene.getItems();
+            }).then(function(items) {
+                return new Promise(function(resolve) {
+                    item.getID().then(function(id) {
+                        var itemArr = [];
+                        items.forEach(function(cItem, idx, arr) {
+                            if (cItem.id !== id) {
+                                itemArr.push(cItem);
+                            }
+                            if (idx === (arr.length - 1)) resolve(itemArr);
+                        });
                     });
                 });
-            });
-        }).then(function(items) {
-            // Attach events here
-            var sources = document.querySelectorAll('.source');
-            var me = document.getElementById('me');
+            }).then(function(items) {
+                // Attach events here
+                var sources = document.querySelectorAll('.source');
+                var me = document.getElementById('me');
 
-            me.addEventListener('click', function() {
-                item.getID();
-            });
+                me.addEventListener('click', function() {
+                    item.getID();
+                });
 
-            var _getID = function() { items[this.id].getID(); };
-            for (var i = 0; i < sources.length; i++) {
-                sources[i].addEventListener('click', _getID.bind({id: i}));
-            }
+                var _getID = function() {
+                    items[this.id].getID();
+                };
+
+                for (var i = 0; i < sources.length; i++) {
+                    sources[i].addEventListener('click', _getID);
+                }
+            });
         });
 
         </script>

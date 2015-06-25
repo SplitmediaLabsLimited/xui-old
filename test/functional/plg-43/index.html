@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XUI Framework Test (Functional PLG-43)</title>
+        <meta name="config-url" content="http://repo.dev/xui/test/functional/plg-43/config.html">
+    </head>
+    <body>
+        <p style="color:#FFF">
+            You should need to have atleast 2 other source items on this
+            scene for this testing to work :)
+        </p>
+        <button id="vd" class="add">Add VideoDevice</button>
+        <button id="game" class="add">Add Game</button>
+        <button id="file" class="add">Add File</button>
+        <button id="url" class="add">Add URL</button>
+        <button id="screen" class="add">Add Screen</button>
+        <script src="../../../dist/xui.js"></script>
+        <script>
+        // Because we're lazy, we'll just make everything inline <3
+        
+        /* globals xui */
+        'use strict';
+        
+        document.addEventListener('xui-ready', function() {
+            var datas = {};
+            var Scene = new xui.core.Scene({id: 3, viewID: 0});
+
+            datas.file = new xui.system.File('D:\\Temp\\text.txt');
+            datas.url = new xui.system.URL('http://xsplit.com');
+            datas.screen = new xui.system.Screen();
+
+            xui.system.System.getVideoDevices().then(function(d) {
+                datas.vd = d[d.length - 1];
+
+                return xui.system.System.getGames();
+            }).then(function(d) {
+                datas.game = d[d.length - 1];
+
+                // Main
+                var buttons = document.querySelectorAll('.add');
+                var _add = function() {
+                    Scene.add(datas[this.id]);
+                };
+
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].addEventListener('click', _add);
+                }
+            });
+        });
+
+        </script>
+    </body>
+</html>
