@@ -182,6 +182,9 @@ declare module xui.system {
     }
 }
 declare module xui.system {
+    import Window = xui.system.Window;
+    import Rectangle = internal.utils.Rectangle;
+    import XML = internal.utils.XML;
     class File {
         private file;
         constructor(file: string);
@@ -192,7 +195,18 @@ declare module xui.system {
         constructor(url: string);
         toString(): string;
     }
-    class Screen {
+    class ScreenRegion {
+        private window;
+        private bounds;
+        constructor(window?: Window, bounds?: Rectangle);
+        needsSelector(): boolean;
+        isWindow(): boolean;
+        isRegion(): boolean;
+        static regionSelect(): ScreenRegion;
+        /** Creates screen region using left, top, right, and bottom coords. */
+        static fromRectangle(left: number, top: number, right: number, bottom: number): ScreenRegion;
+        static fromWindow(window: Window): ScreenRegion;
+        toXML(): XML;
     }
 }
 declare module xui.system {
@@ -540,14 +554,14 @@ declare module xui.core {
     import Game = xui.system.Game;
     import File = xui.system.File;
     import URL = xui.system.URL;
-    import Screen = xui.system.Screen;
+    import ScreenRegion = xui.system.ScreenRegion;
     interface IScene {
         getID(): Promise<number>;
         getViewID(): Promise<number>;
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
-        add(item: VideoDevice | Game | File | URL | Screen): any;
+        add(item: VideoDevice | Game | File | URL | ScreenRegion): any;
     }
     class Scene implements IScene {
         private id;
@@ -559,11 +573,11 @@ declare module xui.core {
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
         static get(id?: number): Promise<Scene>;
-        add(item: VideoDevice | Game | File | URL | Screen): void;
+        add(item: VideoDevice | Game | File | URL | ScreenRegion): void;
         private addVideoDevice(device);
         private addGame(gameSource);
         private addFile(file);
-        private addScreen();
+        private addScreenRegion(item);
         private addUrl(url);
         private removeSource(item);
     }

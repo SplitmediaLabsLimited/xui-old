@@ -112,21 +112,21 @@ module internal.utils {
             }
         }
 
-        /** Creates a rectangle from a comma-separated string */
+        /** Creates a rectangle from a comma-separated string. T,L,R,B or W,H */
         static parse(str : string) : Rectangle {
             var params = str.split(','),
                 rect = new Rectangle();
 
             if (params.length === 4) {
-                rect.setTop(Number(params[0]));
-                rect.setLeft(Number(params[1]));
-                rect.setRight(Number(params[2]));
-                rect.setBottom(Number(params[3]));
+                rect.top = Number(params[0]);
+                rect.left = Number(params[1]);
+                rect.right = Number(params[2]);
+                rect.bottom = Number(params[3]);
             }
 
             if (params.length === 2) {
-                rect.setWidth(Number(params[0]));
-                rect.setHeight(Number(params[1]));
+                rect.width = Number(params[0]);
+                rect.height = Number(params[1]);
             }
             return rect;
         }

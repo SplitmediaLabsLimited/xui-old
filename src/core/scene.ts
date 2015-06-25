@@ -10,7 +10,7 @@ module xui.core {
     import Game = xui.system.Game;
     import File = xui.system.File;
     import URL = xui.system.URL;
-    import Screen = xui.system.Screen;
+    import ScreenRegion = xui.system.ScreenRegion;
     import XML = internal.utils.XML;
 
     export interface IScene {
@@ -19,7 +19,7 @@ module xui.core {
         getItems(): Promise<IItemBase[]>;
         isEmpty(): Promise<boolean>;
         getName(): Promise<string>;
-        add(item: VideoDevice | Game | File | URL | Screen);
+        add(item: VideoDevice | Game | File | URL | ScreenRegion);
     }
 
     export class Scene implements IScene{
@@ -119,7 +119,7 @@ module xui.core {
         }
 
         // Source-related Item services
-        add(item: VideoDevice | Game | File | URL | Screen): void {
+        add(item: VideoDevice | Game | File | URL | ScreenRegion): void {
             if (item instanceof VideoDevice) {
                 this.addVideoDevice(item);
             } else if (item instanceof Game) {
@@ -128,8 +128,8 @@ module xui.core {
                 this.addFile(item);
             } else if (item instanceof URL) {
                 this.addUrl(item);
-            } else if (item instanceof Screen) {
-                this.addScreen();
+            } else if (item instanceof ScreenRegion) {
+                this.addScreenRegion(item);
             }
         }
 
@@ -170,8 +170,12 @@ module xui.core {
             }
         }
 
-        private addScreen(): void {
-            iApp.callFunc('addscreen', '');
+        private addScreenRegion(item: ScreenRegion): void {
+            if (item.needsSelector()) {
+                iApp.callFunc('addscreen', '');
+            } else {
+                iApp.callFunc('addscreen', item.toXML().toString());
+            }
         }
 
         private addUrl(url: URL): void {
