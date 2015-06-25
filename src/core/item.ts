@@ -243,7 +243,6 @@ module xui.core {
                                 var scene = scenes[i];
                                 (scene => {
                                     searchPromises.push(new Promise(found => {
-                                        console.log('scene id: ' + scene['id']);
                                         scene.getItems().then(items => {
                                             for (var j = 0; j < items.length;
                                                 j++) {

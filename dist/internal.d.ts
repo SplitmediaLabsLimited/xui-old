@@ -132,6 +132,7 @@ interface Window {
     OnDialogResult: Function;
 }
 declare module internal {
+    var DEBUG: boolean;
     /**
      * Executes an external function
      */

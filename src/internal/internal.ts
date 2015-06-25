@@ -12,6 +12,8 @@ interface Window {
 module internal {
     let _callbacks = {};
 
+    export var DEBUG: boolean = false;
+
     /**
      * Executes an external function
      */
@@ -31,9 +33,11 @@ module internal {
         }
 
         // BEGIN DEBUG
-        console.log([
-            'internal.exec("', funcName, '") ', JSON.stringify(args)
-        ].join(' '));
+        if (internal.DEBUG) {
+            console.log([
+                'internal.exec("', funcName, '") ', JSON.stringify(args)
+            ].join(' '));
+        }
         // END DEBUG
 
         if (
