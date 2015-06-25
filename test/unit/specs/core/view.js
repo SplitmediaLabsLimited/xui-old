@@ -74,7 +74,7 @@ describe('xui.core.View', function() {
 
     describe('should be able to search items', function() {
         describe('by keyword', function() {
-            var promise = view.searchItems('Webcam');
+            var promise = view.searchItems('test');
 
             it('through a promise', function() {
                 expect(promise).toBeInstanceOf(Promise);
@@ -85,8 +85,8 @@ describe('xui.core.View', function() {
                     expect(items).toBeInstanceOf(Array);
                     expect(items).eachToBeInstanceOf(xui.core.Item);
                     for (var i = 0; i < items.length; i++) {
-                        if (!items[i].name.match(/Webcam/ig)) {
-                            expect(items[i].value).toMatch(/Webcam/ig);
+                        if (!items[i].name.match(/test/ig)) {
+                            expect(items[i].value).toMatch(/test/ig);
                         }
                     }
                     done();

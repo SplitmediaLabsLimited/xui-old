@@ -13,7 +13,7 @@
         'use strict';
 
         // Configure the configuration window
-        try {
+        document.addEventListener('xui-ready', function() {
             var config = xui.config.ConfigWindow.getInstance();
             var item = xui.core.Item.getCurrentSource();
             var iItem = internal.Item;
@@ -33,9 +33,7 @@
             item.applyConfig({
                 color: 'red'
             });
-        } catch (err) {
-            console.trace('ERR :: ', err);
-        }
+        });
         </script>
     </body>
 </html>
