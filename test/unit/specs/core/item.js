@@ -14,8 +14,10 @@ describe('xui.core.Item', function() {
                 done();
             });
         } else {
-            item = xui.core.Item.getCurrentSource();
-            done();
+            xui.core.Item.getCurrentSource().then(function(ret) {
+                item = ret;
+                done();
+            });
         }
     });
 
@@ -24,9 +26,9 @@ describe('xui.core.Item', function() {
 
         it('the current item', function() {
             if (internal.Environment.isScriptPlugin()) {
-                expect(xui.core.Item.getCurrentSource().id).toBeUndefined();
+                expect(xui.core.Item.getCurrentSource).toThrow();
             } else {
-                expect(xui.core.Item.getCurrentSource()).toBeDefined();
+                expect(xui.core.Item.getCurrentSource()).toBeInstanceOf(Promise);
             }
         });
 

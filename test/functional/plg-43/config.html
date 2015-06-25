@@ -4,35 +4,19 @@
         <title>Test Config</title>
     </head>
     <body>
-        <p>Functional Testing like a boxx, err, <strong>BOSS</strong></p>
+        <p>Nothing to do here my friend</p>
         <script src="../../../dist/xui.js"></script>
         <script>
         // Because we're lazy, we'll just make everything inline <3
         
-        /* globals xui, internal, console */
+        /* globals xui */
         'use strict';
 
         // Configure the configuration window
         document.addEventListener('xui-ready', function() {
             var config = xui.config.ConfigWindow.getInstance();
-            var item = xui.core.Item.getCurrentSource();
-            var iItem = internal.Item;
-
-            console.trace('Internal Item ID :: ', iItem.getBaseID());
 
             config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
-            
-            item.getID().then(function(id) {
-                console.trace('ItemID :: ', id);
-            });
-
-            item.loadConfig().then(function(config) {
-                console.trace('loadConfig() :: ', config);
-            });
-
-            item.applyConfig({
-                color: 'red'
-            });
         });
         </script>
     </body>
