@@ -34,7 +34,7 @@ describe('xui.core.Item', function() {
 
         it('the name', function(done) {
             item.getName().then(function(val) {
-                expect(val).toBeDefined(); 
+                expect(val).toBeDefined();
                 done();
             });
         });

@@ -92,6 +92,7 @@
 					<li><a href="../interfaces/xui.core.iitemvideo.html" class="tsd-signature-type">IItemVideo</a></li>
 					<li><a href="../interfaces/xui.core.iitemchroma.html" class="tsd-signature-type">IItemChroma</a></li>
 					<li><a href="../interfaces/xui.core.iitemplayback.html" class="tsd-signature-type">IItemPlayback</a></li>
+					<li><a href="../interfaces/xui.core.iitemconfigurable.html" class="tsd-signature-type">IItemConfigurable</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -107,6 +108,7 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#applyconfig" class="tsd-kind-icon">apply<wbr>Config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getbordercolor" class="tsd-kind-icon">get<wbr>Border<wbr>Color</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getbrightness" class="tsd-kind-icon">get<wbr>Brightness</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getchromaantialias" class="tsd-kind-icon">get<wbr>Chroma<wbr>Anti<wbr>Alias</a></li>
@@ -138,9 +140,12 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#ispixelalignmentenabled" class="tsd-kind-icon">is<wbr>Pixel<wbr>Alignment<wbr>Enabled</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#ispositionlocked" class="tsd-kind-icon">is<wbr>Position<wbr>Locked</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#iswindowtracking" class="tsd-kind-icon">is<wbr>Window<wbr>Tracking</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.item.html#item" class="tsd-kind-icon">item</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.item.html#keeploaded" class="tsd-kind-icon">keep<wbr>Loaded</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#loadconfig" class="tsd-kind-icon">load<wbr>Config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.item.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.item.html#position" class="tsd-kind-icon">position</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#saveconfig" class="tsd-kind-icon">save<wbr>Config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.item.html#sceneid" class="tsd-kind-icon">sceneID</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#setbordercolor" class="tsd-kind-icon">set<wbr>Border<wbr>Color</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#setbrightness" class="tsd-kind-icon">set<wbr>Brightness</a></li>
@@ -179,7 +184,6 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getcurrentsource" class="tsd-kind-icon">get<wbr>Current<wbr>Source</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getid" class="tsd-kind-icon">getID</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getkeeploaded" class="tsd-kind-icon">get<wbr>Keep<wbr>Loaded</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
@@ -191,6 +195,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.item.html#toxml" class="tsd-kind-icon">toXML</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="xui.core.item.html#getcurrentsource" class="tsd-kind-icon">get<wbr>Current<wbr>Source</a></li>
 							</ul>
 						</section>
 					</div>
@@ -208,7 +213,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L51">core/item.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L54">core/item.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -227,12 +232,48 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="applyconfig" class="tsd-anchor"></a>
+					<h3>apply<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">apply<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L484">core/item.ts:484</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Apply changes based on passed configuration object</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>configObj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JSON</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>configObj: <span class="tsd-signature-type">JSON</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="getbordercolor" class="tsd-anchor"></a>
 					<h3>get<wbr>Border<wbr>Color</h3>
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Border<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L279">core/item.ts:279</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L329">core/item.ts:329</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,7 +303,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Brightness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L267">core/item.ts:267</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L317">core/item.ts:317</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -292,7 +333,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Anti<wbr>Alias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L357">core/item.ts:357</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L407">core/item.ts:407</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -322,7 +363,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Balance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L354">core/item.ts:354</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L404">core/item.ts:404</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -352,7 +393,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Brightness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L336">core/item.ts:336</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L386">core/item.ts:386</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -382,7 +423,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L348">core/item.ts:348</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L398">core/item.ts:398</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -412,7 +453,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Hue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L342">core/item.ts:342</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L392">core/item.ts:392</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -442,7 +483,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Primary<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L351">core/item.ts:351</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L401">core/item.ts:401</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -472,7 +513,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Saturation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L339">core/item.ts:339</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L389">core/item.ts:389</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -502,7 +543,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Threshold<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L360">core/item.ts:360</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L410">core/item.ts:410</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -532,7 +573,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>ThresholdAA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L363">core/item.ts:363</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L413">core/item.ts:413</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -562,7 +603,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Chroma<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L345">core/item.ts:345</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L395">core/item.ts:395</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -592,7 +633,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Contrast<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L270">core/item.ts:270</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L320">core/item.ts:320</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -622,7 +663,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Cue<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L327">core/item.ts:327</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L377">core/item.ts:377</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -652,7 +693,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Hue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L273">core/item.ts:273</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L323">core/item.ts:323</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -682,7 +723,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Playback<wbr>Duration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L411">core/item.ts:411</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L461">core/item.ts:461</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -712,7 +753,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Playback<wbr>End<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L408">core/item.ts:408</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L458">core/item.ts:458</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -742,7 +783,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Playback<wbr>End<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L405">core/item.ts:405</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L455">core/item.ts:455</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -772,7 +813,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Playback<wbr>Start<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L402">core/item.ts:402</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L452">core/item.ts:452</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -802,7 +843,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L243">core/item.ts:243</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L293">core/item.ts:293</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -832,7 +873,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Saturation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L276">core/item.ts:276</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L326">core/item.ts:326</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -862,7 +903,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Transparency<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L264">core/item.ts:264</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L314">core/item.ts:314</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -892,7 +933,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>Volume<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L303">core/item.ts:303</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L353">core/item.ts:353</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -922,7 +963,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L45">core/item.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L47">core/item.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -932,7 +973,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Chroma<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L333">core/item.ts:333</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L383">core/item.ts:383</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -962,7 +1003,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Enhance<wbr>Resize<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L237">core/item.ts:237</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L287">core/item.ts:287</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -992,7 +1033,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Keep<wbr>Aspect<wbr>Ratio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L231">core/item.ts:231</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L281">core/item.ts:281</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1022,7 +1063,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Muted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L306">core/item.ts:306</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L356">core/item.ts:356</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1052,7 +1093,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Pixel<wbr>Alignment<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L240">core/item.ts:240</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L290">core/item.ts:290</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1082,7 +1123,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Position<wbr>Locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L234">core/item.ts:234</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L284">core/item.ts:284</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1112,7 +1153,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Window<wbr>Tracking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L318">core/item.ts:318</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L368">core/item.ts:368</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1137,14 +1178,54 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="item" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> item</h3>
+					<div class="tsd-signature tsd-kind-icon">item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L54">core/item.ts:54</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="keeploaded" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> keep<wbr>Loaded</h3>
 					<div class="tsd-signature tsd-kind-icon">keep<wbr>Loaded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L50">core/item.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L52">core/item.ts:52</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="loadconfig" class="tsd-anchor"></a>
+					<h3>load<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">load<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L478">core/item.ts:478</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Load the saved browser configuration</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JSON</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JSON</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="name" class="tsd-anchor"></a>
@@ -1152,7 +1233,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L44">core/item.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L46">core/item.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1162,9 +1243,45 @@
 					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Rectangle</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L51">core/item.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L53">core/item.ts:53</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="saveconfig" class="tsd-anchor"></a>
+					<h3>save<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">save<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L481">core/item.ts:481</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Save the configuration object</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>configObj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JSON</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>configObj: <span class="tsd-signature-type">JSON</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="sceneid" class="tsd-anchor"></a>
@@ -1172,7 +1289,7 @@
 					<div class="tsd-signature tsd-kind-icon">sceneID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L46">core/item.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L48">core/item.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1182,7 +1299,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Border<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L297">core/item.ts:297</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L347">core/item.ts:347</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1218,7 +1335,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Brightness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L285">core/item.ts:285</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L335">core/item.ts:335</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1254,7 +1371,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Anti<wbr>Alias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L390">core/item.ts:390</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L440">core/item.ts:440</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1290,7 +1407,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Balance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L387">core/item.ts:387</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L437">core/item.ts:437</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1326,7 +1443,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Brightness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L369">core/item.ts:369</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L419">core/item.ts:419</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1362,7 +1479,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L381">core/item.ts:381</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L431">core/item.ts:431</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1398,7 +1515,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L366">core/item.ts:366</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L416">core/item.ts:416</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1434,7 +1551,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Hue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L375">core/item.ts:375</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L425">core/item.ts:425</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1470,7 +1587,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Primary<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L384">core/item.ts:384</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L434">core/item.ts:434</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1506,7 +1623,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Saturation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L372">core/item.ts:372</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L422">core/item.ts:422</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1542,7 +1659,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Threshold<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L393">core/item.ts:393</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L443">core/item.ts:443</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1578,7 +1695,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>ThresholdAA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L396">core/item.ts:396</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L446">core/item.ts:446</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1614,7 +1731,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Chroma<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L378">core/item.ts:378</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L428">core/item.ts:428</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1650,7 +1767,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Contrast<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L288">core/item.ts:288</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L338">core/item.ts:338</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1686,7 +1803,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Enhance<wbr>Resize<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L252">core/item.ts:252</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L302">core/item.ts:302</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1722,7 +1839,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Hue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L291">core/item.ts:291</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L341">core/item.ts:341</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1758,7 +1875,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Keep<wbr>Aspect<wbr>Ratio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L246">core/item.ts:246</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L296">core/item.ts:296</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1794,7 +1911,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Muted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L312">core/item.ts:312</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L362">core/item.ts:362</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1830,7 +1947,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Pixel<wbr>Alignment<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L255">core/item.ts:255</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L305">core/item.ts:305</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1866,7 +1983,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Playback<wbr>Duration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L423">core/item.ts:423</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L473">core/item.ts:473</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1902,7 +2019,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Playback<wbr>End<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L420">core/item.ts:420</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L470">core/item.ts:470</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1938,7 +2055,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Playback<wbr>End<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L417">core/item.ts:417</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L467">core/item.ts:467</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1974,7 +2091,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Playback<wbr>Start<wbr>Pos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L414">core/item.ts:414</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L464">core/item.ts:464</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2010,7 +2127,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L258">core/item.ts:258</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L308">core/item.ts:308</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2046,7 +2163,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Position<wbr>Locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L249">core/item.ts:249</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L299">core/item.ts:299</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2082,7 +2199,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Saturation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L294">core/item.ts:294</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L344">core/item.ts:344</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2118,7 +2235,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Transparency<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L282">core/item.ts:282</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L332">core/item.ts:332</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2154,7 +2271,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Volume<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L309">core/item.ts:309</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L359">core/item.ts:359</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2190,7 +2307,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Window<wbr>Tracking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L321">core/item.ts:321</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L371">core/item.ts:371</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2226,7 +2343,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/xui.core.itemtypes.html" class="tsd-signature-type">ItemTypes</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L48">core/item.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L50">core/item.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -2236,7 +2353,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L49">core/item.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L51">core/item.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -2246,37 +2363,13 @@
 					<div class="tsd-signature tsd-kind-icon">viewID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L47">core/item.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L49">core/item.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="getcurrentsource" class="tsd-anchor"></a>
-					<h3>get<wbr>Current<wbr>Source</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Current<wbr>Source<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="xui.core.item.html" class="tsd-signature-type">Item</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L219">core/item.ts:219</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get the current source (when called for sources), or the source that
-										was right-clicked to open the config window (when called from the
-									config window).</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="xui.core.item.html" class="tsd-signature-type">Item</a></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="getid" class="tsd-anchor"></a>
 					<h3>getID</h3>
@@ -2287,7 +2380,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L163">core/item.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L168">core/item.ts:168</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2309,7 +2402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L128">core/item.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L133">core/item.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2331,7 +2424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L74">core/item.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L79">core/item.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2353,7 +2446,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L176">core/item.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L175">core/item.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2375,7 +2468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L150">core/item.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L155">core/item.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2397,7 +2490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L87">core/item.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L92">core/item.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2419,7 +2512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L183">core/item.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L182">core/item.ts:182</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2441,7 +2534,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L141">core/item.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L146">core/item.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2469,7 +2562,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L65">core/item.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L70">core/item.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2497,7 +2590,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L114">core/item.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L119">core/item.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2525,7 +2618,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L196">core/item.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L195">core/item.ts:195</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2534,6 +2627,30 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">XML</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+					<a name="getcurrentsource" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Current<wbr>Source</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Current<wbr>Source<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.item.html" class="tsd-signature-type">Item</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L218">core/item.ts:218</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the current source (when called for sources), or the source that
+										was right-clicked to open the config window (when called from the
+									config window).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.item.html" class="tsd-signature-type">Item</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -2592,6 +2709,9 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
 								<a href="xui.core.item.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="xui.core.item.html#applyconfig" class="tsd-kind-icon">apply<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="xui.core.item.html#getbordercolor" class="tsd-kind-icon">get<wbr>Border<wbr>Color</a>
@@ -2687,13 +2807,22 @@
 								<a href="xui.core.item.html#iswindowtracking" class="tsd-kind-icon">is<wbr>Window<wbr>Tracking</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="xui.core.item.html#item" class="tsd-kind-icon">item</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="xui.core.item.html#keeploaded" class="tsd-kind-icon">keep<wbr>Loaded</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="xui.core.item.html#loadconfig" class="tsd-kind-icon">load<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="xui.core.item.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="xui.core.item.html#position" class="tsd-kind-icon">position</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="xui.core.item.html#saveconfig" class="tsd-kind-icon">save<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="xui.core.item.html#sceneid" class="tsd-kind-icon">sceneID</a>
@@ -2795,9 +2924,6 @@
 								<a href="xui.core.item.html#viewid" class="tsd-kind-icon">viewID</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="xui.core.item.html#getcurrentsource" class="tsd-kind-icon">get<wbr>Current<wbr>Source</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="xui.core.item.html#getid" class="tsd-kind-icon">getID</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
@@ -2830,6 +2956,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="xui.core.item.html#toxml" class="tsd-kind-icon">toXML</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<a href="xui.core.item.html#getcurrentsource" class="tsd-kind-icon">get<wbr>Current<wbr>Source</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -2842,6 +2971,9 @@
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.itemcolor.html" class="tsd-kind-icon">Item<wbr>Color</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.itemconfigurable.html" class="tsd-kind-icon">Item<wbr>Configurable</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.itemlayout.html" class="tsd-kind-icon">Item<wbr>Layout</a>
@@ -2865,6 +2997,21 @@
 						<a href="xui.core.view.html" class="tsd-kind-icon">View</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iappaudio.html" class="tsd-kind-icon">IApp<wbr>Audio</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iappbase.html" class="tsd-kind-icon">IApp<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iappdialog.html" class="tsd-kind-icon">IApp<wbr>Dialog</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iapppresentation.html" class="tsd-kind-icon">IApp<wbr>Presentation</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iapptransition.html" class="tsd-kind-icon">IApp<wbr>Transition</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="../interfaces/xui.core.ichannelprops.html" class="tsd-kind-icon">IChannel<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
@@ -2880,6 +3027,9 @@
 						<a href="../interfaces/xui.core.iitemcolor.html" class="tsd-kind-icon">IItem<wbr>Color</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iitemconfigurable.html" class="tsd-kind-icon">IItem<wbr>Configurable</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="../interfaces/xui.core.iitemlayout.html" class="tsd-kind-icon">IItem<wbr>Layout</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
@@ -2892,16 +3042,19 @@
 						<a href="../interfaces/xui.core.iitemwindow.html" class="tsd-kind-icon">IItem<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iscene.html" class="tsd-kind-icon">IScene</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="../interfaces/xui.core.istreamdrops.html" class="tsd-kind-icon">IStream<wbr>Drops</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="../interfaces/xui.core.iview.html" class="tsd-kind-icon">IView</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-external">
 						<a href="../modules/xui.core.html#createscenexml" class="tsd-kind-icon">create<wbr>SceneXML</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-external">
 						<a href="../modules/xui.core.html#getglobalnode" class="tsd-kind-icon">get<wbr>Global<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-external">
-						<a href="../modules/xui.core.html#parseitems" class="tsd-kind-icon">parse<wbr>Items</a>
 					</li>
 				</ul>
 			</nav>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IItemBase | XUI Plugin Framework</title>
+	<title>IView | XUI Plugin Framework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -63,10 +63,10 @@
 					<a href="../modules/xui.core.html">core</a>
 				</li>
 				<li>
-					<a href="xui.core.iitembase.html">IItemBase</a>
+					<a href="xui.core.iview.html">IView</a>
 				</li>
 			</ul>
-			<h1>Interface IItemBase</h1>
+			<h1>Interface IView</h1>
 		</div>
 	</div>
 </header>
@@ -77,14 +77,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IItemBase</span>
+						<span class="target">IView</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../classes/xui.core.item.html" class="tsd-signature-type">Item</a></li>
+					<li><a href="../classes/xui.core.view.html" class="tsd-signature-type">View</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -94,16 +94,12 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#getid" class="tsd-kind-icon">getID</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#getkeeploaded" class="tsd-kind-icon">get<wbr>Keep<wbr>Loaded</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#getsceneid" class="tsd-kind-icon">get<wbr>SceneID</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#gettype" class="tsd-kind-icon">get<wbr>Type</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#getviewid" class="tsd-kind-icon">get<wbr>ViewID</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#setkeeploaded" class="tsd-kind-icon">set<wbr>Keep<wbr>Loaded</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iitembase.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iview.html#getactivescene" class="tsd-kind-icon">get<wbr>Active<wbr>Scene</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iview.html#getscene" class="tsd-kind-icon">get<wbr>Scene</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iview.html#getscenes" class="tsd-kind-icon">get<wbr>Scenes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iview.html#getviewid" class="tsd-kind-icon">get<wbr>ViewID</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iview.html#searchitems" class="tsd-kind-icon">search<wbr>Items</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iview.html#setactivescene" class="tsd-kind-icon">set<wbr>Active<wbr>Scene</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,104 +108,65 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="getid" class="tsd-anchor"></a>
-					<h3>getID</h3>
+					<a name="getactivescene" class="tsd-anchor"></a>
+					<h3>get<wbr>Active<wbr>Scene</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">getID<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Active<wbr>Scene<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L32">core/item.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/view.ts#L17">core/view.ts:17</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="getkeeploaded" class="tsd-anchor"></a>
-					<h3>get<wbr>Keep<wbr>Loaded</h3>
+					<a name="getscene" class="tsd-anchor"></a>
+					<h3>get<wbr>Scene</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Keep<wbr>Loaded<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Scene<span class="tsd-signature-symbol">(</span>sceneID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L29">core/item.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/view.ts#L18">core/view.ts:18</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sceneID: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="getname" class="tsd-anchor"></a>
-					<h3>get<wbr>Name</h3>
+					<a name="getscenes" class="tsd-anchor"></a>
+					<h3>get<wbr>Scenes</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Scenes<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L25">core/item.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/view.ts#L15">core/view.ts:15</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="getsceneid" class="tsd-anchor"></a>
-					<h3>get<wbr>SceneID</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>SceneID<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L33">core/item.ts:33</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="gettype" class="tsd-anchor"></a>
-					<h3>get<wbr>Type</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/xui.core.itemtypes.html" class="tsd-signature-type">ItemTypes</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L31">core/item.ts:31</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/xui.core.itemtypes.html" class="tsd-signature-type">ItemTypes</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="getvalue" class="tsd-anchor"></a>
-					<h3>get<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">XML</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L27">core/item.ts:27</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">XML</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -223,7 +180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L34">core/item.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/view.ts#L14">core/view.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -231,68 +188,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="setkeeploaded" class="tsd-anchor"></a>
-					<h3>set<wbr>Keep<wbr>Loaded</h3>
+					<a name="searchitems" class="tsd-anchor"></a>
+					<h3>search<wbr>Items</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Keep<wbr>Loaded<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">search<wbr>Items<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iitembase.html" class="tsd-signature-type">IItemBase</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L30">core/item.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/view.ts#L19">core/view.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="xui.core.iitembase.html" class="tsd-signature-type">IItemBase</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="setname" class="tsd-anchor"></a>
-					<h3>set<wbr>Name</h3>
+					<a name="setactivescene" class="tsd-anchor"></a>
+					<h3>set<wbr>Active<wbr>Scene</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Name<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Active<wbr>Scene<span class="tsd-signature-symbol">(</span>scene<span class="tsd-signature-symbol">: </span><a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L26">core/item.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/view.ts#L16">core/view.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="setvalue" class="tsd-anchor"></a>
-					<h3>set<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">XML</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/item.ts#L28">core/item.ts:28</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">XML</span></h5>
+									<h5>scene: <a href="xui.core.iscene.html" class="tsd-signature-type">IScene</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -404,45 +338,9 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.iitemaudio.html" class="tsd-kind-icon">IItem<wbr>Audio</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.iitembase.html" class="tsd-kind-icon">IItem<wbr>Base</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#getid" class="tsd-kind-icon">getID</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#getkeeploaded" class="tsd-kind-icon">get<wbr>Keep<wbr>Loaded</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#getsceneid" class="tsd-kind-icon">get<wbr>SceneID</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#gettype" class="tsd-kind-icon">get<wbr>Type</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#getviewid" class="tsd-kind-icon">get<wbr>ViewID</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#setkeeploaded" class="tsd-kind-icon">set<wbr>Keep<wbr>Loaded</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#setname" class="tsd-kind-icon">set<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="xui.core.iitembase.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.iitemchroma.html" class="tsd-kind-icon">IItem<wbr>Chroma</a>
 					</li>
@@ -470,9 +368,33 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.istreamdrops.html" class="tsd-kind-icon">IStream<wbr>Drops</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="xui.core.iview.html" class="tsd-kind-icon">IView</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iview.html#getactivescene" class="tsd-kind-icon">get<wbr>Active<wbr>Scene</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iview.html#getscene" class="tsd-kind-icon">get<wbr>Scene</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iview.html#getscenes" class="tsd-kind-icon">get<wbr>Scenes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iview.html#getviewid" class="tsd-kind-icon">get<wbr>ViewID</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iview.html#searchitems" class="tsd-kind-icon">search<wbr>Items</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iview.html#setactivescene" class="tsd-kind-icon">set<wbr>Active<wbr>Scene</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-external">
 						<a href="../modules/xui.core.html#createscenexml" class="tsd-kind-icon">create<wbr>SceneXML</a>
 					</li>

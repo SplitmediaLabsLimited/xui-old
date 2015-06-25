@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Presentation | XUI Plugin Framework</title>
+	<title>IAppTransition | XUI Plugin Framework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -63,10 +63,10 @@
 					<a href="../modules/xui.core.html">core</a>
 				</li>
 				<li>
-					<a href="xui.core.presentation.html">Presentation</a>
+					<a href="xui.core.iapptransition.html">IAppTransition</a>
 				</li>
 			</ul>
-			<h1>Class Presentation</h1>
+			<h1>Interface IAppTransition</h1>
 		</div>
 	</div>
 </header>
@@ -77,8 +77,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Presentation</span>
+						<span class="target">IAppTransition</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/xui.core.app.html" class="tsd-signature-type">App</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -86,116 +92,96 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="xui.core.presentation.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.presentation.html#currentscene" class="tsd-kind-icon">current<wbr>Scene</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.presentation.html#global" class="tsd-kind-icon">global</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.presentation.html#scenedetails" class="tsd-kind-icon">scene<wbr>Details</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="xui.core.presentation.html#version" class="tsd-kind-icon">version</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="xui.core.presentation.html#toxml" class="tsd-kind-icon">toXML</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iapptransition.html#gettransition" class="tsd-kind-icon">get<wbr>Transition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iapptransition.html#gettransitiontime" class="tsd-kind-icon">get<wbr>Transition<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iapptransition.html#settransition" class="tsd-kind-icon">set<wbr>Transition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="xui.core.iapptransition.html#settransitiontime" class="tsd-kind-icon">set<wbr>Transition<wbr>Time</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Presentation<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="xui.core.presentation.html" class="tsd-signature-type">Presentation</a></li>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="gettransition" class="tsd-anchor"></a>
+					<h3>get<wbr>Transition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Transition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/presentation.ts#L15">core/presentation.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L62">core/app.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="gettransitiontime" class="tsd-anchor"></a>
+					<h3>get<wbr>Transition<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Transition<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L64">core/app.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="settransition" class="tsd-anchor"></a>
+					<h3>set<wbr>Transition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Transition<span class="tsd-signature-symbol">(</span>transition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L63">core/app.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>props: <span class="tsd-signature-type">object</span></h5>
-									<ul class="tsd-parameters">
-									</ul>
+									<h5>transition: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="xui.core.presentation.html" class="tsd-signature-type">Presentation</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="currentscene" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> current<wbr>Scene</h3>
-					<div class="tsd-signature tsd-kind-icon">current<wbr>Scene<span class="tsd-signature-symbol">:</span> <a href="xui.core.scene.html" class="tsd-signature-type">Scene</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/presentation.ts#L12">core/presentation.ts:12</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="global" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> global</h3>
-					<div class="tsd-signature tsd-kind-icon">global<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JSON</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/presentation.ts#L15">core/presentation.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="scenedetails" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> scene<wbr>Details</h3>
-					<div class="tsd-signature tsd-kind-icon">scene<wbr>Details<span class="tsd-signature-symbol">:</span> <a href="xui.core.scene.html" class="tsd-signature-type">Scene</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/presentation.ts#L14">core/presentation.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="version" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> version</h3>
-					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/presentation.ts#L13">core/presentation.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="toxml" class="tsd-anchor"></a>
-					<h3>toXML</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">toXML<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">XML</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="settransitiontime" class="tsd-anchor"></a>
+					<h3>set<wbr>Transition<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Transition<wbr>Time<span class="tsd-signature-symbol">(</span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/presentation.ts#L27">core/presentation.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/src/core/app.ts#L65">core/app.ts:65</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">XML</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>time: <span class="tsd-signature-type">Number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -242,124 +228,118 @@
 						<a href="../enums/xui.core.views.html" class="tsd-kind-icon">Views</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.app.html" class="tsd-kind-icon">App</a>
+						<a href="../classes/xui.core.app.html" class="tsd-kind-icon">App</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.channel.html" class="tsd-kind-icon">Channel</a>
+						<a href="../classes/xui.core.channel.html" class="tsd-kind-icon">Channel</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.item.html" class="tsd-kind-icon">Item</a>
+						<a href="../classes/xui.core.item.html" class="tsd-kind-icon">Item</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemaudio.html" class="tsd-kind-icon">Item<wbr>Audio</a>
+						<a href="../classes/xui.core.itemaudio.html" class="tsd-kind-icon">Item<wbr>Audio</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemchroma.html" class="tsd-kind-icon">Item<wbr>Chroma</a>
+						<a href="../classes/xui.core.itemchroma.html" class="tsd-kind-icon">Item<wbr>Chroma</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemcolor.html" class="tsd-kind-icon">Item<wbr>Color</a>
+						<a href="../classes/xui.core.itemcolor.html" class="tsd-kind-icon">Item<wbr>Color</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemconfigurable.html" class="tsd-kind-icon">Item<wbr>Configurable</a>
+						<a href="../classes/xui.core.itemconfigurable.html" class="tsd-kind-icon">Item<wbr>Configurable</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemlayout.html" class="tsd-kind-icon">Item<wbr>Layout</a>
+						<a href="../classes/xui.core.itemlayout.html" class="tsd-kind-icon">Item<wbr>Layout</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemplayback.html" class="tsd-kind-icon">Item<wbr>Playback</a>
+						<a href="../classes/xui.core.itemplayback.html" class="tsd-kind-icon">Item<wbr>Playback</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemvideo.html" class="tsd-kind-icon">Item<wbr>Video</a>
+						<a href="../classes/xui.core.itemvideo.html" class="tsd-kind-icon">Item<wbr>Video</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.itemwindow.html" class="tsd-kind-icon">Item<wbr>Window</a>
+						<a href="../classes/xui.core.itemwindow.html" class="tsd-kind-icon">Item<wbr>Window</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
+						<a href="../classes/xui.core.presentation.html" class="tsd-kind-icon">Presentation</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
+						<a href="../classes/xui.core.scene.html" class="tsd-kind-icon">Scene</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
+						<a href="../classes/xui.core.view.html" class="tsd-kind-icon">View</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.iappaudio.html" class="tsd-kind-icon">IApp<wbr>Audio</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.iappbase.html" class="tsd-kind-icon">IApp<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.iappdialog.html" class="tsd-kind-icon">IApp<wbr>Dialog</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.iapppresentation.html" class="tsd-kind-icon">IApp<wbr>Presentation</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.presentation.html" class="tsd-kind-icon">Presentation</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.iapptransition.html" class="tsd-kind-icon">IApp<wbr>Transition</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="xui.core.presentation.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iapptransition.html#gettransition" class="tsd-kind-icon">get<wbr>Transition</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="xui.core.presentation.html#currentscene" class="tsd-kind-icon">current<wbr>Scene</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iapptransition.html#gettransitiontime" class="tsd-kind-icon">get<wbr>Transition<wbr>Time</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="xui.core.presentation.html#global" class="tsd-kind-icon">global</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iapptransition.html#settransition" class="tsd-kind-icon">set<wbr>Transition</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="xui.core.presentation.html#scenedetails" class="tsd-kind-icon">scene<wbr>Details</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="xui.core.presentation.html#version" class="tsd-kind-icon">version</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
-								<a href="xui.core.presentation.html#toxml" class="tsd-kind-icon">toXML</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="xui.core.iapptransition.html#settransitiontime" class="tsd-kind-icon">set<wbr>Transition<wbr>Time</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.scene.html" class="tsd-kind-icon">Scene</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-external">
-						<a href="xui.core.view.html" class="tsd-kind-icon">View</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="xui.core.ichannelprops.html" class="tsd-kind-icon">IChannel<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iappaudio.html" class="tsd-kind-icon">IApp<wbr>Audio</a>
+						<a href="xui.core.iitemaudio.html" class="tsd-kind-icon">IItem<wbr>Audio</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iappbase.html" class="tsd-kind-icon">IApp<wbr>Base</a>
+						<a href="xui.core.iitembase.html" class="tsd-kind-icon">IItem<wbr>Base</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iappdialog.html" class="tsd-kind-icon">IApp<wbr>Dialog</a>
+						<a href="xui.core.iitemchroma.html" class="tsd-kind-icon">IItem<wbr>Chroma</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iapppresentation.html" class="tsd-kind-icon">IApp<wbr>Presentation</a>
+						<a href="xui.core.iitemcolor.html" class="tsd-kind-icon">IItem<wbr>Color</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iapptransition.html" class="tsd-kind-icon">IApp<wbr>Transition</a>
+						<a href="xui.core.iitemconfigurable.html" class="tsd-kind-icon">IItem<wbr>Configurable</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.ichannelprops.html" class="tsd-kind-icon">IChannel<wbr>Props</a>
+						<a href="xui.core.iitemlayout.html" class="tsd-kind-icon">IItem<wbr>Layout</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemaudio.html" class="tsd-kind-icon">IItem<wbr>Audio</a>
+						<a href="xui.core.iitemplayback.html" class="tsd-kind-icon">IItem<wbr>Playback</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitembase.html" class="tsd-kind-icon">IItem<wbr>Base</a>
+						<a href="xui.core.iitemvideo.html" class="tsd-kind-icon">IItem<wbr>Video</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemchroma.html" class="tsd-kind-icon">IItem<wbr>Chroma</a>
+						<a href="xui.core.iitemwindow.html" class="tsd-kind-icon">IItem<wbr>Window</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemcolor.html" class="tsd-kind-icon">IItem<wbr>Color</a>
+						<a href="xui.core.iscene.html" class="tsd-kind-icon">IScene</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemconfigurable.html" class="tsd-kind-icon">IItem<wbr>Configurable</a>
+						<a href="xui.core.istreamdrops.html" class="tsd-kind-icon">IStream<wbr>Drops</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemlayout.html" class="tsd-kind-icon">IItem<wbr>Layout</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemplayback.html" class="tsd-kind-icon">IItem<wbr>Playback</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemvideo.html" class="tsd-kind-icon">IItem<wbr>Video</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iitemwindow.html" class="tsd-kind-icon">IItem<wbr>Window</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iscene.html" class="tsd-kind-icon">IScene</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.istreamdrops.html" class="tsd-kind-icon">IStream<wbr>Drops</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="../interfaces/xui.core.iview.html" class="tsd-kind-icon">IView</a>
+						<a href="xui.core.iview.html" class="tsd-kind-icon">IView</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-external">
 						<a href="../modules/xui.core.html#createscenexml" class="tsd-kind-icon">create<wbr>SceneXML</a>
