@@ -49,8 +49,10 @@ module xui.core {
         }
 
         applyConfig(configObj: JSON) {
+            let slot = iItem.attach(this.id, this.viewID);
+
             iItem.set('prop:BrowserConfiguration', window['JSON'].stringify(
-                configObj));
+                configObj), slot);
         }
     }
 

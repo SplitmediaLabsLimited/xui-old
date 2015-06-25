@@ -219,7 +219,7 @@ module xui.core {
             if (Environment.isScriptPlugin()) {
                 throw new Error('Script plugins do not have a ' +
                     'source associated with them.');
-            } else {
+            } else if (Environment.isSourceHtml()) {
                 return new Promise(resolve => {
                     iApp.get('presetconfig:-1').then(xml => {
                         return new JSON(xml);
@@ -270,6 +270,12 @@ module xui.core {
 
                             });
                         }
+                    });
+                });
+            } else if (Environment.isSourceConfig()) {
+                return new Promise(resolve => {
+                    View.MAIN.searchItems(iItem.getBaseID()).then(item => {
+                        resolve(item);
                     });
                 });
             }
