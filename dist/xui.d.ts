@@ -182,9 +182,20 @@ declare module xui.system {
     }
 }
 declare module xui.system {
-    import Window = xui.system.Window;
     import Rectangle = internal.utils.Rectangle;
     import XML = internal.utils.XML;
+    class ScreenRegion {
+        private bounds;
+        constructor(bounds?: Rectangle);
+        needsSelector(): boolean;
+        isRegion(): boolean;
+        static regionSelect(): ScreenRegion;
+        /** Creates screen region using left, top, width, and height. */
+        static fromRectangle(left: number, top: number, width: number, height: number): ScreenRegion;
+        toXML(): XML;
+    }
+}
+declare module xui.system {
     class File {
         private file;
         constructor(file: string);
@@ -194,19 +205,6 @@ declare module xui.system {
         private url;
         constructor(url: string);
         toString(): string;
-    }
-    class ScreenRegion {
-        private window;
-        private bounds;
-        constructor(window?: Window, bounds?: Rectangle);
-        needsSelector(): boolean;
-        isWindow(): boolean;
-        isRegion(): boolean;
-        static regionSelect(): ScreenRegion;
-        /** Creates screen region using left, top, right, and bottom coords. */
-        static fromRectangle(left: number, top: number, right: number, bottom: number): ScreenRegion;
-        static fromWindow(window: Window): ScreenRegion;
-        toXML(): XML;
     }
 }
 declare module xui.system {
