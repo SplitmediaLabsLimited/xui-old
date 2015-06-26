@@ -3,7 +3,7 @@
 describe('xui.core.Presentation', function() {
     'use strict';
 
-    var App = xui.core.App;
+    var App = new xui.core.App();
     var promise = App.getCurrentPresentation();
 
     describe('should be able to convert the presentation', function() {
