@@ -36,4 +36,8 @@ describe('xui.system.Window', function() {
     it('Window.detail should be a string', function() {
         expect(typeof win.getDetail()).toBe('string');
     });
+
+    it('Window.parse should return a Window instance', function() {
+        expect(Window.parse({ hwnd: hwnd })).toBeInstanceOf(Window);
+    })
 });
