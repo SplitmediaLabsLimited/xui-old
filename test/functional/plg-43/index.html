@@ -14,6 +14,7 @@
         <button id="file" class="add">Add File</button>
         <button id="url" class="add">Add URL</button>
         <button id="screen" class="add">Add Screen</button>
+        <button id="screen-define" class="add">Add Screen (predefined)</button>
         <script src="../../../dist/xui.js"></script>
         <script>
         // Because we're lazy, we'll just make everything inline <3
@@ -27,7 +28,9 @@
 
             datas.file = new xui.system.File('D:\\Temp\\text.txt');
             datas.url = new xui.system.URL('http://xsplit.com');
-            datas.screen = new xui.system.Screen();
+            datas.screen = xui.system.ScreenRegion.regionSelect();
+            datas['screen-define'] = xui.system.ScreenRegion.fromRectangle(
+                0, 0, 1920, 1080);
 
             xui.system.System.getVideoDevices().then(function(d) {
                 datas.vd = d[d.length - 1];
