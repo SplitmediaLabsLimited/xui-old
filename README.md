@@ -1,12 +1,46 @@
 # XUI Framework
 
+**Table of contents**
+
+1. Introduction
+2. Plugins
+  * Types of Plugins
+  * Developing Plugins
+  * Developing the Source HTML
+  * Developing the Source's Configuration Window
+  * Developing Script Plugins
+3. The Plugin Framework
+4. Appendix A: Handling configuration objects for Source Plugins
+5. Appendix B: Developing the Source Configuration Window
+6. Appendix C: List of Libraries Used
+
 ## Introduction
 
-Plugins are important tools for extending the utility of XSplit Broadcaster. In order to allow any developer to create useful plugins for the community, the XUI framework is created to encapsulate the full capabilities of the application in an easily understandable manner.
+Plugins are important tools for extending the utility of XSplit Broadcaster. In order to allow developers to create useful plugins for the community, the XUI framework is created to encapsulate the capabilities of the application in an easy-to-understand manner.
 
 ## Plugins
 
-All plugins should import `xui.js` in order to work correctly. This is a library containing all the methods of the XUI plugin framework.
+### Types of Plugins
+
+Using the framework, developers can create two types of plugins: source plugins and global script plugins. Source plugins are added to the stage in a specific scene to be captured in a recording or a live stream, while script plugins exist within their own window, and are capable of manipulating the entire application and the whole set of scenes the user is working with. 
+
+> Figure 1. A Source Plugin ![Image of a source plugin](img/source.png)
+
+Figure 1 shows an example of a source plugin, the Whiteboard, and its corresponding configuration window. A source plugin is developed in HTML, and is composed of two parts: the source/base HTML and the configuration HTML. The framework provides utilities to allow communication between the base and the configuration. For more information on developing these, please read [Developing the Source HTML](#todo) and [Developing the Source's Configuration Window](#todo) for more details.
+
+> Figure 2. A Global Script Plugin ![Image of a script plugin](img/script.png)
+
+Figure 2 shows an example of a global script plugin (Currently in development). Script plugins are powerful tools that are able to access more functions than a single source plugin can. They can manipulate scenes, switch between them, and even add new objects to the active scene. More information can be found at [Developing Script Plugins](#todo).
+
+### Developing Plugins
+
+All plugins of all types (source and script plugins) should import `xui.js` in order to work correctly. This is a library containing all the methods of the XUI plugin framework that may be used to develop any type of plugin. **Important note:** All plugin logic should be performed after the `xui-ready` event is triggered on the `document` object. This ensures that all initialization is complete. Using the framework's methods before the event is triggered might result in unexpected errors.
+
+```javascript
+document.addEventListener('xui-ready', function() { 
+	// plugin logic goes here...
+});
+```
 
 ### *Source Plugins*
 
@@ -97,3 +131,9 @@ config.on('async-callback', function(returnObj) {
 ```
 
 Finally, the ConfigWindow class has a `resizeConfig(width, height)` function for resizing full-screen configuration windows, as well as a `closeConfig()` function for forcing the configuration window to close.
+
+## Appendix C: List of Libraries Used
+
+The plugin framework makes use of the following libraries internally:
+* [EventEmitter](https://github.com/Wolfy87/EventEmitter) (License: Unlicense)
+* [di4js](https://github.com/gedbac/di4js) (License: MIT)
