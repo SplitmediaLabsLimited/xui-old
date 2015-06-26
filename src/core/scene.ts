@@ -78,7 +78,11 @@ module xui.core {
         }
 
         setName(name: string) {
-            iApp.set('presetname:' + this.id, name);
+            if (Environment.isSourceHtml()) {
+                throw new Error('Scene names are readonly for source plugins.');
+            } else {
+                iApp.set('presetname:' + this.id, name);
+            }
         }
 
         static get(id?: number): Promise<Scene> {
