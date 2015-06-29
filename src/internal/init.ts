@@ -7,7 +7,15 @@ module internal {
     }
 
     function resolveRelativePath(path: string, base: string) {
-        if (path.substring(0, 3) === '../') {
+        // ABSOLUTE PATHS
+        if (path.substring(0, 7) === 'http://' || path.substring(0, 8) ===
+            'https://') {
+            return path;
+        } else if (path.substring(0, 2) === '//') {
+            // get current protocol
+            return base.split('://')[0] + path;
+        } else if (path.substring(0, 3) === '../') {
+            // RELATIVE PATHS
             let upDirectoryCount = 0;
             // count ../ segments
             while (path.substring(0, 3) === '../') {
@@ -19,7 +27,7 @@ module internal {
                 upDirectoryCount);
             baseDirectories.push(path);
             return baseDirectories.join('/');
-        } else {
+        } else { // captures ./ and URLS without protocols
             if (path.substring(0, 2) === './') {
                 path = path.substring(2);
             }
