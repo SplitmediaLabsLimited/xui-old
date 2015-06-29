@@ -17,20 +17,23 @@ module internal {
                         if (configObj === null) {
                             configObj = {};
                         }
-                        if (configObj.configUrl === undefined) {
-                            var metas = document.getElementsByTagName("meta");
-                            for (var i = metas.length - 1; i >= 0; i--) {
-                                if (metas[i].name === 'config-url') {
-                                    configObj.configUrl = metas[i].content;
-                                    internal.exec('SetBrowserProperty',
-                                        'Configuration',
-                                        JSON.stringify(configObj));
 
-                                    persistConfig(configObj);
-                                    break;
-                                }
+                        var metas = document.getElementsByTagName("meta");
+                        for (var i = metas.length - 1; i >= 0; i--) {
+                            if (metas[i].name === 'config-url') {
+                                configObj.configUrl = metas[i].content;
+                                internal.exec('SetBrowserProperty',
+                                    'Configuration',
+                                    JSON.stringify(configObj));
+
+                                var persist = {
+                                    configUrl: configObj.configUrl
+                                };
+                                persistConfig(persist);
+                                break;
                             }
                         }
+
                         resolve();
                     });
             } else {
