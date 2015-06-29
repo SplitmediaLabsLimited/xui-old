@@ -20,9 +20,12 @@
         'use strict';
         
         document.addEventListener('xui-ready', function() {
-            var item = xui.core.Item.getCurrentSource();
+            var item;
 
-            xui.core.Scene.get().then(function(scene) {
+            xui.core.Item.getCurrentSource().then(function(val) {
+                item = val;
+                return xui.core.Scene.get();
+            }).then(function(scene) {
                 return scene.getItems();
             }).then(function(items) {
                 return new Promise(function(resolve) {

@@ -216,7 +216,9 @@ describe('xui.system.System', function() {
             promise.then(function(games) {
                 expect(games).toBeInstanceOf(Array);
 
-                expect(games).eachToBeInstanceOf(xui.system.Game);
+                if (games.length > 0) {
+                    expect(games).eachToBeInstanceOf(xui.system.Game);
+                }
 
                 done();
             });
