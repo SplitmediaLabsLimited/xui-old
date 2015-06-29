@@ -7,7 +7,9 @@
   ],
   "description": "XSplit plugin framework",
   "main": [
-    "dist/xui.js"
+    "dist/xui.js",
+    "dist/xui.d.ts",
+    "dist/internal.d.ts"
   ],
   "private": true,
   "repository": {
