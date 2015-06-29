@@ -1,13 +1,19 @@
 {
-  "name": "xui",
+  "name": "xui-framework",
   "version": "0.1.0",
   "homepage": "https://github.com/SplitmediaLabsLimited/xui",
   "authors": [
     "xui@splitmedialabs.com"
   ],
-  "description": "plugin framework",
-  "main": "dist/xui.js",
+  "description": "XSplit plugin framework",
+  "main": [
+    "dist/xui.js"
+  ],
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SplitmediaLabsLimited/xui.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
