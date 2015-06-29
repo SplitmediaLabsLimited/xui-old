@@ -28,6 +28,6 @@
     "*.*"
   ],
   "dependencies": {
-    "es6-promise.d": "https://github.com/borisyankov/DefinitelyTyped/blob/master/es6-promise/es6-promise.d.ts"
+    "es6-promise.d": "https://raw.githubusercontent.com/borisyankov/DefinitelyTyped/master/es6-promise/es6-promise.d.ts"
   }
 }
