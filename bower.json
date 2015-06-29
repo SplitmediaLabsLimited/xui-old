@@ -7,7 +7,9 @@
   ],
   "description": "XSplit plugin framework",
   "main": [
-    "dist/xui.js"
+    "dist/xui.js",
+    "dist/xui.d.ts",
+    "dist/internal.d.ts"
   ],
   "private": true,
   "repository": {
@@ -19,6 +21,13 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
-  ]
+    "docs",
+    "examples",
+    "lib",
+    "src",
+    "*.*"
+  ],
+  "dependencies": {
+    "es6-promise.d": "https://github.com/borisyankov/DefinitelyTyped/blob/master/es6-promise/es6-promise.d.ts"
+  }
 }
