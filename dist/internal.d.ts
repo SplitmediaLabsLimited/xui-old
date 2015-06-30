@@ -7,11 +7,15 @@ declare module internal.utils {
         private ibgr;
         /** Creates a Color class */
         constructor(props?: {
-            rgb: string;
-            irgb: number;
-            bgr: string;
-            ibgr: number;
+            rgb?: string;
+            irgb?: number;
+            bgr?: string;
+            ibgr?: number;
         });
+        static fromRGBString(rgb: string): Color;
+        static fromRGBInt(irgb: number): Color;
+        static fromBGRString(bgr: string): Color;
+        static fromBGRInt(ibgr: number): Color;
         /** Gets RGB value */
         getRgb(): string;
         /** Sets RGB value */

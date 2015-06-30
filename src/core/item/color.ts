@@ -120,9 +120,7 @@ module xui.core {
 
                 iItem.get('prop:border', slot).then((val) => {
                     var bgr: number = Number(val) - 0x80000000;
-                    var color: Color = new Color();
-
-                    color.setIbgr(bgr);
+                    var color: Color = Color.fromBGRInt(bgr);
 
                     resolve(color);
                 });

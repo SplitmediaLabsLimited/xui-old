@@ -10,23 +10,41 @@ module internal.utils {
 
         /** Creates a Color class */
         constructor(
-            props?: { rgb: string, irgb: number, bgr: string, ibgr: number }
+            props?: { rgb?: string, irgb?: number, bgr?: string, ibgr?: number }
         ) {
-            if (props.rgb) {
-                this.setRgb(props.rgb);
-            }
+            if (props !== undefined) {
+                if (props.rgb !== undefined) {
+                    this.setRgb(props.rgb);
+                }
 
-            if (props.irgb) {
-                this.setIrgb(props.irgb);
-            }
+                if (props.irgb !== undefined) {
+                    this.setIrgb(props.irgb);
+                }
 
-            if (props.bgr) {
-                this.setBgr(props.bgr);
+                if (props.bgr !== undefined) {
+                    this.setBgr(props.bgr);
+                }
+
+                if (props.ibgr !== undefined) {
+                    this.setIbgr(props.ibgr);
+                }
             }
-            
-            if (props.ibgr) {
-                this.setIbgr(props.ibgr);
-            }
+        }
+
+        static fromRGBString(rgb: string): Color {
+            return new Color({ rgb: rgb });
+        }
+
+        static fromRGBInt(irgb: number): Color {
+            return new Color({ irgb: irgb });
+        }
+
+        static fromBGRString(bgr: string): Color {
+            return new Color({ bgr: bgr });
+        }
+
+        static fromBGRInt(ibgr: number): Color {
+            return new Color({ ibgr: ibgr });
         }
 
         /** Gets RGB value */

@@ -40,7 +40,7 @@ describe('xui.core.View', function() {
 
     describe('should be able to search scenes', function() {
         describe('by id', function() {
-            var promise = view.getScenes({id: 1});
+            var promise = view.getScenes(1);
 
             it('through a promise', function() {
                 expect(promise).toBeInstanceOf(Promise);
@@ -56,7 +56,7 @@ describe('xui.core.View', function() {
         });
         
         describe('by name', function() {
-            var promise = view.getScenes({name: 'Scene'});
+            var promise = view.getScenes('Scene');
 
             it('through a promise', function() {
                 expect(promise).toBeInstanceOf(Promise);

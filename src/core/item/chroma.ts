@@ -144,9 +144,7 @@ module xui.core {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:key_colorrgb', slot).then((val) => {
-                    var color = new Color();
-
-                    color.setBgr(val);
+                    let color: Color = Color.fromBGRString(val);
 
                     resolve(color);
                 });

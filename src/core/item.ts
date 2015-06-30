@@ -219,62 +219,11 @@ module xui.core {
             if (Environment.isScriptPlugin()) {
                 throw new Error('Script plugins do not have a ' +
                     'source associated with them.');
-            } else if (Environment.isSourceHtml()) {
+            } else if (Environment.isSourceHtml() ||
+                        Environment.isSourceConfig()) {
                 return new Promise(resolve => {
-                    iApp.get('presetconfig:-1').then(xml => {
-                        return new JSON(xml);
-                    }).then(json => {
-                        let name = json['name'];
-                        return View.MAIN.getScenes(name);
-                    }).then(scenes => {
-                        if (scenes.length === 1) {
-                            scenes[0].getID().then(id => {
-                                let item = new Item({
-                                    id: iItem.getBaseID(),
-                                    sceneID: id,
-                                    viewID: 0 // always MAIN
-                                });
-                                resolve(item);
-                            });
-                        } else {
-                            // check which scene contains item
-                            let searchPromises = [];
-                            for (var i = 0; i < scenes.length; i++) {
-                                var scene = scenes[i];
-                                (scene => {
-                                    searchPromises.push(new Promise(found => {
-                                        scene.getItems().then(items => {
-                                            for (var j = 0; j < items.length;
-                                                j++) {
-                                                items[j].getID().then(id => {
-                                                    if (id === iItem.getBaseID()
-                                                        ) {
-                                                        found(scene);
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }));
-                                })(scenes[i]);
-                            }
-                            Promise.race(searchPromises).then(scene => {
-                                scene.getID().then(id => {
-                                    let item = new Item({
-                                        id: iItem.getBaseID(),
-                                        sceneID: id,
-                                        viewID: 0 // always MAIN
-                                    });
-                                    resolve(item);
-                                });
-
-                            });
-                        }
-                    });
-                });
-            } else if (Environment.isSourceConfig()) {
-                return new Promise(resolve => {
-                    View.MAIN.searchItems(iItem.getBaseID()).then(item => {
-                        resolve(item);
+                    View.MAIN.searchItems(iItem.getBaseID()).then(items => {
+                        resolve(items[0]); // assuming this always exists
                     });
                 });
             }

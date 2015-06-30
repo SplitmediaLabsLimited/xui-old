@@ -3,7 +3,7 @@
 describe('xui.core.App', function() {
     'use strict';
 
-    var App = xui.core.App;
+    var App = new xui.core.App();
     
     describe('should get audio devices', function() {
         
