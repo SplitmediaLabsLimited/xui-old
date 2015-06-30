@@ -17,9 +17,9 @@ module xui.core {
 
         loadConfig(): Promise<JSON> {
             return new Promise(resolve => {
-                iItem.attach(this.id, this.viewID);
+                let slot = iItem.attach(this.id, this.viewID);
 
-                iItem.get('prop:BrowserConfiguration').then(config => {
+                iItem.get('prop:BrowserConfiguration', slot).then(config => {
                     let configObj = window['JSON'].parse(config);
                     let persist = internal['persistedConfig'];
                     for (var key in persist) {
@@ -31,14 +31,17 @@ module xui.core {
         }
 
         saveConfig(configObj: JSON) {
-            // add persisted configuration if available
-            // currently only top level merging is available
-            let persist = internal['persistedConfig'];
-            for (var key in persist) {
-                configObj[key] = persist[key];
-            }
-
             if (Environment.isSourceHtml()) {
+                xui['source'].SourceWindow.getInstance().rememberConfig(
+                    configObj);
+
+                // add persisted configuration if available
+                // currently only top level merging is available
+                let persist = internal['persistedConfig'];
+                for (var key in persist) {
+                    configObj[key] = persist[key];
+                }
+
                 internal.exec('SetBrowserProperty', 'Configuration',
                     window['JSON'].stringify(configObj));
             } else {
@@ -53,6 +56,35 @@ module xui.core {
 
             iItem.set('prop:BrowserConfiguration', window['JSON'].stringify(
                 configObj), slot);
+        }
+
+        requestSaveConfig(configObj: JSON): void {
+            if (Environment.isSourceHtml()) {
+                throw new Error('Source HTML can call saveConfig() to save.');
+            } else {
+                let slot = iItem.attach(this.id, this.viewID);
+
+                internal.exec('CallInner' + (slot === 0 ? '' : (slot + 1)),
+                    'MessageSource', window['JSON'].stringify({
+                        'request' : 'saveConfig',
+                        'data'    : configObj
+                }));
+            }
+        }
+
+        revertConfig(): void {
+            if (Environment.isSourceHtml()) {
+                throw new Error('Source HTML automatically reverts its ' +
+                    'configuration when its configuration window or a global ' +
+                    'script calls revertConfig().');
+            } else {
+                let slot = iItem.attach(this.id, this.viewID);
+
+                internal.exec('CallInner' + (slot === 0 ? '' : (slot + 1)),
+                    'MessageSource', window['JSON'].stringify({
+                        'request' : 'revertConfig'
+                }));
+            }
         }
     }
 

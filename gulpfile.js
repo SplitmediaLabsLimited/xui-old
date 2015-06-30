@@ -21,7 +21,7 @@
 		DIST_PATH         = 'dist/',
 		PLG_CONFIG_PATH   = 'src/config/',
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
-		PLG_CONFIG_FILE   = 'ConfigWindow.js',
+		PLG_CONFIG_FILE   = 'config.js',
 		SRC_UTIL_FILE     = 'src/source/source.js';
 
 	var DEPENDENCY_INJECT_LIB = 'lib/di4js.min.js',
