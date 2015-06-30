@@ -13,7 +13,7 @@ module internal {
             return path;
         } else if (path.substring(0, 2) === '//') {
             // get current protocol
-            return base.split('://')[0] + path;
+            return base.split('://')[0] + ':' + path;
         } else if (path.substring(0, 3) === '../') {
             // RELATIVE PATHS
             let upDirectoryCount = 0;
