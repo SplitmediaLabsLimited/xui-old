@@ -34,7 +34,7 @@
 		out: 	'./docs/', 
 		name: 	'XUI Plugin Framework', 
 		target: 'ES6',
-		theme: 	'default',
+		theme: 	'minimal',
 		readme: 'none'
 	};
 
