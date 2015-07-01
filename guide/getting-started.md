@@ -19,7 +19,7 @@ Figure 2. A Global Script Plugin
 
 ![Image of a script plugin](img/script.png)
 
-Figure 2 shows an example of a global script plugin (currently in development). Script plugins are powerful tools that are able to access more functions than a single source plugin can. They can manipulate scenes, switch between them, and even add new objects to the active scene. More information can be found at [Developing Script Plugins](#todo).
+Figure 2 shows an example of a global script plugin (currently in development). Script plugins are powerful tools that are able to access more functions than a single source plugin can. They can manipulate scenes, switch between them, and even add new objects to the active scene. More information can be found at [Developing Script Plugins](#script).
 
 ## <a name="start"></a> Getting started with development
 
@@ -31,15 +31,14 @@ document.addEventListener('xui-ready', function() {
 });
 ```
 
-To make things easier, we have provided some tools to easily create your first plugin. *<!-- @dara Tooling documentation could go here. -->*
+To make things easier, we have provided some tools to easily create your first plugin. <!-- @dara Tooling documentation could go here. -->
 
 ## <a name="source"></a> Developing source plugins
 
-For more information about developing source plugins, please check [this link](develop-source.md).
+For more information about developing source plugins, please check [this link](develop-source.md). You can also refer to the code snippets outlined in the [script plugins document](develop-script.md#snippets), as many of these can still apply to source plugins.
 
 ## <a name="script"></a> Developing script plugins
 
-A good number of code samples for developing script plugins are found [here](#todo). Note that many of these apply to source plugins as well.
-
 Global script plugins are powerful add-ons that leverage a larger set of functions in order to manipulate multiple sources, application properties, and other elements of XSplit Broadcaster. These are also developed using HTML, and occupy their own window. Script plugins also use the same framework as source plugins, but more functions are available to them. Simply include `xui.js` into your script plugin to use the framework.
 
+A good number of code samples for developing script plugins are found [here](develop-script.md#snippets). Note that many of these apply to source plugins as well.

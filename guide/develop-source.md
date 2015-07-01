@@ -3,6 +3,7 @@
 1. [Source Plugins](#source)
 2. [Handling configuration objects for Source Plugins](#configObj)
 3. [Developing the configuration window](#configWindow)
+4. [Miscellaneous notes](#misc)
 
 ## <a name="source"></a> Source Plugins
 
@@ -12,7 +13,7 @@ Source plugins are those that are added to the stage for recording. Source plugi
 
 The XUI framework allows for sources to specify where their configuration HTML is hosted. This is accomplished by specifying metadata in their source HTML, as seen in the example below (if `xui.js` has been included in the source HTML, then this metadata should already be automatically processed).
 ```html
-<meta name="config-url" content="http://www.xspl.it/plugin/test-config.html">
+<meta name="config-url" content="http://www.xspl.it/plugin/config.html">
 ```
 
 > **Tip**: Relative paths are also supported for the above `<meta>` tag!
@@ -38,6 +39,15 @@ document.addEventListener('xui-ready', function() {
 
 The configuration HTML and any global script plugins are able to apply configurations to the source HTML. The `applyConfig()` function of an `Item` object can be used to do this; it notifies the source HTML to render itself accordingly, through the `'apply-config'` event. In order to finally save a configuration object, the source HTML may call `saveConfig()`. (The usual workflow would be the configuration window sending new configurations over to the source, which will subsequently save the configuration.)
 
+The configuration HTML, or any global script plugin, is able to apply configurations to the source HTML. They can request the source to apply a configuration by calling `applyConfig` on an Item, revert all changes by calling `revertConfig()`, or request to save the changes through `requestSaveConfig()`. Only the source is allowed to decide to request the source HTML to finalize and save the configuration by calling `saveConfig()`. The following table and code snippets demonstrate how this is achieved.
+
+| Config/Script environment | Source environment |
+| ------------------------- | ------------------ |
+| calls applyConfig(config) | emits apply-config event (argument: config) |
+| calls requestSaveConfig(config) | emits save-config event (argument: config) |
+| calls revertConfig() | emits revert-config event (argument: savedConfig) |
+| *can't save configuration* | saveConfig(configObject) |
+
 > **Tip**: The `applyConfig()` function may be used to preview changes before finalizing them, such as when a user hovers over a specific color in a color palette in the configuration window.
 
 ```javascript
@@ -56,7 +66,13 @@ document.addEventListener('xui-ready', function() {
 	var sourceEventEmitter = xui.source.SourceWindow.getInstance(); 
 	sourceEventEmitter.on('apply-config', function(config) {
 		document.body.style.backgroundColor = config.color; // apply changes
-		item.saveConfig(config); // only the source may save its config
+	});
+	sourceEventEmitter.on('revert-config', function(config) {
+		document.body.style.backgroundColor = config.color;
+	});
+	sourceEventEmitter.on('save-config', function(config) {
+		document.body.style.backgroundColor = config.color; // apply changes
+		item.saveConfig(config);
 	});
 });
 ```
@@ -83,10 +99,15 @@ config.setTabOrder(['Slideshow', 'Hotkeys', 'Color', 'Layout', 'Transition']);
 
 > **Note**: When creating a configuration window in embedded mode, always declare your custom tabs before setting the order of tabs, or your tabs will not render correctly.
 
-In the case of multiple custom tabs, it is the responsibility of the configuration HTML to render itself accordingly when the tab header is clicked. To assist with this, developers may subscribe to the tab change event emitted by ConfigWindow (this extends an EventEmitter implementation found [here](https://github.com/Wolfy87/EventEmitter).)
+In the case of multiple custom tabs, it is the responsibility of the configuration HTML to render itself accordingly when the tab header is clicked. To assist with this, developers may subscribe to the tab change event emitted by ConfigWindow.
 
 ```javascript
 config.on('set-selected-tab', function(tab) {
 	// handle change of tab here
 });
 ```
+
+## <a name="misc"></a> Miscellaneous notes
+
+Both the SourceWindow and ConfigWindow classes above are event emitters, with the same functionality as the EventEmitter library found [here](https://github.com/Wolfy87/EventEmitter).
+
