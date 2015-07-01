@@ -6,8 +6,9 @@
 2. Getting started
 3. Plugin framework API
 4. Publishing your plugin
-4. Appendix: List of libraries Used
-5. Changelog
+5. Tools
+6. Appendix: List of libraries Used
+7. Changelog
 
 ## Introduction
 
@@ -20,6 +21,10 @@ To learn about the basics of XSplit Broadcaster plugins, and an introduction to 
 ## Plugin framework API
 
 XSplit Broadcaster's functions may be used by developers through the Plugin Framework. For the latest API documentation, click [here](http://splitmedialabslimited.github.io/xui/docs/).
+
+## Tools
+
+We provide some tools that could speed up your plugin development. To learn more, click [here](http://splitmedialabslimited.github.io/xui/guide/tooling.md).
 
 ## Publishing your plugin
 
