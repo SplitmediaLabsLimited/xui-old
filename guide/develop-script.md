@@ -9,7 +9,7 @@ Script plugins are empowered with a large set of functions through the Plugin Fr
 
 The following is a set of common tasks and code snippets that can be used to accomplish these functions.
 
-<!-- TODO @dara --> 
+*This section is under construction.*
 
 ## <a name="limitations"></a> Current Limitations
 
