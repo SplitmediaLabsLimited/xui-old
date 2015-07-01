@@ -5,18 +5,18 @@ module xui.core {
     import Environment = internal.Environment;
 
     export interface IItemConfigurable {
-        loadConfig(): Promise<{}>;
-        saveConfig(configObj: {}): void;
-        applyConfig(configObj: {}): void;
-        requestSaveConfig(configObj: {}): void;
-        revertConfig(configObj: {}): void;
+        loadConfig(): Promise<any>;
+        saveConfig(configObj: any): void;
+        applyConfig(configObj: any): void;
+        requestSaveConfig(configObj: any): void;
+        revertConfig(configObj: any): void;
     }
 
     class ItemConfigurable implements IItemConfigurable {
         private id: string;
         private viewID: number;
 
-        loadConfig(): Promise<{}> {
+        loadConfig(): Promise<any> {
             return new Promise(resolve => {
                 let slot = iItem.attach(this.id, this.viewID);
 
@@ -31,7 +31,7 @@ module xui.core {
             });
         }
 
-        saveConfig(configObj: {}) {
+        saveConfig(configObj: any) {
             if (Environment.isSourceHtml()) {
                 xui['source'].SourceWindow.getInstance().rememberConfig(
                     configObj);
@@ -52,14 +52,14 @@ module xui.core {
             }
         }
 
-        applyConfig(configObj: {}) {
+        applyConfig(configObj: any) {
             let slot = iItem.attach(this.id, this.viewID);
 
             iItem.set('prop:BrowserConfiguration', JSON.stringify(
                 configObj), slot);
         }
 
-        requestSaveConfig(configObj: {}): void {
+        requestSaveConfig(configObj: any): void {
             if (Environment.isSourceHtml()) {
                 throw new Error('Source HTML can call saveConfig() to save.');
             } else {

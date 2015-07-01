@@ -43,6 +43,7 @@ module xui.core {
         getViewport(): Promise<Rectangle>;
         getVersion(): Promise<string>;
         getFramesRendered(): Promise<string>;
+        getActiveStreamChannels(): Promise<Channel[]>;
     }
 
     export interface IAppAudio {
@@ -122,6 +123,26 @@ module xui.core {
         getFramesRendered() : Promise<string> {
             return new Promise(resolve => {
                 resolve(iApp.get('version'));
+            });
+        }
+
+        getActiveStreamChannels(): Promise<Channel[]> {
+            return new Promise(resolve => {
+                iApp.getAsList('recstat').then(activeStreams => {
+                    if (activeStreams.length === 0) {
+                        resolve([]);
+                    } else {
+                        let channels = [];
+                        for (var i = 0; i < activeStreams.length; i++) {
+                            channels.push(new Channel({
+                                'name': activeStreams[i]['name'],
+                                'stat': activeStreams[i].children[0],
+                                'channel': activeStreams[i].children[1]
+                            }));
+                        }
+                        resolve(channels);
+                    }
+                });
             });
         }
 

@@ -543,11 +543,11 @@ declare module xui.core {
 }
 declare module xui.core {
     interface IItemConfigurable {
-        loadConfig(): Promise<{}>;
-        saveConfig(configObj: {}): void;
-        applyConfig(configObj: {}): void;
-        requestSaveConfig(configObj: {}): void;
-        revertConfig(configObj: {}): void;
+        loadConfig(): Promise<any>;
+        saveConfig(configObj: any): void;
+        applyConfig(configObj: any): void;
+        requestSaveConfig(configObj: any): void;
+        revertConfig(configObj: any): void;
     }
 }
 declare module xui.core {
@@ -634,6 +634,7 @@ declare module xui.core {
         getViewport(): Promise<Rectangle>;
         getVersion(): Promise<string>;
         getFramesRendered(): Promise<string>;
+        getActiveStreamChannels(): Promise<Channel[]>;
     }
     interface IAppAudio {
         getAudioDevices(): Promise<AudioDevice[]>;
@@ -671,6 +672,7 @@ declare module xui.core {
         getVersion(): Promise<string>;
         /** Gets the total number of frames rendered */
         getFramesRendered(): Promise<string>;
+        getActiveStreamChannels(): Promise<Channel[]>;
         /** List of audio input and output devices used by the application */
         getAudioDevices(): Promise<AudioDevice[]>;
         setAudioDevices(devices: AudioDevice[]): void;
@@ -711,10 +713,11 @@ declare module xui.core {
     }
 }
 declare module xui.core {
+    import JSON = internal.utils.JSON;
     interface IChannelProps {
         name: string;
-        stat: string;
-        channel: string;
+        stat: JSON;
+        channel: JSON;
     }
     interface IStreamDrops {
         dropped: number;
@@ -722,8 +725,8 @@ declare module xui.core {
     }
     class Channel implements IChannelProps {
         name: string;
-        stat: string;
-        channel: string;
+        stat: JSON;
+        channel: JSON;
         /** Channel constructor, intialize name, state, and channel values */
         constructor(props: IChannelProps);
         /** Gets the amout of frames dropped and frames rendered  */

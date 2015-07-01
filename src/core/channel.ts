@@ -2,11 +2,12 @@
 
 module xui.core {
     import iApp = internal.App;
+    import JSON = internal.utils.JSON;
 
     export interface IChannelProps {
         name: string;
-        stat: string;
-        channel: string;
+        stat: JSON;
+        channel: JSON;
     }
 
     export interface IStreamDrops {
@@ -16,8 +17,8 @@ module xui.core {
 
     export class Channel implements IChannelProps {
         name: string;
-        stat: string;
-        channel: string;
+        stat: JSON;
+        channel: JSON;
 
         /** Channel constructor, intialize name, state, and channel values */
         constructor(props: IChannelProps) {
