@@ -237,7 +237,6 @@ declare module xui.system {
     }
 }
 declare module xui.core {
-    import JSON = internal.utils.JSON;
     import XML = internal.utils.XML;
     import Color = internal.utils.Color;
     import Rectangle = internal.utils.Rectangle;
@@ -420,11 +419,15 @@ declare module xui.core {
         /** Set Playback Duration */
         setPlaybackDuration: (value: number) => void;
         /** Load the saved browser configuration */
-        loadConfig: () => Promise<JSON>;
+        loadConfig: () => Promise<{}>;
         /** Save the configuration object */
-        saveConfig: (configObj: JSON) => void;
+        saveConfig: (configObj: {}) => void;
         /** Apply changes based on passed configuration object */
-        applyConfig: (configObj: JSON) => void;
+        applyConfig: (configObj: {}) => void;
+        /** Apply changes and ask to save */
+        requestSaveConfig: (configObj: {}) => void;
+        /** Revert changes to last saved configuration */
+        revertConfig: () => void;
     }
 }
 declare module xui.core {
@@ -539,11 +542,12 @@ declare module xui.core {
     }
 }
 declare module xui.core {
-    import JSON = internal.utils.JSON;
     interface IItemConfigurable {
-        loadConfig(): Promise<JSON>;
-        saveConfig(configObj: JSON): void;
-        applyConfig(configObj: JSON): void;
+        loadConfig(): Promise<{}>;
+        saveConfig(configObj: {}): void;
+        applyConfig(configObj: {}): void;
+        requestSaveConfig(configObj: {}): void;
+        revertConfig(configObj: {}): void;
     }
 }
 declare module xui.core {

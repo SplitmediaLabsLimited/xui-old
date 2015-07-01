@@ -2,25 +2,26 @@
 
 module xui.core {
     import iItem = internal.Item;
-    import JSON = internal.utils.JSON;
     import Environment = internal.Environment;
 
     export interface IItemConfigurable {
-        loadConfig(): Promise<JSON>;
-        saveConfig(configObj: JSON): void;
-        applyConfig(configObj: JSON): void;
+        loadConfig(): Promise<{}>;
+        saveConfig(configObj: {}): void;
+        applyConfig(configObj: {}): void;
+        requestSaveConfig(configObj: {}): void;
+        revertConfig(configObj: {}): void;
     }
 
     class ItemConfigurable implements IItemConfigurable {
         private id: string;
         private viewID: number;
 
-        loadConfig(): Promise<JSON> {
+        loadConfig(): Promise<{}> {
             return new Promise(resolve => {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:BrowserConfiguration', slot).then(config => {
-                    let configObj = window['JSON'].parse(config);
+                    let configObj = JSON.parse(config);
                     let persist = internal['persistedConfig'];
                     for (var key in persist) {
                         delete configObj[key];
@@ -30,7 +31,7 @@ module xui.core {
             });
         }
 
-        saveConfig(configObj: JSON) {
+        saveConfig(configObj: {}) {
             if (Environment.isSourceHtml()) {
                 xui['source'].SourceWindow.getInstance().rememberConfig(
                     configObj);
@@ -43,7 +44,7 @@ module xui.core {
                 }
 
                 internal.exec('SetBrowserProperty', 'Configuration',
-                    window['JSON'].stringify(configObj));
+                    JSON.stringify(configObj));
             } else {
                 throw new Error(
                     'Only the source HTML itself may save configuration.' +
@@ -51,21 +52,21 @@ module xui.core {
             }
         }
 
-        applyConfig(configObj: JSON) {
+        applyConfig(configObj: {}) {
             let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:BrowserConfiguration', window['JSON'].stringify(
+            iItem.set('prop:BrowserConfiguration', JSON.stringify(
                 configObj), slot);
         }
 
-        requestSaveConfig(configObj: JSON): void {
+        requestSaveConfig(configObj: {}): void {
             if (Environment.isSourceHtml()) {
                 throw new Error('Source HTML can call saveConfig() to save.');
             } else {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 internal.exec('CallInner' + (slot === 0 ? '' : (slot + 1)),
-                    'MessageSource', window['JSON'].stringify({
+                    'MessageSource', JSON.stringify({
                         'request' : 'saveConfig',
                         'data'    : configObj
                 }));
@@ -81,7 +82,7 @@ module xui.core {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 internal.exec('CallInner' + (slot === 0 ? '' : (slot + 1)),
-                    'MessageSource', window['JSON'].stringify({
+                    'MessageSource', JSON.stringify({
                         'request' : 'revertConfig'
                 }));
             }

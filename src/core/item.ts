@@ -429,12 +429,18 @@ module xui.core {
         // ItemConfigurable
 
         /** Load the saved browser configuration */
-        loadConfig: () => Promise<JSON>;
+        loadConfig:        () => Promise<{}>;
 
         /** Save the configuration object */
-        saveConfig: (configObj: JSON) => void;
+        saveConfig:        (configObj: {}) => void;
 
         /** Apply changes based on passed configuration object */
-        applyConfig: (configObj: JSON) => void;
+        applyConfig:       (configObj: {}) => void;
+
+        /** Apply changes and ask to save */
+        requestSaveConfig: (configObj: {}) => void;
+
+        /** Revert changes to last saved configuration */
+        revertConfig:      () => void;
     }
 }
