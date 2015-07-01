@@ -16,7 +16,7 @@ Plugins are important tools for extending the utility of XSplit Broadcaster. In 
 
 ## Getting started
 
-To learn about the basics of XSplit Broadcaster plugins, and an introduction to developing your own, click [here](http://splitmedialabslimited.github.io/xui/guide/getting-started.md).
+To learn about the basics of XSplit Broadcaster plugins, and an introduction to developing your own, click [here](http://splitmedialabslimited.github.io/xui/guide/blob/gh-pages/getting-started.md).
 
 ## Plugin framework API
 
@@ -24,7 +24,7 @@ XSplit Broadcaster's functions may be used by developers through the Plugin Fram
 
 ## Tools
 
-We provide some tools that could speed up your plugin development. To learn more, click [here](http://splitmedialabslimited.github.io/xui/guide/tooling.md).
+We provide some tools that could speed up your plugin development. To learn more, click [here](http://splitmedialabslimited.github.io/xui/blob/gh-pages/guide/tooling.md).
 
 ## Publishing your plugin
 
