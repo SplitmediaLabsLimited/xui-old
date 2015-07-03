@@ -13,7 +13,8 @@ npm install -g yo
 npm install -g generator-xui
 ```
 
-### Basic usage
+### Basic usage (TypeScript based, recommended)
+_TypeScript has support for autocomplete when using Atom Editor with atom-typescript plugin_
 ```shell
 mkdir YOUR_DIR
 cd YOUR_DIR
@@ -21,12 +22,11 @@ yo xui
 gulp
 ```
 
-### Using with TypeScript (Recommeded)
-_TypeScript has support for autocomplete when using Atom Editor with atom-typescript plugin_
+### Using with JavaScript
 ```shell
 mkdir YOUR_DIR
 cd YOUR_DIR
-yo xui:ts
+yo xui:js
 gulp
 ```
 
