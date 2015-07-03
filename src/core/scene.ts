@@ -27,7 +27,7 @@ module xui.core {
         private id: number;
         private viewID: number;
 
-        constructor(props: {}) {
+        constructor(props: {id: number, viewID: number}) {
             this.id = props['id'];
             this.viewID = props['viewID'];
         }

@@ -17,7 +17,7 @@ module xui.core {
         constructor(props: {}) {
             this.currentScene = new Scene({
                 id: props['currentScene'],
-                viewID: '1'
+                viewID: 1
             });
             this.version = props['version'];
             this.sceneDetails = props['placements'];

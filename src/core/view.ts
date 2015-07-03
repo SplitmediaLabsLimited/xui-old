@@ -83,7 +83,8 @@ module xui.core {
         getActiveScene(): Promise<Scene> {
             return new Promise((resolve) => {
                 iApp.get('preset:' + this.id).then((sceneID) => {
-                    var scene = new Scene({ id: sceneID, viewID: this.id });
+                    var scene = new Scene({ id: Number(sceneID),
+                        viewID: this.id });
                     resolve(scene);
                 });
             });

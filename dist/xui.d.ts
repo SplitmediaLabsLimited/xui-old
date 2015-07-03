@@ -569,7 +569,10 @@ declare module xui.core {
     class Scene implements IScene {
         private id;
         private viewID;
-        constructor(props: {});
+        constructor(props: {
+            id: number;
+            viewID: number;
+        });
         getID(): Promise<number>;
         getViewID(): Promise<number>;
         getItems(): Promise<Item[]>;
