@@ -52,8 +52,7 @@ module internal {
                 } else {
                     internal.exec('AttachVideoItem' +
                         (String(slot) === '0' ? '' : (slot + 1)),
-                        itemID,
-                        String(viewID)
+                        itemID
                     );
                 }
             }
