@@ -1,4 +1,4 @@
-/* globals describe, it, expect, xui */
+/* globals describe, it, expect, xui, beforeAll */
 
 describe('xui.core.Scene', function() {
     'use strict';
@@ -34,19 +34,26 @@ describe('xui.core.Scene', function() {
     });
 
     describe('should be able to get', function() {
-        var scene = new xui.core.Scene({ id: 0, viewID: 0 });
+        var scene;
         var items = [];
+
+        beforeAll(function(done) {
+            xui.core.Scene.get().then(function(value) {
+                scene = value;
+                done();
+            });
+        });
         
         it('the ID', function(done) {
             scene.getID().then(function(val) {
-                expect(val).not.toBeNaN();
+                expect(val).toBeTypeOf('number');
                 done();
             });
         });
 
         it('the ViewID', function(done) {
             scene.getViewID().then(function(val) {
-                expect(val).not.toBeNaN();
+                expect(val).toBeTypeOf('number');
                 done();
             });
         });
@@ -64,7 +71,7 @@ describe('xui.core.Scene', function() {
 
         it('the status if scene is empty or not', function(done) {
             scene.isEmpty().then(function(val) {
-                expect(typeof val).toBe('boolean');
+                expect(val).toBeTypeOf('boolean');
                 if (val === true) {
                     expect(items.length === 0).toBeTruthy();
                 } else {
@@ -76,7 +83,7 @@ describe('xui.core.Scene', function() {
 
         it('the Name', function(done) {
             scene.getName().then(function(val) {
-                expect(typeof val).toBe('string');
+                expect(val).toBeTypeOf('string');
                 done();
             });
         });

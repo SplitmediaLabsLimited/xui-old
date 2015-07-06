@@ -32,6 +32,17 @@ beforeEach(function() {
                     return { pass: pass };
                 }
             };
+        },
+
+        toBeTypeOf: function() {
+            return {
+                compare: function(actual, expected) {
+                    var pass = 
+                        (typeof actual === String(expected).toLowerCase());
+
+                    return { pass: pass };
+                }
+            };
         }
     });
 });
