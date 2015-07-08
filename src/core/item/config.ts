@@ -21,7 +21,7 @@ module xui.core {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:BrowserConfiguration', slot).then(config => {
-                    let configObj = JSON.parse(config);
+                    let configObj = config === '' ? {} : JSON.parse(config);
                     let persist = internal['persistedConfig'];
                     for (var key in persist) {
                         delete configObj[key];
