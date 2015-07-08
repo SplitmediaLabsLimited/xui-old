@@ -22,7 +22,8 @@
 		PLG_CONFIG_PATH   = 'src/config/',
 		PLG_DEPENDENCY    = 'EventEmitter.min.js',
 		PLG_CONFIG_FILE   = 'config.js',
-		SRC_UTIL_FILE     = 'src/source/source.js';
+		SRC_UTIL_FILE     = 'src/source/source.js',
+		SCR_UTIL_FILE     = 'src/script/script.js';
 
 	var DEPENDENCY_INJECT_LIB = 'lib/di4js.min.js',
 		DEPENDENCY_INJECT     = 'src/init.js';
@@ -82,17 +83,18 @@
 
 		var plgDep = gulp.src([PLG_CONFIG_PATH + PLG_DEPENDENCY]);
 		var sourceUtil = gulp.src([SRC_UTIL_FILE]);
+		var scriptUtil = gulp.src([SCR_UTIL_FILE]);
 		var plgConfig = gulp.src([PLG_CONFIG_PATH + PLG_CONFIG_FILE]);
 
 		var depLib = gulp.src(DEPENDENCY_INJECT_LIB),
 			depInjection = gulp.src(DEPENDENCY_INJECT);
 
-		return merge(xuiFile, depLib, depInjection, plgDep, sourceUtil, plgConfig)
+		return merge(xuiFile, depLib, depInjection, plgDep,
+			sourceUtil, plgConfig, scriptUtil)
 			.pipe(concat(XUI_FILENAME))
 			.pipe(uglify())
 			.pipe(gulp.dest(DIST_PATH));
 	});
-
 
 	gulp.task('generate-typedoc', function() {
 		return gulp.src(TYPEDOC_FILE).pipe(typedoc(TYPEDOC_CONFIG));

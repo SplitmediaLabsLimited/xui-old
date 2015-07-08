@@ -163,6 +163,4 @@
 			event: "load"
 		});
 	});
-
-	delete window.EventEmitter;
 })();
