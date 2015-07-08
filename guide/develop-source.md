@@ -90,7 +90,7 @@ This configures a very easy configuration window. However, developers may choose
 
 > **Tip**: The full window render mode retains XSplit's draggable title bar so there is no need to reimplement it. For simple graphical interfaces, the full window mode is recommended.
 
-The ConfigWindow class also exposes additional methods for developers who wish to use the tabbed mode. The configuration HTML must first declare the names of its custom tabs, and then declare the order of tabs. Custom tabs are tabs for which the developer has the responsibility of implementing. Non-custom tabs refer to existing core tabs that will be reused by the plugin. (Reusable core tabs include "Html", "Color", "Layout" and "Transition"). Note that core tab names may also be used as names of custom tabs, if developers wish to implement their own content.
+The ConfigWindow class also exposes additional methods for developers who wish to use the tabbed mode. The configuration HTML must first declare the names of its custom tabs, and then declare the order of tabs. Custom tabs are tabs for which the developer has the responsibility of implementing. Non-custom tabs refer to existing core tabs that will be reused by the plugin. (Reusable core tabs include "Color", "Layout" and "Transition".) Note that core tab names may also be used as names of custom tabs, if developers wish to implement their own content.
 
 ```javascript
 config.declareCustomTabs(['Slideshow', 'Hotkeys']);
