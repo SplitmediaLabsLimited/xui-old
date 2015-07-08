@@ -15,7 +15,7 @@
         // Configure the configuration window
         document.addEventListener('xui-ready', function() {
             var config = xui.config.ConfigWindow.getInstance();
-            config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
+            config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLWINDOW);
             
             xui.core.Item.getCurrentSource().then(function(item) {
                 var iItem = internal.Item;
