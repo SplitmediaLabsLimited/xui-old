@@ -31,7 +31,7 @@ document.addEventListener('xui-ready', function() {
 });
 ```
 
-To make things easier, we have provided some tools to easily create your first plugin.
+To make things easier, we have provided some tools to easily create your first plugin. To learn more, click [here](https://github.com/SplitmediaLabsLimited/xui/blob/gh-pages/guide/tooling.md)
 
 ## <a name="source"></a> Developing source plugins
 
