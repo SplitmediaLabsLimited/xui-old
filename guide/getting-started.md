@@ -31,7 +31,7 @@ document.addEventListener('xui-ready', function() {
 });
 ```
 
-To make things easier, we have provided some tools to easily create your first plugin. <!-- @dara Tooling documentation could go here. -->
+To make things easier, we have provided some tools to easily create your first plugin.
 
 ## <a name="source"></a> Developing source plugins
 
