@@ -62,9 +62,8 @@
 
 	ConfigWindow.RenderMode =
 	{
-		HIDDEN : "hidden",
-		EMBEDDED : "embedded",
-		FULLSCREEN : "full"
+		TABBED : "embedded",
+		FULLWINDOW : "full"
 	};
 
 	// helper function to config parent

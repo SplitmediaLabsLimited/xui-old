@@ -83,21 +83,21 @@ XSplit Broadcaster provides an inline frame that is used for rendering the confi
 
 ```javascript
 var config = xui.config.ConfigWindow.getInstance();
-config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLSCREEN);
+config.setRenderMode(xui.config.ConfigWindow.RenderMode.FULLWINDOW);
 ```
 
-This configures a very easy configuration window. However, developers may choose one of the following three choices: *full screen window* (developers have full control over the look-and-feel of the configuration), *embedded* (developers can take advantage of the existing tabs system, and even reuse any existing core tabs such as Layout), and *hidden* (the configuration window simply serves to run code in the background). These are specified as `RenderMode.FULLSCREEN`, `RenderMode.EMBEDDED`, and `RenderMode.HIDDEN`, respectively, under the `xui.config.ConfigWindow` namespace.
+This configures a very easy configuration window. However, developers may choose either of the following: *full window* (developers have full control over the look-and-feel of the configuration), or *tabbed* (developers can take advantage of the existing tabs system, and even reuse any existing core tabs: Color, Layout, and Transition). These are specified as `RenderMode.FULLWINDOW` and `RenderMode.TABBED`, respectively, under the `xui.config.ConfigWindow` namespace.
 
-> **Tip**: The full screen render mode retains XSplit's draggable title bar so there is no need to reimplement it. For simple graphical interfaces, the full screen mode is recommended.
+> **Tip**: The full window render mode retains XSplit's draggable title bar so there is no need to reimplement it. For simple graphical interfaces, the full window mode is recommended.
 
-The ConfigWindow class also exposes additional methods for developers who wish to use the tab system (embedded mode). The configuration HTML must first declare the names of its custom tabs, and then declare the order of tabs. Custom tabs are tabs for which the developer has the responsibility of implementing. Non-custom tabs refer to existing core tabs that will be reused by the plugin. (Reusable core tabs include "Html", "Color", "Layout" and "Transition"). Note that core tab names may also be used as names of custom tabs, if developers wish to implement their own content.
+The ConfigWindow class also exposes additional methods for developers who wish to use the tabbed mode. The configuration HTML must first declare the names of its custom tabs, and then declare the order of tabs. Custom tabs are tabs for which the developer has the responsibility of implementing. Non-custom tabs refer to existing core tabs that will be reused by the plugin. (Reusable core tabs include "Html", "Color", "Layout" and "Transition"). Note that core tab names may also be used as names of custom tabs, if developers wish to implement their own content.
 
 ```javascript
 config.declareCustomTabs(['Slideshow', 'Hotkeys']);
 config.setTabOrder(['Slideshow', 'Hotkeys', 'Color', 'Layout', 'Transition']);
 ```
 
-> **Note**: When creating a configuration window in embedded mode, always declare your custom tabs before setting the order of tabs, or your tabs will not render correctly.
+> **Note**: When creating a configuration window in tabbed mode, always declare your custom tabs before setting the order of tabs, or your tabs will not render correctly.
 
 In the case of multiple custom tabs, it is the responsibility of the configuration HTML to render itself accordingly when the tab header is clicked. To assist with this, developers may subscribe to the tab change event emitted by ConfigWindow.
 
