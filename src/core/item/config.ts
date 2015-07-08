@@ -21,7 +21,7 @@ module xui.core {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 iItem.get('prop:BrowserConfiguration', slot).then(config => {
-                    let configObj = config === '' ? {} : JSON.parse(config);
+                    let configObj = config === null ? {} : JSON.parse(config);
                     let persist = internal['persistedConfig'];
                     for (var key in persist) {
                         delete configObj[key];
@@ -33,18 +33,23 @@ module xui.core {
 
         saveConfig(configObj: any) {
             if (Environment.isSourceHtml()) {
-                xui['source'].SourceWindow.getInstance().rememberConfig(
-                    configObj);
+                // check for valid object
+                if ({}.toString.call(configObj) === '[object Object]') {
+                    xui['source'].SourceWindow.getInstance().rememberConfig(
+                        configObj);
 
-                // add persisted configuration if available
-                // currently only top level merging is available
-                let persist = internal['persistedConfig'];
-                for (var key in persist) {
-                    configObj[key] = persist[key];
+                    // add persisted configuration if available
+                    // currently only top level merging is available
+                    let persist = internal['persistedConfig'];
+                    for (var key in persist) {
+                        configObj[key] = persist[key];
+                    }
+
+                    internal.exec('SetBrowserProperty', 'Configuration',
+                        JSON.stringify(configObj));
+                } else {
+                    throw new Error('Configuration objects should be JSON.');
                 }
-
-                internal.exec('SetBrowserProperty', 'Configuration',
-                    JSON.stringify(configObj));
             } else {
                 throw new Error(
                     'Only the source HTML itself may save configuration.' +
