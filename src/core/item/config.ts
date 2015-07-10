@@ -32,64 +32,82 @@ module xui.core {
         }
 
         saveConfig(configObj: any) {
-            if (Environment.isSourceHtml()) {
-                // check for valid object
-                if ({}.toString.call(configObj) === '[object Object]') {
-                    xui['source'].SourceWindow.getInstance().rememberConfig(
-                        configObj);
+            if (this['type'] !== ItemTypes.HTML) {
+                throw new Error('Only HTML sources have configuration ' +
+                    'objects.');
+            } else if (Environment.isSourceHtml()) {
+                let slot = iItem.attach(this.id, this.viewID);
 
-                    // add persisted configuration if available
-                    // currently only top level merging is available
-                    let persist = internal['persistedConfig'];
-                    for (var key in persist) {
-                        configObj[key] = persist[key];
+                // only allow direct saving for self
+                if (slot === 0) {
+                    // check for valid object
+                    if ({}.toString.call(configObj) === '[object Object]') {
+                        xui['source'].SourceWindow.getInstance().rememberConfig(
+                            configObj);
+
+                        // add persisted configuration if available
+                        // currently only top level merging is available
+                        let persist = internal['persistedConfig'];
+                        for (var key in persist) {
+                            configObj[key] = persist[key];
+                        }
+
+                        internal.exec('SetBrowserProperty', 'Configuration',
+                            JSON.stringify(configObj));
+                    } else {
+                        throw new Error('Configuration object should be JSON.');
                     }
-
-                    internal.exec('SetBrowserProperty', 'Configuration',
-                        JSON.stringify(configObj));
                 } else {
-                    throw new Error('Configuration objects should be JSON.');
+                    throw new Error('Sources may only request other sources ' +
+                        'to save a configuration. Consider calling ' +
+                        ' requestSaveConfig() on this Item instance instead.');
                 }
             } else {
                 throw new Error(
-                    'Only the source HTML itself may save configuration.' +
-                    ' Consider applyConfig() instead.');
+                    'Script plugins and source configuration windows are not ' +
+                    'allowed to directly save configuration objects. Call ' +
+                    'requestSaveConfig() instead.');
             }
         }
 
         applyConfig(configObj: any) {
-            let slot = iItem.attach(this.id, this.viewID);
+            if (this['type'] !== ItemTypes.HTML) {
+                throw new Error('Only HTML sources have configuration ' +
+                    'objects.');
+            } else {
+                let slot = iItem.attach(this.id, this.viewID);
 
-            iItem.set('prop:BrowserConfiguration', JSON.stringify(
-                configObj), slot);
+                iItem.set('prop:BrowserConfiguration', JSON.stringify(
+                    configObj), slot);
+            }
         }
 
         requestSaveConfig(configObj: any): void {
-            if (Environment.isSourceHtml()) {
-                throw new Error('Source HTML can call saveConfig() to save.');
+            if (this['type'] !== ItemTypes.HTML) {
+                throw new Error('Only HTML sources have configuration ' +
+                    'objects.');
             } else {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 internal.exec('CallInner' + (slot === 0 ? '' : (slot + 1)),
                     'MessageSource', JSON.stringify({
-                        'request' : 'saveConfig',
-                        'data'    : configObj
-                }));
+                        'request': 'saveConfig',
+                        'data': configObj
+                    }));
             }
         }
 
         revertConfig(): void {
-            if (Environment.isSourceHtml()) {
-                throw new Error('Source HTML automatically reverts its ' +
-                    'configuration when its configuration window or a global ' +
-                    'script calls revertConfig().');
+            if (this['type'] !== ItemTypes.HTML) {
+                throw new Error('Only HTML sources have configuration ' +
+                    'objects.');
             } else {
                 let slot = iItem.attach(this.id, this.viewID);
 
                 internal.exec('CallInner' + (slot === 0 ? '' : (slot + 1)),
                     'MessageSource', JSON.stringify({
-                        'request' : 'revertConfig'
-                }));
+                        'request': 'revertConfig'
+                    }));
             }
         }
     }
