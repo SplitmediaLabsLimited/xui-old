@@ -122,7 +122,7 @@ module xui.core {
         /** Gets the total number of frames rendered */
         getFramesRendered() : Promise<string> {
             return new Promise(resolve => {
-                resolve(iApp.get('version'));
+                resolve(iApp.get('framesrendered'));
             });
         }
 
@@ -177,6 +177,8 @@ module xui.core {
             });
         }
 
+        // fix XML class, since xml returned sometimes should be self-closed
+        // for use in XBC
         setAudioGain(config: JSON): void {
             config.tag = 'configuration';
 
@@ -184,17 +186,18 @@ module xui.core {
         }
 
         // Dialog Services
+
         /** Creates a persistent modal dialog */
         newDialog(url: string): void {
             if (url !== undefined && url !== '') {
-                iApp.callFunc('newdialog', url);
+                internal.exec('NewDialog', url);
             }
         }
 
         /** Creates a modal dialog that automatically closes on outside click */
         newAutoDialog(url: string): void {
             if (url !== undefined && url !== '') {
-                iApp.callFunc('newautodialog', url);
+                internal.exec('NewAutoDialog', url);
             }
         }
 
@@ -244,6 +247,9 @@ module xui.core {
             iApp.set('transitiontime', time.toString());
         }
 
+        // fix presentation class to include both source and script presproperty
+        // maybe we can also reimplement this and the scene class
+        // so that main presetconfig can be reused
         // Presentation services
         getCurrentPresentation(): Promise<Presentation> {
             return new Promise(resolve => {
