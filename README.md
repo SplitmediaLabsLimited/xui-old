@@ -1,6 +1,6 @@
 # XUI Framework
 
-*Important note*: `xui` is not maintained any more. If you wish to develop plugins for XSplit Broadcaster, please proceed to [xjsframework/xjs](github.com/xjsframework/xjs/) instead.
+*Important note*: `xui` is not maintained any more. If you wish to develop plugins for XSplit Broadcaster, please proceed to [xjsframework/xjs](https://github.com/xjsframework/xjs/) instead.
 
 **Table of contents**
 
